@@ -1,0 +1,5 @@
+export const talentsTypes = {
+    TALENTS_GET: 'TALENTS_GET',
+    TALENTS_ADD: 'TALENTS_ADD',
+    TALENTS_FILTERED: 'TALENTS_FILTERED'
+  }
