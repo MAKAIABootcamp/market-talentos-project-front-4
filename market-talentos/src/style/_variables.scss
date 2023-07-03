@@ -5,9 +5,12 @@
 $white: #FFFFFF;
 $blue: #03203A;
 $gray: #252935;
+$grayLight: #707994;
 $skyBkue: #25ABBC;
 $black: #000000;
 $yellow: #EEE420;
+$trasparent: transparent;
+
 
 /*  FOONTS */
 $fontMontserrat: 'montserrat', sans-serif;
@@ -15,38 +18,74 @@ $fontRoboto: 'Roboto', sans-serif;
 $fontNunito: 'Nunito', sans-serif;
 $fontRaleway: 'Raleway', sans-serif;
 
+
+/*  FONT- WEIGHT */
 $w600: 600;
 $w500: 500;
 $w400: 400;
 $w300: 300;
 
-$s24: 24px;
-$s20: 20px; 
-$s14: 14px;
+/*  FONT- SIZE */
 $s10: 10px;
+$s11: 11px;
+$s12: 12px;
+$s14: 14px;
+$s16: 16px;
+$s18: 18px;
+$s20: 20px;
+$s22: 22px;
+$s24: 24px;
+$s26: 26px; 
+$s28: 28px;
+$s30: 30px; 
 
+/*  LINE - SIZE */
 $l28: 28px; 
 $l23: 23px;
 $l16: 16px;
 $l12: 12px;
 
 /* WIDTH */
-$wi66: 66px;
-$wi76: 76px;
-$wi106: 106px;
-$wi136: 116px;
+$wi35: 35px;
+$wi45: 45px;
+$wi55: 55px;
+$wi65: 65px;
+$wi75: 75px;
+$wi85: 85px;
+$wi85: 85px;
+$wi95: 95px;
+$wi105: 105px;
+$wi110: 110px;
+$wi115: 115px;
+$wi125: 125px;
+$wi135: 135px;
 $wi145: 145px;
-$wi190: 190px;
-$wi239: 239px;
-$wi272: 272px;
-$wi358: 358px;
-$wi: auto;
+$wi150: 150px;
+$wi200: 200px;
+$wi230: 230px;
+$wi250: 250px;
+$wi280: 280px;
+$wi300: 300px;
+$wi350: 350px;
+$wiAuto: auto;
 
 /* HEIGTH*/
-$he22: 22px;
-$he32: 32px;
-$he36: 36px;
-$he44: 44px;
+$he10: 10px;
+$he15: 15px;
+$he20: 20px;
+$he25: 25px;
+$he30: 30px;
+$he35: 35px;
+$he45: 45px;
+$he55: 55px;
+$he65: 65px;
+$he75: 75px;
+$he85: 85px;
+$he95: 95px;
+$he105: 105px;
+$he110: 110px;
+$he115: 115px;
+$he125: 125px;
+$he135: 135px;
+$he220: 220px;
 $heAuto: auto;
-$he45: 133px;
-$he46: 219px;

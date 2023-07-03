@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&family=Raleway&family=Roboto:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Noto+Sans+JP&family=Roboto:wght@300&family=Rubik&display=swap');
+
+@mixin styleSquare($bg, $bor, $wi, $he, 
+$color, $size, $weight, 
+$bgH, $borH, $colorH) {
+    background: $bg;
+    border: 1px solid $bor;
+    border-radius: 5px;
+    white-space: normal;
+    min-width: $wi;
+    max-width: auto;
+    height: $he;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 5px;
+    transition: 0.5s;
+    font-family: $fontRoboto;
+    font-size: $size;
+    font-weight: $weight;
+    color: $color;
+    cursor: pointer;
+
+    &:hover {
+        background: $bgH;
+        border: 1px solid $borH;
+        opacity: 100%;
+        color: $colorH;
+    }
+}
+// @include styleSquare($yellow, $yellow, $wi75, $he25, 
+//         $gray, $s12, $w400, 
+//         $white, $gray, $gray);
+
+@mixin styleOval($bg, $bor, $wi, $he, 
+$color, $size, $weight, 
+$bgH, $borH, $colorH) {
+    width: $wi;
+    height: $he;
+    background-color: $bg;
+    border: 2px solid $bor;
+    border-radius: 3rem;
+    cursor: pointer;
+    text-align: center;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    display: flex;
+    font-family: $fontRoboto;
+    font-size: $size;
+    font-weight: $weight;
+    color: $color;
+    gap: 0.4rem;
+
+    &:hover{
+        background-color: $bgH;
+        border: solid 2px $borH;
+        color: $colorH;
+
+    }
+};
+// @include desk{
+//     @include styleOval($skyBkue, $skyBkue, $wi230, $he25, 
+//     $gray, $s14, $w300, 
+//     $yellow, $yellow, $white);
+// }
+
+@mixin styleRound($bg, $bor, $wi, $he, 
+$color, $size, $weight, 
+$bgH, $borH, $colorH) {
+    width: $wi;
+    height: $he;
+    background-color: $bg;
+    border: 2px solid $bor;
+    border-radius: 6rem;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    display: flex;
+    font-family: $fontRoboto;
+    font-size: $size;
+    font-weight: $weight;
+    color: $color;
+
+    &:hover{
+        background-color: $bgH;
+        border: solid 2px $borH;
+        color: $colorH;
+    }
+};
+
+// @include styleRound($skyBkue, $skyBkue, $wi115, $he115, 
+//             $white, $s14, $w300, 
+//             $skyBkue, $skyBkue, $gray); 
+           
+
+@mixin text ($font, $weigh, $size, $color){
+    font-family: $font;
+    font-weight: $weigh;
+    font-size: $size;
+    color: $color;
+    
+    
+}
+
+// @include text ($fontRoboto, $w400, $s14, $gray)
+
+
+@mixin span ($wi, $he, $bg, $bor, 
+$font, $weigh, $size, $color){
+    width: $wi;
+    height: $he;
+    background-color: $bg;
+    border: 1px solid $bor; 
+    font-family: $font;
+    font-weight: $weigh;
+    font-size: $size;
+    color: $color;     
+    border-radius: 10px;
+    padding: 5px;
+    justify-content: center;
+    text-align: center;
+        
+}
+
+// @include span($wiAuto, $he25, $trasparent, $white, 
+// $fontMontserrat, $w300, $s12, $white);

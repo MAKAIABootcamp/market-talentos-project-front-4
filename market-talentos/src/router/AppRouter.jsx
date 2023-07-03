@@ -23,14 +23,15 @@ const AppRouter = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="talent" element={<Talent />} >
+          <Route path="talents" element={<Talent />} ></Route>
             <Route path="loginTalent" element={<LoginTalent />} />
             <Route path="formRegisTalent" element={<FormRegisTalent />} />
             <Route path="searchTalent" element={<SearchTalent />} />
             <Route path="talentDetails" element={<TalentDetails />} />
-            <Route path="portfolio" element={<Portfolio />} />
+            <Route path="editProfile" element={<TalentDetails />} />
+            <Route path="portfolio" element={<Portfolio/>} />
             <Route path="curriculum" element={<Curriculum />} />
-          </Route>
+          {/* </Route> */}
           <Route path="admin" element={<Administrator />} >
             <Route path="loginAdmin" element={<LoginAdmin />} />
             <Route path="dashboard" element={<Dashboard />} />
