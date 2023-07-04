@@ -81,6 +81,7 @@
 
     &__buttons-state {
         @include desk {
+        
             @include styleSquare($yellow, $yellow, $wi75, $he25,
                 $gray, $s12, $w400,
                 $white, $gray, $gray);

@@ -1,0 +1,174 @@
+@import "./style.scss";
+
+.register {
+  @include desk {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__container {
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    gap: 3px;
+  }
+
+  &__fondo-figure {
+    img {
+      width: 100%;
+    }
+  }
+
+  &__section-form {
+    @include desk {
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+  }
+
+  &__form {
+    @include desk {
+      display: flex;
+      margin-top: 120px;
+      flex-direction: column;
+      width: 90%;
+      position: absolute;
+      top: 98%; // Alinea el .register__form desde la mitad del section
+      left: 50%; // Alinea el .register__form desde la mitad del section
+      transform: translate(-50%, -50%);
+    }
+  }
+  &__container-tittle {
+    @include desk {
+      text-align: center;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      margin-top: -10px;
+      width: 100%;
+    }
+  }
+
+  &__button-tittle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include desk {
+      @include styleOval(
+        $skyBkue,
+        $skyBkue,
+        $wi230,
+        $he35,
+        $white,
+        $s14,
+        $w300,
+        $yellow,
+        $yellow,
+        $white
+      );
+    }
+  }
+
+  &__container-infoRegister {
+    @include desk {
+      width: 100%;
+      height: auto;
+      background-color: $gray;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 8px;
+      gap: 8px;
+      padding-bottom: 30px;
+    }
+  }
+
+  &__user-photo {
+    @include desk {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    h5{
+        display: flex;
+        color: white;
+        justify-content: center;
+    }
+}
+  }
+
+  &__file-input-label {
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    color: white;
+    gap: 3px; /* Espacio entre el logo y el texto */
+
+    img {
+      width: 70px;
+      position: relative;
+      top: -5px;
+      cursor: pointer;
+    }
+  }
+  &__select{
+    display: none;
+  }
+
+
+  &__input-regist {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-top: 45px;
+    width: 80%;
+
+    input {
+      border-radius: 15px;
+      padding: 5px;
+    }
+    select {
+      color: gray;
+      border-radius: 15px;
+      padding: 5px;
+    }
+  }
+  &__ussers {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    width: 100%;
+    justify-content: space-between;
+    gap: 9px;
+
+    input {
+      border-radius: 15px;
+      padding: 5px;
+      width: 80%;
+    }
+  }
+
+  &__crearCuenta {
+    @include desk {
+      @include styleSquare(
+        $yellow,
+        $yellow,
+        $wi85,
+        $he25,
+        $gray,
+        $s12,
+        $w400,
+        $white,
+        $gray,
+        $gray
+      );
+    }
+  }
+}
