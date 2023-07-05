@@ -34,12 +34,10 @@
 
   &__form {
     @include desk {
-      display: flex;
-      margin-top: 120px;
+      display: flex;    
       flex-direction: column;
       width: 90%;
       position: absolute;
-      top: 98%; // Alinea el .register__form desde la mitad del section
       left: 50%; // Alinea el .register__form desde la mitad del section
       transform: translate(-50%, -50%);
     }

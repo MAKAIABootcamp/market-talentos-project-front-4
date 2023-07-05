@@ -8,22 +8,23 @@ import logoUser from "../assets/icon/logoUser.png";
 const FormRegisTalent = () => {
   const formik = useFormik({
     initialValues: {
-      nombreCompleto: "",
-      apellidos: "",
-      tipoTalento: "",
+      FirstName: "",
+      lastName: "",
+      role: "",
       cohorte: "",
-      nivelIngles: "",
+      EnglishLevel: "",
       correoElectronico: "",
       celular: "",
       usuario: "",
       contrasenia: "",
+      avatar: null,
     },
     validationSchema: Yup.object({
-      nombreCompleto: Yup.string().required("El nombre es requerido"),
-      apellidos: Yup.string().required("Los apellidos son requeridos"),
-      tipoTalento: Yup.string().required("Selecciona un tipo de talento"),
+      FirstName: Yup.string().required("El nombre es requerido"),
+      lastName: Yup.string().required("Los apellidos son requeridos"),
+      role: Yup.string().required("Selecciona un tipo de talento"),
       cohorte: Yup.string().required("La cohorte es requerida"),
-      nivelIngles: Yup.string().required("El nivel de inglés es requerido"),
+      EnglishLevel: Yup.string().required("El nivel de inglés es requerido"),
       correoElectronico: Yup.string()
         .email("Correo electrónico inválido")
         .required("El correo electrónico es requerido"),
@@ -33,7 +34,7 @@ const FormRegisTalent = () => {
         .required("La contraseña es requerida")
         .min(3, "La contraseña debe contener al menos 3 caracteres.")
         .max(8, "La contraseña no puede contener más de 8 caracteres"),
-      userPhoto: Yup.mixed().required("La foto de perfil es requerida"),
+      avatar: Yup.mixed().required("La foto de perfil es requerida"),
     }),
     onSubmit: (values) => {
       console.log(values); // Aquí puedes hacer lo que necesites con los datos del formulario
@@ -59,54 +60,56 @@ const FormRegisTalent = () => {
               <div className="register__container-infoRegister">
                 <div className="register__input-regist">
                   <div className="register__user-photo">
+                    {/* Label asociado al input de tipo file */}
                     <label
-                      htmlFor="userPhotoInput"
+                      htmlFor="avatarInput"
                       className="register__file-input-label"
                     >
                       <img src={logoUser} alt="logoUser" />
                     </label>
                     <h5>Subir foto de perfil</h5>
+                    {/* Input de tipo file oculto */}
                     <input
+                      id="avatarInput"
                       className="register__select"
-                      id="userPhotoInput"
-                      name="userPhoto"
+                      name="avatar"
                       type="file"
                       accept="image/*"
                       onChange={(event) => {
                         formik.setFieldValue(
-                          "userPhoto",
+                          "avatar",
                           event.currentTarget.files[0]
                         );
                       }}
                     />
-                    {formik.touched.userPhoto && formik.errors.userPhoto && (
-                      <span>{formik.errors.userPhoto}</span>
+                    {formik.touched.avatar && formik.errors.avatar && (
+                      <span>{formik.errors.avatar}</span>
                     )}
                   </div>
 
                   <input
-                    name="nombreCompleto"
+                    name="FirstName"
                     placeholder="Nombre completo"
-                    value={formik.values.nombreCompleto}
+                    value={formik.values.FirstName}
                     onChange={formik.handleChange}
                   />
-                  {formik.touched.nombreCompleto &&
-                    formik.errors.nombreCompleto && (
-                      <span>{formik.errors.nombreCompleto}</span>
+                  {formik.touched.FirstName &&
+                    formik.errors.FirstName && (
+                      <span>{formik.errors.FirstName}</span>
                     )}
 
                   <input
-                    name="apellidos"
+                    name="lastName"
                     placeholder="Apellidos"
                     value={formik.values.apellidos}
                     onChange={formik.handleChange}
                   />
-                  {formik.touched.apellidos && formik.errors.apellidos && (
-                    <span>{formik.errors.apellidos}</span>
+                  {formik.touched.lastName && formik.errors.lastName && (
+                    <span>{formik.errors.lastName}</span>
                   )}
 
                   <select
-                    name="tipoTalento"
+                    name="role"
                     value={formik.values.tipoTalento}
                     onChange={formik.handleChange}
                   >
@@ -115,8 +118,8 @@ const FormRegisTalent = () => {
                     <option value="BackEnd">BackEnd</option>
                     <option value="FullStack">FullStack</option>
                   </select>
-                  {formik.touched.tipoTalento && formik.errors.tipoTalento && (
-                    <span>{formik.errors.tipoTalento}</span>
+                  {formik.touched.role && formik.errors.role && (
+                    <span>{formik.errors.role}</span>
                   )}
 
                   <input
@@ -130,13 +133,13 @@ const FormRegisTalent = () => {
                   )}
 
                   <input
-                    name="nivelIngles"
+                    name="EnglishLevel"
                     placeholder="Nivel de inglés"
-                    value={formik.values.nivelIngles}
+                    value={formik.values.EnglishLevel}
                     onChange={formik.handleChange}
                   />
-                  {formik.touched.nivelIngles && formik.errors.nivelIngles && (
-                    <span>{formik.errors.nivelIngles}</span>
+                  {formik.touched.EnglishLevel && formik.errors.EnglishLevel && (
+                    <span>{formik.errors.EnglishLevel}</span>
                   )}
 
                   <input
