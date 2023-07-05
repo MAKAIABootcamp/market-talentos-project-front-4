@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&family=Raleway&family=Roboto:wght@300;400;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Noto+Sans+JP&family=Roboto:wght@300&family=Rubik&display=swap');
-
+@import "./variables";
 @mixin styleSquare($bg, $bor, $wi, $he, 
 $color, $size, $weight, 
 $bgH, $borH, $colorH) {

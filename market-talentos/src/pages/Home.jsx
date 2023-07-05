@@ -1,11 +1,16 @@
-import React from 'react'
-
+import React from "react";
+import Layout from "../components/layout/Layout";
+import Footer from "../components/footer/Footer";
+import Usuarios from "../components/usuarios/Usuarios";
+import '../style/styleHome.scss'
 const Home = () => {
   return (
     <div>
-        <h1>home</h1>
+      <Layout />
+      <Usuarios />
+      <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
