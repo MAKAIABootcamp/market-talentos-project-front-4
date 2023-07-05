@@ -45,8 +45,12 @@ const useOnClick = () => {
             console.log("hice click en profile ", parametro);
             navigate("/profile")
         }
+        else if (parametro === "cardTalent") {
+            console.log("hice click en cardTalent ", parametro);
+            navigate("/talentDetails")
+        }
 
-
+        
     }, [navigate]);
     return handleClick;
 };

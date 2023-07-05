@@ -1,15 +1,26 @@
-import {talentsTypes} from '../types/talentsTypes';
+import { talentsTypes } from '../types/talentsTypes';
 
 const initialState = {
-    talents: [],
+    talents: {},
 }
 
-export const talentsReducer = (state = initialState, action) =>{
+export const talentsReducer = (state = initialState, action) => {
     switch (action.type) {
+        case talentsTypes.TALENT_REGISTER:
+            return {
+                ...action.payload,
+            };
+
+        case talentsTypes.TALENT_LOGIN:
+            return {
+                ...action.payload,
+            };
+        case talentsTypes.TALENT_LOGOUT:
+            return {};
         case talentsTypes.TALENTS_GET:
             return {
                 ...state,
-                talents:[ ...action.payload],
+                talents: [...action.payload],
             };
         case talentsTypes.TALENTS_ADD:
             return {
@@ -25,6 +36,4 @@ export const talentsReducer = (state = initialState, action) =>{
             return state;
     }
 }
-
-
 

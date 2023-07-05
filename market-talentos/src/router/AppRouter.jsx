@@ -16,6 +16,8 @@ import ProfileCustomer from '../pages/ProfileCustomer';
 import JobOffers from '../pages/JobOffers';
 import Blog from '../pages/Blog';
 import TalentDetails from '../pages/TalentDetails';
+import TalentsAll from '../pages/TalentsAll';
+import EditProfile from '../pages/EditProfile';
 
 const AppRouter = () => {
   return (
@@ -27,8 +29,9 @@ const AppRouter = () => {
             <Route path="loginTalent" element={<LoginTalent />} />
             <Route path="formRegisTalent" element={<FormRegisTalent />} />
             <Route path="searchTalent" element={<SearchTalent />} />
+            <Route path="talentAll" element={<TalentsAll/>} />
+            <Route path="editProfile" element={<EditProfile />} />
             <Route path="talentDetails" element={<TalentDetails />} />
-            <Route path="editProfile" element={<TalentDetails />} />
             <Route path="portfolio" element={<Portfolio/>} />
             <Route path="curriculum" element={<Curriculum />} />
           {/* </Route> */}
