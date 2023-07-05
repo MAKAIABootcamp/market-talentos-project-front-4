@@ -1,6 +1,148 @@
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { dataBase } from "../../firebase/firebaseConfig";
 import { talentsTypes } from "../types/talentsTypes";
+import { auth } from "../../firebase/firebaseConfig";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  updateProfile,
+} from "firebase/auth";
+
+
+export const actionRegisterAsync = ({ email, password, name, avatar }) => {
+  return (dispatch) => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(async ({ talent }) => {
+        console.log(talent);
+        const { accessToken, photoURL, phoneNumber } = talent.auth.currentUser;
+        await updateProfile(auth.currentUser, {
+          displayName: name,
+          photoURL: avatar,
+        });
+        dispatch(
+          actionRegisterSync({
+            email,
+            name,
+            accessToken,
+            photoURL,
+            phoneNumber,
+            error: false,
+          })
+        );
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode);
+        console.log(errorMessage);
+        dispatch(actionRegisterAsync({ error: true, errorMessage }));
+      });
+  };
+};
+
+// función registro sincrona
+const actionRegisterSync = (talent) => {
+  return {
+    type: talentsTypes.TALENT_REGISTER,
+    payload: {
+      ...talent,
+    },
+  };
+};
+
+// función login Asincrona
+export const actionLoginAsync = ({ email, password }) => {
+  return (dispatch) => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then(({ talent }) => {
+        const { displayName, accessToken, photoURL, phoneNumber } =
+          talent.auth.currentUser;
+        dispatch(
+          actionLoginSync({
+            email,
+            name: displayName,
+            accessToken,
+            photoURL,
+            phoneNumber,
+            error: false,
+          })
+        );
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode);
+        console.log(errorMessage);
+        dispatch(actionLoginSync({ email, error: true, errorMessage }));
+      });
+  };
+};
+
+// función login sincrona
+const actionLoginSync = (talent) => {
+  return {
+    type: talentsTypes.TALENT_LOGIN,
+    payload: {
+      ...talent,
+    },
+  };
+};
+
+// función logout Asincrona
+export const actionLogoutAsync = () => {
+  return (dispatch) => {
+    signOut(auth)
+      .then(() => {
+        dispatch(actionLogoutSync());
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+};
+
+
+// función logout sincrona
+const actionLogoutSync = () => {
+  return {
+    type: talentsTypes.TALENT_LOGOUT,
+  };
+};
+
+// función ingresar con google o facebook
+export const actionLoginGoogleOrFacebook = (provider) => {
+  return (dispatch) => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const { displayName, accessToken, photoURL, phoneNumber, email } =
+          result.talent;
+        console.log(result.talent);
+        dispatch(
+          actionLoginSync({
+            email,
+            name: displayName,
+            accessToken,
+            photoURL,
+            phoneNumber,
+            error: false,
+          })
+        );
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.customData.email;
+        console.log(error);
+        console.log(errorCode);
+        console.log(errorMessage);
+        dispatch(actionLoginSync({ email, error: true, errorMessage }));
+      });
+  };
+};
+
+
 
 const collectionName = "talents";
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import '../style/styleTalent.scss'
-import imgTalent from '../assets/elisa.jpeg'
+import '../style/styleTalent.scss';
+import imgTalent from '../assets/elisa.jpeg';
 import useOnClick from '../funtions/useOnClick';
 import { NavLink, Outlet } from 'react-router-dom';
 
