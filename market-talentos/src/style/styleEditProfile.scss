@@ -1,0 +1,120 @@
+@import './style.scss';
+
+.editProfile{
+    @include desk {
+        width: 100%;
+        height: 100%;
+        background-color: $gray;
+        display: flex;
+        position: absolute;
+
+    }
+
+    &__container {
+        @include desk {
+            margin: 1rem;
+            width: 18rem;
+            height: 28rem;
+            background-color: white;
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            // clip-path: polygon(0% 0%, 54.7% 1.3%, 100% 15%, 100% 100%, 0% 100%);
+            border-radius: 10px;
+
+        }
+    }
+
+
+    &__card-figure {
+        @include desk {
+            @include styleRound($white, $skyBkue, $wi105, $he105,
+                $white, $s14, $w300,
+                $white, $skyBkue, $gray);
+
+            img {
+                width: 100%;
+                height: 100%;
+                border-radius: 5rem;
+            }
+        }
+    }
+
+    &__container-title {
+        @include desk {
+            position: absolute;
+            width: 280px;
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    &__button-title{
+        @include desk {
+            @include styleSquare($skyBkue, $skyBkue, $wi230, $he25,
+                $gray, $s14, $w300,
+                $yellow, $yellow, $white);
+        }
+    }
+
+    &__container-infoCustom {
+        @include desk {
+            margin-top: 13px;
+            width: 280px;
+            height: auto;
+            background-color: $gray;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            
+        }
+    }
+
+    &__container-infoContacts {
+        @include desk {
+
+            width: auto;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            
+        }
+
+    }
+    &__container-profile {
+        @include desk {
+            background-color: red;
+            padding-top: 8px;
+            margin-bottom: 5px;
+            width: 260px;
+            height: 40px;
+            overflow-y: auto;
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+    }
+    &__input{
+        @include desk {
+            @include styleSquare($white, $white, $wi250, $he25, 
+         $gray, $s12, $w400, 
+        $white, $gray, $gray);
+        }
+    }
+
+
+    &__button{
+        @include desk {
+            @include styleOval($yellow, $yellow, $wi55, $he20,
+                $gray, $s12, $w300,
+                $yellow, $yellow, $white);
+        }
+    }
+
+}

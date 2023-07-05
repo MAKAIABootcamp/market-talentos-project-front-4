@@ -3,13 +3,178 @@
 .loginTalent{
     @include desk{
         width: 100%;
-        height: 100%;
+        height: auto;
+        padding-top: 50px;
         background-color: $gray;
         display: flex;
+        flex-direction: column;
         position: absolute;
+        align-items: center;
         
     }
-        
-   
+    &__container-logo{
+        @include desk {
+            margin: 1rem;
+            width: rem;
+            height: 35rem;
+            background-color: white;
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            // clip-path: polygon(0% 0%, 54.7% 1.3%, 100% 15%, 100% 100%, 0% 100%);
+            border-radius: 10px;
 
+        }
+    }
+    &__figure-logo{
+        @include desk {
+
+            margin: 1rem;
+            width: 15rem;
+           
+            
+            padding-top: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+           
+            // clip-path: polygon(0% 0%, 54.7% 1.3%, 100% 15%, 100% 100%, 0% 100%);
+            border-radius: 10px;
+
+            img{
+                width: 100%;
+                
+            }
+
+        }
+    }
+    &__container-validation{
+        @include desk {
+           padding-top: 10px;
+            width: 295px;
+            height: auto;
+            background-color: $gray;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            gap: 10px;
+        }
+    }
+    &__container-title{
+        
+        width: 280px;
+        height: auto;
+        justify-content: center;
+        text-align: center;
+
+        h3{
+            @include text ($fontMontserrat, $w400, $s18, $white)
+        }
+    }
+    &__container-mail{
+        width: 240px;
+        height: 60px;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+        justify-content: center;
+        align-items: center
+
+    }
+    &__span-mail{
+        @include text ($fontRoboto, $w400, $s14, $white);
+    }
+    &__input-login{
+        @include styleSquare($white, $white, $wi200, $he25, 
+        $gray, $s12, $w300, 
+        $white, $white, $gray);
+    }
+    &__container-password{
+        width: 240px;
+        height: 60px;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+        justify-content: center;
+        align-items: center
+    }
+    &__container-checkRecord{
+        gap: 5px;
+        display: flex;
+        text-align: center;
+        margin-bottom: 15px;
+        
+    }
+    &__label-remember{
+        @include text ($fontRoboto, $w400, $s14, $white);
+    }
+    &____input-checkRemember{
+        @include desk{
+               @include styleOval($skyBkue, $skyBkue, $wi230, $he25, 
+               $gray, $s14, $w300, 
+                $yellow, $yellow, $white);
+        }
+    }
+    &__container-checkIn{
+        @include desk{
+        width: 240px;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;  
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 15px;
+     }
+
+    }
+    &__input-checkIn{
+        @include desk{
+                @include styleSquare($yellow, $yellow, $wi105, $he25, 
+                $gray, $s14, $w300, 
+                $white, $gray, $gray);
+             }
+    }
+    &__label-footer{
+        @include desk{
+        @include text ($fontRoboto, $w300, $s10, $white)
+        }
+    }
+    &__container-register{
+        @include desk{
+        width: 210px;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        }
+    }
+    &__span-register{
+        @include text ($fontRoboto, $w400, $s12, $white)
+    }
+    &__span-registerLink{
+        text-decoration: underline;
+        cursor: pointer;
+        @include text ($fontRoboto, $w400, $s12, $white);  
+    }
+    &__provider{
+       
+        display: flex;
+        width: 100px;
+        height: 40px;
+        justify-content: space-between;
+    }
+    &__figure-provider{
+        width: 30px;
+        height: 30px;
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    }
 }
