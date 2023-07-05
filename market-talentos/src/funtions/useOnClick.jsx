@@ -9,7 +9,7 @@ const useOnClick = () => {
 
         if (parametro === "editImgProfile") {
             Swal.fire({
-                text: "¿Deseas seguir cambiar la foto de perfil?",
+                text: "¿Deseas cambiar la foto de perfil?",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'OK',
@@ -44,6 +44,14 @@ const useOnClick = () => {
         else if (parametro === "profile") {
             console.log("hice click en profile ", parametro);
             navigate("/profile")
+        }
+        else if (parametro === "registerTalent") {
+            console.log("hice click en profile ", parametro);
+            navigate("/formRegisTalent")
+        }
+        else if (parametro === "registerTalent") {
+            console.log("hice click en profile ", parametro);
+            navigate("/formRegisTalent")
         }
 
 
