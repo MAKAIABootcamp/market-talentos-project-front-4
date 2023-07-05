@@ -4,7 +4,7 @@ import Administrator from '../pages/Administrator';
 import Customer from '../pages/Customer';
 import Dashboard from '../pages/Dashboard';
 import Home from '../pages/Home';
-import LoginAdmin from '../pages/LoginAdmin';
+import LoginAdmin from '../pages/loginAdmin/LoginAdmin';
 import LoginTalent from '../pages/LoginTalent';
 import Portfolio from '../pages/Portfolio';
 import Talent from '../pages/Talent';
@@ -24,18 +24,19 @@ const AppRouter = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="talents" element={<Talent />} ></Route>
-            <Route path="loginTalent" element={<LoginTalent />} />
-            <Route path="formRegisTalent" element={<FormRegisTalent />} />
-            <Route path="searchTalent" element={<SearchTalent />} />
-            <Route path="talentDetails" element={<TalentDetails />} />
-            <Route path="editProfile" element={<TalentDetails />} />
-            <Route path="portfolio" element={<Portfolio/>} />
-            <Route path="curriculum" element={<Curriculum />} />
+          <Route path="loginTalent" element={<LoginTalent />} />
+          <Route path="formRegisTalent" element={<FormRegisTalent />} />
+          <Route path="searchTalent" element={<SearchTalent />} />
+          <Route path="talentDetails" element={<TalentDetails />} />
+          <Route path="editProfile" element={<TalentDetails />} />
+          <Route path="portfolio" element={<Portfolio />} />
+          <Route path="curriculum" element={<Curriculum />} />
           {/* </Route> */}
-          <Route path="admin" element={<Administrator />} >
-            <Route path="loginAdmin" element={<LoginAdmin />} />
-            <Route path="dashboard" element={<Dashboard />} />
-          </Route>
+          <Route path="admin" element={<Administrator />} />
+          <Route path="loginAdmin" element={<LoginAdmin />} />
+          <Route path="dashboard" element={<Dashboard />} />
+
+
           <Route path="customer" element={<Customer />} >
             <Route path="formRegisCustom" element={<FormRegisCustom />} />
             <Route path="profileCustomer" element={<ProfileCustomer />} />
