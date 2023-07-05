@@ -6,6 +6,7 @@
         height: 100%;
         background-color: $gray;
         display: flex;
+        justify-content: center;
         position: absolute;
 
     }
@@ -89,7 +90,7 @@
     }
     &__container-profile {
         @include desk {
-            background-color: red;
+            // background-color: red;
             padding-top: 8px;
             margin-bottom: 5px;
             width: 260px;
@@ -103,6 +104,14 @@
     &__input{
         @include desk {
             @include styleSquare($white, $white, $wi250, $he25, 
+         $gray, $s12, $w400, 
+        $white, $gray, $gray);
+        }
+    }
+
+    &__input-profile{
+        @include desk {
+            @include styleSquare($white, $white, $wi250, $he85, 
          $gray, $s12, $w400, 
         $white, $gray, $gray);
         }
