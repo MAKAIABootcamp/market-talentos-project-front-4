@@ -1,6 +1,6 @@
 import React from 'react';
 import '../style/styleLoginTalent.scss';
-import logoBootcamp from '../assets/logoMakaia.png';
+import logoBootcamp from '../assets/makaia.png';
 import useOnClick from '../funtions/useOnClick';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
