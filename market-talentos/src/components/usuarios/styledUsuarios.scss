@@ -1,0 +1,97 @@
+@import "../../style/mixin.scss";
+
+.main {
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  &__empresa {
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: $white;
+    border-radius: 50%;
+    width: 350px;
+    height: 320px;
+    h1 {
+      width: 100px;
+      text-align: center;
+    }
+    p {
+      display: flex;
+    }
+  }
+  &__containertalentos {
+    display: flex;
+    margin-left: 800px;
+    margin-top: -160px;
+  }
+  &__talentos {
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: $white;
+    border-radius: 50%;
+    width: 350px;
+    height: 320px;
+    h1 {
+      width: 100px;
+      text-align: center;
+    }
+    p {
+      display: flex;
+    }
+  }
+  &__containeradministrador {
+    display: flex;
+    margin-top: -170px;
+  }
+  &__administrador {
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: skyBkue;
+    border-radius: 50%;
+    width: 350px;
+    height: 320px;
+    background-color: $white;
+    h1 {
+      align-items: center;
+    }
+    p {
+      display: flex;
+    }
+  }
+  &__button {
+    @include styleSquare(
+      $blue,
+      $blue,
+      $wi75,
+      $he25,
+      $white,
+      $s12,
+      $w400,
+      $white,
+      $gray,
+      $gray
+    );
+  }
+  &__containercolor {
+    background-color: $skyBkue;
+    width: 420px;
+    height: 380px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

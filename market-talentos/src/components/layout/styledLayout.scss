@@ -1,0 +1,37 @@
+@import "../../style/mixin.scss";
+
+.header {
+  display: flex;
+  background-color: $softblue;
+  height: 100px;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 100% 100%, 40% 90%);
+  &__navbar {
+    display: flex;
+    padding-left: 700px;
+    align-items: center;
+  }
+  &__logomakaia {
+    img {
+      width: 200px;
+      position: absolute;
+      top: 20px;
+    }
+  }
+  &__navbarlink {
+    display: flex;
+  }
+  &__button {
+    @include styleSquare(
+      $blue,
+      $blue,
+      $wi75,
+      $he25,
+      $white,
+      $s12,
+      $w400,
+      $white,
+      $gray,
+      $gray
+    );
+  }
+}
