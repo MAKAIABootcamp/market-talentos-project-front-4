@@ -1,5 +1,6 @@
 import React from "react";
 import "../style/styleTalentOfferJob.scss";
+import logoMakaia from "../assets/icon/logoMakaia.png"
 
 const TalentOfferJob = () => {
   const jobsButtons = [
@@ -37,7 +38,10 @@ const TalentOfferJob = () => {
 
   return (
     <section className="talentOffer">
+        
       <div className="talentOffer__container">
+       <img src={logoMakaia} alt="logoMakaia" />
+       
         <div className="talentOffer__container-infojob">
           <button className="talentOffer__button-otherjobs">
             Ofertas Laborales
