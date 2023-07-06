@@ -37,5 +37,3 @@ export const talentsReducer = (state = initialState, action) => {
     }
 }
 
-
-
