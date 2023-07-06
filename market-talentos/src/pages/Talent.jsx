@@ -95,7 +95,7 @@ const Talent = () => {
               <div className='talents__container-custom'>
                 <button className='talents__button-custom'
                   onClick={() => handleClick("portfolio", "")}
-                >portafolio</button>
+                >dispponible</button>
                 <button className='talents__button-custom'
                   onClick={() => handleClick("curriculum", "")}
                 >hoja de vida</button>

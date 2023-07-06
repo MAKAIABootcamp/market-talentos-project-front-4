@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { talentsReducer } from "../reducers/talentsReducer";
 
 const reducer = {
-   talents: talentsReducer,
+   talentsStore: talentsReducer,
 };
 
 const store = configureStore({
