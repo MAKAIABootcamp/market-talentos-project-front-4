@@ -12,6 +12,7 @@ import {
   actionLoginAsync,
   actionLoginGoogleOrFacebook,
 } from "../redux/actions/talent";
+import { useNavigate } from 'react-router';
 
 const schema = yup.object({
   email: yup
@@ -22,6 +23,8 @@ const schema = yup.object({
 });
 
 const LoginTalent = () => {
+
+  const navigate = useNavigate()
   const handleClick = useOnClick();
 
   const {
@@ -36,7 +39,7 @@ const LoginTalent = () => {
     },
 
   });
-  const { error, errorMessage } = useSelector((store) => store.talents);
+  const { error, errorMessage } = useSelector((store) => store.talentsStore);
   const dispatch = useDispatch();
 
   const onSubmit = (data) => {
@@ -44,10 +47,13 @@ const LoginTalent = () => {
     if (error) {
       Swal.fire("Oops!", `Ha ocurrido un error: ${errorMessage}`, "error");
     } else {
-      Swal.fire("Good job!", "Tu cuenta se ha creado exitosamente!", "success");
+      Swal.fire(" Good job!", "se ha registrado exitosamente!", "success");
+      navigate('talents');
     }
   };
 
+
+  
   const handleLoginGoogleOrFacebook = (provider) => {
     dispatch(actionLoginGoogleOrFacebook(provider));
   };

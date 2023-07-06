@@ -32,6 +32,21 @@ const Talent = () => {
             <div className='buttons'>
               <div>
                 Buscar Talento
+                <span className='talents__programs'>GIT_UP</span>
+              </div>
+              {/* <button className='talents__button-seeMore'>ver más</button> */}
+              <div className='talents__container-profile'>
+                <p className='talents__profile'>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum nostrum dolores quasi beatae. Placeat quod quia quidem quasi accusamus maxime nemo ut, alias ullam, exercitationem deleniti ad vero totam vitae.
+                </p>
+              </div>
+              <div className='talents__container-custom'>
+                <button className='talents__button-custom'
+                  onClick={() => handleClick("portfolio", "")}
+                >dispponible</button>
+                <button className='talents__button-custom'
+                  onClick={() => handleClick("curriculum", "")}
+                >hoja de vida</button>
               </div>
             </div>
 

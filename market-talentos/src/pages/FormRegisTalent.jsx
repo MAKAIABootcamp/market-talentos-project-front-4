@@ -1,6 +1,7 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import fileUpload from '../services/fileUpload';
 import "../style/styleFormRegisTalent.scss";
 import fondoImg from "../assets/fondoregist.jpg";
 import logoUser from "../assets/icon/logoUser.png";
@@ -15,7 +16,7 @@ const FormRegisTalent = () => {
       EnglishLevel: "",
       correoElectronico: "",
       celular: "",
-      usuario: "",
+      user: "",
       contrasenia: "",
       avatar: null,
     },
@@ -29,16 +30,30 @@ const FormRegisTalent = () => {
         .email("Correo electrónico inválido")
         .required("El correo electrónico es requerido"),
       celular: Yup.string().required("El número de celular es requerido"),
-      usuario: Yup.string().required("El usuario es requerido"),
+      user: Yup.string().required("El user es requerido"),
       contrasenia: Yup.string()
         .required("La contraseña es requerida")
         .min(3, "La contraseña debe contener al menos 3 caracteres.")
         .max(8, "La contraseña no puede contener más de 8 caracteres"),
       avatar: Yup.mixed().required("La foto de perfil es requerida"),
     }),
-    onSubmit: (values) => {
+    
+    onSubmit: async (values) => {
+      const { avatar } = values;
+
+      try {
+        const avatarUrl = await fileUpload(avatar);
+        console.log("Avatar URL:", avatarUrl);
+        // Aquí puedes hacer lo que necesites con el URL del avatar, como guardarlo en una base de datos o enviarlo a un servidor
+      } catch (error) {
+        console.error("Error uploading avatar to Cloudinary:", error);
+      }
+
       console.log(values); // Aquí puedes hacer lo que necesites con los datos del formulario
     },
+ 
+
+    
   });
 
   return (
@@ -93,10 +108,9 @@ const FormRegisTalent = () => {
                     value={formik.values.FirstName}
                     onChange={formik.handleChange}
                   />
-                  {formik.touched.FirstName &&
-                    formik.errors.FirstName && (
-                      <span>{formik.errors.FirstName}</span>
-                    )}
+                  {formik.touched.FirstName && formik.errors.FirstName && (
+                    <span>{formik.errors.FirstName}</span>
+                  )}
 
                   <input
                     name="lastName"
@@ -138,9 +152,10 @@ const FormRegisTalent = () => {
                     value={formik.values.EnglishLevel}
                     onChange={formik.handleChange}
                   />
-                  {formik.touched.EnglishLevel && formik.errors.EnglishLevel && (
-                    <span>{formik.errors.EnglishLevel}</span>
-                  )}
+                  {formik.touched.EnglishLevel &&
+                    formik.errors.EnglishLevel && (
+                      <span>{formik.errors.EnglishLevel}</span>
+                    )}
 
                   <input
                     name="correoElectronico"
@@ -162,16 +177,30 @@ const FormRegisTalent = () => {
                   {formik.touched.celular && formik.errors.celular && (
                     <span>{formik.errors.celular}</span>
                   )}
+                  <div className="register__habeasdata ">
+                    <input
+                      id="habeasDataCheckbox"
+                      name="habeasDataCheckbox"
+                      type="checkbox"
+                      value={formik.values.habeasDataCheckbox}
+                      onChange={formik.handleChange}
+                    />
+                    <label className="register__habeasdata-info">
+                       Habeas Data: Al completar este formulario, aceptas que tus
+                      datos sean almacenados y utilizados de acuerdo con nuestra
+                      política de privacidad.
+                    </label>
+                  </div>
 
                   <div className="register__ussers">
                     <input
-                      name="usuario"
+                      name="user"
                       placeholder="Usuario"
-                      value={formik.values.usuario}
+                      value={formik.values.user}
                       onChange={formik.handleChange}
                     />
-                    {formik.touched.usuario && formik.errors.usuario && (
-                      <span>{formik.errors.usuario}</span>
+                    {formik.touched.user && formik.errors.user && (
+                      <span>{formik.errors.user}</span>
                     )}
 
                     <input
