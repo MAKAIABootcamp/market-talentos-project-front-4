@@ -142,10 +142,11 @@ export const actionLoginGoogleOrFacebook = (provider) => {
   };
 };
 
-
+// nombre de la colección
 
 const collectionName = "talents";
 
+// asyncrona para traer los datos de firebase
 export const actionGetTalentsAsync = () => {
   return async (dispatch) => {
     const talentsCollection = collection(dataBase, collectionName);
