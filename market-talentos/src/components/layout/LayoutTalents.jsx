@@ -9,6 +9,7 @@ const LayoutTalents = () => {
             <div className='layoutTalents__navbar'>
               <NavLink>
                  <button>Search</button>
+                 <button>todos</button>
               </NavLink>
 
             </div>
