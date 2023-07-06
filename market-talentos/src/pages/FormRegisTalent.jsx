@@ -16,7 +16,7 @@ const FormRegisTalent = () => {
       EnglishLevel: "",
       correoElectronico: "",
       celular: "",
-      usuario: "",
+      user: "",
       contrasenia: "",
       avatar: null,
     },
@@ -30,7 +30,7 @@ const FormRegisTalent = () => {
         .email("Correo electrónico inválido")
         .required("El correo electrónico es requerido"),
       celular: Yup.string().required("El número de celular es requerido"),
-      usuario: Yup.string().required("El usuario es requerido"),
+      user: Yup.string().required("El user es requerido"),
       contrasenia: Yup.string()
         .required("La contraseña es requerida")
         .min(3, "La contraseña debe contener al menos 3 caracteres.")
@@ -194,13 +194,13 @@ const FormRegisTalent = () => {
 
                   <div className="register__ussers">
                     <input
-                      name="usuario"
+                      name="user"
                       placeholder="Usuario"
-                      value={formik.values.usuario}
+                      value={formik.values.user}
                       onChange={formik.handleChange}
                     />
-                    {formik.touched.usuario && formik.errors.usuario && (
-                      <span>{formik.errors.usuario}</span>
+                    {formik.touched.user && formik.errors.user && (
+                      <span>{formik.errors.user}</span>
                     )}
 
                     <input
