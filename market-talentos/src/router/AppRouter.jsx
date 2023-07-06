@@ -28,9 +28,10 @@ const AppRouter = () => {
           <Route path="formRegisTalent" element={<FormRegisTalent />} />
           <Route path="searchTalent" element={<SearchTalent />} />
           <Route path="talentDetails" element={<TalentDetails />} />
-          <Route path="editProfile" element={<TalentDetails />} />
+          <Route path="editProfile" element={<EditProfile />} />
           <Route path="portfolio" element={<Portfolio />} />
           <Route path="curriculum" element={<Curriculum />} />
+          <Route path="talentsAll" element={<TalentsAll/>} />
           {/* </Route> */}
           <Route path="admin" element={<Administrator />} />
           <Route path="loginAdmin" element={<LoginAdmin />} />
