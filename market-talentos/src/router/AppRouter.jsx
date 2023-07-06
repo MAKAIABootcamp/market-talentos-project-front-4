@@ -1,23 +1,25 @@
-import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Administrator from '../pages/Administrator';
-import Customer from '../pages/Customer';
-import Dashboard from '../pages/Dashboard';
-import Home from '../pages/Home';
-import LoginAdmin from '../pages/loginAdmin/LoginAdmin';
-import LoginTalent from '../pages/LoginTalent';
-import Portfolio from '../pages/Portfolio';
-import Talent from '../pages/Talent';
-import FormRegisTalent from '../pages/FormRegisTalent';
-import Curriculum from '../pages/Curriculum';
-import SearchTalent from '../pages/SearchTalent';
-import FormRegisCustom from '../pages/FormRegisCustom';
-import ProfileCustomer from '../pages/ProfileCustomer';
-import JobOffers from '../pages/JobOffers';
-import Blog from '../pages/Blog';
-import TalentDetails from '../pages/TalentDetails';
-import TalentsAll from '../pages/TalentsAll';
-import EditProfile from '../pages/EditProfile';
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Administrator from "../pages/Administrator";
+import Customer from "../pages/Customer";
+import Dashboard from "../pages/Dashboard";
+import Home from "../pages/Home";
+import LoginAdmin from "../pages/loginAdmin/LoginAdmin";
+import LoginTalent from "../pages/LoginTalent";
+import Portfolio from "../pages/Portfolio";
+import Talent from "../pages/Talent";
+import FormRegisTalent from "../pages/FormRegisTalent";
+import Curriculum from "../pages/Curriculum";
+import SearchTalent from "../pages/SearchTalent";
+import FormRegisCustom from "../pages/FormRegisCustom";
+import ProfileCustomer from "../pages/ProfileCustomer";
+import JobOffers from "../pages/JobOffers";
+import Blog from "../pages/Blog";
+import TalentDetails from "../pages/TalentDetails";
+import TalentsAll from "../pages/TalentsAll";
+import EditProfile from "../pages/EditProfile";
+import TalentOfferJob from "../pages/TalentOfferJob";
+import JobApplicatioTalent from "../pages/JobApplicatioTalent"
 
 const AppRouter = () => {
   return (
@@ -34,10 +36,9 @@ const AppRouter = () => {
           <Route path="portfolio" element={<Portfolio />} />
           <Route path="curriculum" element={<Curriculum />} />
           <Route path="jobTalent" element={<JobApplicatioTalent />} />
-          <Route path='talentOfferJob' element={<TalentOfferJob />}/>
+          <Route path="talentOfferJob" element={<TalentOfferJob />} />
 
-          
-          <Route path="talentsAll" element={<TalentsAll/>} />
+          <Route path="talentsAll" element={<TalentsAll />} />
           {/* </Route> */}
           <Route path="admin" element={<Administrator />} />
           <Route path="loginAdmin" element={<LoginAdmin />} />
