@@ -108,7 +108,10 @@ const TalentsAll = () => {
 
     return (
         <>
-            <section className='talentsAll'>
+            <div className='talentsAll'>
+                <div className="talentsAll__title" >
+                    <h1>Talentos Bookcamp Makaia</h1>
+                </div>
                 <div className='talentsAll__container-cards'>
                     {arrayTalents && arrayTalents.length > 0 ? (
                         arrayTalents.map((talent, index) => (
@@ -146,7 +149,7 @@ const TalentsAll = () => {
                 ''
                 )}
                 </div>
-            </section>
+            </div>
         </>
     )
 }
