@@ -1,67 +1,18 @@
-@import './style.scss';
-
-
-.buttons{
-    display: flex;
-    justify-content: space-between;
-    margin: .85rem;
-    margin-top: 3rem;
-    text-align: center;
-    color:white;
-    background: none;
-   border: white solid 1px;
-   border-radius: 3px;
-   font-size: 12px;
-   padding: 1px;
-    
-}
-
-.buttons_principal{
-    display: flex;
-}
-
-.container_principal{
-    display: flex;
-    flex-direction: column;
-}
+@import '../../style/style.scss';
 
 .talents {
-    
-
-
-    @include mobile {
+    @include desk {
         width: 100%;
         height: 100%;
         background-color: $gray;
         display: flex;
         position: absolute;
-        margin-left: -30px;
-        
-        
 
     }
 
     &__container {
-        @include mobile {
-            margin: 2rem;
-          margin-top: 4rem;        
-            width: 18rem;
-            height: 28.5rem;
-            background-color: white;
-            padding: 5px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3px;
-            // clip-path: polygon(0% 0%, 54.7% 1.3%, 100% 15%, 100% 100%, 0% 100%);
-            border-radius: 10px;
-            
-           
-
-        }
-        @include tablet {
-            margin: 2rem;
-          margin-top: 4rem;
+        @include desk {
+            margin: 1rem;
             width: 18rem;
             height: 28rem;
             background-color: white;
@@ -74,30 +25,19 @@
             border-radius: 10px;
 
         }
-
     }
 
     &__container-imgTalent {
-        @include mobile {
-            @include styleRound($skyBkue, $skyBkue, $wi115, $heAuto,
+        @include desk {
+            @include styleRound($skyBkue, $skyBkue, $wi115, $he115,
                 $white, $s14, $w300,
                 $skyBkue, $skyBkue, $gray);
             position: relative;
-        }
-    }
-
-    &__container-search{
-        @include mobile {
-            @include styleRound($skyBkue, $skyBkue, $wi115, $heAuto,
-                $white, $s14, $w300,
-                $skyBkue, $skyBkue, $gray);
-            position: relative;
-            margin-left: 75px;
         }
     }
 
     &__card-figure {
-        @include mobile {
+        @include desk {
             @include styleRound($white, $skyBkue, $wi105, $he105,
                 $white, $s14, $w300,
                 $white, $skyBkue, $gray);
@@ -109,10 +49,9 @@
             }
         }
     }
-    
 
     &__container-info {
-        @include mobile {
+        @include desk {
             width: 14rem;
             height: 3rem;
             display: flex;
@@ -123,22 +62,8 @@
         }
     }
 
-    &__container-info-search{
-        @include mobile {
-            width: 14rem;
-            height: 3rem;
-            display: flex;
-            gap: 10px;
-            margin-bottom: 5px;
-            align-items: center;
-            display: flex;
-            margin-left: 20px;
-        }
-
-    }
-
     &__container-state {
-        @include mobile {
+        @include desk {
             display: flex;
             flex-direction: column;
             gap: 3px;
@@ -148,14 +73,14 @@
     }
 
     &__container-levelEnglish {
-        @include mobile {
+        @include desk {
             display: flex;
             gap: 5px;
         }
     }
 
     &__buttons-state {
-        @include mobile {
+        @include desk {
             @include styleSquare($yellow, $yellow, $wi75, $he25,
                 $gray, $s12, $w400,
                 $white, $gray, $gray);
@@ -163,7 +88,7 @@
     }
 
     &__line {
-        @include mobile {
+        @include desk {
             width: 3px;
             height: 55px;
             background-color: $grayLight;
@@ -171,55 +96,54 @@
     }
 
     &__container-infoPnal {
-        @include mobile {
+        @include desk {
             display: flex;
             flex-direction: column;
-           
         }
 
     }
 
     &__name {
-        @include mobile {
+        @include desk {
             @include text ($fontMontserrat, $w400, $s12, $gray);
         }
     }
 
     &__lastName {
-        @include mobile {
+        @include desk {
             margin-bottom: 5px;
             @include text ($fontMontserrat, $w400, $s12, $gray);
         }
     }
 
     &__know {
-        @include mobile {
+        @include desk {
             @include text ($fontMontserrat , $w400, $s12, $grayLight);
         }
     }
 
     &__seccion-info {
-        @include mobile {
+        @include desk {
             width: auto;
             height: auto;
             display: flex;
             flex-direction: column;
             align-items: center;
             position: relative;
-            margin-left: 40px;
         }
     }
 
     &__container-links {
-        @include mobile {
+        @include desk {
             position: absolute;
             
         }
     }
 
     &__button-link {
-        @include mobile {
-            @include styleOval($skyBkue, $skyBkue, $wi230, $he25,
+        @include desk {
+                       
+            @include styleOval($skyBkue, $skyBkue, $wi230, $he35,
                 $gray, $s14, $w300,
                 $skyBkue, $skyBkue, $white);
         }
@@ -259,8 +183,8 @@
     }
 
     &__container-infoCustom {
-        @include mobile {
-            margin-top: 13px;
+        @include desk {
+            margin-top: 18px;
             width: 280px;
             height: auto;
             background-color: $gray;
@@ -273,7 +197,7 @@
     }
 
     &__container-infoContacts {
-        @include mobile {
+        @include desk {
 
             width: auto;
             margin-top: 25px;
@@ -286,7 +210,7 @@
     }
 
     &__container-mail {
-        @include mobile {
+        @include desk {
             display: flex;
             width: 180px;
             gap: 5px;
@@ -295,7 +219,7 @@
     }
 
     &__iconMail {
-        @include mobile {
+        @include desk {
             width: 20px;
             height: auto;
 
@@ -307,9 +231,9 @@
     }
 
     &__iconPhone {
-        @include mobile {
-            width: 20px;
-            height: 20px;
+        @include desk {
+            width: 13px;
+            height: auto;
 
             img {
                 width: 100%;
@@ -319,13 +243,13 @@
     }
 
     &__infoContact {
-        @include mobile {
+        @include desk {
             @include text ($fontNunito, $w400, $s12, $white);
         }
     }
 
     &__container-programs {
-        @include mobile {
+        @include desk {
             width: 260px;
             height: 55px;
             display: flex;
@@ -337,14 +261,14 @@
     }
 
     &__programs {
-        @include mobile {
+        @include desk {
             @include span($wiAuto, $he25, $trasparent, $white,
                 $fontNunito, $w300, $s10, $white);
         }
     }
 
     &__button-seeMore {
-        @include mobile {
+        @include desk {
             @include styleOval($skyBkue, $skyBkue, $wi65, $he20,
                 $gray, $s12, $w300,
                 $yellow, $yellow, $white);
@@ -352,7 +276,7 @@
     }
 
     &__container-profile {
-        @include mobile {
+        @include desk {
             padding-top: 8px;
             margin-bottom: 5px;
             width: 260px;
@@ -363,13 +287,13 @@
     }
 
     &__profile {
-        @include mobile {
+        @include desk {
             @include text ($fontNunito, $w300, $s11, $white);
         }
     }
 
     &__container-custom {
-        @include mobile {
+        @include desk {
             padding: 5px;
             margin-bottom: 5px;
             width: 250px;
@@ -382,7 +306,7 @@
     }
 
     &__button-custom {
-        @include mobile {
+        @include desk {
             @include styleOval($skyBkue, $skyBkue, $wiAuto, $he20,
                 $gray, $s12, $w300,
                 $yellow, $yellow, $white);
@@ -390,35 +314,3 @@
     }
 
 }
-
-
-
-.container_principal_search{
-    line-height: 2px;
-    display: flex;
-    flex-direction: column;
-  
-  
-    
- 
-}
-
-
-
-.talentSearch{
-    border:solid #586364 1px;
-    border-radius: 4px;
-    margin:3rem;
-    text-align: center;
-    align-items: center;
-    padding: 8px;
-    margin-top: 350px;
-   
-
-    
-}
-
-// .talents__container-search{
-
-// }
-

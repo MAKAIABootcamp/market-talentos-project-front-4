@@ -2,7 +2,9 @@ import React from 'react'
 
 const Administrator = () => {
   return (
-    <div>Administrator</div>
+    <div style={{display: "none"}}>
+      <h1>Hola mundo</h1>
+    </div>
   )
 }
 

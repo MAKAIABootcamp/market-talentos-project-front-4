@@ -1,0 +1,80 @@
+@import './style.scss';
+
+
+// body{
+// background-image: none;
+// }
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-left: -15px;
+
+
+    button {
+        background: none;
+        background-color: $yellow;
+        border: 3px solid $yellow;
+        border-radius: 15px;
+        width: 120px;
+        color: $gray;
+        font-family: $fontMontserrat;
+        font-weight: 100px;
+    }
+}
+
+.card__buttonsSearch {
+    background-color: $skyBkue;
+    border: 3px solid $skyBkue;
+    border-radius: 15px;
+    width: 150px;
+    height: 30px;
+    text-align: center;
+    line-height: 25px;
+    margin-left: 60px;
+
+
+    button {
+        background: none;
+        color: white;
+        font-weight: 80px;
+
+
+    }
+
+}
+
+.container__busqueda {
+    background-color: $gray;
+    border: 3px solid $gray;
+    border-radius: 15px;
+    margin-left: -20px;
+    width: 85vw;
+    height: 60vh;
+ 
+
+    button{
+        background: none;
+        background-color: $yellow;
+        border: 3px solid $yellow;
+        border-radius: 15px;
+
+    }
+
+    &__roles_p {
+        display:flex;
+      
+    }
+
+    &__front{
+        display: flex;
+        // flex-direction: column;
+        align-items: center;
+        margin-left: -5px;
+        background-color: $yellow;
+        border: 3px solid $yellow;
+        border-radius: 15px;
+        width: 280px;
+
+    }
+}
