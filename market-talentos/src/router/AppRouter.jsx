@@ -39,6 +39,7 @@ const AppRouter = () => {
           <Route path='talentOfferJob' element={<TalentOfferJob />}/>
 
           
+          <Route path="talentsAll" element={<TalentsAll/>} />
           {/* </Route> */}
           <Route path="admin" element={<Administrator />} />
           <Route path="loginAdmin" element={<LoginAdmin />} />

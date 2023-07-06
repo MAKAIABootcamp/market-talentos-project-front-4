@@ -1,7 +1,7 @@
 import { talentsTypes } from '../types/talentsTypes';
 
 const initialState = {
-    talents: {},
+    talents: [],
 }
 
 export const talentsReducer = (state = initialState, action) => {
@@ -20,7 +20,7 @@ export const talentsReducer = (state = initialState, action) => {
         case talentsTypes.TALENTS_GET:
             return {
                 ...state,
-                talents: [...action.payload],
+                talents: action.payload.talents,
             };
         case talentsTypes.TALENTS_ADD:
             return {
@@ -30,7 +30,7 @@ export const talentsReducer = (state = initialState, action) => {
         case talentsTypes.TALENTS_FILTERED:
             return {
                 ...state,
-                talents: [...action.payload.talents],
+                talents: action.payload.talents,
             };
         default:
             return state;
