@@ -89,5 +89,5 @@ const TalentOfferJob = () => {
     </section>
   );
 };
-
+//cambio pequeño//
 export default TalentOfferJob;
