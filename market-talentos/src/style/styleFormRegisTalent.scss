@@ -6,13 +6,16 @@
     height: 100%;
     display: flex;
     justify-content: center;
+   
   }
-
   &__container {
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
-    gap: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+    max-width: 100%;
+  
+  
   }
 
   &__fondo-figure {
@@ -61,10 +64,10 @@
       @include styleOval(
         $skyBkue,
         $skyBkue,
-        $wi230,
-        $he35,
+        $wi300,
+        $he45,
         $white,
-        $s14,
+        $s18,
         $w300,
         $yellow,
         $yellow,
@@ -98,6 +101,7 @@
         display: flex;
         color: white;
         justify-content: center;
+        font-family: $fontMontserrat;
     }
 }
   }
@@ -151,6 +155,14 @@
       padding: 5px;
       width: 80%;
     }
+  }
+
+  &__habeasdata {
+    font-size:.7rem!important;
+    color:$white;
+    font-family: $fontMontserrat;
+    padding: 10px;
+    margin-left: 10px;
   }
 
   &__crearCuenta {

@@ -1,129 +1,220 @@
-@import './style.scss';
+@import "./style.scss";
 
-.editProfile{
+.editProfile {
+  @include desk {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+  }
+
+  &__container {
     @include desk {
+      margin: 1rem;
+      width: 30rem;
+      height: 40rem;
+      background-color: white;
+      padding: 5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      // clip-path: polygon(0% 0%, 54.7% 1.3%, 100% 15%, 100% 100%, 0% 100%);
+      border-radius: 10px;
+    }
+  }
+  &__seccion-info {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+
+  &__card-figure {
+    @include desk {
+      @include styleRound(
+        $white,
+        $skyBkue,
+        $wi105,
+        $he105,
+        $white,
+        $s14,
+        $w300,
+        $white,
+        $skyBkue,
+        $gray
+      );
+
+      img {
         width: 100%;
         height: 100%;
-        background-color: $gray;
-        display: flex;
-        justify-content: center;
-        position: absolute;
-
+        border-radius: 5rem;
+      }
     }
+  }
 
-    &__container {
-        @include desk {
-            margin: 1rem;
-            width: 18rem;
-            height: 28rem;
-            background-color: white;
-            padding: 5px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3px;
-            // clip-path: polygon(0% 0%, 54.7% 1.3%, 100% 15%, 100% 100%, 0% 100%);
-            border-radius: 10px;
-
-        }
+  &__container-title {
+    @include desk {
+      position: absolute;
+      width: 280px;
+      display: flex;
+      justify-content: center;
     }
+  }
 
-
-    &__card-figure {
-        @include desk {
-            @include styleRound($white, $skyBkue, $wi105, $he105,
-                $white, $s14, $w300,
-                $white, $skyBkue, $gray);
-
-            img {
-                width: 100%;
-                height: 100%;
-                border-radius: 5rem;
-            }
-        }
+  &__button-title {
+    @include desk {
+      @include styleSquare(
+        $skyBkue,
+        $skyBkue,
+        $wi300,
+        $he35,
+        $white,
+        $s18,
+        $w300,
+        $yellow,
+        $yellow,
+        $white
+      );
     }
+  }
 
-    &__container-title {
-        @include desk {
-            position: absolute;
-            width: 280px;
-            display: flex;
-            justify-content: center;
-        }
+  &__container-infoCustom {
+    @include desk {
+      margin-top: 13px;
+      width: 90%;
+      height: auto;
+      background-color: $gray;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 8px;
     }
+  }
 
-    &__button-title{
-        @include desk {
-            @include styleSquare($skyBkue, $skyBkue, $wi230, $he25,
-                $gray, $s14, $w300,
-                $yellow, $yellow, $white);
-        }
+  &__container-infoContacts {
+    @include desk {
+      width: auto;
+      margin-top: 31px;
+      margin-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
     }
-
-    &__container-infoCustom {
-        @include desk {
-            margin-top: 13px;
-            width: 280px;
-            height: auto;
-            background-color: $gray;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border-radius: 8px;
-            
-        }
+  }
+  &__container-profile {
+    @include desk {
+      // background-color: red;
+      padding-top: 8px;
+      margin-bottom: 5px;
+      width: 260px;
+      height: 40px;
+      overflow-y: auto;
+      display: flex;
+      justify-content: center;
+      gap: 5px;
     }
+  }
 
-    &__container-infoContacts {
-        @include desk {
-
-            width: auto;
-            margin-top: 25px;
-            margin-bottom: 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            
-        }
-
+  &__container-form{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap:1rem;
+  }
+  &__input {
+    @include desk {
+      @include styleSquare(
+        $white,
+        $white,
+        $wi350,
+        $he25,
+        $gray,
+        $s12,
+        $w400,
+        $white,
+        $gray,
+        $gray
+      );
     }
-    &__container-profile {
-        @include desk {
-            // background-color: red;
-            padding-top: 8px;
-            margin-bottom: 5px;
-            width: 260px;
-            height: 40px;
-            overflow-y: auto;
-            display: flex;
-            justify-content: center;
-            gap: 5px;
-        }
-    }
-    &__input{
-        @include desk {
-            @include styleSquare($white, $white, $wi250, $he25, 
-         $gray, $s12, $w400, 
-        $white, $gray, $gray);
-        }
-    }
+  }
 
-    &__input-profile{
-        @include desk {
-            @include styleSquare($white, $white, $wi250, $he85, 
-         $gray, $s12, $w400, 
-        $white, $gray, $gray);
-        }
+  &__input-profile {
+    
+    @include desk {
+        
+      @include styleSquare(
+        $white,
+        $white,
+        $wi350,
+        $he85,
+        $gray,
+        $s12,
+        $w400,
+        $white,
+        $gray,
+        $gray
+      );
     }
+  }
+  
+  &__container-custom{
+    display: flex;
+    gap: 7px;
+  }
 
 
-    &__button{
-        @include desk {
-            @include styleOval($yellow, $yellow, $wi55, $he20,
-                $gray, $s12, $w300,
-                $yellow, $yellow, $white);
-        }
-    }
 
+  &__label{
+   
+    @include styleSquare(
+        $white,
+        $white,
+        $wi135,
+        $he25,
+        $gray,
+        $s12,
+        $w400,
+        $white,
+        $gray,
+        $gray
+      );
+  }
+
+  &__input-file{
+    
+    @include styleSquare(
+        $white,
+        $white,
+        $wi135,
+        $he25,
+        $gray,
+        $s12,
+        $w400,
+        $white,
+        $gray,
+        $gray
+      );
+  }
+
+  &__button {
+    margin-bottom: 30px;
+    @include desk {
+      @include styleOval(
+        $yellow,
+        $yellow,
+        $wi95,
+        $he35,
+        $gray,
+        $s16,
+        $w300,
+        $yellow,
+        $yellow,
+        $white
+      );
+    }
+  }
 }

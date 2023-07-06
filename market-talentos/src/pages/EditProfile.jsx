@@ -10,6 +10,18 @@ const EditProfile = () => {
     inputGitUp: Yup.string().url('Ingresa un enlace válido. Ejemplo: https://github.com/tuusuario'),
     inputlinkedin: Yup.string().url('Ingresa un enlace válido. Ejemplo: https://www.linkedin.com/in/tuusuario'),
     profile: Yup.string().max(160, 'La presentación no debe exceder las 160 palabras.'),
+    cv: Yup.mixed().test('fileType', 'Solo se permiten archivos PDF', (value) => {
+      if (value) {
+        return value && ['application/pdf'].includes(value.type);
+      }
+      return true;
+    }),
+    video: Yup.mixed().test('fileType', 'Solo se permiten archivos de video', (value) => {
+      if (value) {
+        return value && value.type.includes('video/');
+      }
+      return true;
+    }),
   });
 
   const handleSubmit = (values) => {
@@ -36,7 +48,7 @@ const EditProfile = () => {
           <section className='editProfile__seccion-info'>
             <div className='editProfile__container-title'>
               <button className='editProfile__button-title'>
-                Formulario de registro
+                Completa tu información
               </button>
             </div>
             <div className='editProfile__container-infoCustom'>
@@ -50,7 +62,7 @@ const EditProfile = () => {
                   </figure>
                 </div>
               </div>
-              <form onSubmit={formik.handleSubmit}>
+              <form className='editProfile__container-form' onSubmit={formik.handleSubmit}>
                 <div className='editProfile__container-profile'>
                   <input
                     type='url'
@@ -103,19 +115,49 @@ const EditProfile = () => {
                 </div>
                 <div className='editProfile__container-custom'>
                   <label htmlFor='profile' className='editProfile__profile-label'>
-                    Presentación (160 palabras máximo):
+                   
                   </label>
                   <textarea
-                    id='profile'
                     name='profile'
                     className='editProfile__input-profile'
-                    placeholder='Escribe aquí tu presentación...'
+                    id='profile'
+                    placeholder='Escribe aquí tu presentación...160 palabras máximo'
                     value={formik.values.profile}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                   />
                   {formik.errors.profile && formik.touched.profile && (
                     <div className='error-message'>{formik.errors.profile}</div>
+                  )}
+                </div>
+                <div className='editProfile__container-custom'>
+                  <label  htmlFor='cv' className='editProfile__label'>
+                    Hoja de Vida (PDF):
+                  </label>
+                  <input  
+                    type='file'
+                    id='cv'
+                    name='cv'
+                    onChange={(event) => formik.setFieldValue('cv', event.currentTarget.files[0])}
+                    className='editProfile__input-file'
+                  />
+                  {formik.errors.cv && formik.touched.cv && (
+                    <div className='error-message'>{formik.errors.cv}</div>
+                  )}
+                </div>
+                <div className='editProfile__container-custom'>
+                  <label htmlFor='video' className='editProfile__label'>
+                    Video:
+                  </label>
+                  <input
+                    type='file'
+                    id='video'
+                    name='video'
+                    onChange={(event) => formik.setFieldValue('video', event.currentTarget.files[0])}
+                    className='editProfile__input-file'
+                  />
+                  {formik.errors.video && formik.touched.video && (
+                    <div className='error-message'>{formik.errors.video}</div>
                   )}
                 </div>
                 <div className='editProfile__container-custom'>
