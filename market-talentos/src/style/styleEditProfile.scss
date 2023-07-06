@@ -4,7 +4,6 @@
   @include desk {
     width: 100%;
     height: 100%;
-    background-color: $gray;
     display: flex;
     justify-content: center;
     position: absolute;
@@ -68,10 +67,10 @@
       @include styleSquare(
         $skyBkue,
         $skyBkue,
-        $wi230,
-        $he25,
-        $gray,
-        $s14,
+        $wi300,
+        $he35,
+        $white,
+        $s18,
         $w300,
         $yellow,
         $yellow,
@@ -97,7 +96,7 @@
   &__container-infoContacts {
     @include desk {
       width: auto;
-      margin-top: 25px;
+      margin-top: 31px;
       margin-bottom: 10px;
       display: flex;
       flex-direction: column;
@@ -207,10 +206,10 @@
       @include styleOval(
         $yellow,
         $yellow,
-        $wi55,
-        $he20,
+        $wi95,
+        $he35,
         $gray,
-        $s12,
+        $s16,
         $w300,
         $yellow,
         $yellow,

@@ -64,10 +64,10 @@
       @include styleOval(
         $skyBkue,
         $skyBkue,
-        $wi230,
-        $he35,
+        $wi300,
+        $he45,
         $white,
-        $s14,
+        $s18,
         $w300,
         $yellow,
         $yellow,
@@ -101,6 +101,7 @@
         display: flex;
         color: white;
         justify-content: center;
+        font-family: $fontMontserrat;
     }
 }
   }

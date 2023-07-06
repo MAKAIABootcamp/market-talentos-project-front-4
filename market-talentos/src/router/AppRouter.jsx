@@ -18,6 +18,8 @@ import Blog from '../pages/Blog';
 import TalentDetails from '../pages/TalentDetails';
 import TalentsAll from '../pages/TalentsAll';
 import EditProfile from '../pages/EditProfile';
+import JobApplicatioTalent from '../pages/JobApplicatioTalent';
+import TalentOfferJob from '../pages/TalentOfferJob';
 
 const AppRouter = () => {
   return (
@@ -30,9 +32,13 @@ const AppRouter = () => {
           <Route path="formRegisTalent" element={<FormRegisTalent />} />
           <Route path="searchTalent" element={<SearchTalent />} />
           <Route path="talentDetails" element={<TalentDetails />} />
-          <Route path="editProfile" element={<TalentDetails />} />
+          <Route path="editProfile" element={<EditProfile />} />
           <Route path="portfolio" element={<Portfolio />} />
           <Route path="curriculum" element={<Curriculum />} />
+          <Route path="jobTalent" element={<JobApplicatioTalent />} />
+          <Route path='talentOfferJob' element={<TalentOfferJob />}/>
+
+          
           {/* </Route> */}
           <Route path="admin" element={<Administrator />} />
           <Route path="loginAdmin" element={<LoginAdmin />} />

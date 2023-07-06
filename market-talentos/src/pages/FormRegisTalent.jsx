@@ -1,7 +1,7 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import fileUpload from '../services/fileUpload'
+import fileUpload from '../services/fileUpload';
 import "../style/styleFormRegisTalent.scss";
 import fondoImg from "../assets/fondoregist.jpg";
 import logoUser from "../assets/icon/logoUser.png";
