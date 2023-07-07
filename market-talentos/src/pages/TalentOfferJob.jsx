@@ -1,6 +1,7 @@
 import React from "react";
 import "../style/styleTalentOfferJob.scss";
-import logoMakaia from "../assets/icon/logoMakaia.png"
+// import logoMakaia from "../assets/icon/logoMakaia.png";
+import fondoTalentdesk from "../assets/fondotalentdesk.jpg";
 
 const TalentOfferJob = () => {
   const jobsButtons = [
@@ -38,23 +39,20 @@ const TalentOfferJob = () => {
 
   return (
     <section className="talentOffer">
-        
       <div className="talentOffer__container">
-       <img src={logoMakaia} alt="logoMakaia" />
-       
-        <div className="talentOffer__container-infojob">
+        <div className="talentOffer__background">
+          <img src={fondoTalentdesk} alt="fondoTalentdesk" />
+        </div>
+          <div className="talentOffer__container-infojob">
           <button className="talentOffer__button-otherjobs">
             Ofertas Laborales
           </button>
-          {/* <div className="talentOffer__container-other"> </div> */}
 
           <div className="talentOffer__container-infojobs">
             {jobsButtons.map((button, index) => (
               <button className="talentOffer__button-costumer" key={index}>
                 {button.name}
-
                 <span className="talentOffer__button-job">{button.cargo}</span>
-
                 <span className="talentOffer__button-changeinfo">
                   {button.changeStatus}
                 </span>
@@ -83,9 +81,13 @@ const TalentOfferJob = () => {
           </button>
           <button className="talentOffer__button-talentOffer">
             Aplicar
+          </button> 
+          <button className="talentOffer__button-talentOffer">
+           Mis Postulaciones
           </button>
-        </div>
       </div>
+        </div>
+       
     </section>
   );
 };

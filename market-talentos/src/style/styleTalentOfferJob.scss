@@ -5,24 +5,33 @@
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    padding: 20px;
+   
+    // position: absolute;
+     }
+
+  &__background {
+    display: flex;
     position: absolute;
+     right: 20px;
+     width: 60%;
+    z-index: -1;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
   }
+  
+ 
 
   &__container {
-    @include desk {
-      margin: 1rem;
-      width: 30rem;
-      height: 40rem;
-      background-color: white;
-      padding: 5px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    display: flex;
+    flex-direction: column;
+     width: 30rem;
       gap: 3px;
-      border-radius: 10px;
-    }
-  }
+   }
 
   &__container-infojob {
     @include desk {
@@ -79,8 +88,8 @@
     padding: 15px;
     border-radius: 7px;
     align-items: center;
-    background-color: $yellow; 
-    gap: 10px;   
+    background-color: $yellow;
+    gap: 10px;
   }
   &__button-job {
     background-color: $gray;
@@ -90,7 +99,7 @@
     width: 100%;
     margin-top: 5px;
   }
-  
+
   &__button-changeinfo {
     background-color: $white;
     padding: 10px;
@@ -98,8 +107,8 @@
     border-radius: 5px;
     width: 100%;
     margin-top: 5px;
-  } 
-&__aplicattionJob{
+  }
+  &__aplicattionJob {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -109,38 +118,36 @@
     border-radius: 10px;
     font-family: $fontMontserrat;
     align-items: center;
-}
-&__button-offer{
+  }
+  &__button-offer {
     display: flex;
     width: 100%;
     border-radius: 9px;
     padding: 10px;
     background-color: $gray;
     color: $white;
-}
-&__button-requ{
-    display: flex;   
+  }
+  &__button-requ {
+    display: flex;
     border-radius: 9px;
     padding: 10px;
     background-color: $white;
-    
-}
+  }
 
-&__button-talentOffer{
+  &__button-talentOffer {
     @include desk {
-        @include styleOval(
-          $yellow,
-          $yellow,
-          $wi95,
-          $he35,
-          $gray,
-          $s14,
-          $w300,
-          $yellow,
-          $yellow,
-          $white
-        );
-      }
-
-}
+      @include styleOval(
+        $yellow,
+        $yellow,
+        $wi135,
+        $he35,
+        $gray,
+        $s14,
+        $w300,
+        $yellow,
+        $yellow,
+        $white
+      );
+    }
+  }
 }
