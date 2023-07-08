@@ -9,18 +9,30 @@
     position: absolute;
   }
 
+  &__background {
+    display: flex;
+    position: absolute;
+    right: 79px;
+    width: 100%;
+    z-index: -1;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
   &__container {
     @include desk {
       margin: 1rem;
       width: 30rem;
       height: 40rem;
-      background-color: white;
       padding: 5px;
       display: flex;
+      background-color: white;
       flex-direction: column;
       align-items: center;
       gap: 3px;
-      // clip-path: polygon(0% 0%, 54.7% 1.3%, 100% 15%, 100% 100%, 0% 100%);
       border-radius: 10px;
     }
   }
@@ -105,25 +117,28 @@
   }
   &__container-profile {
     @include desk {
-      // background-color: red;
       padding-top: 8px;
       margin-bottom: 5px;
-      width: 260px;
-      height: 40px;
-      overflow-y: auto;
+      height: 50px;
       display: flex;
       justify-content: center;
       gap: 5px;
+      flex-direction: column;
     }
   }
+  &__error-message {
+    color: white;
+    font-family: $fontMontserrat;
+    font-size: 10px;
+  }
 
-  &__container-form{
+  &__container-form {
     display: flex;
     width: 100%;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    gap:1rem;
+    gap: 1rem;
   }
   &__input {
     @include desk {
@@ -143,9 +158,7 @@
   }
 
   &__input-profile {
-    
     @include desk {
-        
       @include styleSquare(
         $white,
         $white,
@@ -160,44 +173,69 @@
       );
     }
   }
-  
-  &__container-custom{
+
+  &__container-custom {
     display: flex;
+    flex-direction: column;
     gap: 7px;
   }
 
-
-
-  &__label{
-   
+  &__label {
     @include styleSquare(
-        $white,
-        $white,
-        $wi135,
-        $he25,
-        $gray,
-        $s12,
-        $w400,
-        $white,
-        $gray,
-        $gray
-      );
+      $white,
+      $white,
+      $wi135,
+      $he25,
+      $gray,
+      $s12,
+      $w400,
+      $white,
+      $gray,
+      $gray
+    );
   }
 
-  &__input-file{
-    
-    @include styleSquare(
-        $white,
-        $white,
-        $wi135,
-        $he25,
-        $gray,
-        $s12,
-        $w400,
-        $white,
-        $gray,
-        $gray
-      );
+  &__knowLedge {
+    background-color: white;
+    border-radius: 5px;
+    font-family: $fontRoboto;
+    font-size: 12px;
+    font-weight: 400;
+    color: $gray;
+    padding: 9px;
+  }
+
+  &__knowLedge {
+    display: flex;
+    width: 83%;
+    gap: 5px;
+  }
+
+  &__languages {
+    display: flex;
+    width: 92%;
+     flex-wrap: wrap;
+    gap: 10px;
+    padding: 6px;
+
+    input {
+      font-family: $fontRoboto;
+      font-size: 12px;
+      font-weight: 400;
+    }
+    label {
+      margin: 3px;
+    }
+  }
+
+  // display: flex;
+  // width: 92%;
+  // flex-direction: row;
+  //   knowwlw    display: flex;
+  // width: 79%;
+
+  &__input-file {
+    display: none;
   }
 
   &__button {
