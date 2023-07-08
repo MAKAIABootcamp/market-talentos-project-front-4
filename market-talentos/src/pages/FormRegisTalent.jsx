@@ -63,7 +63,7 @@ const FormRegisTalent = () => {
           <img src={fondoImg} alt="fondoImg" />
         </figure>
 
-        <section className="register__section-form">
+       
           <div className="register__form">
             <div className="register__container-tittle">
               <button className="register__button-tittle">
@@ -223,7 +223,7 @@ const FormRegisTalent = () => {
               </div>
             </form>
           </div>
-        </section>
+        
       </div>
     </section>
   );

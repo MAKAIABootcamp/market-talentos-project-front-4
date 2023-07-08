@@ -1,6 +1,7 @@
 import React from "react";
 import "../style/styleJobApplicatioTalent.scss";
 import imgTalent from "../assets/elisa.jpeg";
+import FondoApliJobs from "../assets/JobPostulaFondo.jpg"
 
 const JobApplicatioTalent = () => {
   const costumerButtons = [
@@ -17,7 +18,13 @@ const JobApplicatioTalent = () => {
   return (
     <section className="jobtalent">
       <div className="jobtalent__container">
+      <div className="jobtalent__background">
+          <img src={FondoApliJobs} alt="fondoApliJobs" />
+        </div>
         <div className="jobtalent__container-infojob">
+        <button className="jobtalent__button-postulation">
+           Mis Postulaciones
+          </button>
           <div className="jobtalent__container-infoContacts">
             <div className="jobtalent__container-imgTalent">
               <figure className="jobtalent__card-figure">
