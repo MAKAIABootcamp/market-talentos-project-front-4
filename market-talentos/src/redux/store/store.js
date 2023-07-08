@@ -1,17 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { talentsReducer } from "../reducers/talentsReducer";
-
-const reducer = {
-   talentsStore: talentsReducer,
-};
+import thunk from 'redux-thunk';
+import rootReducer from '../reducers/reducers';
 
 const store = configureStore({
-   reducer,
-   devTool: process.env.NODE_ENV !== "production",
-   middleware:(getDefaultMiddleware)=>
-   getDefaultMiddleware({
-      serializableCheck:false,
-   }),
-});
+  reducer: rootReducer,
+  middleware:[thunk]
+    })
 
 export default store;

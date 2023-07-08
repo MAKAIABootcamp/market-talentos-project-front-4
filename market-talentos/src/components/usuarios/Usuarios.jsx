@@ -8,21 +8,21 @@ import { NavLink } from "react-router-dom";
 const Usuarios = () => {
   return (
     <main className="main">
-      <NavLink to="/customer" activeClassName="active">
+      <NavLink to="/customer" activeclassname="active">
         <div className="main__empresa">
           <img src={UsuarioEmpresa} alt="persona empresaria" />
           <h1>Usuario Empresa</h1>
         </div>
       </NavLink>
 
-      <NavLink to="/talents" activeClassName="active">
+      <NavLink to="/talents" activeclassname="active">
         <div className="main__talentos">
           <img src={UsuarioTalento} alt="persona empresaria" />
           <h1>Usuario Talento</h1>
         </div>
       </NavLink>
 
-      <NavLink to="/loginAdmin" activeClassName="active">
+      <NavLink to="/loginAdmin" activeclassname="active">
         <div className="main__administrador">
           <img src={UsuarioAdministrador} alt="persona empresaria" />
           <h1>Administrador</h1>

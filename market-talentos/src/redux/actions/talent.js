@@ -1,7 +1,5 @@
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
-import { dataBase } from "../../firebase/firebaseConfig";
-import { talentsTypes } from "../types/talentsTypes";
-import { auth } from "../../firebase/firebaseConfig";
+import { firestore, auth } from "../../firebase/firebaseConfig";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -9,14 +7,15 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
+import { talentsTypes } from "../types/talentsTypes";
 
-
+// Acción de registro asíncrona
 export const actionRegisterAsync = ({ email, password, name, avatar }) => {
   return (dispatch) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then(async ({ talent }) => {
-        console.log(talent);
-        const { accessToken, photoURL, phoneNumber } = talent.auth.currentUser;
+        const { accessToken, photoURL, phoneNumber } =
+          talent.auth.currentUser;
         await updateProfile(auth.currentUser, {
           displayName: name,
           photoURL: avatar,
@@ -33,21 +32,30 @@ export const actionRegisterAsync = ({ email, password, name, avatar }) => {
         );
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode);
-        console.log(errorMessage);
-        dispatch(actionRegisterAsync({ error: true, errorMessage }));
+        const { code, message } = error;
+        console.log(code);
+        console.log(message);
+        dispatch(actionRegisterError({ error: true, errorMessage: message }));
       });
   };
 };
 
-// función registro sincrona
+// Acción de registro sincrónica
 const actionRegisterSync = (talent) => {
   return {
     type: talentsTypes.TALENT_REGISTER,
     payload: {
       ...talent,
+    },
+  };
+};
+
+// Acción de registro con error
+const actionRegisterError = (error) => {
+  return {
+    type: talentsTypes.TALENT_REGISTER_ERROR,
+    payload: {
+      ...error,
     },
   };
 };
@@ -146,42 +154,10 @@ export const actionLoginGoogleOrFacebook = (provider) => {
 
 const collectionName = "talents";
 
-// asyncrona para traer los datos de firebase
-export const actionGetTalentsAsync = () => {
-  return async (dispatch) => {
-    const talentsCollection = collection(dataBase, collectionName);
-    const querySnapshot = await getDocs(talentsCollection);
-    const talents = [];
-    try {
-      querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        talents.push({
-          id: doc.id,
-          ...doc.data(),
-        });
-        //   console.log(doc.id, " => ", doc.data());
-      });
-    } catch (error) {
-      console.error(error);
-    } finally {
-      dispatch(actionGetTalentsSync(talents));
-    }
-  };
-};
-
-const actionGetTalentsSync = (talents) => {
-  return {
-    type: talentsTypes.TALENTS_GET,
-    payload: {
-        talents: talents,
-    },
-  };
-};
-
 export const actionAddTalentAsync = (talent) => {
   return async (dispatch) => {
     try {
-      const talentsCollection = collection(dataBase, collectionName);
+      const talentsCollection = collection(firestore, collectionName);
       const docs = await addDoc(talentsCollection, talent);
       dispatch(actionAddTalentSync({ id: docs.id, ...talent }));
     } catch (error) {
@@ -200,7 +176,7 @@ const actionAddTalentSync = (talent) => {
 
 export const actionFilterTalentsAsync = (searchParam, searchValue) => {
   return async (dispatch) => {
-    const talentsCollection = collection(dataBase, collectionName);
+    const talentsCollection = collection(firestore, collectionName);
     const q = query(talentsCollection, where(searchParam, "==", searchValue));
     const talents = [];
     try {
@@ -231,7 +207,7 @@ const actionFilterTalentsSync = (talents) => {
 
 export const actionFilterAsync = (searchParam) => {
   return async (dispatch) => {
-    const talentsCollection = collection(dataBase, collectionName);
+    const talentsCollection = collection(firestore, collectionName);
     const querySnapshot = await getDocs(talentsCollection);
     const talents = [];
     try {

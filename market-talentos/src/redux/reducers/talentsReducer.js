@@ -17,11 +17,11 @@ export const talentsReducer = (state = initialState, action) => {
             };
         case talentsTypes.TALENT_LOGOUT:
             return {};
-        case talentsTypes.TALENTS_GET:
-            return {
-                ...state,
-                talents: action.payload.talents,
-            };
+        // case talentsTypes.TALENTS_GET:
+        //     return {
+        //         ...state,
+        //         talents: action.payload.talents,
+        //     };
         case talentsTypes.TALENTS_ADD:
             return {
                 ...state,

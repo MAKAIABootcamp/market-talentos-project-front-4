@@ -39,7 +39,7 @@ const LoginTalent = () => {
     },
 
   });
-  const { error, errorMessage } = useSelector((store) => store.talentsStore);
+  const { error, errorMessage } = useSelector((store) => store.talents); 
   const dispatch = useDispatch();
 
   const onSubmit = (data) => {
