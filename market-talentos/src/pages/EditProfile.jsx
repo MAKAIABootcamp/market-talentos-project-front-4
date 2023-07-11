@@ -35,12 +35,7 @@ const EditProfile = () => {
         return true;
       })
       .required("Este campo es obligatorio"),
-
-   
-
   });
-
-
 
   const handleSubmit = (values) => {
     console.log(values);
@@ -159,15 +154,13 @@ const EditProfile = () => {
                         <label htmlFor={option.id}>{option.label}</label>
                       </div>
                     ))}
-                    
+
                     <div className="editProfile__language">
-                      
                       <input
                         type="text"
                         id="otherLanguages"
                         name="otherLanguages"
-                        value={formik.values.
-                        otherLanguages}
+                        value={formik.values.otherLanguages}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         placeholder="Escribe otro lenguaje"
@@ -209,19 +202,20 @@ const EditProfile = () => {
                   )}
                 </div>
 
-                <div className="editProfile__container-custom">
+                <div className="editProfile__container-pdf">
                   <label htmlFor="cv" className="editProfile__label">
                     Hoja de Vida (PDF):
+                    <input
+                      type="file"
+                      id="cv"
+                      name="cv"
+                      accept="application/pdf"
+                      onChange={(event) =>
+                        formik.setFieldValue("cv", event.currentTarget.files[0])
+                      }
+                      className="editProfile__input-file"
+                    />
                   </label>
-                  <input
-                    type="file"
-                    id="cv"
-                    name="cv"
-                    onChange={(event) =>
-                      formik.setFieldValue("cv", event.currentTarget.files[0])
-                    }
-                    className="editProfile__input-file"
-                  />
                   {formik.errors.cv && formik.touched.cv && (
                     <div className="editProfile__error-message">
                       {formik.errors.cv}
@@ -231,11 +225,12 @@ const EditProfile = () => {
                 <div className="editProfile__container-custom">
                   <label htmlFor="video" className="editProfile__label">
                     Video:
-                  </label>
+                  
                   <input
                     type="file"
                     id="video"
                     name="video"
+                    accept="video/*"
                     onChange={(event) =>
                       formik.setFieldValue(
                         "video",
@@ -249,7 +244,9 @@ const EditProfile = () => {
                       {formik.errors.video}
                     </div>
                   )}
+                  </label>
                 </div>
+
                 <div className="editProfile__container-custom">
                   <button
                     className="editProfile__button"

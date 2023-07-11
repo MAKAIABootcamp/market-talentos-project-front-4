@@ -184,7 +184,7 @@
     @include styleSquare(
       $white,
       $white,
-      $wi135,
+      $wi350,
       $he25,
       $gray,
       $s12,
@@ -193,6 +193,8 @@
       $gray,
       $gray
     );
+ 
+   
   }
 
   &__knowLedge {
@@ -228,14 +230,16 @@
     }
   }
 
-  // display: flex;
-  // width: 92%;
-  // flex-direction: row;
-  //   knowwlw    display: flex;
-  // width: 79%;
-
-  &__input-file {
-    display: none;
+ 
+  &__container-pdf{
+    display: flex;
+    flex-direction: row;
+    gap: 7px;
+    width: 83%;
+ } 
+ 
+ &__input-file {
+     font-size: 10px;
   }
 
   &__button {
@@ -256,3 +260,5 @@
     }
   }
 }
+
+

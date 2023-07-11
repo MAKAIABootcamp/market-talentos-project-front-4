@@ -1,58 +1,76 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import fileUpload from '../services/fileUpload';
+import fileUpLoad from "../services/fileUpload";
 import "../style/styleFormRegisTalent.scss";
 import fondoImg from "../assets/fondoregist.jpg";
 import logoUser from "../assets/icon/logoUser.png";
+// import { actionRegisterAsync } "../redux/actions/talent";
+import Swal from 'sweetalert2';
+import { useDispatch } from "react-redux";
+import { registerActionAsync } from "../redux/actions/talent";
+// import { useNavigate } from "react-router-dom";
 
 const FormRegisTalent = () => {
+ const dispatch = useDispatch();
+//  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
-      FirstName: "",
+      firstName: "",
       lastName: "",
-      role: "",
+      rol: "",
       cohorte: "",
-      EnglishLevel: "",
-      correoElectronico: "",
-      celular: "",
+      englishLevel: "",
+      email: "",
+      phone: "",
       user: "",
-      contrasenia: "",
+      password: "",
       avatar: null,
     },
     validationSchema: Yup.object({
-      FirstName: Yup.string().required("El nombre es requerido"),
+      firstName: Yup.string().required("El nombre es requerido"),
       lastName: Yup.string().required("Los apellidos son requeridos"),
-      role: Yup.string().required("Selecciona un tipo de talento"),
+      rol: Yup.string().required("Selecciona un tipo de talento"),
       cohorte: Yup.string().required("La cohorte es requerida"),
-      EnglishLevel: Yup.string().required("El nivel de inglés es requerido"),
-      correoElectronico: Yup.string()
+      englishLevel: Yup.string().required("El nivel de inglés es requerido"),
+      email: Yup.string()
         .email("Correo electrónico inválido")
         .required("El correo electrónico es requerido"),
-      celular: Yup.string().required("El número de celular es requerido"),
+      phone: Yup.string().required("El número de celular es requerido"),
       user: Yup.string().required("El user es requerido"),
-      contrasenia: Yup.string()
+      password: Yup.string()
         .required("La contraseña es requerida")
         .min(3, "La contraseña debe contener al menos 3 caracteres.")
         .max(8, "La contraseña no puede contener más de 8 caracteres"),
       avatar: Yup.mixed().required("La foto de perfil es requerida"),
     }),
-    
+
     onSubmit: async (values) => {
-      const { avatar } = values;
 
-      try {
-        const avatarUrl = await fileUpload(avatar);
-        console.log("Avatar URL:", avatarUrl);
-        // Aquí puedes hacer lo que necesites con el URL del avatar, como guardarlo en una base de datos o enviarlo a un servidor
-      } catch (error) {
-        console.error("Error uploading avatar to Cloudinary:", error);
-      }
+           // console.log(values);
 
-      console.log(values); // Aquí puedes hacer lo que necesites con los datos del formulario
+      // Enviar la imagen a Cloudinary utilizando fileUpLoad
+      const avatar = await fileUpLoad(values.avatar[0]);
+
+      const newUser = {
+        ...values,
+        avatar: avatar,
+      };
+      console.log("New User:", newUser);
+      Swal.fire({
+        icon: 'success',
+        title: 'Usuario creado exitosamente',
+        showConfirmButton: false,
+        timer: 1500
+      }).then(() => {
+        // navigate('editProfile');
+      }).catch((error) => {
+        // Manejar errores en caso de que ocurra un problema durante el registro del usuario
+        console.log(error);
+      });
+      dispatch(registerActionAsync(newUser));
     },
- 
-
     
   });
 
@@ -63,167 +81,159 @@ const FormRegisTalent = () => {
           <img src={fondoImg} alt="fondoImg" />
         </figure>
 
-       
-          <div className="register__form">
-            <div className="register__container-tittle">
-              <button className="register__button-tittle">
-                Formulario de Registro
-              </button>
-            </div>
+        <div className="register__form">
+          <div className="register__container-tittle">
+            <button className="register__button-tittle">
+              Formulario de Registro
+            </button>
+          </div>
 
-            <form onSubmit={formik.handleSubmit}>
-              <div className="register__container-infoRegister">
-                <div className="register__input-regist">
-                  <div className="register__user-photo">
-                    {/* Label asociado al input de tipo file */}
-                    <label
-                      htmlFor="avatarInput"
-                      className="register__file-input-label"
-                    >
-                      <img src={logoUser} alt="logoUser" />
-                    </label>
-                    <h5>Subir foto de perfil</h5>
-                    {/* Input de tipo file oculto */}
-                    <input
-                      id="avatarInput"
-                      className="register__select"
-                      name="avatar"
-                      type="file"
-                      accept="image/*"
-                      onChange={(event) => {
-                        formik.setFieldValue(
-                          "avatar",
-                          event.currentTarget.files[0]
-                        );
-                      }}
-                    />
-                    {formik.touched.avatar && formik.errors.avatar && (
-                      <span>{formik.errors.avatar}</span>
-                    )}
-                  </div>
-
-                  <input
-                    name="FirstName"
-                    placeholder="Nombre completo"
-                    value={formik.values.FirstName}
-                    onChange={formik.handleChange}
-                  />
-                  {formik.touched.FirstName && formik.errors.FirstName && (
-                    <span>{formik.errors.FirstName}</span>
-                  )}
-
-                  <input
-                    name="lastName"
-                    placeholder="Apellidos"
-                    value={formik.values.apellidos}
-                    onChange={formik.handleChange}
-                  />
-                  {formik.touched.lastName && formik.errors.lastName && (
-                    <span>{formik.errors.lastName}</span>
-                  )}
-
-                  <select
-                    name="role"
-                    value={formik.values.tipoTalento}
-                    onChange={formik.handleChange}
+          <form onSubmit={formik.handleSubmit}>
+            <div className="register__container-infoRegister">
+              <div className="register__input-regist">
+                <div className="register__user-photo">
+                  {/* Label asociado al input de tipo file */}
+                  <label
+                    htmlFor="avatarInput"
+                    className="register__file-input-label"
                   >
-                    <option value="">Selecciona una opción</option>
-                    <option value="FrontEnd">FrontEnd</option>
-                    <option value="BackEnd">BackEnd</option>
-                    <option value="FullStack">FullStack</option>
-                  </select>
-                  {formik.touched.role && formik.errors.role && (
-                    <span>{formik.errors.role}</span>
+                    <img src={logoUser} alt="logoUser" />
+                  </label>
+                  <h5>Subir foto de perfil</h5>
+                  {/* Input de tipo file oculto */}
+                  <input
+                    id="avatarInput"
+                    className="register__select"
+                    name="avatar"
+                    type="file"
+                    accept="image/*"
+                    onChange={(event) => {
+                      formik.setFieldValue("avatar", event.currentTarget.files);
+                    }}
+                  />
+                  {formik.touched.avatar && formik.errors.avatar && (
+                    <span>{formik.errors.avatar}</span>
                   )}
-
-                  <input
-                    name="cohorte"
-                    placeholder="Cohorte"
-                    value={formik.values.cohorte}
-                    onChange={formik.handleChange}
-                  />
-                  {formik.touched.cohorte && formik.errors.cohorte && (
-                    <span>{formik.errors.cohorte}</span>
-                  )}
-
-                  <input
-                    name="EnglishLevel"
-                    placeholder="Nivel de inglés"
-                    value={formik.values.EnglishLevel}
-                    onChange={formik.handleChange}
-                  />
-                  {formik.touched.EnglishLevel &&
-                    formik.errors.EnglishLevel && (
-                      <span>{formik.errors.EnglishLevel}</span>
-                    )}
-
-                  <input
-                    name="correoElectronico"
-                    placeholder="Correo electrónico"
-                    value={formik.values.correoElectronico}
-                    onChange={formik.handleChange}
-                  />
-                  {formik.touched.correoElectronico &&
-                    formik.errors.correoElectronico && (
-                      <span>{formik.errors.correoElectronico}</span>
-                    )}
-
-                  <input
-                    name="celular"
-                    placeholder="Celular"
-                    value={formik.values.celular}
-                    onChange={formik.handleChange}
-                  />
-                  {formik.touched.celular && formik.errors.celular && (
-                    <span>{formik.errors.celular}</span>
-                  )}
-                  <div className="register__habeasdata ">
-                    <input
-                      id="habeasDataCheckbox"
-                      name="habeasDataCheckbox"
-                      type="checkbox"
-                      value={formik.values.habeasDataCheckbox}
-                      onChange={formik.handleChange}
-                    />
-                    <label className="register__habeasdata-info">
-                       Habeas Data: Al completar este formulario, aceptas que tus
-                      datos sean almacenados y utilizados de acuerdo con nuestra
-                      política de privacidad.
-                    </label>
-                  </div>
-
-                  <div className="register__ussers">
-                    <input
-                      name="user"
-                      placeholder="Usuario"
-                      value={formik.values.user}
-                      onChange={formik.handleChange}
-                    />
-                    {formik.touched.user && formik.errors.user && (
-                      <span>{formik.errors.user}</span>
-                    )}
-
-                    <input
-                      name="contrasenia"
-                      placeholder="Contraseña"
-                      type="password"
-                      value={formik.values.contrasenia}
-                      onChange={formik.handleChange}
-                    />
-                    {formik.touched.contrasenia &&
-                      formik.errors.contrasenia && (
-                        <span>{formik.errors.contrasenia}</span>
-                      )}
-                  </div>
                 </div>
 
-                <button className="register__crearCuenta" type="submit">
-                  Crear cuenta
-                </button>
+                <input
+                  name="firstName"
+                  placeholder="Nombre completo"
+                  value={formik.values.firstName}
+                  onChange={formik.handleChange}
+                />
+                {formik.touched.firstName && formik.errors.firstName && (
+                  <span>{formik.errors.firstName}</span>
+                )}
+
+                <input
+                  name="lastName"
+                  placeholder="Apellidos"
+                  value={formik.values.apellidos}
+                  onChange={formik.handleChange}
+                />
+                {formik.touched.lastName && formik.errors.lastName && (
+                  <span>{formik.errors.lastName}</span>
+                )}
+
+                <select
+                  name="rol"
+                  value={formik.values.tipoTalento}
+                  onChange={formik.handleChange}
+                >
+                  <option value="">Selecciona una opción</option>
+                  <option value="FrontEnd">FrontEnd</option>
+                  <option value="BackEnd">BackEnd</option>
+                  <option value="FullStack">FullStack</option>
+                </select>
+                {formik.touched.rol && formik.errors.rol && (
+                  <span>{formik.errors.rol}</span>
+                )}
+
+                <input
+                  name="cohorte"
+                  placeholder="Cohorte"
+                  value={formik.values.cohorte}
+                  onChange={formik.handleChange}
+                />
+                {formik.touched.cohorte && formik.errors.cohorte && (
+                  <span>{formik.errors.cohorte}</span>
+                )}
+
+                <input
+                  name="englishLevel"
+                  placeholder="Nivel de inglés"
+                  value={formik.values.englishLevel}
+                  onChange={formik.handleChange}
+                />
+                {formik.touched.englishLevel && formik.errors.englishLevel && (
+                  <span>{formik.errors.englishLevel}</span>
+                )}
+
+                <input
+                  name="email"
+                  placeholder="Correo electrónico"
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                />
+                {formik.touched.email && formik.errors.email && (
+                  <span>{formik.errors.email}</span>
+                )}
+
+                <input
+                  name="phone"
+                  placeholder="Celular"
+                  value={formik.values.phone}
+                  onChange={formik.handleChange}
+                />
+                {formik.touched.phone && formik.errors.phone && (
+                  <span>{formik.errors.phone}</span>
+                )}
+                <div className="register__habeasdata ">
+                  <input
+                    id="habeasDataCheckbox"
+                    name="habeasDataCheckbox"
+                    type="checkbox"
+                    value={formik.values.habeasDataCheckbox}
+                    onChange={formik.handleChange}
+                  />
+                  <label className="register__habeasdata-info">
+                    Habeas Data: Al completar este formulario, aceptas que tus
+                    datos sean almacenados y utilizados de acuerdo con nuestra
+                    política de privacidad.
+                  </label>
+                </div>
+
+                <div className="register__ussers">
+                  <input
+                    name="user"
+                    placeholder="correo electrónico"
+                    value={formik.values.user}
+                    onChange={formik.handleChange}
+                  />
+                  {formik.touched.user && formik.errors.user && (
+                    <span>{formik.errors.user}</span>
+                  )}
+
+                  <input
+                    name="password"
+                    placeholder="Contraseña"
+                    type="password"
+                    value={formik.values.password}
+                    onChange={formik.handleChange}
+                  />
+                  {formik.touched.password && formik.errors.password && (
+                    <span>{formik.errors.password}</span>
+                  )}
+                </div>
               </div>
-            </form>
-          </div>
-        
+
+              <button className="register__crearCuenta" type="submit">
+                Crear cuenta
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </section>
   );
