@@ -1,13 +1,13 @@
 @import "../../style/mixin.scss";
-body {
-}
+
 .footer {
   position: relative;
+  justify-content: end;
   left: -40px;
   width: 1349px;
   height: 100px;
   display: flex;
-  background-color: $softblue;
+  background-color: $gray;
 
   figure {
     display: flex;

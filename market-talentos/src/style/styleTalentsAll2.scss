@@ -1,0 +1,159 @@
+@import "./style.scss";
+@import "./mixin.scss";
+
+.talentsAll {
+    display: flex;
+    left: 120px;
+    @include desk {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    &__title {
+      color: white;
+      font-family: $fontMontserrat;
+    }
+    &__container-cards {
+      margin: 50px;
+      width: 900px;
+      height: 700px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 8px;
+      overflow-y: auto;
+      justify-content: center;
+    }
+  
+    &__container {
+      @include desk {
+        margin: 1rem;
+        width: 210px;
+        height: 180px;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+        // clip-path: polygon(0% 0%, 54.7% 1.3%, 100% 15%, 100% 100%, 0% 100%);
+        border-radius: 10px;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    &__container-imgTalent {
+      @include desk {
+        // @include styleRound(
+        //   $skyBkue,
+        //   $skyBkue,
+        //   $wi115,
+        //   $he115,
+        //   $white,
+        //   $s14,
+        //   $w300,
+        //   $skyBkue,
+        //   $skyBkue,
+        //   $gray
+        // );
+        // position: relative;
+      }
+    }
+  
+    &__card-figure {
+      @include desk {
+        @include styleRound(
+          $white,
+          $skyBkue,
+          $wi105,
+          $he105,
+          $white,
+          $s14,
+          $w300,
+          $white,
+          $skyBkue,
+          $gray
+        );
+  
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 5rem;
+        }
+      }
+    }
+  
+    &__container-info {
+      @include desk {
+        width: 190px;
+        height: 3rem;
+        display: flex;
+        gap: 8px;
+        margin-bottom: 5px;
+        align-items: center;
+        display: flex;
+      }
+    }
+  
+    &__container-state {
+      @include desk {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  
+    &__container-levelEnglish {
+      @include desk {
+        display: flex;
+        gap: 5px;
+      }
+    }
+  
+    &__buttons-state {
+      @include desk {
+        width: 25px;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  
+    &__line {
+      @include desk {
+        width: 3px;
+        height: 55px;
+        background-color: $grayLight;
+      }
+    }
+  
+    &__container-infoPnal {
+      @include desk {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  
+    &__name {
+      @include desk {
+        @include text($fontMontserrat, $w400, $s12, $gray);
+      }
+    }
+  
+    &__lastName {
+      @include desk {
+        margin-bottom: 5px;
+        @include text($fontMontserrat, $w400, $s12, $gray);
+      }
+    }
+  
+    &__know {
+      @include desk {
+        @include text($fontMontserrat, $w400, $s12, $grayLight);
+      }
+    }
+  }
+  
