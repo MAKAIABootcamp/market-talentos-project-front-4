@@ -8,6 +8,12 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { talentsTypes } from "../types/talentsTypes";
+import { sendEmailVerification } from "firebase/auth";
+
+
+
+
+
 
 export const registerActionAsync = ({ email, password, name, avatar }) => {
   return async (dispatch) => {
@@ -21,6 +27,11 @@ export const registerActionAsync = ({ email, password, name, avatar }) => {
         displayName: name,
         photoURL :avatar,
       });
+
+          // Envío del correo de verificación
+          await sendEmailVerification(auth.currentUser);
+
+
       const { accessToken } = user.auth.currentUser;
         console.log(user);
       
@@ -43,6 +54,31 @@ const registerActionSync = (newUser, error) => {
     },
   };
 };
+
+//.............post formulario registro...................//
+const collectionName1 = 'talents';
+
+export const actionAddTalentsAsync = (talent) => {
+  return async (dispatch) => {
+    try {
+      const talentsCollection = collection(firestore, collectionName1);
+      const docRef = await addDoc(talentsCollection, talent);
+      const newTalent = { id: docRef.id, ...talent };
+      dispatch(actionAddTalentsSync(newTalent));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+const actionAddTalentsSync = (talent) => {
+  return {
+    type: talentsTypes.TALENTS_ADD,
+    payload: talent,
+  };
+};
+
+
 
 // Acción de registro asíncrona
 // export const actionRegisterAsync = ({ email, password, name, avatar }) => {

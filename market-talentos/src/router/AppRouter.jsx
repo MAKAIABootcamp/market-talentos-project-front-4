@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Administrator from '../pages/Administrator';
 import Customer from '../pages/Customer';
@@ -24,8 +25,34 @@ import TalentsAll from "../pages/TalentsAll";
 import EditProfile from "../pages/EditProfile";
 import TalentOfferJob from "../pages/TalentOfferJob";
 import JobApplicatioTalent from "../pages/JobApplicatioTalent"
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase/firebaseConfig";
+import { getLoggedUser } from "../redux/actions/usersActions";
 
 const AppRouter = () => {
+  // const [loggedUser, setLoggedUser] = useState(null);
+  const dispatch = useDispatch();
+  const [isLogged, setIsLogged] = useState(null);
+   const {user: loggedUser} = useSelector((state) => state.user);
+  
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user?.uid) {
+        setIsLogged(true);
+        console.log("Logueado");
+        if (!loggedUser) {
+
+          dispatch(getLoggedUser(user.accessToken));
+
+        }
+      } else {
+        setIsLogged(false);
+        console.log("No logueado");
+      }
+    });
+  }, [dispatch, loggedUser]);
+  
   return (
     <>
       <BrowserRouter>

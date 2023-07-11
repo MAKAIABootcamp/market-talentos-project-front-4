@@ -5,15 +5,21 @@ import fileUpLoad from "../services/fileUpload";
 import "../style/styleFormRegisTalent.scss";
 import fondoImg from "../assets/fondoregist.jpg";
 import logoUser from "../assets/icon/logoUser.png";
-// import { actionRegisterAsync } "../redux/actions/talent";
 import Swal from 'sweetalert2';
 import { useDispatch } from "react-redux";
-import { registerActionAsync } from "../redux/actions/talent";
+// import { actionAddTalentsAsync, registerActionAsync } from "../redux/actions/talent";
 // import { useNavigate } from "react-router-dom";
+import { registerActionAsync } from "../redux/actions/usersActions";
 
 const FormRegisTalent = () => {
  const dispatch = useDispatch();
 //  const navigate = useNavigate();
+// const store1 = useSelector(state => state.talents.user);
+// console.log (store1)
+
+// const addTalent = (event) =>{
+//   event.preventDefault();
+// }
 
   const formik = useFormik({
     initialValues: {
@@ -26,7 +32,7 @@ const FormRegisTalent = () => {
       phone: "",
       user: "",
       password: "",
-      avatar: null,
+      photoURL: null,
     },
     validationSchema: Yup.object({
       firstName: Yup.string().required("El nombre es requerido"),
@@ -43,7 +49,7 @@ const FormRegisTalent = () => {
         .required("La contraseña es requerida")
         .min(3, "La contraseña debe contener al menos 3 caracteres.")
         .max(8, "La contraseña no puede contener más de 8 caracteres"),
-      avatar: Yup.mixed().required("La foto de perfil es requerida"),
+      photoURL: Yup.mixed().required("La foto de perfil es requerida"),
     }),
 
     onSubmit: async (values) => {
@@ -51,11 +57,13 @@ const FormRegisTalent = () => {
            // console.log(values);
 
       // Enviar la imagen a Cloudinary utilizando fileUpLoad
-      const avatar = await fileUpLoad(values.avatar[0]);
+      const avatar = await fileUpLoad(values.photoURL[0]);
 
       const newUser = {
         ...values,
-        avatar: avatar,
+        photoURL: avatar,
+        displayName: `${values.firstName} ${values.lastName}`,
+        type: "talents"
       };
       console.log("New User:", newUser);
       Swal.fire({
@@ -69,6 +77,8 @@ const FormRegisTalent = () => {
         // Manejar errores en caso de que ocurra un problema durante el registro del usuario
         console.log(error);
       });
+      // dispatch(registerActionAsync(newUser));
+      // dispatch(actionAddTalentsAsync(newUser)); // Agregar esta línea para enviar los datos a Firebase
       dispatch(registerActionAsync(newUser));
     },
     
@@ -104,11 +114,11 @@ const FormRegisTalent = () => {
                   <input
                     id="avatarInput"
                     className="register__select"
-                    name="avatar"
+                    name="photoURL"
                     type="file"
                     accept="image/*"
                     onChange={(event) => {
-                      formik.setFieldValue("avatar", event.currentTarget.files);
+                      formik.setFieldValue("photoURL", event.currentTarget.files);
                     }}
                   />
                   {formik.touched.avatar && formik.errors.avatar && (
@@ -228,7 +238,7 @@ const FormRegisTalent = () => {
                 </div>
               </div>
 
-              <button className="register__crearCuenta" type="submit">
+              <button  className="register__crearCuenta" type="submit">
                 Crear cuenta
               </button>
             </div>

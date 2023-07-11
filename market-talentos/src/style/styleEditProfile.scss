@@ -29,7 +29,7 @@
       height: 40rem;
       padding: 5px;
       display: flex;
-      background-color: white;
+      // background-color: white;
       flex-direction: column;
       align-items: center;
       gap: 3px;
@@ -231,7 +231,7 @@
   }
 
  
-  &__container-pdf{
+  &__container-up{
     display: flex;
     flex-direction: row;
     gap: 7px;
@@ -261,4 +261,95 @@
   }
 }
 
+@media screen and (max-width: 768px){
+  .editProfile{
+    &__input{
+   width: 250px !important
+    }
+   
+   &__background {
+     display: flex;
+     position: absolute;
+     width: 100%;
+     left: -16px;
+   }
+   
+   &__container-custom {
+     display: flex;
+     flex-direction: column; 
+     gap: 7px;
+   }
 
+   &__seccion-info {
+     display: flex;
+     width: 100%;
+     justify-content: center;
+     position: relative;
+     top: 146px;
+     left: -29px;
+   }
+   &__input-profile {
+     @include styleSquare(
+       $white,
+       $white,
+       $wi250,
+       $he85,
+       $gray,
+       $s12,
+       $w400,
+       $white,
+       $gray,
+       $gray
+     );
+    
+     }
+ }
+ 
+ 
+}
+
+@media screen and (max-width: 375px){
+  .editProfile {
+     &__input{
+    width: 250px !important
+     }
+    
+    &__background {
+      display: flex;
+      position: absolute;
+      width: 100%;
+      left: -16px;
+    }
+    
+    &__container-custom {
+      display: flex;
+      flex-direction: column; 
+      gap: 7px;
+    }
+
+    &__seccion-info {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      position: relative;
+      top: 146px;
+      left: -29px;
+    }
+    &__input-profile {
+      @include styleSquare(
+        $white,
+        $white,
+        $wi250,
+        $he85,
+        $gray,
+        $s12,
+        $w400,
+        $white,
+        $gray,
+        $gray
+      );
+     
+      }
+  }
+  
+}

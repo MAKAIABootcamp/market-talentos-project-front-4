@@ -1,7 +1,12 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { singOutAsync } from "../../redux/actions/usersActions";
 import LogoMakaia from "../../assets/makaia.png";
 import "./styledLayout.scss";
 const Layout = () => {
+
+  const dispatch = useDispatch();
+
   const Buttons = [
     {
       id: 1,
@@ -18,6 +23,7 @@ const Layout = () => {
   ];
   return (
     <div>
+      <button onClick={() => dispatch(singOutAsync())}>log Out</button>
       <figure className="header__logomakaia">
         <img src={LogoMakaia} alt="logo de la empresa" />
       </figure>

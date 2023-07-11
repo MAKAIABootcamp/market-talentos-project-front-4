@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "../style/styleEditProfile.scss";
 import imgTalent from "../assets/elisa.jpeg";
 import { useFormik } from "formik";
@@ -7,6 +8,12 @@ import useOnClick from "../funtions/useOnClick";
 import imageFond from "../assets/EditProfileFondo.jpg";
 
 const EditProfile = () => {
+
+  const dispatch = useDispatch();
+
+  const {user} = useSelector(state => state.user);
+  console.log(user);
+
   const validationSchema = Yup.object().shape({
     inputGitUp: Yup.string()
       .url("Ingresa un enlace válido. Ejemplo: https://github.com/tuusuario")
@@ -202,7 +209,7 @@ const EditProfile = () => {
                   )}
                 </div>
 
-                <div className="editProfile__container-pdf">
+                <div className="editProfile__container-up">
                   <label htmlFor="cv" className="editProfile__label">
                     Hoja de Vida (PDF):
                     <input
@@ -222,7 +229,7 @@ const EditProfile = () => {
                     </div>
                   )}
                 </div>
-                <div className="editProfile__container-custom">
+                <div className="editProfile__container-up">
                   <label htmlFor="video" className="editProfile__label">
                     Video:
                   
