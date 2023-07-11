@@ -6,7 +6,7 @@ const initialState = {
 
 export const talentsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case talentsTypes.TALENT_REGISTER:
+        case talentsTypes.TALENT_REGISTER: 
             return {
                 ...action.payload,
             };

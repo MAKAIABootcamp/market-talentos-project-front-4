@@ -9,56 +9,93 @@ import {
 } from "firebase/auth";
 import { talentsTypes } from "../types/talentsTypes";
 
-// Acción de registro asíncrona
-export const actionRegisterAsync = ({ email, password, name, avatar }) => {
-  return (dispatch) => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(async ({ talent }) => {
-        const { accessToken, photoURL, phoneNumber } =
-          talent.auth.currentUser;
-        await updateProfile(auth.currentUser, {
-          displayName: name,
-          photoURL: avatar,
-        });
-        dispatch(
-          actionRegisterSync({
-            email,
-            name,
-            accessToken,
-            photoURL,
-            phoneNumber,
-            error: false,
-          })
-        );
-      })
-      .catch((error) => {
-        const { code, message } = error;
-        console.log(code);
-        console.log(message);
-        dispatch(actionRegisterError({ error: true, errorMessage: message }));
+
+export const registerActionAsync = ({ email, password, name, avatar }) => {
+  return async (dispatch) => {
+    try {
+      const { user } = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      await updateProfile (auth.currentUser,{
+        displayName: name,
+        photoURL :avatar,
       });
+      const { accessToken } = user.auth.currentUser;
+        console.log(user);
+      
+      dispatch(registerActionSync({ email, name, avatar, accessToken }, null));
+    } catch (error) {
+      console.log(error);
+      dispatch(
+        registerActionSync({}, { code: error.code, message: error.message })
+      );
+    }
   };
 };
 
-// Acción de registro sincrónica
-const actionRegisterSync = (talent) => {
+
+const registerActionSync = (newUser, error) => {
   return {
     type: talentsTypes.TALENT_REGISTER,
     payload: {
-      ...talent,
+      user: newUser,
+      error: error,
     },
   };
 };
 
-// Acción de registro con error
-const actionRegisterError = (error) => {
-  return {
-    type: talentsTypes.TALENT_REGISTER_ERROR,
-    payload: {
-      ...error,
-    },
-  };
-};
+// Acción de registro asíncrona
+// export const actionRegisterAsync = ({ email, password, name, avatar }) => {
+//   return (dispatch) => {
+//     createUserWithEmailAndPassword(auth, email, password)
+//       .then(async ({ talent }) => {
+//         const { accessToken, photoURL, phoneNumber } =
+//           talent.auth.currentUser;
+//         await updateProfile(auth.currentUser, {
+//           displayName: name,
+//           photoURL: avatar,
+//         });
+//         dispatch(
+//           actionRegisterSync({
+//             email,
+//             name,
+//             accessToken,
+//             photoURL,
+//             phoneNumber,
+//             error: false,
+//           })
+//         );
+//       })
+//       .catch((error) => {
+//         const { code, message } = error;
+//         console.log(code);
+//         console.log(message);
+//         dispatch(actionRegisterError({ error: true, errorMessage: message }));
+//       });
+//   };
+// };
+
+// // Acción de registro sincrónica
+// const actionRegisterSync = (talent) => {
+//   return {
+//     type: talentsTypes.TALENT_REGISTER,
+//     payload: {
+//       ...talent,
+//     },
+//   };
+// };
+
+// // Acción de registro con error
+// const actionRegisterError = (error) => {
+//   return {
+//     type: talentsTypes.TALENT_REGISTER_ERROR,
+//     payload: {
+//       ...error,
+//     },
+//   };
+// };
 
 // función login Asincrona
 export const actionLoginAsync = ({ email, password }) => {
