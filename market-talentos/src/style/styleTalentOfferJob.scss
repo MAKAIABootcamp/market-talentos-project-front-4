@@ -24,12 +24,11 @@
       }
   }
   
- 
 
   &__container {
     display: flex;
     flex-direction: column;
-     width: 30rem;
+     width: 26rem;
       gap: 3px;
    }
 
@@ -150,4 +149,121 @@
       );
     }
   }
+}
+
+@media screen and (max-width: 768px) {
+  .talentOffer{
+
+    &__container {
+      display: flex;
+      flex-direction: column;
+      width: 22rem;
+      gap: 3px;
+  }
+
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .talentOffer{
+
+    &__container {
+      display: flex;
+      flex-direction: column;
+      width: 22rem;
+      gap: 3px;
+  }
+  &__background {
+    display: flex;
+    position: absolute;
+    width: 87%;
+    right: 28px;
+    z-index: -1;
+}
+
+  &__button-otherjobs {
+  margin-top: -13px;
+ 
+    @include styleSquare(
+      $skyBkue,
+      $skyBkue,
+      $wi250,
+      $he35,
+      $white,
+      $s18,
+      $w300,
+      $yellow,
+      $yellow,
+      $white
+    );
+  
+}
+  &__container-infojob {
+    margin-top: 206px;
+    max-height: 274px;
+    width: 96%;
+}
+&__aplicattionJob {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 96%;
+  padding: 21px;
+  background-color: #25ABBC;
+  border-radius: 10px;
+  font-family: "montserrat", sans-serif;
+  align-items: center;
+}
+
+  }
+}
+
+
+@media screen and (max-width: 375px) {
+  .talentOffer {
+
+    &__background {
+      display: flex;
+      position: absolute;
+      width: 87%;
+      right: 28px;
+      z-index: -1;
+  }
+
+    &__button-otherjobs {
+    margin-top: -13px;
+   
+      @include styleSquare(
+        $skyBkue,
+        $skyBkue,
+        $wi250,
+        $he35,
+        $white,
+        $s18,
+        $w300,
+        $yellow,
+        $yellow,
+        $white
+      );
+    
+  }
+    &__container-infojob {
+      margin-top: 206px;
+      max-height: 274px;
+      width: 96%;
+  }
+  &__aplicattionJob {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 96%;
+    padding: 21px;
+    background-color: #25ABBC;
+    border-radius: 10px;
+    font-family: "montserrat", sans-serif;
+    align-items: center;
+  }
+
+}
 }

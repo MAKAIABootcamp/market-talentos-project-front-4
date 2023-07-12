@@ -1,7 +1,11 @@
 import React from "react";
+
 import LogoMakaia from "../../assets/makaia.png";
 import "./styledLayout.scss";
 const Layout = () => {
+
+
+
   const Buttons = [
     {
       id: 1,
@@ -18,6 +22,7 @@ const Layout = () => {
   ];
   return (
     <div>
+     
       <figure className="header__logomakaia">
         <img src={LogoMakaia} alt="logo de la empresa" />
       </figure>

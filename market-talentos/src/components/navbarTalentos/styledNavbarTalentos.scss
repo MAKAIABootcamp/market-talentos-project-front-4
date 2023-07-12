@@ -1,0 +1,51 @@
+@import "../../style/mixin.scss";
+@import "../../style/style.scss";
+
+.navbarTalentos {
+  margin-bottom: 10px;
+ 
+  &__container {
+    display: flex;
+    background-color: $softblue;
+    height: 130px;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 100% 100%, 40% 90%);
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 15px;  
+  }
+
+  &__logout {
+    @include styleSquare(
+      $yellow,
+      $yellow,
+      $wi75,
+      $he25,
+      $gray,
+      $s12,
+      $w400,
+      $white,
+      $gray,
+      $gray
+    );
+  }
+
+  &__logo {
+    img {
+      display: flex;
+      width: 190px;
+      position: absolute;
+      top:30px;
+      z-index: 1;
+      
+
+      
+      @media (max-width: 768px) {
+        width: 150px;
+      }
+
+      @media (max-width: 350px) {
+        width: 100px;
+    }
+  }
+}
+}

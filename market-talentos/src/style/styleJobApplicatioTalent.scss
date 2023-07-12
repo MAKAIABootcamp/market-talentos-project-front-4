@@ -8,27 +8,25 @@
     position: absolute;
   }
 
-  
   &__background {
     display: flex;
     position: absolute;
-     right: 20px;
-     width: 60%;
+    right: 20px;
+    width: 60%;
     z-index: -1;
     img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
-  
 
   &__container {
     @include desk {
       margin: 1rem;
       width: 30rem;
       height: 40rem;
-      
+
       padding: 5px;
       display: flex;
       flex-direction: column;
@@ -41,7 +39,7 @@
   &__container-infojob {
     @include desk {
       margin-top: 13px;
-      width: 90%;
+      width: 84%;
       height: auto;
       background-color: $gray;
       display: flex;
@@ -69,9 +67,6 @@
     }
   }
 
-
-
-
   &__container-imgTalent {
     display: flex;
     margin-top: 25px;
@@ -80,7 +75,7 @@
     justify-content: center;
     align-items: center;
   }
-  
+
   &__card-figure {
     @include desk {
       @include styleRound(
@@ -152,8 +147,8 @@
     padding: 30px;
     background-color: $skyBkue;
     border-radius: 9px;
-    margin-bottom: 10px;
-    max-height: 300px; /* ajusta la altura máxima según tus necesidades */
+    margin-bottom: 20px;
+    max-height: 270px; /* ajusta la altura máxima según tus necesidades */
     overflow-y: auto;
   }
   &__button-status {
@@ -172,9 +167,7 @@
     border-radius: 5px;
     width: 100%;
     margin-top: 5px;
-  } 
-  
-
+  }
 
   &__button-costumer {
     margin-bottom: 30px;
@@ -185,10 +178,8 @@
     padding: 15px;
     border-radius: 7px;
     align-items: center;
-    background-color: $yellow;    
+    background-color: $yellow;
   }
-
-
 
   &__button-otherjobs {
     margin-bottom: 10px;
@@ -216,14 +207,13 @@
     background-color: $skyBkue;
     border-radius: 9px;
     margin-bottom: 10px;
-    
-    form{
-        display: flex;
-        gap: 9px;
-        padding: 20px;
-        align-items: center;
+
+    form {
+      display: flex;
+      gap: 9px;
+      padding: 20px;
+      align-items: center;
     }
-    
   }
 
   &__button-other {
@@ -234,20 +224,127 @@
     width: 80%;
     margin-top: 5px;
   }
-  &__button-aceptar{
+  &__button-aceptar {
     @include desk {
-        @include styleOval(
-          $yellow,
-          $yellow,
-          $wi95,
-          $he35,
-          $gray,
-          $s12,
-          $w300,
-          $yellow,
-          $yellow,
-          $white
-        );
-      }
+      @include styleOval(
+        $yellow,
+        $yellow,
+        $wi95,
+        $he35,
+        $gray,
+        $s12,
+        $w300,
+        $yellow,
+        $yellow,
+        $white
+      );
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .jobtalent {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: absolute;
+    top: 128px;
+    left: 0px;
+
+    &__container-imgTalent {
+      margin-top: 10px;
+      margin-bottom: 20px;
+      gap: 13px;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+    }
+    &__background {
+      position: absolute;
+      width: 100%;
+      z-index: -1;
+      top: -137px;
+      img {
+        width: 82%;
+        height: 100%;
+        object-fit: cover;
+    }
+    }
+    &__container-infojob {
+      margin-top: 211px;
+      width: 64%;
+      height: auto;
+      background-color: #252935;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 8px;
+      position: absolute;
+      left: 146px;
+  }
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .jobtalent {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: absolute;
+    top: 128px;
+    left: 0px;
+
+    &__container-imgTalent {
+      margin-top: 10px;
+      margin-bottom: 20px;
+      gap: 13px;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    &__background {
+      position: absolute;
+      width: 100%;
+      z-index: -1;
+      top: -137px;
+    }
+
+    &__container-infojob {
+      margin-top: 70px;
+      width: 70%;
+      position: absolute;
+      left: 11px;
+  
+    }
+
+    &__container-costumer {
+      max-height: 272px;
+      overflow-y: auto;
+      max-height: 211px;
+    }
+    &__button-costumer {
+      width: 100%;
+    }
+
+    &__button-postulation {
+      margin-top: -13px;
+
+      @include styleSquare(
+        $skyBkue,
+        $skyBkue,
+        $wi200,
+        $he35,
+        $white,
+        $s18,
+        $w300,
+        $yellow,
+        $yellow,
+        $white
+      );
+    }
   }
 }

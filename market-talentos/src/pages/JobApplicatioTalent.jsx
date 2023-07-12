@@ -2,8 +2,14 @@ import React from "react";
 import "../style/styleJobApplicatioTalent.scss";
 import imgTalent from "../assets/elisa.jpeg";
 import FondoApliJobs from "../assets/JobPostulaFondo.jpg"
+import { useDispatch } from "react-redux";
+import { singOutAsync } from "../redux/actions/usersActions";
+
+
 
 const JobApplicatioTalent = () => {
+
+  const dispatch = useDispatch();
   const costumerButtons = [
   
       { id: 1, name: "Magenta Developer", status: "Entrevista", changeStatus: "Cambiar estado" },
@@ -17,10 +23,14 @@ const JobApplicatioTalent = () => {
 
   return (
     <section className="jobtalent">
+        
+        <button onClick={() => dispatch(singOutAsync())}>log Out</button>
       <div className="jobtalent__container">
       <div className="jobtalent__background">
           <img src={FondoApliJobs} alt="fondoApliJobs" />
         </div>
+       {/* boton para cerrar Sesión */}
+        <button>cerrar Sesión</button>
         <div className="jobtalent__container-infojob">
         <button className="jobtalent__button-postulation">
            Mis Postulaciones

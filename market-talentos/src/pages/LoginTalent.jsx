@@ -8,10 +8,7 @@ import * as yup from 'yup';
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from 'react-redux';
 import { loginProvider } from '../services/dates';
-import {
-  actionLoginAsync,
-  actionLoginGoogleOrFacebook,
-} from "../redux/actions/talent";
+import { actionLoginGoogleOrFacebook, actionLoginAsync } from '../redux/actions/talentsActions';
 import { useNavigate } from 'react-router';
 
 const schema = yup.object({
