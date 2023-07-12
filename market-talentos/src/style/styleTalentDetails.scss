@@ -1,0 +1,40 @@
+@import "./style.scss";
+@import "./mixin.scss";
+
+.talentDetails{
+
+    @include desk {
+        width: 100%;
+        height: 100%;
+        
+        display: flex;
+        justify-content: center;
+        
+    }
+    &__card{
+        @include desk {
+        background-color: $white;
+        width:400px;
+        height: 100px;
+        }
+    }
+
+    &__line{
+        @include desk {
+        background-color: $gray;
+        width: 5px;
+        height: 470px;
+        }
+    }
+
+    &__allCards{
+        @include desk {
+            
+            width: 600px;
+            height: 470px;
+        }
+
+    }
+
+}
+

@@ -1,16 +1,33 @@
 import React from 'react';
 import './styleCardTalent.scss';
-import imgTalent from '../../assets/elisa.jpeg';
 import useOnClick from '../../funtions/useOnClick';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import imgGitUp from '../../assets/logogithub.png';
 import imgLinkedin from '../../assets/logolink.png';
 import imgVideo from '../../assets/logovideo.png';
 import imgPhone from '../../assets/celular.png';
 import imgMail from '../../assets/correo.png';
 import imgWhatsapp from '../../assets/whatsapp.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { getTalent } from '../../redux/actions/userTalentAction';
 
-const CardTalent = () => {
+const CardTalent = ({userId}) => {
+
+    // const navigate = useNavigate();
+    // const dispatch = useDispatch();
+    // const talentsList = useSelector((store) => store.userTalents);
+
+    // const getTalents = () => {
+    //     dispatch(getTalent(userId));
+    // }
+
+    // useEffect(() => {
+    //     infoTalent = getTalents();
+    //     console.log(infoTalent);
+
+    // }, []);
+
+    const infoTalent = JSON.parse(sessionStorage.getItem('selectedTalent'));
     const handleClick = useOnClick();
     return (
         <>
@@ -19,24 +36,25 @@ const CardTalent = () => {
                     <div className='talents__container-imgTalent'
                         onClick={() => handleClick("editImgProfile", "")}>
                         <figure className='talents__card-figure'>
-                            <img src={imgTalent} alt="imgTalent" />
+                            <img src={infoTalent.avatar} alt="imgTalent" />
                         </figure>
                     </div>
                     <div className='talents__container-info'>
                         <div className='talents__container-state'>
-                            <figure className='talents__buttons-state'>
+                            {/* <figure className='talents__buttons-state'>
                                 <img src={imgWhatsapp} alt="" />
-                            </figure>
+                            </figure> */}
+                            <button className='talents__button-custom'> editar </button>
                             <div className='talents__container-levelEnglish'>
                                 <span className='talents__know'>Ingles</span>
-                                <span className='talents__know'>A1</span>
+                                <span className='talents__know'>{infoTalent.englishLevel}</span>
                             </div>
                         </div>
                         <div className='talents__line'></div>
                         <div className='talents__container-infoPnal'>
-                            <span className='talents__name'><strong>Elisabeth Cristina</strong></span>
-                            <span className='talents__lastName'><strong>Ospina Graciano</strong></span>
-                            <span className='talents__know'>Front end developer</span>
+                            <span className='talents__name'><strong>{infoTalent.firstName}</strong></span>
+                            <span className='talents__lastName'><strong>{infoTalent.lastName}</strong></span>
+                            <span className='talents__know'>{infoTalent.rol}</span>
                         </div>
                     </div>
                     <section className='talents__seccion-info'>
@@ -65,13 +83,13 @@ const CardTalent = () => {
                                     <figure className='talents__iconMail'>
                                         <img src={imgMail} alt="" />
                                     </figure>
-                                    <span className='talents__infoContact'>elisabethospinag@gmail.com</span>
+                                    <span className='talents__infoContact'>{infoTalent.user}</span>
                                 </div>
                                 <div className='talents__container-mail'>
                                     <figure className='talents__iconPhone'>
                                         <img src={imgPhone} alt="" />
                                     </figure>
-                                    <span className='talents__infoContact'>+57 3002791131</span>
+                                    <span className='talents__infoContact'>+57 {infoTalent.phone}</span>
                                 </div>
                             </div>
                             <div className='talents__container-programs'>
@@ -81,13 +99,12 @@ const CardTalent = () => {
                                 <span className='talents__programs'>SASS</span>
                                 <span className='talents__programs'>REACT</span>
                                 <span className='talents__programs'>BOOBSTRAP</span>
-
                                 <span className='talents__programs'>GIT_UP</span>
                             </div>
                             {/* <button className='talents__button-seeMore'>ver más</button> */}
                             <div className='talents__container-profile'>
                                 <p className='talents__profile'>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum nostrum dolores quasi beatae. Placeat quod quia quidem quasi accusamus maxime nemo ut, alias ullam, exercitationem deleniti ad vero totam vitae.
+                                    {infoTalent.profile}
                                 </p>
                             </div>
                             <div className='talents__container-custom'>
@@ -103,7 +120,6 @@ const CardTalent = () => {
                 </div>
             </section>
             <Outlet />
-
         </>
     )
 }

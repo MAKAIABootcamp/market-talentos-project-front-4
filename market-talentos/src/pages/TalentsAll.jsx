@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import "../style/styleTalentAll.scss";
-import useOnClick from '../funtions/useOnClick';
 import { useDispatch, useSelector } from 'react-redux';
 import { listTalents } from '../redux/actions/userTalentAction';
+import { useNavigate } from 'react-router-dom';
 
 const TalentsAll = () => {
 
-    const handleClick = useOnClick();
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const talentsList = useSelector((store) => store.userTalents);
 
@@ -18,6 +18,11 @@ const TalentsAll = () => {
         getTalents();
 
     }, []);
+    
+    const handleClickTalent = (talent) => {
+        sessionStorage.setItem('selectedTalent', JSON.stringify(talent));
+        navigate("/talentDetails",{id:11});
+    };
 
 
     return (
@@ -30,7 +35,7 @@ const TalentsAll = () => {
                     {talentsList.userTalents?.map((talent, index) => {
                         return <div className='talentsAll__container'
                             key={index}
-                            onClick={() => handleClick("cardTalent", "")}
+                            onClick={() => handleClickTalent(talent)}
                         >
                             <div className='talentsAll__container-imgTalent'>
                                 <figure className='talentsAll__card-figure'>
