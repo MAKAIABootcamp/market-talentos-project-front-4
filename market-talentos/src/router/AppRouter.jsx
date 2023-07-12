@@ -5,7 +5,7 @@ import Administrator from '../pages/Administrator';
 import Customer from '../pages/Customer';
 import Dashboard from '../pages/Dashboard';
 import Home from '../pages/Home';
-import LoginAdmin from '../pages/loginAdmin/LoginAdmin';
+import LoginAdmin from '../pages/LoginAdmin';
 import LoginTalent from '../pages/LoginTalent';
 import Portfolio from '../pages/Portfolio';
 import Talent from '../pages/Talent';

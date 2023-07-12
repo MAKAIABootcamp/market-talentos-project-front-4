@@ -55,28 +55,63 @@ const registerActionSync = (newUser, error) => {
   };
 };
 
-//.............post formulario registro...................//
-const collectionName1 = 'talents';
+// Acción de registro asíncrona
+// export const actionRegisterAsync = ({ email, password, name, avatar }) => {
+//   return (dispatch) => {
+//     createUserWithEmailAndPassword(auth, email, password)
+//       .then(async ({ talent }) => {
+//         const { accessToken, photoURL, phoneNumber } =
+//           talent.auth.currentUser;
+//         await updateProfile(auth.currentUser, {
+//           displayName: name,
+//           photoURL: avatar,
+//         });
+//         dispatch(
+//           actionRegisterSync({
+//             email,
+//             name,
+//             accessToken,
+//             photoURL,
+//             phoneNumber,
+//             error: false,
+//           })
+//         );
+//       })
+//       .catch((error) => {
+//         const { code, message } = error;
+//         console.log(code);
+//         console.log(message);
+//         dispatch(actionRegisterError({ error: true, errorMessage: message }));
+//       });
+//   };
+// };
 
-export const actionAddTalentsAsync = (talent) => {
-  return async (dispatch) => {
-    try {
-      const talentsCollection = collection(firestore, collectionName1);
-      const docRef = await addDoc(talentsCollection, talent);
-      const newTalent = { id: docRef.id, ...talent };
-      dispatch(actionAddTalentsSync(newTalent));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
+// // Acción de registro sincrónica
+// const actionRegisterSync = (talent) => {
+//   return {
+//     type: talentsTypes.TALENT_REGISTER,
+//     payload: {
+//       ...talent,
+//     },
+//   };
+// };
 
-const actionAddTalentsSync = (talent) => {
-  return {
-    type: talentsTypes.TALENTS_ADD,
-    payload: talent,
-  };
-};
+// // Acción de registro con error
+// const actionRegisterError = (error) => {
+//   return {
+//     type: talentsTypes.TALENT_REGISTER_ERROR,
+//     payload: {
+//       ...error,
+//     },
+//   };
+// };
+
+// const actionAddTalentsSync = (talent) => {
+//   return {
+//     type: talentsTypes.TALENTS_ADD,
+//     payload: talent,
+//   };
+// };
 
 
 

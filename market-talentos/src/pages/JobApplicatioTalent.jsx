@@ -29,6 +29,8 @@ const JobApplicatioTalent = () => {
       <div className="jobtalent__background">
           <img src={FondoApliJobs} alt="fondoApliJobs" />
         </div>
+       {/* boton para cerrar Sesión */}
+        <button>cerrar Sesión</button>
         <div className="jobtalent__container-infojob">
         <button className="jobtalent__button-postulation">
            Mis Postulaciones

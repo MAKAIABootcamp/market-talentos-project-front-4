@@ -10,6 +10,10 @@ export const talentsReducer = (state = initialState, action) => {
         //     return {
         //         ...action.payload,
         //     };
+        case talentsTypes.TALENT_REGISTER: 
+            return {
+                ...action.payload,
+            };
 
         // case talentsTypes.TALENT_LOGIN:
         //     return {

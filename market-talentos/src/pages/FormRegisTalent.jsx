@@ -7,21 +7,17 @@ import fondoImg from "../assets/fondoregist.jpg";
 import logoUser from "../assets/icon/logoUser.png";
 import Swal from 'sweetalert2';
 import { useDispatch } from "react-redux";
-// import { actionAddTalentsAsync, registerActionAsync } from "../redux/actions/talent";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { registerActionAsync } from "../redux/actions/usersActions";
 import NavbarTalentos from "../components/navbarTalentos/NavbarTalentos";
 
 
+
+
+
 const FormRegisTalent = () => {
  const dispatch = useDispatch();
-//  const navigate = useNavigate();
-// const store1 = useSelector(state => state.talents.user);
-// console.log (store1)
-
-// const addTalent = (event) =>{
-//   event.preventDefault();
-// }
+ const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -74,7 +70,8 @@ const FormRegisTalent = () => {
         showConfirmButton: false,
         timer: 1500
       }).then(() => {
-        // navigate('editProfile');
+        navigate('/editProfile');
+        
       }).catch((error) => {
         // Manejar errores en caso de que ocurra un problema durante el registro del usuario
         console.log(error);
@@ -254,5 +251,6 @@ const FormRegisTalent = () => {
     </section>
   );
 };
+
 
 export default FormRegisTalent;

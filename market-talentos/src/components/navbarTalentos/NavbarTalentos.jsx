@@ -10,7 +10,6 @@ const NavbarTalentos = () => {
 
   return (
     <section className="navbarTalentos">
-       
       <figure className="navbarTalentos__logo">
         <img src={LogoMakaia} alt="logo de la empresa" />
       </figure>
