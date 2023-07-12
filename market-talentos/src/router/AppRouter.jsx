@@ -42,9 +42,11 @@ const AppRouter = () => {
         setIsLogged(true);
         console.log("Logueado");
         if (!loggedUser) {
-
+         
           dispatch(getLoggedUser(user.accessToken));
-
+          // user.getIdToken().then((token) => {
+          //   dispatch(getLoggedUser(token));
+          // });
         }
       } else {
         setIsLogged(false);
