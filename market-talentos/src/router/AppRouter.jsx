@@ -24,6 +24,8 @@ import TalentsAll from "../pages/TalentsAll";
 import EditProfile from "../pages/EditProfile";
 import TalentOfferJob from "../pages/TalentOfferJob";
 import JobApplicatioTalent from "../pages/JobApplicatioTalent"
+import FormRegisAdmin from '../pages/FormRegisAdmin';
+import HomeAdmin from '../pages/HomeAdmin';
 
 const AppRouter = () => {
   return (
@@ -45,6 +47,8 @@ const AppRouter = () => {
           {/* </Route> */}
           <Route path="admin" element={<Administrator />} />
           <Route path="loginAdmin" element={<LoginAdmin />} />
+          <Route path="formRegisAdmin" element={<FormRegisAdmin />} />
+          <Route path="homeAdmin" element={<HomeAdmin />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path='homecompany' element={<HomeEmpresas />} />
           <Route path='searchcompany' element={<SearchCompany />} />
