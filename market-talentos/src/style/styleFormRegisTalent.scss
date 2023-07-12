@@ -1,20 +1,25 @@
 @import "./style.scss";
 
 .register {
-  @include desk {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-   
+
+ 
+  &__contenedorForm{
+    @include desk {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+     position: relative;
+     top: -50px;
+     z-index: -1;
+    }
+
   }
   &__container {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: auto;
-   
-   
   }
 
   &__fondo-figure {
@@ -43,8 +48,6 @@
       position: absolute;
       top: 100px;
     }
-
- 
   }
   &__container-tittle {
     @include desk {
@@ -97,17 +100,17 @@
 
   &__user-photo {
     @include desk {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    
-    h5{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      h5 {
         display: flex;
         color: white;
         justify-content: center;
         font-family: $fontMontserrat;
+      }
     }
-}
   }
 
   &__file-input-label {
@@ -124,7 +127,7 @@
       cursor: pointer;
     }
   }
-  &__select{
+  &__select {
     display: none;
   }
 
@@ -161,8 +164,8 @@
   }
 
   &__habeasdata {
-    font-size:.7rem!important;
-    color:$white;
+    font-size: 0.7rem !important;
+    color: $white;
     font-family: $fontMontserrat;
     padding: 10px;
     margin-left: 10px;
@@ -186,36 +189,34 @@
   }
 }
 
-  @media screen and (max-width: 768px){
-    .register {
-      // Estilos dentro del media query
-      &__button-tittle {
-        width: 300px;
-      }
-      &__form {
-        display: flex;
-        flex-direction: column;
-        width: 85%;
-        position: absolute;
-        top: 145px;
-      }
-  }
-    
-  }
-
-  @media screen and (max-width: 375px){
-    .register {
-        // Estilos dentro del media query
-        &__button-tittle {
-          width: 220px;
-        }
-        &__form {
-          display: flex;
-          flex-direction: column;
-          width: 85%;
-          position: absolute;
-          top: 145px;
-        }
+@media screen and (max-width: 768px) {
+  .register {
+    // Estilos dentro del media query
+    &__button-tittle {
+      width: 300px;
+    }
+    &__form {
+      display: flex;
+      flex-direction: column;
+      width: 85%;
+      position: absolute;
+      top: 145px;
     }
   }
+}
 
+@media screen and (max-width: 375px) {
+  .register {
+    // Estilos dentro del media query
+    &__button-tittle {
+      width: 220px;
+    }
+    &__form {
+      display: flex;
+      flex-direction: column;
+      width: 85%;
+      position: absolute;
+      top: 145px;
+    }
+  }
+}

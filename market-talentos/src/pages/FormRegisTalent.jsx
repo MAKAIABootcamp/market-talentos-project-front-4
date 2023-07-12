@@ -10,6 +10,8 @@ import { useDispatch } from "react-redux";
 // import { actionAddTalentsAsync, registerActionAsync } from "../redux/actions/talent";
 // import { useNavigate } from "react-router-dom";
 import { registerActionAsync } from "../redux/actions/usersActions";
+import NavbarTalentos from "../components/navbarTalentos/NavbarTalentos";
+
 
 const FormRegisTalent = () => {
  const dispatch = useDispatch();
@@ -85,7 +87,10 @@ const FormRegisTalent = () => {
   });
 
   return (
+    
     <section className="register">
+      <NavbarTalentos />
+      <div className="register__contenedorForm">
       <div className="register__container">
         <figure className="register__fondo-figure">
           <img src={fondoImg} alt="fondoImg" />
@@ -244,6 +249,7 @@ const FormRegisTalent = () => {
             </div>
           </form>
         </div>
+      </div>
       </div>
     </section>
   );

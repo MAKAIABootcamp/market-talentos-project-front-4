@@ -1,18 +1,20 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 import "../style/styleEditProfile.scss";
 import imgTalent from "../assets/elisa.jpeg";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import useOnClick from "../funtions/useOnClick";
 import imageFond from "../assets/EditProfileFondo.jpg";
+import NavbarTalentos from "../components/navbarTalentos/NavbarTalentos";
+import Footer from "../components/footer/Footer";
 
 const EditProfile = () => {
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const {user} = useSelector(state => state.user);
-  console.log(user);
+  // const {user} = useSelector(state => state.user);
+  // console.log(user);
 
   const validationSchema = Yup.object().shape({
     inputGitUp: Yup.string()
@@ -82,7 +84,10 @@ const EditProfile = () => {
 
   return (
     <>
-      <section className="editProfile">
+    <div className="editProfile">
+    <NavbarTalentos/>
+      <section className="editProfile__section">
+
         <div className="editProfile__container">
           <div className="editProfile__background">
             <img src={imageFond} alt="imageFond" />
@@ -267,7 +272,10 @@ const EditProfile = () => {
             </div>
           </section>
         </div>
+        
       </section>
+      <Footer />
+      </div>
     </>
   );
 };
