@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Administrator from '../pages/Administrator';
+import Administrator from '../components/adminLayout/Administrator';
 import Customer from '../pages/Customer';
 import Dashboard from '../pages/Dashboard';
 import Home from '../pages/Home';
@@ -45,10 +45,14 @@ const AppRouter = () => {
           <Route path="talentOfferJob" element={<TalentOfferJob />} />
           <Route path="talentsAll" element={<TalentsAll />} />
           {/* </Route> */}
-          <Route path="admin" element={<Administrator />} />
+          
+         
+          <Route path="/" element={<Administrator />} > 
+          <Route path="/homeAdmin" element={<HomeAdmin />} />
+          </Route>
+
           <Route path="loginAdmin" element={<LoginAdmin />} />
           <Route path="formRegisAdmin" element={<FormRegisAdmin />} />
-          <Route path="homeAdmin" element={<HomeAdmin />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path='homecompany' element={<HomeEmpresas />} />
           <Route path='searchcompany' element={<SearchCompany />} />

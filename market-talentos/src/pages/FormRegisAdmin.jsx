@@ -2,7 +2,6 @@ import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import profile from "../assets/3135768.png"
 import "../style/styleFormRegisAdmin.scss"
-
 const FormRegisAdmin = () => {
     return (
         <div className='containerFormRegisterAdmin'>
@@ -10,7 +9,8 @@ const FormRegisAdmin = () => {
 
                 initialValues={{
                     correo: "",
-                    contraseña: ""
+                    contraseña: "",
+                    imagen: null // Agrega el campo para la imagen
                 }}
 
                 validate={(valores) => {
@@ -55,6 +55,19 @@ const FormRegisAdmin = () => {
                     <Form className='formRegisAdmin' >
                         <div className='titleFormRegisAdmin'>Market Talentos</div>
                         <img className="profilePhotoAdmin" src={profile} alt="profile" />
+
+                        <input
+                            id="imagen"
+                            name="imagen"
+                            type="file"
+                            onChange={(event) => {
+                                Formik.setFieldValue("imagen", event.currentTarget.files[0]);
+                            }}
+                        />
+                        {/* Manejo de errores */}
+                        <ErrorMessage name='imagen' component={() => (
+                            <div className='error'>{errors.imagen}</div>
+                        )} />
 
                         <Field
                             id="nombre"

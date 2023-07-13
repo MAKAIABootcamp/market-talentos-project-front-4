@@ -5,6 +5,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { useDispatch } from 'react-redux'
 import { login } from '../redux/actions/authAdminActions'
 import { useNavigate } from 'react-router-dom'
+import Swal from "sweetalert2";
 
 const LoginAdmin = () => {
   const dispatch = useDispatch();
@@ -12,7 +13,8 @@ const LoginAdmin = () => {
 
 
   const handleLogin = (correo, contraseña) => {
-    // dispatch(login(correo, contraseña));
+    dispatch(login(correo, contraseña));
+    Swal.fire(" Good job!", "Inicio de sesión exitoso", "success")
     navigate("/homeAdmin")
   }
 
