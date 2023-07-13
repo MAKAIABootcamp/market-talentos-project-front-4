@@ -236,7 +236,13 @@
     }
   }
 
-  // &__container-up {}
+  &__container-up {
+    display: flex;
+    flex-direction: row;
+    gap: 7px;
+    width: 83%;
+    
+  }
  
   &__container-pdf{
     display: flex;
@@ -278,7 +284,7 @@
 @media screen and (max-width: 768px) {
   .editProfile {
     &__input {
-      width: 250px !important;
+      width: 345px !important;
     }
 
     &__background {
@@ -306,7 +312,7 @@
       @include styleSquare(
         $white,
         $white,
-        $wi250,
+        $wi350,
         $he85,
         $gray,
         $s12,
@@ -319,6 +325,8 @@
   }
 }
 
+
+
 @media screen and (max-width: 375px) {
   .editProfile {
     &__input {
@@ -329,7 +337,8 @@
       display: flex;
       position: absolute;
       width: 100%;
-      left: -16px;
+      left: 11px;
+      top: -43px;
     }
 
     &__container-custom {
@@ -344,7 +353,7 @@
       justify-content: center;
       position: relative;
       top: 146px;
-      left: -29px;
+      left: -2px;
     }
     &__input-profile {
       @include styleSquare(

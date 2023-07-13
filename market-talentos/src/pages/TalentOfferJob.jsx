@@ -2,6 +2,7 @@ import React from "react";
 import "../style/styleTalentOfferJob.scss";
 // import logoMakaia from "../assets/icon/logoMakaia.png";
 import fondoTalentdesk from "../assets/fondotalentdesk.jpg";
+import NavbarTalentos from "../components/navbarTalentos/NavbarTalentos";
 
 const TalentOfferJob = () => {
   const jobsButtons = [
@@ -38,8 +39,11 @@ const TalentOfferJob = () => {
   ];
 
   return (
+    
     <section className="talentOffer">
+          <NavbarTalentos />    
       <div className="talentOffer__container">
+      
         <div className="talentOffer__background">
           <img src={fondoTalentdesk} alt="fondoTalentdesk" />
         </div>
