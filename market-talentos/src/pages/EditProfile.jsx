@@ -10,6 +10,7 @@ import { completeProfileAsync } from "../redux/actions/usersActions";
 import Swal from 'sweetalert2';
 import { useNavigate } from "react-router-dom";
 
+
 const EditProfile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
