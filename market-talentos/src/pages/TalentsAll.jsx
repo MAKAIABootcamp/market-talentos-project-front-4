@@ -40,8 +40,8 @@ const TalentsAll = () => {
                             <div className='talentsAll__container-info'>
                                 <div className='talentsAll__container-state'>
                                     {/* <figure className='talentsAll__buttons-state'>
-                     <img src={imgWhatsapp} alt="" />
-                 </figure> */}
+                              <img src={imgWhatsapp} alt="" />
+                                </figure> */}
                                     <div className='talentsAll__container-levelEnglish'>
                                         <span className='talentsAll__know'>Ingles</span>
                                         <span className='talentsAll__know'>{talent.englishLevel}</span>

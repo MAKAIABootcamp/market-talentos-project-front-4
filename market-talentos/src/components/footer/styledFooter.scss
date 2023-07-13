@@ -2,17 +2,18 @@
 
 .footer {
   position: relative;
+  margin-top: 90px;
   justify-content: end;
-  left: -40px;
-  width: 1349px;
-  height: 100px;
+  left: -70px;
+  width: 105vw;
+  height: 60px;
   display: flex;
   background-color: $gray;
 
   figure {
     display: flex;
     gap: 20px;
-    margin-top: 40px;
+    margin-top: 20px;
     margin-left: 50px;
     img {
       background-color: $white;
@@ -20,4 +21,8 @@
       border-radius: 35%;
     }
   }
+}
+
+.footer_redsocial{
+  margin-right: 50px;
 }
