@@ -2,8 +2,25 @@ import React from 'react'
 import "../style/StyleLoginAdmin.scss"
 import profile from "../assets/3135768.png"
 import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { useDispatch } from 'react-redux'
+import { login } from '../redux/actions/authAdminActions'
+import { useNavigate } from 'react-router-dom'
+import Swal from "sweetalert2";
 
 const LoginAdmin = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+
+
+  const handleLogin = (correo, contraseña) => {
+    dispatch(login(correo, contraseña));
+    Swal.fire(" Good job!", "Inicio de sesión exitoso", "success")
+    navigate("/homeAdmin")
+  }
+
+  const handleRegisForm = () => {
+    navigate('/formRegisAdmin');
+  }
   return (
     <div className='container'>
       <Formik
@@ -33,8 +50,8 @@ const LoginAdmin = () => {
         }}
 
         onSubmit={(valores) => {
-          console.log(valores)
-          console.log("Formulario enviado");
+          console.log(valores.correo, valores.contraseña)
+          handleLogin(valores.correo, valores.contraseña);
         }}
       >
 
@@ -42,6 +59,7 @@ const LoginAdmin = () => {
           <Form className='formLogin' >
             <div className='titleForm'>Market Talentos</div>
             <img className="profilePhoto" src={profile} alt="profile" />
+
             <Field
               id="correo"
               name="correo"
@@ -62,7 +80,7 @@ const LoginAdmin = () => {
               <div className='error'>{errors.contraseña}</div>
             )} />
             <button type='submit'>Ingresar</button>
-            <span>crear una cuenta</span>
+            <span onClick={handleRegisForm}>crear una cuenta</span>
           </Form>
 
         )}
