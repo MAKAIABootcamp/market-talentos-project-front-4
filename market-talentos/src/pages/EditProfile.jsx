@@ -3,17 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 import "../style/styleEditProfile.scss";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import useOnClick from "../funtions/useOnClick";
 import imageFond from "../assets/EditProfileFondo.jpg";
 import NavbarTalentos from "../components/navbarTalentos/NavbarTalentos";
-import Footer from "../components/footer/Footer";
+// import Footer from "../components/footer/Footer";
 import { completeProfileAsync } from "../redux/actions/usersActions";
+import Swal from 'sweetalert2';
+import { useNavigate } from "react-router-dom";
+
 
 const EditProfile = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { user } = useSelector((state) => state.user);
   console.log(user);
+  
 
   const validationSchema = Yup.object().shape({
     inputGitUp: Yup.string()
@@ -56,10 +60,25 @@ const EditProfile = () => {
         id: user.id,
         type: user.type,
       })
-    );
+    )
+      .then(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Información guardada exitosamente',
+          showConfirmButton: false,
+          timer: 1500
+        }).then(() => {
+          // Redireccionar a la página de edición de perfil
+          // Reemplaza '/editProfile' con la ruta correcta si es necesario
+          navigate('/talentDetails');
+        });
+      })
+      .catch((error) => {
+        // Manejar errores en caso de que ocurra un problema al guardar la información
+        console.log(error);
+      });
   };
 
-  const handleClick = useOnClick();
 
   const formik = useFormik({
     initialValues: {
@@ -110,7 +129,7 @@ const EditProfile = () => {
                 <div className="editProfile__container-infoContacts">
                   <div
                     className="editProfile__container-imgTalent"
-                    onClick={() => handleClick("editImgProfile", "")}
+                   
                   >
                     <figure className="editProfile__card-figure">
                       <img src={user?.photoURL} alt="imgTalent" />
@@ -285,7 +304,7 @@ const EditProfile = () => {
             </section>
           </div>
         </section>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </>
   );

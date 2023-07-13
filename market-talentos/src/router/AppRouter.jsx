@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Administrator from '../pages/Administrator';
+import Administrator from '../components/adminLayout/Administrator';
 import Customer from '../pages/Customer';
 import Dashboard from '../pages/Dashboard';
 import Home from '../pages/Home';
@@ -31,6 +31,8 @@ import { getLoggedUser } from "../redux/actions/usersActions";
 import PublicRouter from "./PublicRouter";
 import PrivateRouter from "./PrivateRouter";
 import Spinner from 'react-bootstrap/Spinner';
+import FormRegisAdmin from '../pages/FormRegisAdmin';
+import HomeAdmin from '../pages/HomeAdmin';
 
 const AppRouter = () => {
   // const [loggedUser, setLoggedUser] = useState(null);
