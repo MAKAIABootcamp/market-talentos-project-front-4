@@ -1,5 +1,14 @@
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { collection, addDoc, doc, updateDoc, query, where, getDocs } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  doc,
+  updateDoc,
+  query,
+  where,
+  getDocs,
+  getDoc,
+} from "firebase/firestore";
 import { auth, firestore } from "../firebase/firebaseConfig";
 
 const usersCollections = [
@@ -36,8 +45,8 @@ export const userRegister = async (user) => {
     });
     const newUserReference = await addDoc(referenceCollection, {
       ...user,
-        accessToken: response.user.accessToken,
-      uid: response.user.uid
+      accessToken: response.user.accessToken,
+      uid: response.user.uid,
     });
     const newUser = {
       ...user,
@@ -53,16 +62,12 @@ export const userRegister = async (user) => {
   }
 };
 
-export const completeTalentData = async ({otherTalentData, id, type}) => {
+export const completeTalentData = async ({ otherTalentData, id, type }) => {
   try {
     if (type === "talents") {
-      const talentReference = doc(
-        firestore,
-        type,
-        id
-        );
-        
-        await updateDoc(talentReference, {...otherTalentData});
+      const talentReference = doc(firestore, type, id);
+
+      await updateDoc(talentReference, { ...otherTalentData });
     } else {
       return {};
     }
@@ -73,30 +78,35 @@ export const completeTalentData = async ({otherTalentData, id, type}) => {
 };
 
 export const keepPersistentUserData = async (token) => {
-    console.log("entré en Keep");
+  console.log("entré en Keep", token);
 
-    try {
-        const user =[];
-        for (const element of usersCollections) {
-            const referenceCollection = collection(firestore, element.name);
-            const q = query(
-              referenceCollection,
-              where("accessToken", "==", token)
-            );
+  try {
+    const user = [];
+    for (const element of usersCollections) {
+      const referenceCollection = collection(firestore, element.name);
+      const q = query(referenceCollection, where("accessToken", "==", token));
 
-            const querySnapshot = await getDocs(q);
-
-            querySnapshot.forEach(doc => {
-                user.push({
-                    id: doc.id,
-                    ...doc.data()
-                })
-            })
-            return user[0];
-
-        }   
-    } catch (error) {
-        console.log(error);
-        return{}
+        const querySnapshot = await getDocs(q);
+        console.log(querySnapshot);
+        querySnapshot.forEach((doc) => {
+          user.push({
+            id: doc.id,
+            ...doc.data(),
+          });
+        });
+        console.log(user);
+        return user[0];
+    //   const docSnap = await getDoc(q);
+    //   if (docSnap.exists()) {
+    //     console.log(docSnap.data());
+    //     return {
+    //       id: docSnap.id,
+    //       ...docSnap.data(),
+    //     };
+    //   }
     }
-}
+  } catch (error) {
+    console.log(error);
+    return {};
+  }
+};
