@@ -77,6 +77,7 @@ const AppRouter = () => {
           
          
           <Route path="/" element={<Administrator />} > 
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/homeAdmin" element={<HomeAdmin />} />
           </Route>
 

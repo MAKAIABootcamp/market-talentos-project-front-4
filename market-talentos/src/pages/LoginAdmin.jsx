@@ -15,7 +15,7 @@ const LoginAdmin = () => {
   const handleLogin = (correo, contraseña) => {
     dispatch(login(correo, contraseña));
     Swal.fire(" Good job!", "Inicio de sesión exitoso", "success")
-    navigate("/homeAdmin")
+    navigate("/dashboard")
   }
 
   const handleRegisForm = () => {
