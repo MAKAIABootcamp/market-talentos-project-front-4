@@ -47,6 +47,10 @@ const Administrator = () => {
           </ul>
         </section>
 
+        <footer className='footerAdmin'>
+          <p className='footerAdmin__parrafo'>Soporte técnico</p>
+        </footer>
+
       </div>
       <Outlet />
     </>

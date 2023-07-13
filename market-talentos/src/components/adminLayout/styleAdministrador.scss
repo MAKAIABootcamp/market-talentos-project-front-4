@@ -9,7 +9,7 @@
 
     &__logout {
         display: flex;
-        margin-left: 320px;
+        margin-left: 370px;
         align-items: center;
         color: white;
 
@@ -87,12 +87,12 @@
         flex-direction: column;
         justify-content: center;
         border-radius: 15px;
-       
-        .itemOption{
+
+        .itemOption {
             margin: 15px;
             color: white;
 
-            .iconAdmin{
+            .iconAdmin {
                 width: 25px;
                 margin-right: 10px;
                 margin-left: 25px;
@@ -103,4 +103,22 @@
 
 
     }
+}
+
+.footerAdmin {
+    position: absolute;
+    width: 100vw;
+    height: 100px;
+    bottom: 0;
+    background-color: $softblue;
+    color: white;
+    font-family: 'montserrat', sans-serif;
+    font-size: 28px;
+
+    &__parrafo {
+        position: absolute;
+        bottom: 40px;
+        right: 50px;
+    }
+
 }
