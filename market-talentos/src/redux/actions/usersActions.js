@@ -4,7 +4,7 @@ import {
   completeTalentData,
   keepPersistentUserData,
 } from "../../services/userServices";
-import { signOut } from "firebase/auth";
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "../../firebase/firebaseConfig";
 
 
