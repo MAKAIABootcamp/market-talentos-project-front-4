@@ -3,8 +3,10 @@
 
 .navbarTalentos {
   margin-bottom: 10px;
+  margin-left: 45px;
  
   &__container {
+    @include desk {
     display: flex;
     background-color: $softblue;
     height: 130px;
@@ -12,7 +14,8 @@
     justify-content: flex-end;
     align-items: center;
     padding-right: 15px;  
-  }
+  } 
+}
 
   &__logout {
     @include styleSquare(
@@ -34,18 +37,56 @@
       display: flex;
       width: 190px;
       position: absolute;
-      top:30px;
+      top:50px;
       z-index: 1;
-      
-
-      
-      @media (max-width: 768px) {
-        width: 150px;
-      }
-
-      @media (max-width: 350px) {
-        width: 100px;
-    }
   }
 }
+}
+
+@media screen and (max-width: 768px) {
+  .navbarTalentos {
+  &__container {
+    display: flex;
+    background-color: transparent;
+  }
+
+  &__logo {
+    img {
+      display: flex;
+      width: 150px;
+      position: absolute;
+      top:25px;
+      z-index: 1;
+  }
+  }
+  }
+
+  
+}
+
+
+@media screen and (max-width: 375px){
+  .navbarTalentos {
+
+  &__container {
+    display: flex;
+    background-color: transparent;
+    height: 100px;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 100% 100%, 40% 90%);
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 15px;  
+}
+&__logo {
+  img {
+    display: flex;
+    width: 150px;
+    position: absolute;
+    top:25px;
+    z-index: 1;
+}
+}
+  }
+  
+
 }

@@ -1,12 +1,12 @@
 @import "./style.scss";
 
 .jobtalent {
-  @include desk {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    position: absolute;
-  }
+  // @include desk {
+  //   width: 100%;
+  //   height: 100%;
+  //   display: flex;
+  //   position: absolute;
+  // }
 
   &__background {
     display: flex;
@@ -244,36 +244,36 @@
 
 @media screen and (max-width: 768px) {
   .jobtalent {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    position: absolute;
-    top: 128px;
-    left: 0px;
+    // width: 100%;
+    // height: 100%;
+    // display: flex;
+    // position: absolute;
+    // top: 128px;
+    // left: 0px;
 
-    &__container-imgTalent {
-      margin-top: 10px;
-      margin-bottom: 20px;
-      gap: 13px;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      height: 100%;
-    }
+    // &__container-imgTalent {
+    //   margin-top: 10px;
+    //   margin-bottom: 20px;
+    //   gap: 13px;
+    //   justify-content: center;
+    //   align-items: center;
+    //   width: 100%;
+    //   height: 100%;
+    // }
     &__background {
-      position: absolute;
-      width: 100%;
-      z-index: -1;
-      top: -137px;
-      img {
-        width: 82%;
-        height: 100%;
-        object-fit: cover;
-    }
+      display: none;
+    //   position: absolute;
+    //   width: 100%;
+    //   z-index: -1;
+    //   top: 46px;
+    //   img {
+    //     width: 82%;
+    //     height: 100%;
+    //     object-fit: cover;
+    // }
     }
     &__container-infojob {
-      margin-top: 211px;
-      width: 64%;
+       width: 75%;
       height: auto;
       background-color: #252935;
       display: flex;
@@ -282,19 +282,29 @@
       align-items: center;
       border-radius: 8px;
       position: absolute;
-      left: 146px;
+      top: 119px;
+      left: 77px;
   }
+  &__container-costumer {
+    max-height: 272px;
+    overflow-y: auto;
+    max-height: 211px;
+  }
+  &__button-costumer {
+    width: 100%;
+  }
+
   }
 }
 
 @media screen and (max-width: 375px) {
   .jobtalent {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    position: absolute;
-    top: 128px;
-    left: 0px;
+    // width: 100%;
+    // height: 100%;
+    // display: flex;
+    // position: absolute;
+    // top: 128px;
+    // left: 0px;
 
     &__container-imgTalent {
       margin-top: 10px;
@@ -307,18 +317,18 @@
     }
 
     &__background {
-      position: absolute;
-      width: 100%;
-      z-index: -1;
-      top: -137px;
+      display: none;
+      // position: absolute;
+      // width: 100%;
+      // z-index: -1;
+      // top: -137px;
     }
 
     &__container-infojob {
-      margin-top: 70px;
-      width: 70%;
+      margin-top: 20px;
+      width: 100%;
       position: absolute;
       left: 11px;
-  
     }
 
     &__container-costumer {
