@@ -1,0 +1,23 @@
+@import './style.scss';
+
+.talentDetails{
+
+    @include desk {
+        width: 100%;
+        height: 100%;
+        background-color: red;
+        display: flex;
+        margin-left: 150px;
+       
+      }
+
+    &__card{
+         background-color: aqua;
+    }
+    &__card{
+        background-color: $gray;
+   }
+   &__card{
+    background-color: $gray;
+}
+}

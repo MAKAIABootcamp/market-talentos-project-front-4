@@ -2,8 +2,15 @@ import React from "react";
 import "../style/styleJobApplicatioTalent.scss";
 import imgTalent from "../assets/elisa.jpeg";
 import FondoApliJobs from "../assets/JobPostulaFondo.jpg"
+import NavbarTalentos from "../components/navbarTalentos/NavbarTalentos";
+// import { useDispatch } from "react-redux";
+
+
+
 
 const JobApplicatioTalent = () => {
+
+  // const dispatch = useDispatch();
   const costumerButtons = [
   
       { id: 1, name: "Magenta Developer", status: "Entrevista", changeStatus: "Cambiar estado" },
@@ -17,11 +24,13 @@ const JobApplicatioTalent = () => {
 
   return (
     <section className="jobtalent">
+        <NavbarTalentos />  
+        
       <div className="jobtalent__container">
       <div className="jobtalent__background">
           <img src={FondoApliJobs} alt="fondoApliJobs" />
         </div>
-        <div className="jobtalent__container-infojob">
+            <div className="jobtalent__container-infojob">
         <button className="jobtalent__button-postulation">
            Mis Postulaciones
           </button>

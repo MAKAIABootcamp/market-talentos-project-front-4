@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Administrator from '../pages/Administrator';
+import Administrator from '../components/adminLayout/Administrator';
 import Customer from '../pages/Customer';
 import Dashboard from '../pages/Dashboard';
 import Home from '../pages/Home';
@@ -24,35 +25,81 @@ import TalentsAll from "../pages/TalentsAll";
 import EditProfile from "../pages/EditProfile";
 import TalentOfferJob from "../pages/TalentOfferJob";
 import JobApplicatioTalent from "../pages/JobApplicatioTalent"
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase/firebaseConfig";
+import { getLoggedUser } from "../redux/actions/usersActions";
+import PublicRouter from "./PublicRouter";
+import PrivateRouter from "./PrivateRouter";
+import Spinner from 'react-bootstrap/Spinner';
+import FormRegisAdmin from '../pages/FormRegisAdmin';
+import HomeAdmin from '../pages/HomeAdmin';
 
 const AppRouter = () => {
+  // const [loggedUser, setLoggedUser] = useState(null);
+  const dispatch = useDispatch();
+  const [isLogged, setIsLogged] = useState(null);
+  const { user: loggedUser } = useSelector((state) => state.user);
+  const [loading, setLoading] = useState(true);
+  
+
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user?.uid) {
+        setIsLogged(true);
+        console.log("Logueado", user);
+        if (!loggedUser) {
+
+          dispatch(getLoggedUser(user?.accessToken));
+          // user.getIdToken().then((token) => {
+          //   dispatch(getLoggedUser(token));
+          // });
+        }
+      } else {
+        setIsLogged(false);
+        console.log("No logueado");
+      }
+      setLoading(false);
+    });
+  }, [dispatch, loggedUser]);
+
+  if(loading){
+    return <Spinner animation="border" />;
+  }
+
+
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="talents" element={<Talent />}></Route>
-          <Route path="loginTalent" element={<LoginTalent />} />
-          <Route path="formRegisTalent" element={<FormRegisTalent />} />
-          <Route path="searchTalent" element={<SearchTalent />} />
-          <Route path="talentDetails" element={<TalentDetails />} />
-          <Route path="editProfile" element={<EditProfile />} />
-          <Route path="portfolio" element={<Portfolio />} />
-          <Route path="curriculum" element={<Curriculum />} />
-          <Route path="jobTalent" element={<JobApplicatioTalent />} />
-          <Route path="talentOfferJob" element={<TalentOfferJob />} />
-          <Route path="talentsAll" element={<TalentsAll />} />
-          {/* </Route> */}
-          <Route path="admin" element={<Administrator />} />
-          <Route path="loginAdmin" element={<LoginAdmin />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path='homecompany' element={<HomeEmpresas />} />
-          <Route path='searchcompany' element={<SearchCompany />} />
-          <Route path="customer" element={<Customer />}/>
-            <Route path="formRegisCustom" element={<FormRegisCustom />} />
-            <Route path="profileCustomer" element={<ProfileCustomer />} />
-            <Route path='jobOffers' element={<JobOffers />} />
-          <Route path="blog" element={<Blog />} />
+          <Route path="/">
+            <Route index element={<Home />} />
+            <Route element={<PublicRouter isAutentication={isLogged} />}>
+              <Route path="login" element={<LoginTalent />} />
+              <Route path="formRegisTalent" element={<FormRegisTalent />} />
+              <Route path="loginAdmin" element={<LoginAdmin />} />
+              <Route path="blog" element={<Blog />} />
+            </Route>
+            <Route element={<PrivateRouter isAutentication={isLogged} />}>
+              <Route path="talents" element={<Talent />}></Route>
+              <Route path="searchTalent" element={<SearchTalent />} />
+              <Route path="talentDetails" element={<TalentDetails />} />
+              <Route path="editProfile" element={<EditProfile />} />
+              <Route path="portfolio" element={<Portfolio />} />
+              <Route path="curriculum" element={<Curriculum />} />
+              <Route path="jobTalent" element={<JobApplicatioTalent />} />
+              <Route path="talentOfferJob" element={<TalentOfferJob />} />
+              <Route path="talentsAll" element={<TalentsAll />} />
+              <Route path="admin" element={<Administrator />} />
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="homecompany" element={<HomeEmpresas />} />
+              <Route path="searchcompany" element={<SearchCompany />} />
+              <Route path="customer" element={<Customer />} />
+              <Route path="formRegisCustom" element={<FormRegisCustom />} />
+              <Route path="profileCustomer" element={<ProfileCustomer />} />
+              <Route path="jobOffers" element={<JobOffers />} />
+            </Route>
+          </Route>
         </Routes>
       </BrowserRouter>
     </>
