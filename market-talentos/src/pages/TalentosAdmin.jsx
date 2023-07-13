@@ -1,11 +1,8 @@
 import React from "react";
 import "../style/styleDashboard.scss";
 import NavlinkAdmin from "../components/navlinAdmin/NavlinkAdmin";
-import { useSelector } from "react-redux";
 
-const Dashboard = () => {
-  const talentsList = useSelector((store) => store.userRegister);
-  console.log(talentsList);
+const TalentosAdmin = () => {
   return (
     <section className="section">
       <NavlinkAdmin />
@@ -38,24 +35,18 @@ const Dashboard = () => {
             </thead>
             <tbody>
               <tr>
-                <td>Diego Luis Meriño Caceres</td>
-                <td>2587565</td>
-                <td>12/07/2023</td>
-                <td>Registrado</td>
-                <td>
-                  <button>Aceptar</button>
-                  <button>Cancelar</button>
-                </td>
+                <td>Dato 1</td>
+                <td>Dato 2</td>
+                <td>Dato 3</td>
+                <td>Dato 4</td>
+                <td>Dato 5</td>
               </tr>
               <tr>
                 <td>Dato 6</td>
                 <td>Dato 7</td>
                 <td>Dato 8</td>
-                <td>Registrado</td>
-                <td>
-                  <button>Aceptar</button>
-                  <button>Cancelar</button>
-                </td>
+                <td>Dato 9</td>
+                <td>Dato 10</td>
               </tr>
             </tbody>
           </table>
@@ -77,4 +68,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default TalentosAdmin;
