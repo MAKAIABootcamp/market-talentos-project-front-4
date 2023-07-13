@@ -12,6 +12,8 @@ import imgWhatsapp from '../../assets/whatsapp.png';
 
 const CardTalent = () => {
     const handleClick = useOnClick();
+    
+
     return (
         <>
             <section className='talents'>
@@ -24,9 +26,12 @@ const CardTalent = () => {
                     </div>
                     <div className='talents__container-info'>
                         <div className='talents__container-state'>
-                            <figure className='talents__buttons-state'>
+                            <button 
+                            onClick={() => handleClick("editProfile", "")}
+                            className='talents__buttons-state'>Edit </button>
+                            {/* <figure className='talents__buttons-state'>
                                 <img src={imgWhatsapp} alt="" />
-                            </figure>
+                            </figure> */}
                             <div className='talents__container-levelEnglish'>
                                 <span className='talents__know'>Ingles</span>
                                 <span className='talents__know'>A1</span>

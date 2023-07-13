@@ -7,9 +7,9 @@ const useOnClick = () => {
 
     const handleClick = useCallback((parametro, info) => {
 
-        if (parametro === "editImgProfile") {
+        if (parametro === "editProfile") {
             Swal.fire({
-                text: "¿Deseas cambiar la foto de perfil?",
+                text: "¿Deseas adicionar datos del perfil?",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'OK',
@@ -37,15 +37,12 @@ const useOnClick = () => {
             console.log("hice click en la lupa ", parametro);
             navigate("/search")
         }
-        else if (parametro === "formRegisterTalent") {
-            console.log("hice click en order ", parametro);
-            navigate("/order")
-        }
+       
         else if (parametro === "profile") {
             console.log("hice click en profile ", parametro);
             navigate("/profile")
         }
-        else if (parametro === "registerTalent") {
+        else if (parametro === "formRegisTalent") {
             console.log("hice click en profile ", parametro);
             navigate("/formRegisTalent")
         }

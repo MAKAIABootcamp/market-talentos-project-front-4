@@ -41,11 +41,12 @@ const LoginTalent = () => {
 
   const onSubmit = (data) => {
     dispatch(actionLoginAsync(data));
+
     if (error) {
       Swal.fire("Oops!", `Ha ocurrido un error: ${errorMessage}`, "error");
     } else {
       Swal.fire(" Good job!", "se ha registrado exitosamente!", "success");
-      navigate('talents');
+      navigate('/talentDetails');
     }
   };
 
@@ -115,7 +116,7 @@ const LoginTalent = () => {
               </div>
               <span type="submit" id="btnRegister" value="Register"
                 className="loginTalent__span-registerLink"
-                onClick={() => handleClick("registerTalent", "")}>
+                onClick={() => handleClick("formRegisTalent", "")}>
                 Regístrate
               </span>
             </div>
