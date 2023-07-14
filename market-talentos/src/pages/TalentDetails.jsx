@@ -1,8 +1,21 @@
-import React from 'react'
+import React from 'react';
+import '../style/styleTalentDetails.scss';
+import CardTalent from '../components/cardTalent/CardTalent';
 
 const TalentDetails = () => {
   return (
-    <div>TalentDetails</div>
+    <>
+     
+      <section className='talentDetails'>
+        <div className='talentDetails__card'>
+          <CardTalent />
+        </div>
+        <div className='talentDetails__line'></div>
+        <div className='talentDetails__allCards'>
+
+        </div>
+      </section>
+    </>
   )
 }
 

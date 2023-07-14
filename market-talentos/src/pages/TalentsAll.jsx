@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import "../style/styleTalentAll.scss";
 import useOnClick from '../funtions/useOnClick';
 import { useDispatch, useSelector } from 'react-redux';
-import { listTalents } from '../redux/actions/userTalentAction';
+import { listTalents } from '../redux/actions/userActions';
+
+
 
 const TalentsAll = () => {
 
@@ -10,14 +12,14 @@ const TalentsAll = () => {
     const dispatch = useDispatch();
     const talentsList = useSelector((store) => store.userTalents);
 
-    const getTalents = () => {
-        dispatch(listTalents());
-    }
+    // const getTalents = () => {
+    //     dispatch(listTalents());
+    // }
 
     useEffect(() => {
-        getTalents();
+        dispatch(listTalents())
 
-    }, []);
+    }, [dispatch]);
 
 
     return (

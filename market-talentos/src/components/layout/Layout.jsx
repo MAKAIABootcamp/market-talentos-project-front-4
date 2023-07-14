@@ -4,20 +4,23 @@ import "./styledLayout.scss";
 import Usuarios from "../usuarios/Usuarios";
 
 const Layout = () => {
-  // const Buttons = [
-  //   {
-  //     id: 1,
-  //     name: "Front-End",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Back-end",
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "FullStack",
-  //   },
-  // ];
+
+
+
+  const Buttons = [
+    {
+      id: 1,
+      name: "Front-End",
+    },
+    {
+      id: 2,
+      name: "Back-end",
+    },
+    {
+      id: 3,
+      name: "FullStack",
+    },
+  ];
   return (
     <div>
      
