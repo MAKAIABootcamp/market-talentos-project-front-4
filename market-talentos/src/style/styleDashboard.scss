@@ -1,0 +1,120 @@
+.section {
+  display: flex;
+  gap: 60px;
+  &__logomakaia {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img {
+      width: 200px;
+    }
+  }
+  &__containerbutton {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px;
+    width: 250px;
+    border-radius: 15px;
+    background-color: #707994;
+    button {
+      background-color: #13274d;
+      color: white;
+      height: 40px;
+      width: 230px;
+      border-radius: 20px;
+    }
+  }
+  &__logoadmin {
+    img {
+      width: 90px;
+      height: 70px;
+      border: 1px solid #25abbc;
+      border-radius: 50%;
+    }
+  }
+  &__container2 {
+    position: relative;
+    top: 115px;
+  }
+  &__container3 {
+    position: relative;
+    top: 115px;
+  }
+  &__textdashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  &__containerinfo {
+    display: flex;
+    padding-top: 30px;
+    gap: 20px;
+  }
+  &__infocompany {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+  }
+  &__information1 {
+    background-color: #84cdc1;
+    width: 200px;
+    height: 140px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__information2 {
+    background-color: #787eb6;
+    width: 200px;
+    height: 140px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__information3 {
+    background-color: #ff6961;
+    width: 200px;
+    height: 140px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__updates {
+    background-color: #efe081;
+    width: 300px;
+    height: 250px;
+  }
+  &__review {
+    background-color: #f297c0;
+    width: 300px;
+    height: 250px;
+  }
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+.custom-table th,
+.custom-table td {
+  padding: 10px;
+  text-align: left;
+}
+
+.custom-table th {
+  background-color: #ffffff;
+  font-weight: bold;
+}
+
+.custom-table tbody tr:nth-child(even) {
+  background-color: #ffffff;
+}
