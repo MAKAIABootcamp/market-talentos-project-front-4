@@ -54,7 +54,7 @@ const FormRegisTalent = () => {
 
     onSubmit: async (values) => {
 
-           console.log(values);
+          //  console.log(values);
 
       // Enviar la imagen a Cloudinary utilizando fileUpLoad
       const avatar = await fileUpLoad(values.photoURL[0]);
