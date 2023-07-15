@@ -6,7 +6,8 @@ import userReducer from './userReducer';
 
 const rootReducer = combineReducers({
   talents: talentsReducer,
-  userTalents: userTalentReducer
+  userTalents: userTalentReducer,
+  user: userReducer,
 });
 
 export default rootReducer;

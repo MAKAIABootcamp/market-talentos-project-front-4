@@ -33,6 +33,7 @@ import PrivateRouter from "./PrivateRouter";
 import Spinner from 'react-bootstrap/Spinner';
 import FormRegisAdmin from '../pages/FormRegisAdmin';
 import HomeAdmin from '../pages/HomeAdmin';
+import DashboardHome from "../pages/DashboardHome";
 
 const AppRouter = () => {
   // const [loggedUser, setLoggedUser] = useState(null);
@@ -92,6 +93,7 @@ const AppRouter = () => {
               <Route path="talentsAll" element={<TalentsAll />} />
               <Route path="admin" element={<Administrator />} />
               <Route path="dashboard" element={<Dashboard />} />
+              <Route path="dash" element={<DashboardHome />} />
               <Route path="homecompany" element={<HomeEmpresas />} />
               <Route path="searchcompany" element={<SearchCompany />} />
               <Route path="customer" element={<Customer />} />
