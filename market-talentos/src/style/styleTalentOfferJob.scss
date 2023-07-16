@@ -1,6 +1,8 @@
 @import "./style.scss";
 
 .talentOffer {
+  display: flex;
+  justify-content: center;
   // @include desk {
   //   width: 100%;
   //   height: 100%;
@@ -9,47 +11,244 @@
   //   padding: 20px;
   //    }
 
-     &__container {
-      display: flex;
-      flex-direction: column;
-       width: 32rem;
-        gap: 3px;
-        
-     }
-  
-
-
-  &__background {
-    display: flex;
-    position: absolute;
-     right: 20px;
-     width: 60%;
-    z-index: -1;
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-  }
-  
-
-
-  &__container-infojob {
+  &__container {
     @include desk {
-      margin-top: 45px;
-      width: 100%;
-      height: auto;
-      background-color: $gray;
+      margin: 1rem;
+      width: 319px;
+      height: 414px;
+      padding: 5px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      border-radius: 8px;
-      
+      gap: 3px;
+      border-radius: 10px;
     }
   }
-  &__button-otherjobs {
+
+  &__container-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 8px;
+    justify-content: center;
+    border-radius: 20px;
+    padding: 15px;
+    gap: 12px;
+    border: 1px solid grey;
+    margin-top: 20px;
+  }
+  &__container-imgTalent {
+    margin-top: 25px;
+    margin-bottom: 20px;
+    @include desk {
+      @include styleRound(
+        $skyBkue,
+        $skyBkue,
+        $wi115,
+        $he115,
+        $white,
+        $s14,
+        $w300,
+        $skyBkue,
+        $skyBkue,
+        $gray
+      );
+      position: relative;
+    }
+  }
+
+  &__card-fig {
+    @include desk {
+      @include styleRound(
+        $white,
+        $skyBkue,
+        $wi105,
+        $he105,
+        $white,
+        $s14,
+        $w300,
+        $white,
+        $skyBkue,
+        $gray
+      );
+
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 5rem;
+      }
+    }
+  }
+
+  &__container-info {
+    @include desk {
+      width: 100%;
+      justify-content: center;
+      height: 3rem;
+      display: flex;
+      gap: 8px;
+      margin-bottom: 15px;
+      align-items: center;
+    }
+  }
+
+  &__container-state {
+    @include desk {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  &__container-levelEnglish {
+    @include desk {
+      display: flex;
+      gap: 5px;
+    }
+  }
+
+  &__buttons-state {
+    @include desk {
+      width: 25px;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  &__line {
+    @include desk {
+      width: 3px;
+      height: 55px;
+      background-color: $grayLight;
+    }
+  }
+
+  &__container-infoPnal {
+    @include desk {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &__name {
+    @include desk {
+      @include text($fontMontserrat, $w400, $s12, $gray);
+    }
+  }
+
+  &__lastName {
+    @include desk {
+      margin-bottom: 5px;
+      @include text($fontMontserrat, $w400, $s12, $gray);
+    }
+  }
+
+  &__know {
+    @include desk {
+      @include text($fontMontserrat, $w400, $s12, $grayLight);
+    }
+  }
+
+  &__container-links {
+    @include desk {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  &__button-link {
+    margin-bottom: 20px;
+    @include desk {
+      @include styleOval(
+        $skyBkue,
+        $skyBkue,
+        $wi230,
+        $he35,
+        $gray,
+        $s14,
+        $w300,
+        $skyBkue,
+        $skyBkue,
+        $white
+      );
+    }
+  }
+  &__figure-icons-gitUp {
+    @include desk {
+      width: 23px;
+      height: auto;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  &__figure-icons-linkedin {
+    @include desk {
+      width: 20px;
+      height: auto;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  &__figure-icons-video {
+    @include desk {
+      width: 30px;
+      height: auto;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  &__container-otheroffert {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  &__button-otheroffert {
     margin-top: -13px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px;
+    align-items: center;
+    border-radius: 7px;
+    background-color: $yellow;
+    z-index: 1;
+  }
+
+  /* .........cards Ofertas laborales.......... */
+
+  &__container-offert {
+    @include desk {
+      margin: 1rem;
+      width: 50%;
+      height: auto;
+      padding: 5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      border-radius: 10px;
+    }
+  }
+
+  &__button-otherjobs {
+    margin-top: -23px;
     @include desk {
       @include styleSquare(
         $skyBkue,
@@ -66,18 +265,29 @@
     }
   }
 
-  &__container-infojobs {
-    width: 85%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding: 10px;
+  &__container-infojob {
+    @include desk {
+      margin-top: 13px;
+      width: 100%;
+      height: auto;
+      background-color: $gray;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 8px;
+      padding: 10px;
+    }
+  }
+
+  &__container-jobs {
     background-color: $yellow;
     margin-bottom: 30px;
     border-radius: 7px;
     margin-top: 20px;
     font-family: $fontMontserrat;
     max-height: 300px;
+    width: 93%;
     overflow-y: auto;
   }
 
@@ -154,89 +364,117 @@
   }
 }
 
+/* .........media query tablet.......... */
+
 @media screen and (max-width: 768px) {
-  .talentOffer{
-
-    &__container {
-      display: flex;
-      flex-direction: column;
-      width: 22rem;
-      gap: 3px;
-  }
-
-  }
-}
-
-
-@media screen and (max-width: 600px) {
-  .talentOffer{
-
-    &__container {
-      display: flex;
-      flex-direction: column;
-      width: 22rem;
-      gap: 3px;
-  }
-  &__background {
+  .talentOffer {
     display: flex;
-    position: absolute;
-    width: 87%;
-    right: 28px;
-    z-index: -1;
-}
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 
-  &__button-otherjobs {
-  margin-top: -13px;
  
-    @include styleSquare(
-      $skyBkue,
-      $skyBkue,
-      $wi250,
-      $he35,
-      $white,
-      $s18,
-      $w300,
-      $yellow,
-      $yellow,
-      $white
-    );
-  
-}
-  &__container-infojob {
-    margin-top: 206px;
-    max-height: 274px;
-    width: 96%;
-}
-&__aplicattionJob {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 96%;
-  padding: 21px;
-  background-color: #25ABBC;
-  border-radius: 10px;
-  font-family: "montserrat", sans-serif;
-  align-items: center;
-}
+    &__container-offert {
+      margin: 1rem;
+      width: 80%;
+      height: auto;
+      padding: 5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      border-radius: 10px;
+      margin-top: -31px;
+  }
 
+    // &__container {
+    //   display: flex;
+    //   flex-direction: column;
+    //   width: 22rem;
+    //   gap: 3px;
+    // }
   }
 }
 
+// @media screen and (max-width: 600px) {
+//   .talentOffer {
+//     display: flex;
+//     justify-content: center;
+//     flex-direction: column;
+
+//     &__container {
+//       display: flex;
+//       flex-direction: column;
+//       width: 22rem;
+//       gap: 3px;
+//     }
+//     &__background {
+//       display: flex;
+//       position: absolute;
+//       width: 87%;
+//       right: 28px;
+//       z-index: -1;
+//     }
+
+//     &__button-otherjobs {
+//       margin-top: -13px;
+
+//       @include styleSquare(
+//         $skyBkue,
+//         $skyBkue,
+//         $wi250,
+//         $he35,
+//         $white,
+//         $s18,
+//         $w300,
+//         $yellow,
+//         $yellow,
+//         $white
+//       );
+//     }
+//     &__container-infojob {
+//       margin-top: 206px;
+//       max-height: 274px;
+//       width: 96%;
+//     }
+//     &__aplicattionJob {
+//       display: flex;
+//       flex-direction: column;
+//       gap: 10px;
+//       width: 96%;
+//       padding: 21px;
+//       background-color: #25abbc;
+//       border-radius: 10px;
+//       font-family: "montserrat", sans-serif;
+//       align-items: center;
+//     }
+//   }
+// }
+
+/* .........media query mobile.......... */
 
 @media screen and (max-width: 375px) {
   .talentOffer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 
-    &__background {
+    &__container-offert {
+      margin: 1rem;
+      width: 90%;
+      height: auto;
+      padding: 5px;
       display: flex;
-      position: absolute;
-      width: 87%;
-      right: 28px;
-      z-index: -1;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      border-radius: 10px;
   }
 
+
     &__button-otherjobs {
-    margin-top: -13px;
-   
+      margin-top: -13px;
+
       @include styleSquare(
         $skyBkue,
         $skyBkue,
@@ -249,24 +487,22 @@
         $yellow,
         $white
       );
-    
-  }
+    }
     &__container-infojob {
       margin-top: 206px;
       max-height: 274px;
       width: 96%;
+    }
+    &__aplicattionJob {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 96%;
+      padding: 21px;
+      background-color: #25abbc;
+      border-radius: 10px;
+      font-family: "montserrat", sans-serif;
+      align-items: center;
+    }
   }
-  &__aplicattionJob {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 96%;
-    padding: 21px;
-    background-color: #25ABBC;
-    border-radius: 10px;
-    font-family: "montserrat", sans-serif;
-    align-items: center;
-  }
-
-}
 }
