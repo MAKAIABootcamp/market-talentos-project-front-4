@@ -3,7 +3,7 @@ import "../style/styleDashboard.scss";
 import NavlinkAdmin from "../components/navlinAdmin/NavlinkAdmin";
 import { useSelector } from "react-redux";
 
-const Dashboard = () => {
+const DashboardHome = () => {
   // const talentsList = useSelector((store) => store.userRegister);
   // console.log(talentsList);
   return (
@@ -77,4 +77,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default DashboardHome;

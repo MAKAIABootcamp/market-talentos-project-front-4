@@ -1,56 +1,46 @@
-import React, { useEffect } from 'react';
-import "../style/styleTalentAll.scss";
+import React, { useEffect} from 'react';
+import "../style/styleTalentsAll2.scss";
 import useOnClick from '../funtions/useOnClick';
 import { useDispatch, useSelector } from 'react-redux';
-import { listTalents } from '../redux/actions/userActions';
-import { saveTalentId } from '../redux/actions/usersActions';
-import { useNavigate } from 'react-router-dom';
+import { listTalents } from '../redux/actions/userTalentAction';
 
+const TalentsAll2 = () => {
 
-
-const TalentsAll = () => {
-
-    const navigate = useNavigate();
+    const handleClick = useOnClick();
     const dispatch = useDispatch();
     const talentsList = useSelector((store) => store.userTalents);
 
-    // const getTalents = () => {
-    //     dispatch(listTalents());
-    // }
+    const getTalents = () => {
+        dispatch(listTalents());
+    }
 
     useEffect(() => {
-        dispatch(listTalents())
-    }, [dispatch]);
+        getTalents();
 
-    const handleNavigate = (id) => {
-        dispatch(saveTalentId(id));
-        navigate(`/talentDetails/${id}`);
-    }
+    }, []);
+
 
     return (
         <>
             <div className='talentsAll'>
-                <div className="talentsAll__title" >
-                    <h1>Talentos Bookcamp Makaia</h1>
-                </div>
                 <div className='talentsAll__container-cards'>
                     {talentsList.userTalents?.map((talent, index) => {
                         return <div className='talentsAll__container'
                             key={index}
-                            onClick={() => handleNavigate(talent.id)}
+                            onClick={() => handleClick("cardTalent", "")}
                         >
                             <div className='talentsAll__container-imgTalent'>
                                 <figure className='talentsAll__card-figure'>
-                                    <img src={talent.photoURL} alt="imgTalent" />
+                                    <img src={talent.avatar} alt="imgTalent" />
                                 </figure>
                             </div>
                             <div className='talentsAll__container-info'>
                                 <div className='talentsAll__container-state'>
                                     {/* <figure className='talentsAll__buttons-state'>
-                              <img src={imgWhatsapp} alt="" />
-                                </figure> */}
+                     <img src={imgWhatsapp} alt="" />
+                 </figure> */}
                                     <div className='talentsAll__container-levelEnglish'>
-                                        <span className='talentsAll__know'>Ingles</span>
+                                        <span className='talentsAll__know'>Developer</span>
                                         <span className='talentsAll__know'>{talent.englishLevel}</span>
                                     </div>
                                 </div>
@@ -70,4 +60,4 @@ const TalentsAll = () => {
     )
 }
 
-export default TalentsAll
+export default TalentsAll2;

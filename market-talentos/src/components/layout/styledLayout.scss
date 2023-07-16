@@ -2,14 +2,10 @@
 
 .header {
   display: flex;
-  background-color: red;
-  width: 500px;
- 
-  &__container-logo{
-    background-color: aqua;
-    width: 200px;
-  }
-
+  background-color: $softblue;
+  height: 100px;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 100% 100%, 40% 90%);
+  width: 105vw;
   &__navbar {
     display: flex;
     padding-left: 700px;
