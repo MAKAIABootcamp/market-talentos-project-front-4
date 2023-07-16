@@ -28,7 +28,7 @@ const CardTalent = () => {
                         <div className='talents__container-state'>
                             <button 
                             onClick={() => handleClick("editProfile", "")}
-                            className='talents__buttons-state'>Edit </button>
+                            className='talents__buttons-edit'>Editar </button>
                             {/* <figure className='talents__buttons-state'>
                                 <img src={imgWhatsapp} alt="" />
                             </figure> */}
@@ -89,21 +89,24 @@ const CardTalent = () => {
 
                                 <span className='talents__programs'>GIT_UP</span>
                             </div>
-                            {/* <button className='talents__button-seeMore'>ver más</button> */}
                             <div className='talents__container-profile'>
                                 <p className='talents__profile'>
                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum nostrum dolores quasi beatae. Placeat quod quia quidem quasi accusamus maxime nemo ut, alias ullam, exercitationem deleniti ad vero totam vitae.
                                 </p>
                             </div>
-                            <div className='talents__container-custom'>
+                            
+                        </div>
+                        <div className='talents__container-EditProfile'>
+                            <button className='talents__button-EditProfile'>Editar Información</button>
+                        </div>
+                        <div className='talents__container-custom'>
                                 <button className='talents__button-custom'
                                     onClick={() => handleClick("portfolio", "")}
-                                >portafolio</button>
+                                >Demoday</button>
                                 <button className='talents__button-custom'
                                     onClick={() => handleClick("curriculum", "")}
                                 >hoja de vida</button>
                             </div>
-                        </div>
                     </section>
                 </div>
             </section>

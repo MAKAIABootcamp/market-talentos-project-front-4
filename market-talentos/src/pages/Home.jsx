@@ -4,14 +4,13 @@ import Footer from "../components/footer/Footer";
 import Usuarios from "../components/usuarios/Usuarios";
 import '../style/styleHome.scss'
 import TalentsAll from "./TalentsAll";
+import LayoutHome from "../components/layout/LayoutHome";
+
 const Home = () => {
   return (
     <div>
-      <Layout />
-      
-      <Usuarios />
+      <LayoutHome/>
       <TalentsAll/> 
-
       <Footer />
     </div>
   );

@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     userTalents: [],
+    selectedTalentId: null
 };
 
 const userTalentSlice = createSlice({

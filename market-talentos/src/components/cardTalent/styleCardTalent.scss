@@ -4,7 +4,7 @@
     &__container {
         @include desk {
             width: 18rem;
-            height: 30rem;
+            height: auto;
             background-color: white;
             padding: 5px;
             display: flex;
@@ -69,11 +69,11 @@
         }
     }
 
-    &__buttons-state {
+    &__buttons-edit {
         @include desk {
             @include styleSquare($yellow, $yellow, $wi75, $he25,
                 $gray, $s12, $w400,
-                $white, $gray, $gray);
+                $skyBkue, $skyBkue, $gray);
         }
     }
 
@@ -282,22 +282,38 @@
         }
     }
 
+   
+    &__container-EditProfile{
+        width: 280px;
+        height: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+
+        
+    }
+    &__button-EditProfile{
+        @include desk {
+            @include styleSquare($yellow, $yellow, $wi280, $he35,
+                $gray, $s12, $w400,
+                $skyBkue, $skyBkue, $gray);
+        }
+    }
     &__container-custom {
         @include desk {
-            padding: 5px;
+            padding: 5px 0;
             margin-bottom: 5px;
-            width: 250px;
+            width: 280px;
             height: 30px;
             overflow-y: auto;
             display: flex;
             gap: 15px;
-            justify-content: center;
+            justify-content: space-between;
         }
     }
 
     &__button-custom {
         @include desk {
-            @include styleOval($skyBkue, $skyBkue, $wiAuto, $he20,
+            @include styleSquare($skyBkue, $skyBkue, $wi125, $he20,
                 $gray, $s12, $w300,
                 $yellow, $yellow, $white);
         }

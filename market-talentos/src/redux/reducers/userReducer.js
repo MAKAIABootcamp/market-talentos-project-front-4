@@ -1,8 +1,9 @@
-import { userTypes } from "../types/talentsTypes";
+import { userTypes, talentsTypes } from "../types/talentsTypes";
 
 const initialState = {
   user: null,
   error: null,
+  selectedTalentId: null
 };
 
 const userReducer = (state = initialState, action) => {
@@ -20,17 +21,23 @@ const userReducer = (state = initialState, action) => {
         error: action.payload.error,
       };
     case userTypes.USER_LOGOUT:
-          return initialState;
+        return initialState;
       
-      case userTypes.USER_COMPLETETALENTS:
-          return {
-            ...state,
-            user: {
-              ...state.user,
-              ...action.payload.otherData,
-              },
-            error: action.payload.error
-          };
+    case userTypes.USER_COMPLETETALENTS:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          ...action.payload.otherData,
+          },
+        error: action.payload.error
+      };
+
+    case talentsTypes.SAVE_TALENT_ID:
+      return {
+        ...state,
+        selectedTalentId: action.payload
+      };
 
     default:
       return state;

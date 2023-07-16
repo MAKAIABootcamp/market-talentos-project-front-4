@@ -1,10 +1,10 @@
-import { userTypes } from "../types/talentsTypes"
+import { userTypes, talentsTypes } from "../types/talentsTypes"
 import {
   userRegister,
   completeTalentData,
   keepPersistentUserData,
 } from "../../services/userServices";
-import { signOut } from "firebase/auth";
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "../../firebase/firebaseConfig";
 
 
@@ -33,6 +33,13 @@ export const registerActionSync = (user, error) => {
             error: error
         }
     }
+}
+
+export const saveTalentId = (id) => {
+  return {
+      type: talentsTypes.SAVE_TALENT_ID,
+      payload: id
+  }
 }
 
 export const completeProfileAsync = ({ otherTalentData, id, type }) => {
@@ -135,12 +142,3 @@ export const actionLoginAsync = ({ email, password }) => {
       });
   };
 };
-
-// const actionLoginSync = (user) => {
-//   return {
-//     type: userTypes.USER_LOGIN,
-//     payload: {
-//       ...user,
-//     },
-//   };
-// };
