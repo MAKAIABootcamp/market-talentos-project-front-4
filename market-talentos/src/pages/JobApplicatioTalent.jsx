@@ -1,13 +1,14 @@
 import React from "react";
 import "../style/styleJobApplicatioTalent.scss";
 import imgTalent from "../assets/elisa.jpeg";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import imgGitUp from "../assets/logogithub.png";
 import imgLinkedin from "../assets/logolink.png";
 import imgVideo from "../assets/logovideo.png";
 // import { useDispatch } from "react-redux";
 
 const JobApplicatioTalent = () => {
+  const navigate = useNavigate();
   // const dispatch = useDispatch();
   const costumerButtons = [
     {
@@ -105,7 +106,7 @@ const JobApplicatioTalent = () => {
                   </button>
                 </form>
               </div>
-              <button className="jobtalent__button-otherjobs">
+              <button className="jobtalent__button-otherjobs" onClick={() => navigate("/talentOfferJob")}>
                 Ver Ofertas Laborales
               </button>
             </div>

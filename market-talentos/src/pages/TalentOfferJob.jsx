@@ -10,7 +10,7 @@ import imgVideo from "../assets/logovideo.png";
 
 const TalentOfferJob = () => {
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   
 
   const jobsButtons = [
@@ -102,6 +102,7 @@ const TalentOfferJob = () => {
 
             <div className="talentOffer__container-otheroffert">
               <button className="talentOffer__button-otheroffert"
+              onClick={() => navigate("/jobTalent")}
              >
                 Ver Mis Postulaciones
               </button>
