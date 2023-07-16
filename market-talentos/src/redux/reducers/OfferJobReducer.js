@@ -15,18 +15,18 @@ const offerJobSlice = createSlice({
             }
         },
 
-        addOfferJob: {
-            reducer: (state, action) => {
-              state.offerJob.push(action.payload);
-            },
-            prepare: (data) => {
-              return { payload: data };
-            },
-          },
+        // addOfferJob: {
+        //     reducer: (state, action) => {
+        //       state.offerJob.push(action.payload);
+        //     },
+        //     prepare: (data) => {
+        //       return { payload: data };
+        //     },
+        //   },
 
     }
 })
 
-export const { setOfferJob, addOfferJob} = offerJobSlice.actions;
+export const { setOfferJob} = offerJobSlice.actions;
   
   export default offerJobSlice.reducer;
