@@ -2,7 +2,7 @@ import React from "react";
 import FotoEmpresa from "../../assets/logo admin 2.jpeg";
 import LogoMakaia from "../../assets/Logo.png";
 import { NavLink } from "react-router-dom";
-const NavlinkAdmin = () => {
+const NavlinkAdminHome = () => {
   return (
     <div className="section__contenedor1">
       <figure className="section__logomakaia">
@@ -57,4 +57,4 @@ const NavlinkAdmin = () => {
   );
 };
 
-export default NavlinkAdmin;
+export default NavlinkAdminHome;
