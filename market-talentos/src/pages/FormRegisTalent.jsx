@@ -12,9 +12,6 @@ import { registerActionAsync } from "../redux/actions/usersActions";
 import NavbarTalentos from "../components/navbarTalentos/NavbarTalentos";
 
 
-
-
-
 const FormRegisTalent = () => {
  const dispatch = useDispatch();
  const navigate = useNavigate();

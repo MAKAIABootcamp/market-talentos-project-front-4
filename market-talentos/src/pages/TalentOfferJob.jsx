@@ -5,8 +5,7 @@ import imgTalent from "../assets/elisa.jpeg";
 import imgGitUp from "../assets/logogithub.png";
 import imgLinkedin from "../assets/logolink.png";
 import imgVideo from "../assets/logovideo.png";
-// import logoMakaia from "../assets/icon/logoMakaia.png";
-// import fondoTalentdesk from "../assets/fondotalentdesk.jpg";
+
 
 const TalentOfferJob = () => {
 
