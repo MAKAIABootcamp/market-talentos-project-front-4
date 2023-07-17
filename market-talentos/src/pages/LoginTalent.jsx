@@ -1,15 +1,18 @@
-import React from 'react';
-import '../style/styleLoginTalent.scss';
-import logoBootcamp from '../assets/makaia.png';
-import useOnClick from '../funtions/useOnClick';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import React from "react";
+import "../style/styleLoginTalent.scss";
+import logoBootcamp from "../assets/makaia.png";
+import useOnClick from "../funtions/useOnClick";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import Swal from "sweetalert2";
-import { useDispatch, useSelector } from 'react-redux';
-import { loginProvider } from '../services/dates';
-import { actionLoginGoogleOrFacebook, actionLoginAsync } from '../redux/actions/talentsActions';
-import { useNavigate } from 'react-router';
+import { useDispatch, useSelector } from "react-redux";
+import { loginProvider } from "../services/dates";
+import {
+  actionLoginGoogleOrFacebook,
+  actionLoginAsync,
+} from "../redux/actions/talentsActions";
+import { useNavigate } from "react-router";
 
 const schema = yup.object({
   email: yup
@@ -20,45 +23,54 @@ const schema = yup.object({
 });
 
 const LoginTalent = () => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleClick = useOnClick();
-
+  const talentId = useSelector((store) => store.user.selectedTalentId);
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
       email: "",
       password: "",
     },
-
   });
-  const { error, errorMessage } = useSelector((store) => store.talents); 
+  const { error } = useSelector((store) => store.user);
   const dispatch = useDispatch();
 
   const onSubmit = (data) => {
+    console.log("esta es la informacio en data: ", data);
     dispatch(actionLoginAsync(data));
+    console.log("este es el error: ", error);
 
     if (error) {
       Swal.fire("Oops!", `Ha ocurrido un error: ${errorMessage}`, "error");
     } else {
-      Swal.fire(" Good job!", "se ha registrado exitosamente!", "success");
-      navigate('/talentDetails');
+      Swal.fire(" Good job!", "se has iniciado exitosamente!", "success").then(
+        () => {
+          console.log(talentId);
+          if (talentId) {
+            navigate("/talentDetails/" + talentId);
+          } else {
+            navigate("/");
+        
+          }
+        }
+      );
     }
   };
 
+  console.log(error);
 
-  
   const handleLoginGoogleOrFacebook = (provider) => {
     dispatch(actionLoginGoogleOrFacebook(provider));
   };
 
   return (
     <>
-      <form className='loginTalent' onSubmit={handleSubmit(onSubmit)}>
+      <form className="loginTalent" onSubmit={handleSubmit(onSubmit)}>
         <div className="loginTalent__container-logo">
           <figure className="loginTalent__figure-logo">
             <img src={logoBootcamp} alt="l" />
@@ -73,7 +85,8 @@ const LoginTalent = () => {
               </div>
               <input
                 type="email"
-                name="inputEmail" id="inputEmail"
+                name="inputEmail"
+                id="inputEmail"
                 className="loginTalent__input-login"
                 autoComplete="off"
                 placeholder="name@example.com"
@@ -100,34 +113,50 @@ const LoginTalent = () => {
               <input
                 type="checkbox"
                 className="loginTalent__input-checkRemember"
-                id="CheckboxRemember" />
-              <label className="loginTalent__label-remember" for="CheckboxRemember">Recuérdame</label>
+                id="CheckboxRemember"
+              />
+              <label
+                className="loginTalent__label-remember"
+                for="CheckboxRemember"
+              >
+                Recuérdame
+              </label>
             </div>
             <div className="loginTalent__container-checkIn">
-              <button type="submit" id="btnCheIn" value="checkIn"
+              <button
+                type="submit"
+                id="btnCheIn"
+                value="checkIn"
                 className="loginTalent__input-checkIn"
-                onClick={() => handleClick("checkIn", "")}>
+                onClick={() => handleClick("checkIn", "")}
+              >
                 <strong>Ingresar</strong>
               </button>
             </div>
             <div className="loginTalent__container-register">
               <div className="loginTalent__container-spanRegister">
-                <span className="loginTalent__span-register">No tienes cuenta</span>
+                <span className="loginTalent__span-register">
+                  No tienes cuenta
+                </span>
               </div>
-              <span type="submit" id="btnRegister" value="Register"
+              <span
+                type="submit"
+                id="btnRegister"
+                value="Register"
                 className="loginTalent__span-registerLink"
-                onClick={() => handleClick("formRegisTalent", "")}>
+                onClick={() => handleClick("formRegisTalent", "")}
+              >
                 Regístrate
               </span>
             </div>
-            <div className='loginTalent__provider'>
+            <div className="loginTalent__provider">
               {loginProvider.map((provider, index) => (
-                <figure className='loginTalent__figure-provider'>
+                <figure className="loginTalent__figure-provider">
                   <img
                     key={index}
                     src={provider.image}
                     alt={provider.name}
-                    className='loginTalent__icon-provider'
+                    className="loginTalent__icon-provider"
                     onClick={() => {
                       handleLoginGoogleOrFacebook(provider.provider);
                     }}
@@ -136,13 +165,15 @@ const LoginTalent = () => {
               ))}
             </div>
             <div className="loginTalent__container-">
-              <label className="loginTalent__label-footer" >© 2023 - Bootcamp Makaia front end 4</label>
+              <label className="loginTalent__label-footer">
+                © 2023 - Bootcamp Makaia front end 4
+              </label>
             </div>
           </div>
         </div>
       </form>
     </>
-  )
-}
+  );
+};
 
 export default LoginTalent;

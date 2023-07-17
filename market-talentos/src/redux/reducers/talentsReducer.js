@@ -2,30 +2,17 @@ import { talentsTypes } from '../types/talentsTypes';
 
 const initialState = {
     talents: [],
+    selectedTalentId: null
 }
 
 export const talentsReducer = (state = initialState, action) => {
     switch (action.type) {
-        // case talentsTypes.TALENT_REGISTER:
-        //     return {
-        //         ...action.payload,
-        //     };
+
         case talentsTypes.TALENT_REGISTER: 
             return {
                 ...action.payload,
             };
 
-        // case talentsTypes.TALENT_LOGIN:
-        //     return {
-        //         ...action.payload,
-        //     };
-        // case talentsTypes.TALENT_LOGOUT:
-        //     return {};
-        // case talentsTypes.TALENTS_GET:
-        //     return {
-        //         ...state,
-        //         talents: action.payload.talents,
-        //     };
         case talentsTypes.TALENTS_ADD:
             return {
                 ...state,

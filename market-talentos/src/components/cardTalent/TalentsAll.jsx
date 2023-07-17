@@ -1,42 +1,36 @@
 import React, { useEffect } from 'react';
-import "../style/styleTalentAll.scss";
-import useOnClick from '../funtions/useOnClick';
+import "../../style/styleTalentAll.scss";
+import { listTalents } from '../../redux/actions/userActions';
+import { saveTalentId } from '../../redux/actions/usersActions';
 import { useDispatch, useSelector } from 'react-redux';
-import { listTalents } from '../redux/actions/userActions';
-
-
+import { useNavigate } from 'react-router-dom';
 
 const TalentsAll = () => {
 
-    const handleClick = useOnClick();
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const talentsList = useSelector((store) => store.userTalents);
 
-    // const getTalents = () => {
-    //     dispatch(listTalents());
-    // }
-
     useEffect(() => {
         dispatch(listTalents())
-
     }, [dispatch]);
 
-
+    const handleNavigate = (id) => {
+        dispatch(saveTalentId(id));
+        navigate(`/talentDetails/${id}`);
+    }
     return (
         <>
             <div className='talentsAll'>
-                <div className="talentsAll__title" >
-                    <h1>Talentos Bookcamp Makaia</h1>
-                </div>
                 <div className='talentsAll__container-cards'>
                     {talentsList.userTalents?.map((talent, index) => {
                         return <div className='talentsAll__container'
                             key={index}
-                            onClick={() => handleClick("cardTalent", "")}
+                            onClick={() => handleNavigate(talent.id)}
                         >
                             <div className='talentsAll__container-imgTalent'>
                                 <figure className='talentsAll__card-figure'>
-                                    <img src={talent.avatar} alt="imgTalent" />
+                                    <img src={talent.photoURL} alt="imgTalent" />
                                 </figure>
                             </div>
                             <div className='talentsAll__container-info'>
@@ -61,6 +55,7 @@ const TalentsAll = () => {
                     }
                 </div>
             </div>
+
         </>
     )
 }
