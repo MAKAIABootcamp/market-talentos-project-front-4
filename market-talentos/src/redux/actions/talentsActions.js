@@ -189,6 +189,7 @@ export const actionLoginAsync = ({ email, password }) => {
         const errorMessage = error.message;
         console.log(errorCode);
         console.log(errorMessage);
+        return error
         // dispatch(actionLoginSync({ email, error: true, errorMessage }));
       });
   };

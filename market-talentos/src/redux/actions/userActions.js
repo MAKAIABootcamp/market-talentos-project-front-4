@@ -18,3 +18,4 @@ import { setUserTalents } from '../reducers/userTalentReducer';
       }
     };
   };
+

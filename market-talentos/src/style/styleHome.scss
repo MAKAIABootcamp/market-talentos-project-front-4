@@ -1,11 +1,6 @@
 @import "../style/_variables";
 @import './style.scss';
 
-body {
-  // background-color: $gray;
-  // padding-left: 40px;
-}
-
 p{
   width: 75%;
   margin-left: 240px;
@@ -91,10 +86,10 @@ span{
 
 .info__grid2{
   display: flex;
-  // flex-direction: column;
-
-  
-
+  width: 70%;
+  align-items: center;
+  // padding-left: 200px;
+  justify-content: center;
 }
 
 .info__grid3{
@@ -148,7 +143,7 @@ span{
 
 
 .container__cards{
-  background-color: rgb(220, 220, 220);
+  
   border-radius: 10px;
   width: 18vw;
 }
@@ -211,32 +206,6 @@ img {
   
 }
 
-
-
-
-
-
-
-
-.info__grid3{
-
-//   text-align: center;
-
-//   p{
-//     font-size: 18px;
-//    margin-left: 0px;
-//    width: 100%;
-//    margin-top:10px;
-// }
-
-//   img{
-//     margin-top: 10px;;
-//   }
-//   .icon__dev{
-//     margin-top: -5px;
-//   }
-  
-}
 
 .button__more{
   margin-left: 700px;
