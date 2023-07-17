@@ -19,7 +19,6 @@ import Blog from "../pages/Blog";
 import TalentDetails from "../pages/TalentDetails";
 import HomeEmpresas from "../pages/HomeEmpresas";
 import SearchCompany from "../pages/SearchCompany";
-import TalentsAll from "../pages/TalentsAll";
 import EditProfile from "../pages/EditProfile";
 import TalentOfferJob from "../pages/TalentOfferJob";
 import JobApplicatioTalent from "../pages/JobApplicatioTalent";
@@ -73,6 +72,7 @@ const AppRouter = () => {
           <Route path="/">
             <Route index element={<Home />} />
             <Route path="talentDetails" element={<TalentDetails />} />
+            
             <Route element={<PublicRouter isAutentication={isLogged} />}>
               <Route path="login" element={<LoginTalent />} />
               <Route path="formRegisTalent" element={<FormRegisTalent />} />
@@ -90,7 +90,7 @@ const AppRouter = () => {
               <Route path="curriculum" element={<Curriculum />} />
               <Route path="jobTalent" element={<JobApplicatioTalent />} />
               <Route path="talentOfferJob" element={<TalentOfferJob />} />
-              <Route path="talentsAll" element={<TalentsAll />} />
+              {/* <Route path="talentsAll" element={<TalentsAll />} /> */}
               <Route path="admin" element={<Administrator />} />
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="dash" element={<DashboardHome />} />

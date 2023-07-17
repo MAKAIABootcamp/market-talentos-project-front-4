@@ -120,7 +120,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="footer__redsocial">
+      <div className="footer__container-networks">
         <div className="footer__language">
           <button>ingles</button>
         </div>
