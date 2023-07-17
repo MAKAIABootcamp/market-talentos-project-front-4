@@ -5,10 +5,37 @@ import { NavLink, useNavigate } from "react-router-dom";
 import imgGitUp from "../assets/logogithub.png";
 import imgLinkedin from "../assets/logolink.png";
 import imgVideo from "../assets/logovideo.png";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 // import { useDispatch } from "react-redux";
 
 const JobApplicatioTalent = () => {
   const navigate = useNavigate();
+  const validationSchema = Yup.object().shape({
+    cargo: Yup.string().required("Este campo es obligatorio"),
+    closeDate: Yup.date().required("Este campo es obligatorio"),
+    description: Yup.string().required("Este campo es obligatorio"),
+    empresa: Yup.string().required("Este campo es obligatorio"),
+    modalidad: Yup.string().required("Este campo es obligatorio"),
+    salary: Yup.string().required("Este campo es obligatorio"),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      cargo: "",
+      closeDate: "",
+      description: "",
+      empresa: "",
+      modalidad: "",
+      salary: "",
+    },
+    validationSchema,
+    onSubmit: (values) => {
+      // Aquí puedes hacer algo con los valores del formulario, por ejemplo, enviarlos al servidor
+      console.log(values);
+    },
+  });
+
   // const dispatch = useDispatch();
   const costumerButtons = [
     {
@@ -98,15 +125,114 @@ const JobApplicatioTalent = () => {
                 Añadir Postulaciones
               </button>
               <div className="jobtalent__container-other">
-                <form action="">
-                  <input className="jobtalent__button-other" type="text" />
-                  <button className="jobtalent__button-aceptar">
-                    {" "}
+              <form onSubmit={formik.handleSubmit}>
+                  <input
+                    className="jobtalent__button-other"
+                    type="text"
+                    id="cargo"
+                    name="cargo"
+                    value={formik.values.cargo}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    placeholder="Cargo"
+                  />
+                  {formik.errors.cargo && formik.touched.cargo && (
+                    <div className="jobtalent__error-message">
+                      {formik.errors.cargo}
+                    </div>
+                  )}
+
+                  <input
+                    className="jobtalent__button-other"
+                    type="text"
+                    id="closeDate"
+                    name="closeDate"
+                    value={formik.values.closeDate}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    placeholder="Fecha de cierre"
+                  />
+                  {formik.errors.closeDate && formik.touched.closeDate && (
+                    <div className="jobtalent__error-message">
+                      {formik.errors.closeDate}
+                    </div>
+                  )}
+
+                  <input
+                    className="jobtalent__button-other"
+                    type="text"
+                    id="description"
+                    name="description"
+                    value={formik.values.description}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    placeholder="Descripción"
+                  />
+                  {formik.errors.description &&
+                    formik.touched.description && (
+                      <div className="jobtalent__error-message">
+                        {formik.errors.description}
+                      </div>
+                    )}
+
+                  <input
+                    className="jobtalent__button-other"
+                    type="text"
+                    id="empresa"
+                    name="empresa"
+                    value={formik.values.empresa}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    placeholder="Empresa"
+                  />
+                  {formik.errors.empresa && formik.touched.empresa && (
+                    <div className="jobtalent__error-message">
+                      {formik.errors.empresa}
+                    </div>
+                  )}
+
+                  <input
+                    className="jobtalent__button-other"
+                    type="text"
+                    id="modalidad"
+                    name="modalidad"
+                    value={formik.values.modalidad}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    placeholder="Modalidad"
+                  />
+                  {formik.errors.modalidad && formik.touched.modalidad && (
+                    <div className="jobtalent__error-message">
+                      {formik.errors.modalidad}
+                    </div>
+                  )}
+
+                  <input
+                    className="jobtalent__button-other"
+                    type="text"
+                    id="salary"
+                    name="salary"
+                    value={formik.values.salary}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    placeholder="Salario"
+                  />
+                  {formik.errors.salary && formik.touched.salary && (
+                    <div className="jobtalent__error-message">
+                      {formik.errors.salary}
+                    </div>
+                  )}
+
+                  <button className="jobtalent__button-aceptar" type="submit">
                     Aceptar
                   </button>
                 </form>
               </div>
-              <button className="jobtalent__button-otherjobs" onClick={() => navigate("/talentOfferJob")}>
+              
+              <button
+                className="jobtalent__button-otherjobs"
+                onClick={() => navigate("/talentOfferJob")}
+              >
                 Ver Ofertas Laborales
               </button>
             </div>
@@ -114,12 +240,9 @@ const JobApplicatioTalent = () => {
         </div>
       </div>
 
-
-        {/* ...........cards Mis postulaciones................ */}
+      {/* ...........cards Mis postulaciones................ */}
       <div className="jobtalent__container-infojob">
-      <button className="jobtalent__button-infojob">
-          Mis Postulaciones
-        </button>
+        <button className="jobtalent__button-infojob">Mis Postulaciones</button>
         <div className="jobtalent__container-costumer">
           {costumerButtons.map((button, index) => (
             <button className="jobtalent__button-costumer" key={index}>

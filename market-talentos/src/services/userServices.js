@@ -7,7 +7,7 @@ import {
   query,
   where,
   getDocs,
-  getDoc,
+  // getDoc,
 } from "firebase/firestore";
 import { auth, firestore } from "../firebase/firebaseConfig";
 

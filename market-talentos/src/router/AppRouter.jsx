@@ -31,8 +31,8 @@ import { getLoggedUser } from "../redux/actions/usersActions";
 import PublicRouter from "./PublicRouter";
 import PrivateRouter from "./PrivateRouter";
 import Spinner from 'react-bootstrap/Spinner';
-import FormRegisAdmin from '../pages/FormRegisAdmin';
-import HomeAdmin from '../pages/HomeAdmin';
+// import FormRegisAdmin from '../pages/FormRegisAdmin';
+// import HomeAdmin from '../pages/HomeAdmin';
 import DashboardHome from "../pages/DashboardHome";
 import OffertVacants from "../pages/OffertVacants";
 
