@@ -101,7 +101,7 @@ const EditProfile = () => {
     { id: "html", label: "HTML" },
     { id: "styledComponent", label: "GITHUB" },
     { id: "redux", label: "REDUX" },
-    { id: "bootstrap", label: "BOOPTRAP" },
+    { id: "bootstrap", label: "BOOTSTRAP" },
     { id: "axios", label: "AXIOS" },
     { id: "others", label: "Otros" },
   ];
