@@ -29,7 +29,7 @@ const EditProfile = () => {
       )
       .required("Este campo es obligatorio"),
     profile: Yup.string()
-      .max(160, "La presentación no debe exceder las 160 palabras.")
+      .max(160, "La presentación no debe exceder las 400 palabras.")
       .required("Este campo es obligatorio"),
     cv: Yup.mixed()
       .test("fileType", "Solo se permiten archivos PDF", (value) => {
@@ -97,13 +97,27 @@ const EditProfile = () => {
     { id: "css", label: "CSS" },
     { id: "sass", label: "SASS" },
     { id: "react", label: "REACT" },
-    { id: "javaScript", label: "JavaScript" },
+    { id: "javaScript", label: "JAVASCRIPT" },
     { id: "html", label: "HTML" },
-    { id: "styledComponent", label: "GITHUB" },
+    { id: "github", label: "GITHUB" },
     { id: "redux", label: "REDUX" },
     { id: "bootstrap", label: "BOOTSTRAP" },
     { id: "axios", label: "AXIOS" },
-    { id: "others", label: "Otros" },
+    
+  ];
+
+
+  const languageOptions2 = [
+    { id: "Java", label: "JAVA" },
+    { id: "Python.", label: "PYTHON." },
+    { id: "php", label: "PHP" },
+    { id: "ruby", label: "RUBY" },
+    { id: "nodeJs", label: "NODEJS" },
+    { id: "sql", label: "SQL" },
+    { id: "StyledComponent", label: "STYLECOMPONENT" },
+    { id: "material ui", label: "MATERIAL UI" },
+    { id: "axios", label: "AXIOS" },
+    
   ];
 
   const isFormValid =
@@ -176,9 +190,11 @@ const EditProfile = () => {
                       )}
                   </div>
                   <div className="editProfile__knowLedge">
-                    <div> Conocimientos</div>
+                    <div> Conocimientos</div> 
+                    <div className="editProfile__div-know">
 
-                    <div className="editProfile__languages">
+                    {/*.......... lenguajes 1 ............*/}
+                    <div className="editProfile__languages">                       
                       {languageOptions.map((option) => (
                         <div key={option.id} className="editProfile__language">
                           <input
@@ -195,8 +211,37 @@ const EditProfile = () => {
                           <label htmlFor={option.id}>{option.label}</label>
                         </div>
                       ))}
+                      
+                    
+                    </div>
+                    {formik.errors.knowledge && formik.touched.knowledge && (
+                      <div className="editProfile__error-message">
+                        {formik.errors.knowledge}
+                      </div>
+                    )}
 
-                      <div className="editProfile__language">
+                  
+
+                    {/*.......... lenguajes2 ............*/}
+                    <div className="editProfile__languages">                       
+                      {languageOptions2.map((option) => (
+                        <div key={option.id} className="editProfile__language">
+                          <input
+                            type="checkbox"
+                            id={option.id}
+                            name="languages"
+                            value={option.id}
+                            checked={formik.values.languages.includes(
+                              option.id
+                            )}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                          />
+                          <label htmlFor={option.id}>{option.label}</label>
+                        </div>
+                      ))}
+                      
+                      <div className="editProfile__language-other">
                         <input
                           type="text"
                           id="otherLanguages"
@@ -208,7 +253,6 @@ const EditProfile = () => {
                         />
                       </div>
                     </div>
-
                     {formik.errors.knowledge && formik.touched.knowledge && (
                       <div className="editProfile__error-message">
                         {formik.errors.knowledge}
@@ -221,7 +265,15 @@ const EditProfile = () => {
                           {formik.errors.otherLanguages}
                         </div>
                       )}
+                      </div>
+
                   </div>
+
+
+                  
+
+
+
                   <div className="editProfile__container-custom">
                     <label
                       htmlFor="profile"

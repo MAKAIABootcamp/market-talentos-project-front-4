@@ -4,7 +4,6 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
- 
 
   &__section {
     @include desk {
@@ -14,7 +13,6 @@
       justify-content: center;
       position: relative;
       margin-bottom: 73px;
-         
     }
   }
 
@@ -103,7 +101,7 @@
   &__container-infoCustom {
     @include desk {
       margin-top: 13px;
-      width: 90%;
+      width: 100%;
       height: auto;
       background-color: $gray;
       display: flex;
@@ -140,7 +138,7 @@
 
   &__container-form {
     display: flex;
-    width: 100%;
+    width: 91%;
     justify-content: center;
     flex-direction: column;
     align-items: center;
@@ -199,8 +197,6 @@
       $gray,
       $gray
     );
- 
-   
   }
 
   &__knowLedge {
@@ -214,26 +210,43 @@
   }
 
   &__knowLedge {
-    display: flex;
     width: 83%;
     gap: 5px;
   }
+  &__div-know{
+    gap:10px;
+    display: flex;
+    flex-direction: row;
+  }
 
   &__languages {
-    display: flex;
-    width: 92%;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 6px;
+    font-family: "Roboto", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    // border: solid 1px gray;
+    border-radius: 5px;
+    padding: 9px;
+    width: 48%;
+    
 
     input {
       font-family: $fontRoboto;
       font-size: 12px;
       font-weight: 400;
+      border: solid 1px gray;
+      border-radius: 5px;
+      padding: 3px;
     }
     label {
       margin: 3px;
     }
+  }
+  &__language-other{
+    position: relative;
+    left: -173px;
+    width: 100%;
+    top: 10px;
+
   }
 
   &__container-up {
@@ -241,10 +254,9 @@
     flex-direction: row;
     gap: 7px;
     width: 83%;
-    
   }
- 
-  &__container-pdf{
+
+  &__container-pdf {
     display: flex;
     flex-direction: row;
     gap: 7px;
@@ -253,10 +265,7 @@
 
   &__input-file {
     font-size: 10px;
- } 
- 
-
-
+  }
 
   &__button {
     margin-bottom: 30px;
@@ -324,8 +333,6 @@
     }
   }
 }
-
-
 
 @media screen and (max-width: 375px) {
   .editProfile {
