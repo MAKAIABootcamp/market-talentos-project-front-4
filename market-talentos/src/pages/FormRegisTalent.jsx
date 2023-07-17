@@ -54,7 +54,7 @@ const FormRegisTalent = () => {
 
     onSubmit: async (values) => {
 
-           console.log(values);
+          //  console.log(values);
 
       // Enviar la imagen a Cloudinary utilizando fileUpLoad
       const avatar = await fileUpLoad(values.photoURL[0]);
@@ -115,7 +115,7 @@ const FormRegisTalent = () => {
                   </label>
                   <h5>Subir foto de perfil</h5>
                   {/* Input de tipo file oculto */}
-                  <input
+                  <input 
                     id="avatarInput"
                     className="register__select"
                     name="photoURL"
@@ -126,7 +126,7 @@ const FormRegisTalent = () => {
                     }}
                   />
                   {formik.touched.avatar && formik.errors.avatar && (
-                    <span>{formik.errors.avatar}</span>
+                    <span className="register__span">{formik.errors.avatar}</span>
                   )}
                 </div>
 

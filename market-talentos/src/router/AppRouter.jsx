@@ -34,6 +34,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import FormRegisAdmin from '../pages/FormRegisAdmin';
 import HomeAdmin from '../pages/HomeAdmin';
 import DashboardHome from "../pages/DashboardHome";
+import OffertVacants from "../pages/OffertVacants";
 
 const AppRouter = () => {
   // const [loggedUser, setLoggedUser] = useState(null);
@@ -80,6 +81,8 @@ const AppRouter = () => {
               <Route path="formRegisTalent" element={<FormRegisTalent />} />
               <Route path="loginAdmin" element={<LoginAdmin />} />
               <Route path="blog" element={<Blog />} />
+              <Route path="OfferVacants" element={<OffertVacants />} />
+
             </Route>
             <Route element={<PrivateRouter isAutentication={isLogged} />}>
               <Route path="talents" element={<Talent />}></Route>

@@ -1,0 +1,56 @@
+@import './style.scss';
+@import "./mixin.scss";
+
+.offerVacantsContainer{
+    display: flex;
+
+    .formOfferVacants {
+        display: flex;
+        flex-direction: column;
+        background-color: #03203A;
+        color: white;
+        font-family: 'montserrat', sans-serif;
+        width: 400px;
+        height: 550px;
+        padding: 20px;
+        border-radius: 15px;
+        margin: 90px;
+        
+    
+        input, select {
+            margin: 10px;
+            height: 40px;
+            border-radius: 15px;
+            font-size: 20px;
+        }
+
+        textarea{
+            margin: 10px;
+            border-radius: 15px;
+            font-size: 20px; 
+            height: 100px;
+        }
+    
+        .offerVacantButton{
+            background-color: #25ABBC;
+            border-radius: 15px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+        .OfferVacantTitle{
+            align-self: center;
+            margin-bottom: 25px;
+        }
+    }
+    
+    .recruiterImage{
+        width: 900px;
+    }
+
+}
