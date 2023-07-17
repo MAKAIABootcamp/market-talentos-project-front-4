@@ -95,7 +95,7 @@ const JobApplicatioTalent = () => {
 
             <div className="jobtalent__container-addpstulation">
               <button className="jobtalent__button-otherjobs">
-                Añadir Postulación
+                Añadir Postulaciones
               </button>
               <div className="jobtalent__container-other">
                 <form action="">
