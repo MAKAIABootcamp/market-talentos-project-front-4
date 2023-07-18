@@ -1,6 +1,11 @@
 @import "./style.scss";
 
 .register {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 1029px;
  
   &__contenedorForm{
    
@@ -9,7 +14,7 @@
       display: flex;
       justify-content: center;
      position: relative;
-     top: -50px;
+     top: -7px;
     
   
 
@@ -29,17 +34,6 @@
     }
   }
 
-  // &__section-form {
-  //   @include desk {
-  //     width: 90%;
-  //     height: auto;
-  //     display: flex;
-  //     flex-direction: column;
-  //     align-items: center;
-  //     position: relative;
-  //     top:-600px;
-  //   }
-  // }
 
   &__form {
     @include desk {
@@ -194,6 +188,7 @@
       );
     }
   }
+  
 }
 
 @media screen and (max-width: 768px) {
