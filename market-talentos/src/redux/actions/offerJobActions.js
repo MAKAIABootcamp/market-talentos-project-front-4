@@ -13,6 +13,7 @@ export const listOfferJob = () => {
         id: doc.id,
         ...doc.data()
       }));
+      console.log(offerJobArray);
       dispatch(setOfferJob(offerJobArray));
     } catch (e) {
       console.error("Error listing document:", e);
