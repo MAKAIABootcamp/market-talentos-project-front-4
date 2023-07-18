@@ -4,11 +4,11 @@ import "../style/styleEditProfile.scss";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import imageFond from "../assets/EditProfileFondo.jpg";
-import NavbarTalentos from "../components/navbarTalentos/NavbarTalentos";
 // import Footer from "../components/footer/Footer";
 import { completeProfileAsync } from "../redux/actions/usersActions";
 import Swal from 'sweetalert2';
 import { useNavigate } from "react-router-dom";
+import LayoutTalents from "../components/layout/LayoutTalents";
 
 
 const EditProfile = () => {
@@ -127,7 +127,7 @@ const EditProfile = () => {
   return (
     <>
       <div className="editProfile">
-        <NavbarTalentos />
+        <LayoutTalents />
         <section className="editProfile__section">
           <div className="editProfile__container">
             <div className="editProfile__background">

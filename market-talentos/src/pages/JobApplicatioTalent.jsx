@@ -7,6 +7,8 @@ import imgLinkedin from "../assets/logolink.png";
 import imgVideo from "../assets/logovideo.png";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import Footer from "../components/footer/Footer";
+import LayoutTalents from "../components/layout/LayoutTalents";
 
 const JobApplicatioTalent = () => {
   const navigate = useNavigate();
@@ -74,7 +76,10 @@ const JobApplicatioTalent = () => {
   };
 
   return (
+    <>
     <section className="jobtalent">
+      <LayoutTalents />
+      <section className="jobtalent__card-jobs">
       <div className="jobtalent__container">
         {/* ...........cards talento................ */}
         <div className="jobtalent__container-cards">
@@ -265,7 +270,12 @@ const JobApplicatioTalent = () => {
           ))}
         </div>
       </div>
+      </section>
+      <div>
+     <Footer />
+     </div>
     </section>
+    </>
   );
 };
 

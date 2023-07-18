@@ -5,6 +5,8 @@ import imgTalent from "../assets/elisa.jpeg";
 import imgGitUp from "../assets/logogithub.png";
 import imgLinkedin from "../assets/logolink.png";
 import imgVideo from "../assets/logovideo.png";
+import LayoutTalents from "../components/layout/LayoutTalents";
+import Footer from "../components/footer/Footer";
 // import logoMakaia from "../assets/icon/logoMakaia.png";
 // import fondoTalentdesk from "../assets/fondotalentdesk.jpg";
 
@@ -46,6 +48,8 @@ const TalentOfferJob = () => {
 
   return (
     <section className="talentOffer">
+      <LayoutTalents />
+      <div className="talentOffer__card-jobs">
       <div className="talentOffer__container">
         {/* <div className="talentOffer__background">
           <img src={fondoTalentdesk} alt="fondoTalentdesk" />
@@ -158,6 +162,8 @@ const TalentOfferJob = () => {
           <button className="talentOffer__button-talentOffer">Aplicar</button>
         </div>
       </div>
+      </div>
+      <div><Footer /></div>
     </section>
   );
 };

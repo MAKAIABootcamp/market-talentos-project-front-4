@@ -2,6 +2,8 @@
 
 .editProfile {
   display: flex;
+  margin-top: 20px;
+  margin-left: 20px;
   flex-direction: column;
   margin-bottom: 10px;
 
@@ -13,6 +15,7 @@
       justify-content: center;
       position: relative;
       margin-bottom: 73px;
+      margin: 42px;
     }
   }
 
@@ -20,7 +23,6 @@
     display: flex;
     position: absolute;
     right: 79px;
-    width: 100%;
     z-index: -1;
     img {
       width: 100%;

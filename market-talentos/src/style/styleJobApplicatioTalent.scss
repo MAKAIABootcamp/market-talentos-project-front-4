@@ -1,8 +1,14 @@
 @import "./style.scss";
 
 .jobtalent {
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+  margin-left: 20px;
   display: flex;
   justify-content: center;
+  position: absolute;
+  flex-direction: column;
   // flex-wrap: wrap;
   // @include desk {
   //   width: 100%;
@@ -10,6 +16,13 @@
   //   display: flex;
   //   position: absolute;
   // }
+
+  &__card-jobs{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+  }
 
   &__container {
     @include desk {
