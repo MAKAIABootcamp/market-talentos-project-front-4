@@ -271,7 +271,7 @@ const JobApplicatioTalent = () => {
         </div>
       </div>
       </section>
-      <div>
+      <div className="jobtalent__footer"> 
      <Footer />
      </div>
     </section>

@@ -5,11 +5,13 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import imageFond from "../assets/EditProfileFondo.jpg";
 // import Footer from "../components/footer/Footer";
-import { completeProfileAsync } from "../redux/actions/usersActions";
-import Swal from 'sweetalert2';
+import {
+  completeProfileAsync,
+  singOutAsync,
+} from "../redux/actions/usersActions";
+import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import LayoutTalents from "../components/layout/LayoutTalents";
-
 
 const EditProfile = () => {
   const dispatch = useDispatch();
@@ -17,7 +19,6 @@ const EditProfile = () => {
 
   const { user } = useSelector((state) => state.user);
   console.log(user);
-  
 
   const validationSchema = Yup.object().shape({
     inputGitUp: Yup.string()
@@ -63,14 +64,14 @@ const EditProfile = () => {
     )
       .then(() => {
         Swal.fire({
-          icon: 'success',
-          title: 'Información guardada exitosamente',
+          icon: "success",
+          title: "Información guardada exitosamente",
           showConfirmButton: false,
-          timer: 1500
+          timer: 1500,
         }).then(() => {
           // Redireccionar a la página de edición de perfil
           // Reemplaza '/editProfile' con la ruta correcta si es necesario
-          navigate('/talentDetails');
+          navigate("/talentDetails");
         });
       })
       .catch((error) => {
@@ -79,14 +80,13 @@ const EditProfile = () => {
       });
   };
 
-
   const formik = useFormik({
     initialValues: {
       inputGitUp: "",
       inputlinkedin: "",
       knowledge: false,
       profile: "",
-      languages:[],
+      languages: [],
       otherLanguages: "",
     },
     validationSchema,
@@ -103,9 +103,7 @@ const EditProfile = () => {
     { id: "redux", label: "REDUX" },
     { id: "bootstrap", label: "BOOTSTRAP" },
     { id: "axios", label: "AXIOS" },
-    
   ];
-
 
   const languageOptions2 = [
     { id: "Java", label: "JAVA" },
@@ -117,7 +115,6 @@ const EditProfile = () => {
     { id: "StyledComponent", label: "STYLECOMPONENT" },
     { id: "material ui", label: "MATERIAL UI" },
     { id: "axios", label: "AXIOS" },
-    
   ];
 
   const isFormValid =
@@ -127,7 +124,17 @@ const EditProfile = () => {
   return (
     <>
       <div className="editProfile">
+        {/* <div className="editProfile__boton">
+          <button
+            className="editProfile__boton"
+            onClick={() => dispatch(singOutAsync())}
+          >
+            Salir
+          </button>
+        </div> */}
+
         <LayoutTalents />
+
         <section className="editProfile__section">
           <div className="editProfile__container">
             <div className="editProfile__background">
@@ -141,10 +148,7 @@ const EditProfile = () => {
               </div>
               <div className="editProfile__container-infoCustom">
                 <div className="editProfile__container-infoContacts">
-                  <div
-                    className="editProfile__container-imgTalent"
-                   
-                  >
+                  <div className="editProfile__container-imgTalent">
                     <figure className="editProfile__card-figure">
                       <img src={user?.photoURL} alt="imgTalent" />
                     </figure>
@@ -190,89 +194,84 @@ const EditProfile = () => {
                       )}
                   </div>
                   <div className="editProfile__knowLedge">
-                    <div> Conocimientos</div> 
+                    <div> Conocimientos</div>
                     <div className="editProfile__div-know">
-
-                    {/*.......... lenguajes 1 ............*/}
-                    <div className="editProfile__languages">                       
-                      {languageOptions.map((option) => (
-                        <div key={option.id} className="editProfile__language">
-                          <input
-                            type="checkbox"
-                            id={option.id}
-                            name="languages"
-                            value={option.id}
-                            checked={formik.values.languages.includes(
-                              option.id
-                            )}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                          />
-                          <label htmlFor={option.id}>{option.label}</label>
-                        </div>
-                      ))}
-                      
-                    
-                    </div>
-                    {formik.errors.knowledge && formik.touched.knowledge && (
-                      <div className="editProfile__error-message">
-                        {formik.errors.knowledge}
+                      {/*.......... lenguajes 1 ............*/}
+                      <div className="editProfile__languages">
+                        {languageOptions.map((option) => (
+                          <div
+                            key={option.id}
+                            className="editProfile__language"
+                          >
+                            <input
+                              type="checkbox"
+                              id={option.id}
+                              name="languages"
+                              value={option.id}
+                              checked={formik.values.languages.includes(
+                                option.id
+                              )}
+                              onChange={formik.handleChange}
+                              onBlur={formik.handleBlur}
+                            />
+                            <label htmlFor={option.id}>{option.label}</label>
+                          </div>
+                        ))}
                       </div>
-                    )}
-
-                  
-
-                    {/*.......... lenguajes2 ............*/}
-                    <div className="editProfile__languages">                       
-                      {languageOptions2.map((option) => (
-                        <div key={option.id} className="editProfile__language">
-                          <input
-                            type="checkbox"
-                            id={option.id}
-                            name="languages"
-                            value={option.id}
-                            checked={formik.values.languages.includes(
-                              option.id
-                            )}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                          />
-                          <label htmlFor={option.id}>{option.label}</label>
-                        </div>
-                      ))}
-                      
-                      <div className="editProfile__language-other">
-                        <input
-                          type="text"
-                          id="otherLanguages"
-                          name="otherLanguages"
-                          value={formik.values.otherLanguages}
-                          onChange={formik.handleChange}
-                          onBlur={formik.handleBlur}
-                          placeholder="Escribe otro lenguaje"
-                        />
-                      </div>
-                    </div>
-                    {formik.errors.knowledge && formik.touched.knowledge && (
-                      <div className="editProfile__error-message">
-                        {formik.errors.knowledge}
-                      </div>
-                    )}
-
-                    {formik.errors.otherLanguages &&
-                      formik.touched.otherLanguages && (
+                      {formik.errors.knowledge && formik.touched.knowledge && (
                         <div className="editProfile__error-message">
-                          {formik.errors.otherLanguages}
+                          {formik.errors.knowledge}
                         </div>
                       )}
+
+                      {/*.......... lenguajes2 ............*/}
+                      <div className="editProfile__languages">
+                        {languageOptions2.map((option) => (
+                          <div
+                            key={option.id}
+                            className="editProfile__language"
+                          >
+                            <input
+                              type="checkbox"
+                              id={option.id}
+                              name="languages"
+                              value={option.id}
+                              checked={formik.values.languages.includes(
+                                option.id
+                              )}
+                              onChange={formik.handleChange}
+                              onBlur={formik.handleBlur}
+                            />
+                            <label htmlFor={option.id}>{option.label}</label>
+                          </div>
+                        ))}
+
+                        <div className="editProfile__language-other">
+                          <input
+                            type="text"
+                            id="otherLanguages"
+                            name="otherLanguages"
+                            value={formik.values.otherLanguages}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            placeholder="Escribe otro lenguaje"
+                          />
+                        </div>
                       </div>
+                      {formik.errors.knowledge && formik.touched.knowledge && (
+                        <div className="editProfile__error-message">
+                          {formik.errors.knowledge}
+                        </div>
+                      )}
 
+                      {formik.errors.otherLanguages &&
+                        formik.touched.otherLanguages && (
+                          <div className="editProfile__error-message">
+                            {formik.errors.otherLanguages}
+                          </div>
+                        )}
+                    </div>
                   </div>
-
-
-                  
-
-
 
                   <div className="editProfile__container-custom">
                     <label

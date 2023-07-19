@@ -440,6 +440,10 @@
     &__button-costumer {
       width: 100%;
     }
+    &__footer{
+      display: flex;
+      margin-top:350px;
+    }
   }
 }
 
@@ -472,5 +476,11 @@
     &__button-costumer {
       width: 100%;
     }
+
+    &__footer{
+      margin-top: 404px;
+    }
+
+    
   }
 }

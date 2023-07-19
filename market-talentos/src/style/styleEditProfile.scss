@@ -7,6 +7,11 @@
   flex-direction: column;
   margin-bottom: 10px;
 
+  // &__boton{
+  //   background-color: red;
+  //   width: 300px;
+  // }
+
   &__section {
     @include desk {
       width: 100%;
