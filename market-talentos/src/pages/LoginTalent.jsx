@@ -1,6 +1,6 @@
 import React from "react";
 import "../style/styleLoginTalent.scss";
-import logoBootcamp from "../assets/makaia.png";
+import logo from "../assets/Logo.png";
 import useOnClick from "../funtions/useOnClick";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -9,10 +9,12 @@ import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import { loginProvider } from "../services/dates";
 import {
-  actionLoginGoogleOrFacebook,
+  // actionLoginGoogleOrFacebook,
   actionLoginAsync,
-} from "../redux/actions/talentsActions";
+} from "../redux/actions/usersActions";
 import { useNavigate } from "react-router";
+import LayoutLogin from "../components/layout/LayoutLogin";
+import Footer from "../components/footer/Footer";
 
 const schema = yup.object({
   email: yup
@@ -46,7 +48,7 @@ const LoginTalent = () => {
     console.log("este es el error: ", error);
 
     if (error) {
-      Swal.fire("Oops!", `Ha ocurrido un error: ${errorMessage}`, "error");
+      Swal.fire("Oops!", `Ha ocurrido un error`, "error");
     } else {
       Swal.fire(" Good job!", "se has iniciado exitosamente!", "success").then(
         () => {
@@ -65,15 +67,17 @@ const LoginTalent = () => {
   console.log(error);
 
   const handleLoginGoogleOrFacebook = (provider) => {
-    dispatch(actionLoginGoogleOrFacebook(provider));
+    // dispatch(actionLoginGoogleOrFacebook(provider));
   };
 
   return (
     <>
-      <form className="loginTalent" onSubmit={handleSubmit(onSubmit)}>
+      <section className="loginTalent">
+      <LayoutLogin/>
+      <form className="loginTalent__form" onSubmit={handleSubmit(onSubmit)}>
         <div className="loginTalent__container-logo">
           <figure className="loginTalent__figure-logo">
-            <img src={logoBootcamp} alt="l" />
+            <img src={logo} alt="logo" />
           </figure>
           <div className="loginTalent__container-validation">
             <div className="loginTalent__container-title">
@@ -117,7 +121,7 @@ const LoginTalent = () => {
               />
               <label
                 className="loginTalent__label-remember"
-                for="CheckboxRemember"
+                
               >
                 Recuérdame
               </label>
@@ -127,7 +131,7 @@ const LoginTalent = () => {
                 type="submit"
                 id="btnCheIn"
                 value="checkIn"
-                className="loginTalent__input-checkIn"
+                className="loginTalent__button-checkIn"
                 onClick={() => handleClick("checkIn", "")}
               >
                 <strong>Ingresar</strong>
@@ -151,20 +155,19 @@ const LoginTalent = () => {
             </div>
             <div className="loginTalent__provider">
               {loginProvider.map((provider, index) => (
-                <figure className="loginTalent__figure-provider">
-                  <img
-                    key={index}
+                <figure key={index} className="loginTalent__figure-provider">
+                  <img                    
                     src={provider.image}
                     alt={provider.name}
                     className="loginTalent__icon-provider"
                     onClick={() => {
-                      handleLoginGoogleOrFacebook(provider.provider);
+                      // handleLoginGoogleOrFacebook(provider.provider);
                     }}
                   />
                 </figure>
               ))}
             </div>
-            <div className="loginTalent__container-">
+            <div className="loginTalent__container-copyRight">
               <label className="loginTalent__label-footer">
                 © 2023 - Bootcamp Makaia front end 4
               </label>
@@ -172,6 +175,8 @@ const LoginTalent = () => {
           </div>
         </div>
       </form>
+      <Footer/>
+      </section>
     </>
   );
 };

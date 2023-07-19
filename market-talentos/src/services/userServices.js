@@ -2,35 +2,18 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import {
   collection,
   addDoc,
-  doc,
-  updateDoc,
   query,
   where,
   getDocs,
-  getDoc,
+  setDoc,
+  doc,
 } from "firebase/firestore";
-import { auth, firestore } from "../firebase/firebaseConfig";
-
-const usersCollections = [
-  {
-    id: 1,
-    name: "talents",
-  },
-  {
-    id: 2,
-    name: "admin",
-  },
-  {
-    id: 3,
-    name: "customer",
-  },
-];
+import { auth, firestore, dataBase } from "../firebase/firebaseConfig";
+import { collections } from "./dates";
 
 export const userRegister = async (user) => {
   console.log(user);
-  const nameCollection = usersCollections.find(
-    (item) => item.name === user.type
-  ).name;
+  const nameCollection = collections.usuarios;
   const referenceCollection = collection(firestore, nameCollection);
   try {
     const response = await createUserWithEmailAndPassword(
@@ -43,10 +26,14 @@ export const userRegister = async (user) => {
       displayName: user.displayName,
       photoURL: user.photoURL,
     });
-    const newUserReference = await addDoc(referenceCollection, {
+    const collectionName = 'usuarios';
+    const usuarioColletion = collection(dataBase, collectionName);
+    const docuRef= doc(dataBase,`usuarios/${response.user.uid}`)
+    const newUserReference = await setDoc(docuRef, {
       ...user,
       accessToken: response.user.accessToken,
       uid: response.user.uid,
+      validateUser: false
     });
     const newUser = {
       ...user,
@@ -62,12 +49,16 @@ export const userRegister = async (user) => {
   }
 };
 
-export const completeTalentData = async ({ otherTalentData, id, type }) => {
+export const completeTalentData = async (newTalent, type) => {
   try {
-    if (type === "talents") {
-      const talentReference = doc(firestore, type, id);
+    if (type === collections.talentos) {
+      const talentReference = collection(firestore, type);
 
-      await updateDoc(talentReference, { ...otherTalentData });
+      const talentRef = await addDoc(talentReference, newTalent);
+      return {
+        idTalent: talentRef.id,
+        ...newTalent,
+      };
     } else {
       return {};
     }
@@ -82,20 +73,30 @@ export const keepPersistentUserData = async (token) => {
 
   try {
     const user = [];
-    for (const element of usersCollections) {
-      const referenceCollection = collection(firestore, element.name);
-      const q = query(referenceCollection, where("accessToken", "==", token));
+    const referenceCollection = collection(firestore, collections.usuarios);
+    const q = query(referenceCollection, where("accessToken", "==", token));
 
-        const querySnapshot = await getDocs(q);
-        console.log(querySnapshot);
-        querySnapshot.forEach((doc) => {
-          user.push({
-            id: doc.id,
-            ...doc.data(),
-          });
-        });
-        console.log(user);
-        return user[0];
+    const querySnapshot = await getDocs(q);
+    console.log(querySnapshot);
+    querySnapshot.forEach((doc) => {
+      user.push({
+        id: doc.id,
+        ...doc.data(),
+      });
+    });
+    // for (const element of usersCollections) {
+    //   const referenceCollection = collection(firestore, element.name);
+    //   const q = query(referenceCollection, where("accessToken", "==", token));
+
+    //     const querySnapshot = await getDocs(q);
+    //     console.log(querySnapshot);
+    //     querySnapshot.forEach((doc) => {
+    //       user.push({
+    //         id: doc.id,
+    //         ...doc.data(),
+    //       });
+    //     });
+
     //   const docSnap = await getDoc(q);
     //   if (docSnap.exists()) {
     //     console.log(docSnap.data());
@@ -104,7 +105,9 @@ export const keepPersistentUserData = async (token) => {
     //       ...docSnap.data(),
     //     };
     //   }
-    }
+    // }
+    console.log(user);
+    return user[0];
   } catch (error) {
     console.log(error);
     return {};
