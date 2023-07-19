@@ -46,7 +46,7 @@ const LoginTalent = () => {
     console.log("este es el error: ", error);
 
     if (error) {
-      Swal.fire("Oops!", `Ha ocurrido un error: ${errorMessage}`, "error");
+      Swal.fire("Oops!", `Ha ocurrido un error`, "error");
     } else {
       Swal.fire(" Good job!", "se has iniciado exitosamente!", "success").then(
         () => {
