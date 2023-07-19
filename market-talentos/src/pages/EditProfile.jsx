@@ -4,12 +4,14 @@ import "../style/styleEditProfile.scss";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import imageFond from "../assets/EditProfileFondo.jpg";
-import NavbarTalentos from "../components/navbarTalentos/NavbarTalentos";
 // import Footer from "../components/footer/Footer";
-import { completeProfileAsync } from "../redux/actions/usersActions";
-import Swal from 'sweetalert2';
+import {
+  completeProfileAsync,
+  singOutAsync,
+} from "../redux/actions/usersActions";
+import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import { languageOptions } from "../services/dates";
+import LayoutTalents from "../components/layout/LayoutTalents"; import { languageOptions } from "../services/dates";
 
 
 const EditProfile = () => {
@@ -18,7 +20,6 @@ const EditProfile = () => {
 
   const { user } = useSelector((state) => state.user);
   console.log(user);
-  
 
   const validationSchema = Yup.object().shape({
     github: Yup.string()
@@ -30,7 +31,7 @@ const EditProfile = () => {
       )
       .required("Este campo es obligatorio"),
     profile: Yup.string()
-      .max(160, "La presentación no debe exceder las 160 palabras.")
+      .max(160, "La presentación no debe exceder las 400 palabras.")
       .required("Este campo es obligatorio"),
     cv: Yup.mixed()
       .test("fileType", "Solo se permiten archivos PDF", (value) => {
@@ -71,10 +72,10 @@ const EditProfile = () => {
     )
       .then(() => {
         Swal.fire({
-          icon: 'success',
-          title: 'Información guardada exitosamente',
+          icon: "success",
+          title: "Información guardada exitosamente",
           showConfirmButton: false,
-          timer: 1500
+          timer: 1500,
         }).then(() => {
           // Redireccionar a la página de edición de perfil
           // Reemplaza '/editProfile' con la ruta correcta si es necesario
@@ -87,21 +88,20 @@ const EditProfile = () => {
       });
   };
 
-
   const formik = useFormik({
     initialValues: {
       github: "",
       linkedIn: "",
       // knowledge: false,
       profile: "",
-      stacks:[],
+      stacks: [],
       otherLanguages: "",
     },
     validationSchema,
     onSubmit: handleSubmit,
   });
 
-  
+
 
   const isFormValid =
     Object.keys(formik.errors).length === 0 &&
@@ -110,7 +110,17 @@ const EditProfile = () => {
   return (
     <>
       <div className="editProfile">
-        <NavbarTalentos />
+        {/* <div className="editProfile__boton">
+          <button
+            className="editProfile__boton"
+            onClick={() => dispatch(singOutAsync())}
+          >
+            Salir
+          </button>
+        </div> */}
+
+        <LayoutTalents />
+
         <section className="editProfile__section">
           <div className="editProfile__container">
             <div className="editProfile__background">
@@ -124,10 +134,7 @@ const EditProfile = () => {
               </div>
               <div className="editProfile__container-infoCustom">
                 <div className="editProfile__container-infoContacts">
-                  <div
-                    className="editProfile__container-imgTalent"
-                   
-                  >
+                  <div className="editProfile__container-imgTalent">
                     <figure className="editProfile__card-figure">
                       <img src={user?.photoURL} alt="imgTalent" />
                     </figure>
@@ -217,6 +224,8 @@ const EditProfile = () => {
                         </div>
                       )}
                   </div>
+
+
                   <div className="editProfile__container-custom">
                     <label
                       htmlFor="profile"
@@ -298,9 +307,9 @@ const EditProfile = () => {
               </div>
             </section>
           </div>
-        </section>
+        </section >
         {/* <Footer /> */}
-      </div>
+      </div >
     </>
   );
 };

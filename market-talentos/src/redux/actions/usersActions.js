@@ -67,7 +67,6 @@ export const getLoggedUser = (token) => {
   }
 }
 
-
 // -------------- función para obtener un usuario logueado
 export const singInActionSync = (user, error) => {
 return {
@@ -78,7 +77,6 @@ return {
   },
 };
 };
-
 
 // funcion asyncrona para desloguearse
 export const singOutAsync = () => {
@@ -99,7 +97,6 @@ const singOutSync = () => {
       type: userTypes.USER_LOGOUT
   }
 }
-
 
 // funcion asyncrona para registrar un usuario desde el formulario formRegisterTalent
 
@@ -131,7 +128,6 @@ export const registerActionSync = (user, error) => {
     }
 }
 
-
 // funcion asyncrona para completar el perfil de un usuario desde el formulario editProfile
 export const completeProfileAsync = (newTalent, type) => {
   return async (dispatch) => {
@@ -159,7 +155,6 @@ const completeProfileSync = (otherDataUser, error) => {
       },
     };
 }
-
 
 // función ingresar con google o facebook
 // export const actionLoginGoogleOrFacebook = (provider) => {
@@ -191,7 +186,6 @@ const completeProfileSync = (otherDataUser, error) => {
 //       });
 //   };
 // };
-
 
 export const saveTalentId = (id) => {
   return {

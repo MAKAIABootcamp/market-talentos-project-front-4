@@ -11,3 +11,4 @@ export const userTypes = {
   USER_LOGOUT: "USER_LOGOUT",
   USER_COMPLETETALENTS: "USER_COMPLETETALENTS",
 };
+

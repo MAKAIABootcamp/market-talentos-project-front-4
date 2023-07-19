@@ -6,6 +6,7 @@ import facebook from "../../assets/facebook.png";
 import twiter from "../../assets/twiter.png";
 import whatsapp from "../../assets/whatsap.png";
 import linkedin from "../../assets/linkend.png";
+import ImagEmail from "../../assets/email.png"
 
 const Footer = () => {
 
@@ -114,7 +115,7 @@ const Footer = () => {
           <span className="footer__span-title">Suscríbete a nuestro boletín</span>
           <span className="footer__span-subTitle">Para anuncios de productos e información exclusiva</span>
           <div className="footer__container-subscription">
-            <img src="" alt="mail" />
+            <img src={ImagEmail} alt="mail" />
             <span>Ingrese su correo electrónico</span>
             <button>suscribir</button>
           </div>

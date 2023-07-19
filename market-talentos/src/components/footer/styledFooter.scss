@@ -74,12 +74,14 @@
 
   &__infoSubscription {
     @include desk {
-   
     display: flex;
     flex-direction: column;
     width: 350px;
     margin: 0px 15px;
     gap: 5px
+    }
+    img{
+      margin-left: 10px;
     }
   }
   &__span-title {
@@ -102,7 +104,8 @@
     justify-content: space-between;
     }
     span{
-      margin-right: 30px;
+      margin-left: 6px;
+      margin-right: 37px;
       @include text ($fontRoboto, $w400, $s12, $white)
     }
     button{

@@ -5,22 +5,17 @@ import fileUpLoad from "../services/fileUpload";
 import "../style/styleFormRegisTalent.scss";
 import fondoImg from "../assets/fondoregist.jpg";
 import logoUser from "../assets/icon/logoUser.png";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { registerActionAsync } from "../redux/actions/usersActions";
-import NavbarTalentos from "../components/navbarTalentos/NavbarTalentos";
+import LayoutTalents from "../components/layout/LayoutTalents";
+import Footer from "../components/footer/Footer";
 import { TiposDeUsuarios, roles } from "../services/dates";
 
-
-
-
-
 const FormRegisTalent = () => {
- const dispatch = useDispatch();
- const navigate = useNavigate();
-
- 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -54,8 +49,7 @@ const FormRegisTalent = () => {
     }),
 
     onSubmit: async (values) => {
-
-          //  console.log(values);
+      //  console.log(values);
 
       // Enviar la imagen a Cloudinary utilizando fileUpLoad
       const avatar = await fileUpLoad(values.photoURL[0]);
@@ -68,27 +62,27 @@ const FormRegisTalent = () => {
       };
       console.log("New User:", newUser);
       Swal.fire({
-        icon: 'success',
-        title: 'Usuario creado exitosamente',
+        icon: "success",
+        title: "Usuario creado exitosamente",
         showConfirmButton: false,
-        timer: 1500
-      }).then(() => {
-        navigate('/editProfile');
-        
-      }).catch((error) => {
-        // Manejar errores en caso de que ocurra un problema durante el registro del usuario
-        console.log(error);
-      });
+        timer: 1500,
+      })
+        .then(() => {
+          navigate("/editProfile");
+        })
+        .catch((error) => {
+          // Manejar errores en caso de que ocurra un problema durante el registro del usuario
+          console.log(error);
+        });
       // dispatch(registerActionAsync(newUser));
       // dispatch(actionAddTalentsAsync(newUser)); // Agregar esta línea para enviar los datos a Firebase
       dispatch(registerActionAsync(newUser));
     },
-    
   });
 
   return (
     <section className="register">
-      <NavbarTalentos />
+      <LayoutTalents />
       <div className="register__contenedorForm">
         <div className="register__container">
           <figure className="register__fondo-figure">
@@ -178,6 +172,15 @@ const FormRegisTalent = () => {
                   {formik.touched.cohorte && formik.errors.cohorte && (
                     <span>{formik.errors.cohorte}</span>
                   )}
+                  <input
+                    name="cohorte"
+                    placeholder="Cohorte"
+                    value={formik.values.cohorte}
+                    onChange={formik.handleChange}
+                  />
+                  {formik.touched.cohorte && formik.errors.cohorte && (
+                    <span>{formik.errors.cohorte}</span>
+                  )}
 
                   {/* <input
                     name="englishLevel"
@@ -190,6 +193,15 @@ const FormRegisTalent = () => {
                       <span>{formik.errors.englishLevel}</span>
                     )} */}
 
+                  <input
+                    name="email"
+                    placeholder="Correo electrónico"
+                    value={formik.values.email}
+                    onChange={formik.handleChange}
+                  />
+                  {formik.touched.email && formik.errors.email && (
+                    <span>{formik.errors.email}</span>
+                  )}
                   <input
                     name="email"
                     placeholder="Correo electrónico"
@@ -256,9 +268,11 @@ const FormRegisTalent = () => {
           </div>
         </div>
       </div>
+     
+        <Footer />
+      
     </section>
   );
 };
-
 
 export default FormRegisTalent;
