@@ -23,8 +23,8 @@ import EditProfile from "../pages/EditProfile";
 import TalentOfferJob from "../pages/TalentOfferJob";
 import JobApplicatioTalent from "../pages/JobApplicatioTalent";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../firebase/firebaseConfig";
-import { getLoggedUser } from "../redux/actions/usersActions";
+import { auth, dataBase } from "../firebase/firebaseConfig";
+import { getLoggedUser,  singInActionSync } from "../redux/actions/usersActions";
 import PublicRouter from "./PublicRouter";
 import PrivateRouter from "./PrivateRouter";
 import Spinner from 'react-bootstrap/Spinner';
@@ -32,6 +32,7 @@ import Spinner from 'react-bootstrap/Spinner';
 // import HomeAdmin from '../pages/HomeAdmin';
 import DashboardHome from "../pages/DashboardHome";
 import OffertVacants from "../pages/OffertVacants";
+import { doc, getDoc } from "@firebase/firestore";
 
 const AppRouter = () => {
   // const [loggedUser, setLoggedUser] = useState(null);
@@ -39,27 +40,70 @@ const AppRouter = () => {
   const [isLogged, setIsLogged] = useState(null);
   const { user: loggedUser} = useSelector((state) => state.user);
   const [loading, setLoading] = useState(true);
+console.log(loggedUser);
+
+// Funcion para datos del usuario y persistencia 
+const traerInfo = async (uid, accessToken) => {
+  const docRef = doc(dataBase, `usuarios/${uid}`);
+  const docu = await getDoc(docRef);
+  const dataFinal = docu.data();
+  console.log(uid);
+  console.log(dataFinal);
+  dispatch(
+    singInActionSync({
+     
+      firstName: dataFinal.firstName,
+      rol: dataFinal.rol,
+      email: dataFinal.email,
+      accessToken,
+      phoneNumber: dataFinal.phoneNumber,
+      phothoURL: dataFinal.phothoURL,
+      lastName:dataFinal.lastName,
+      uid,
+      error: false,
+    })
+  );
+};
 
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user?.uid) {
+        console.log(user.uid);
+        console.log(loggedUser);
         setIsLogged(true);
-        console.log("Logueado", user);
-        if (!loggedUser) {
-          dispatch(getLoggedUser(user?.accessToken));
-          // user.getIdToken().then((token) => {
-          //   dispatch(getLoggedUser(token));
-          // });
-        }
+        
+        // if (!loggedUser) {
+        //   dispatch(getLoggedUser(user?.accessToken));
+        //   console.log(loggedUser);
+        //   // user.getIdToken().then((token) => {
+        //   //   dispatch(getLoggedUser(token));
+        //   // });
+        // }
       } else {
         setIsLogged(false);
-        console.log("No logueado");
       }
-      setLoading(false);
-    });
-  }, [dispatch, loggedUser]);
-
+        setLoading(false);
+        if (user?.auth.currentUser) {
+          if (!loggedUser) {
+            const {
+              displayName,
+              firstName,
+              email,
+              phoneNumber,
+              lastName,
+              accessToken,
+              phothoURL,
+              uid,
+            } = user.auth.currentUser;
+  
+            traerInfo(uid, accessToken);
+            console.log(displayName, email, phoneNumber,lastName, phothoURL,  firstName,);
+            console.log('usuario logueado',loggedUser);
+          }
+        }
+      });
+  }, [setIsLogged, loading]);
   if (loading) {
     return <Spinner animation="border" />;
   }
@@ -74,7 +118,7 @@ const AppRouter = () => {
             <Route element={<PublicRouter isAutentication={isLogged} />}>
               <Route path="login" element={<LoginTalent />} />
               <Route path="formRegisTalent" element={<FormRegisTalent />} />
-              <Route path="loginAdmin" element={<LoginAdmin />} />
+              {/* <Route path="loginAdmin" element={<LoginAdmin />} /> */}
               <Route path="blog" element={<Blog />} />
               <Route path="OfferVacants" element={<OffertVacants />} />
 

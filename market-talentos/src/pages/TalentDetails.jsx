@@ -3,12 +3,18 @@ import '../style/styleTalentDetails.scss';
 import CardTalent from '../components/cardTalent/CardTalent';
 import LayoutTalents from '../components/layout/LayoutTalents';
 import Footer from '../components/footer/Footer';
+import { useSelector } from 'react-redux';
 
 
 const TalentDetails = () => {
+  const userStore = useSelector((store) => store.user.user);
+  console.log(userStore);
+  
   return (
     <>
       <LayoutTalents />
+    <h1>  aqui{userStore?userStore.email:""} 111 </h1>
+    <h1>  aqui{userStore?userStore.lastName:""} 111 </h1>
       <section className='talentDetails'>
         <div className='talentDetails__card'>
           <CardTalent />

@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { registerActionAsync } from "../redux/actions/usersActions";
 import LayoutTalents from "../components/layout/LayoutTalents";
 import Footer from "../components/footer/Footer";
+import { TiposDeUsuarios, roles } from "../services/dates";
 
 const FormRegisTalent = () => {
   const dispatch = useDispatch();
@@ -22,10 +23,10 @@ const FormRegisTalent = () => {
       lastName: "",
       rol: "",
       cohorte: "",
-      englishLevel: "",
+      // englishLevel: "",
       email: "",
       phone: "",
-      user: "",
+      // user: "",
       password: "",
       photoURL: null,
     },
@@ -34,12 +35,12 @@ const FormRegisTalent = () => {
       lastName: Yup.string().required("Los apellidos son requeridos"),
       rol: Yup.string().required("Selecciona un tipo de talento"),
       cohorte: Yup.string().required("La cohorte es requerida"),
-      englishLevel: Yup.string().required("El nivel de inglés es requerido"),
+      // englishLevel: Yup.string().required("El nivel de inglés es requerido"),
       email: Yup.string()
         .email("Correo electrónico inválido")
         .required("El correo electrónico es requerido"),
       phone: Yup.string().required("El número de celular es requerido"),
-      user: Yup.string().required("El user es requerido"),
+      // user: Yup.string().required("El user es requerido"),
       password: Yup.string()
         .required("La contraseña es requerida")
         .min(3, "La contraseña debe contener al menos 3 caracteres.")
@@ -57,7 +58,7 @@ const FormRegisTalent = () => {
         ...values,
         photoURL: avatar,
         displayName: `${values.firstName} ${values.lastName}`,
-        type: "talents",
+        type: TiposDeUsuarios.TALENTO
       };
       console.log("New User:", newUser);
       Swal.fire({
@@ -80,7 +81,6 @@ const FormRegisTalent = () => {
   });
 
   return (
-    
     <section className="register">
       <LayoutTalents />
       <div className="register__contenedorForm">
@@ -155,9 +155,9 @@ const FormRegisTalent = () => {
                     onChange={formik.handleChange}
                   >
                     <option value="">Selecciona una opción</option>
-                    <option value="FrontEnd">FrontEnd</option>
-                    <option value="BackEnd">BackEnd</option>
-                    <option value="FullStack">FullStack</option>
+                    {roles.map((rol) => (
+                      <option key={rol.id} value={rol.name}>{rol.name}</option>
+                    ))}                    
                   </select>
                   {formik.touched.rol && formik.errors.rol && (
                     <span>{formik.errors.rol}</span>
@@ -172,8 +172,17 @@ const FormRegisTalent = () => {
                   {formik.touched.cohorte && formik.errors.cohorte && (
                     <span>{formik.errors.cohorte}</span>
                   )}
-
                   <input
+                    name="cohorte"
+                    placeholder="Cohorte"
+                    value={formik.values.cohorte}
+                    onChange={formik.handleChange}
+                  />
+                  {formik.touched.cohorte && formik.errors.cohorte && (
+                    <span>{formik.errors.cohorte}</span>
+                  )}
+
+                  {/* <input
                     name="englishLevel"
                     placeholder="Nivel de inglés"
                     value={formik.values.englishLevel}
@@ -182,8 +191,17 @@ const FormRegisTalent = () => {
                   {formik.touched.englishLevel &&
                     formik.errors.englishLevel && (
                       <span>{formik.errors.englishLevel}</span>
-                    )}
+                    )} */}
 
+                  <input
+                    name="email"
+                    placeholder="Correo electrónico"
+                    value={formik.values.email}
+                    onChange={formik.handleChange}
+                  />
+                  {formik.touched.email && formik.errors.email && (
+                    <span>{formik.errors.email}</span>
+                  )}
                   <input
                     name="email"
                     placeholder="Correo electrónico"
@@ -219,7 +237,7 @@ const FormRegisTalent = () => {
                   </div>
 
                   <div className="register__ussers">
-                    <input
+                    {/* <input
                       name="user"
                       placeholder="correo electrónico"
                       value={formik.values.user}
@@ -227,7 +245,7 @@ const FormRegisTalent = () => {
                     />
                     {formik.touched.user && formik.errors.user && (
                       <span>{formik.errors.user}</span>
-                    )}
+                    )} */}
 
                     <input
                       name="password"

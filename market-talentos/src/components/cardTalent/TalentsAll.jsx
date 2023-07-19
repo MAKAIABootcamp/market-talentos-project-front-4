@@ -16,6 +16,7 @@ const TalentsAll = () => {
     }, [dispatch]);
 
     const handleNavigate = (id) => {
+        // hacer validacion de logueado
         dispatch(saveTalentId(id));
         navigate(`/talentDetails/${id}`);
     }

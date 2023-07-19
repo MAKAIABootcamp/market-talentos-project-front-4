@@ -12,14 +12,15 @@ export const actionLoginAsync = ({ email, password }) => {
   return (dispatch) => {
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
-        const { displayName, accessToken, photoURL, phoneNumber } =
+        const { displayName, accessToken, phothoURL, phoneNumber,  firstName, } =
           user.auth.currentUser;
         dispatch(
           singInActionSync({
             email,
+            firstName,
             name: displayName,
             accessToken,
-            photoURL,
+            phothoURL,
             phoneNumber,
             error: false,
           })
@@ -66,7 +67,6 @@ export const getLoggedUser = (token) => {
   }
 }
 
-
 // -------------- función para obtener un usuario logueado
 export const singInActionSync = (user, error) => {
 return {
@@ -77,7 +77,6 @@ return {
   },
 };
 };
-
 
 // funcion asyncrona para desloguearse
 export const singOutAsync = () => {
@@ -98,7 +97,6 @@ const singOutSync = () => {
       type: userTypes.USER_LOGOUT
   }
 }
-
 
 // funcion asyncrona para registrar un usuario desde el formulario formRegisterTalent
 
@@ -130,13 +128,12 @@ export const registerActionSync = (user, error) => {
     }
 }
 
-
 // funcion asyncrona para completar el perfil de un usuario desde el formulario editProfile
-export const completeProfileAsync = ({ otherTalentData, id, type }) => {
+export const completeProfileAsync = (newTalent, type) => {
   return async (dispatch) => {
     try {
-        await completeTalentData({ otherTalentData, id, type });
-        dispatch(completeProfileSync({...otherTalentData}, false));
+        const talent = await completeTalentData(newTalent, type);
+        dispatch(completeProfileSync(talent, false));
     } catch (error) {
       console.log(error);
       const showError = {
@@ -158,7 +155,6 @@ const completeProfileSync = (otherDataUser, error) => {
       },
     };
 }
-
 
 // función ingresar con google o facebook
 // export const actionLoginGoogleOrFacebook = (provider) => {
@@ -190,7 +186,6 @@ const completeProfileSync = (otherDataUser, error) => {
 //       });
 //   };
 // };
-
 
 export const saveTalentId = (id) => {
   return {
