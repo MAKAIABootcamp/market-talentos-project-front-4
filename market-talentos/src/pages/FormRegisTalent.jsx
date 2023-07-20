@@ -163,7 +163,7 @@ const FormRegisTalent = () => {
                     <span>{formik.errors.rol}</span>
                   )}
 
-                  <input
+                  {/* <input
                     name="cohorte"
                     placeholder="Cohorte"
                     value={formik.values.cohorte}
@@ -171,16 +171,8 @@ const FormRegisTalent = () => {
                   />
                   {formik.touched.cohorte && formik.errors.cohorte && (
                     <span>{formik.errors.cohorte}</span>
-                  )}
-                  <input
-                    name="cohorte"
-                    placeholder="Cohorte"
-                    value={formik.values.cohorte}
-                    onChange={formik.handleChange}
-                  />
-                  {formik.touched.cohorte && formik.errors.cohorte && (
-                    <span>{formik.errors.cohorte}</span>
-                  )}
+                  )} */}
+                  
 
                   {/* <input
                     name="englishLevel"
@@ -202,15 +194,7 @@ const FormRegisTalent = () => {
                   {formik.touched.email && formik.errors.email && (
                     <span>{formik.errors.email}</span>
                   )}
-                  <input
-                    name="email"
-                    placeholder="Correo electrónico"
-                    value={formik.values.email}
-                    onChange={formik.handleChange}
-                  />
-                  {formik.touched.email && formik.errors.email && (
-                    <span>{formik.errors.email}</span>
-                  )}
+                  
 
                   <input
                     name="phone"

@@ -79,7 +79,8 @@ const EditProfile = () => {
         }).then(() => {
           // Redireccionar a la página de edición de perfil
           // Reemplaza '/editProfile' con la ruta correcta si es necesario
-          navigate(`/talentDetails/${user.id}`);
+         
+          navigate(`/talentDetails`);
         });
       })
       .catch((error) => {

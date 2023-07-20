@@ -5,7 +5,7 @@ import Administrator from "../components/adminLayout/Administrator";
 import Customer from "../pages/Customer";
 import Dashboard from "../pages/Dashboard";
 import Home from "../pages/Home";
-import LoginAdmin from "../pages/LoginAdmin";
+// import LoginAdmin from "../pages/LoginAdmin";
 import LoginTalent from "../pages/LoginTalent";
 import Portfolio from "../pages/Portfolio";
 import Talent from "../pages/Talent";
@@ -20,6 +20,7 @@ import TalentDetails from "../pages/TalentDetails";
 import HomeEmpresas from "../pages/HomeEmpresas";
 import SearchCompany from "../pages/SearchCompany";
 import EditProfile from "../pages/EditProfile";
+import FormStudies from "../pages/FormStudies";
 import TalentOfferJob from "../pages/TalentOfferJob";
 import JobApplicatioTalent from "../pages/JobApplicatioTalent";
 import { onAuthStateChanged } from "firebase/auth";
@@ -33,6 +34,8 @@ import Spinner from 'react-bootstrap/Spinner';
 import DashboardHome from "../pages/DashboardHome";
 import OffertVacants from "../pages/OffertVacants";
 import { doc, getDoc } from "@firebase/firestore";
+// import Login from "../pages/Login";
+// import FormRegister from "../pages/FormRegister";
 
 const AppRouter = () => {
   // const [loggedUser, setLoggedUser] = useState(null);
@@ -53,7 +56,7 @@ const traerInfo = async (uid, accessToken) => {
     singInActionSync({
      
       firstName: dataFinal.firstName,
-      rol: dataFinal.rol,
+      typeUser: dataFinal. typeUser,
       email: dataFinal.email,
       accessToken,
       phoneNumber: dataFinal.phoneNumber,
@@ -89,9 +92,9 @@ const traerInfo = async (uid, accessToken) => {
             const {
               displayName,
               firstName,
+              lastName,
               email,
               phoneNumber,
-              lastName,
               accessToken,
               phothoURL,
               uid,
@@ -115,19 +118,22 @@ const traerInfo = async (uid, accessToken) => {
         <Routes>
           <Route path="/">
             <Route index element={<Home />} />
+            <Route path="formStudies" element={< FormStudies/>} />
             <Route element={<PublicRouter isAutentication={isLogged} />}>
               <Route path="login" element={<LoginTalent />} />
+              {/* <Route path="login" element={<Login/>} /> */}
               <Route path="formRegisTalent" element={<FormRegisTalent />} />
+              {/* <Route path="formRegister" element={< FormRegister/>} /> */}
               {/* <Route path="loginAdmin" element={<LoginAdmin />} /> */}
               <Route path="blog" element={<Blog />} />
               <Route path="OfferVacants" element={<OffertVacants />} />
-
             </Route>
             <Route element={<PrivateRouter isAutentication={isLogged} />}>
               <Route path="talents" element={<Talent />}></Route>
               <Route path="searchTalent" element={<SearchTalent />} />
               <Route path="talentDetails" element={<TalentDetails />} />
               <Route path="editProfile" element={<EditProfile />} />
+              {/* <Route path="editProfile" element={< FormStudies/>} /> */}
               <Route path="portfolio" element={<Portfolio />} />
               <Route path="curriculum" element={<Curriculum />} />
               <Route path="jobTalent" element={<JobApplicatioTalent />} />
