@@ -32,6 +32,8 @@ import FormRegisAdmin from '../pages/FormRegisAdmin';
 import HomeAdmin from '../pages/HomeAdmin';
 import DashboardHome from "../pages/DashboardHome";
 import OffertVacants from "../pages/OffertVacants";
+import TalentDetailsAdmin from "../pages/TalentDetailsAdmin";
+import OfertsAdmin from "../pages/OfertsAdmin";
 
 const AppRouter = () => {
   // const [loggedUser, setLoggedUser] = useState(null);
@@ -98,6 +100,8 @@ const AppRouter = () => {
               <Route path="formRegisCustom" element={<FormRegisCustom />} />
               <Route path="profileCustomer" element={<ProfileCustomer />} />
               <Route path="jobOffers" element={<JobOffers />} />
+              <Route path="talentos" element={<TalentDetailsAdmin />} />
+              <Route path="publicarofertas" element={<OfertsAdmin />} />
             </Route>
           </Route>
         </Routes>

@@ -13,6 +13,7 @@ import {
   actionLoginAsync,
 } from "../redux/actions/talentsActions";
 import { useNavigate } from "react-router";
+import { ErrorMessage } from "formik";
 
 const schema = yup.object({
   email: yup
@@ -46,7 +47,7 @@ const LoginTalent = () => {
     console.log("este es el error: ", error);
 
     if (error) {
-      Swal.fire("Oops!", `Ha ocurrido un error: ${errorMessage}`, "error");
+      Swal.fire("Oops!", `Ha ocurrido un error: ${ErrorMessage}`, "error");
     } else {
       Swal.fire(" Good job!", "se has iniciado exitosamente!", "success").then(
         () => {

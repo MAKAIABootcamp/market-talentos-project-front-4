@@ -1,124 +1,31 @@
 @import "../../style/mixin.scss";
 
-.headerAdmin {
-    display: flex;
-    background-color: $softblue;
-    height: 100px;
-    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 100% 100%, 40% 90%);
-    height: 150px;
-
-    &__logout {
+.main {
+    &__containerDasboard {
         display: flex;
-        margin-left: 370px;
-        align-items: center;
-        color: white;
-
-        .wordLogout {
-            font-family: 'montserrat', sans-serif;
-            font-size: 25px;
-            margin-left: 10px;
-        }
-
-        .logoLogout {
-            width: 50px;
-            filter: invert(1);
-        }
+        gap: 40px;
+        margin-top: 30px;
+        margin-left: 120px;
     }
-
-    &__title {
-        margin-left: 700px;
+    &__containerToday {
+        background-color: red;
+        width: 700px;
+        height: 200px;
+    }
+    &__containerBalance {
+        background-color: pink;
+        width: 300px;
+    }
+    &__containerOrders {
+        margin-left: 120px;
         margin-top: 40px;
-        color: white;
-        font-family: 'montserrat', sans-serif;
-        font-size: 55px;
-        font-weight: 300;
     }
-
-    &__navbar {
-        display: flex;
-        padding-left: 700px;
-        align-items: center;
-    }
-
-    &__logomakaia {
-        img {
-            width: 200px;
-            position: absolute;
-            top: 20px;
-        }
-
+    &__containerRecent {
+        background-color: green;
+        width: 1040px;
+        height: 200px;
     }
 }
-
-.sideBar {
-    font-size: 40px;
-    font-family: 'montserrat', sans-serif;
-    width: 300px;
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-left: 20px;
-
-    &__profile {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-
-        .profilePhoto {
-            align-self: center;
-            width: 100px;
-        }
-
-        .nameAdmin {
-            font-weight: 600;
-            font-size: 25px;
-            margin-top: 20px;
-        }
-    }
-
-    &__items {
-        font-size: 25px;
-        margin-top: 25px;
-        background-color: #005d8a;
-        width: inherit;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        border-radius: 15px;
-
-        .itemOption {
-            margin: 15px;
-            color: white;
-
-            .iconAdmin {
-                width: 25px;
-                margin-right: 10px;
-                margin-left: 25px;
-                filter: invert(1);
-            }
-
-        }
-
-
-    }
-}
-
-.footerAdmin {
-    position: absolute;
-    width: 100vw;
-    height: 100px;
-    bottom: 0;
-    background-color: $softblue;
-    color: white;
-    font-family: 'montserrat', sans-serif;
-    font-size: 28px;
-
-    &__parrafo {
-        position: absolute;
-        bottom: 40px;
-        right: 50px;
-    }
-
+@media screen and (min-width: 375px) {
+    
 }
