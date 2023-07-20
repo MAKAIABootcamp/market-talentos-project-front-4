@@ -163,7 +163,7 @@ const FormRegisTalent = () => {
                     <span>{formik.errors.rol}</span>
                   )}
 
-                  {/* <input
+                  <input
                     name="cohorte"
                     placeholder="Cohorte"
                     value={formik.values.cohorte}
@@ -171,10 +171,10 @@ const FormRegisTalent = () => {
                   />
                   {formik.touched.cohorte && formik.errors.cohorte && (
                     <span>{formik.errors.cohorte}</span>
-                  )} */}
+                  )}
                   
 
-                  {/* <input
+                  <input
                     name="englishLevel"
                     placeholder="Nivel de inglés"
                     value={formik.values.englishLevel}
@@ -183,7 +183,7 @@ const FormRegisTalent = () => {
                   {formik.touched.englishLevel &&
                     formik.errors.englishLevel && (
                       <span>{formik.errors.englishLevel}</span>
-                    )} */}
+                    )}
 
                   <input
                     name="email"
@@ -221,7 +221,7 @@ const FormRegisTalent = () => {
                   </div>
 
                   <div className="register__ussers">
-                    {/* <input
+                    <input
                       name="user"
                       placeholder="correo electrónico"
                       value={formik.values.user}
@@ -229,7 +229,7 @@ const FormRegisTalent = () => {
                     />
                     {formik.touched.user && formik.errors.user && (
                       <span>{formik.errors.user}</span>
-                    )} */}
+                    )}
 
                     <input
                       name="password"

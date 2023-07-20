@@ -6,12 +6,12 @@ import * as Yup from "yup";
 import imageFond from "../assets/EditProfileFondo.jpg";
 // import Footer from "../components/footer/Footer";
 import {
-  completeProfileAsync,
-  singOutAsync,
+  completeProfileAsync
 } from "../redux/actions/usersActions";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import LayoutTalents from "../components/layout/LayoutTalents"; import { languageOptions } from "../services/dates";
+import LayoutTalents from "../components/layout/LayoutTalents"; 
+import { languageOptions } from "../services/dates";
 
 
 const EditProfile = () => {
@@ -111,16 +111,7 @@ const EditProfile = () => {
   return (
     <>
       <div className="editProfile">
-        {/* <div className="editProfile__boton">
-          <button
-            className="editProfile__boton"
-            onClick={() => dispatch(singOutAsync())}
-          >
-            Salir
-          </button>
-        </div> */}
-
-        <LayoutTalents />
+           <LayoutTalents />
 
         <section className="editProfile__section">
           <div className="editProfile__container">

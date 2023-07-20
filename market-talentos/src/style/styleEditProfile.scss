@@ -230,11 +230,10 @@
     font-family: "Roboto", sans-serif;
     font-size: 12px;
     font-weight: 400;
-    // border: solid 1px gray;
-    border-radius: 5px;
+     border-radius: 5px;
     padding: 9px;
-    width: 48%;
-    
+    width: 100%;
+    column-count: 2;
 
     input {
       font-family: $fontRoboto;
@@ -243,6 +242,7 @@
       border: solid 1px gray;
       border-radius: 5px;
       padding: 3px;
+      
     }
     label {
       margin: 3px;

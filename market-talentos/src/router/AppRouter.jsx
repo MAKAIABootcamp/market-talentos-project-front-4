@@ -56,7 +56,6 @@ const traerInfo = async (uid, accessToken) => {
     singInActionSync({
      
       firstName: dataFinal.firstName,
-      typeUser: dataFinal. typeUser,
       email: dataFinal.email,
       accessToken,
       phoneNumber: dataFinal.phoneNumber,
