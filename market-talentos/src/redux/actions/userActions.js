@@ -2,7 +2,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { firestore } from '../../firebase/firebaseConfig';
 import { setUserTalents } from '../reducers/userTalentReducer';
 
-  const collectionTalents = collection(firestore, "talents");
+  const collectionTalents = collection(firestore, "talentos");
 
   export const listTalents = () => {
     return async (dispatch) => {

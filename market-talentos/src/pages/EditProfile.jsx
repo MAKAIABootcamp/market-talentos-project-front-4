@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../style/styleEditProfile.scss";
 import { useFormik } from "formik";
@@ -10,8 +10,9 @@ import {
   singOutAsync,
 } from "../redux/actions/usersActions";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 import LayoutTalents from "../components/layout/LayoutTalents"; import { languageOptions } from "../services/dates";
+import { Spinner } from "react-bootstrap";
 
 
 const EditProfile = () => {
@@ -19,7 +20,20 @@ const EditProfile = () => {
   const navigate = useNavigate();
 
   const { user } = useSelector((state) => state.user);
-  console.log(user);
+
+  useEffect(() => {
+    console.log(user);
+    setTimeout(() => {
+      if (user?.validateUser==false) {
+        navigate("/")
+        
+       }
+    
+      setIsLoading(false);
+    }, 2000); 
+  
+  }, [])
+  
 
   const validationSchema = Yup.object().shape({
     github: Yup.string()
@@ -63,10 +77,15 @@ const EditProfile = () => {
       profile: values.profile,
       curriculum: values.cv,
       video: values.video,
-      idUsuario: user.id,
+      displayName:user.displayName,
+      idUsuario: user.uid,
       rol: user.rol,
       cohorte: user.cohorte,
+      firstName:user.firstName,
+      lastName:user.lastName,
+      type: user.type,
     };
+    console.log(user,user.displayName,newTalent,"neuvoalneto");
     dispatch(
       completeProfileAsync(newTalent, user.type)
     )
@@ -107,7 +126,15 @@ const EditProfile = () => {
   const isFormValid =
     Object.keys(formik.errors).length === 0 &&
     Object.keys(formik.touched).length !== 0;
-
+    const [isLoading, setIsLoading] = useState(true);
+    if (isLoading) {
+      // Mostrar un spinner mientras se verifica el usuario
+      return <Spinner />;
+    }
+    if (user?.validateUser === false) {
+      navigate("/");
+      return null; // No se renderizará nada en este punto, ya que se está redirigiendo
+    }
   return (
     <>
       <div className="editProfile">
@@ -182,8 +209,8 @@ const EditProfile = () => {
                     <div> Conocimientos</div>
 
                     <div className="editProfile__languages">
-                      {languageOptions.map((option) => (
-                        <div key={option.id} className="editProfile__language">
+                      {languageOptions.map((option,index) => (
+                        <div key={index} className="editProfile__language">
                           <input
                             type="checkbox"
                             name="stacks"

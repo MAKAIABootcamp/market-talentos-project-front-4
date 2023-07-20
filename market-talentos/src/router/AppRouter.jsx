@@ -54,16 +54,22 @@ const traerInfo = async (uid, accessToken) => {
   console.log(dataFinal);
   dispatch(
     singInActionSync({
-     
+      displayName:dataFinal.displayName,
       firstName: dataFinal.firstName,
       typeUser: dataFinal. typeUser,
       email: dataFinal.email,
       accessToken,
       phoneNumber: dataFinal.phoneNumber,
-      phothoURL: dataFinal.phothoURL,
+      rol: dataFinal.rol,
+      cohorte: dataFinal.cohorte,
+      type: dataFinal.type,
+      photoURL: dataFinal.photoURL,
       lastName:dataFinal.lastName,
+      id:uid,
+      validateUser: dataFinal.validateUser,
       uid,
       error: false,
+      
     })
   );
 };
@@ -96,12 +102,17 @@ const traerInfo = async (uid, accessToken) => {
               email,
               phoneNumber,
               accessToken,
-              phothoURL,
+              photoURL,
+              id,
               uid,
+              cohorte,
+              type,
+              rol,
+              validateUser,
             } = user.auth.currentUser;
   
             traerInfo(uid, accessToken);
-            console.log(displayName, email, phoneNumber,lastName, phothoURL,  firstName,);
+            console.log(displayName, email, phoneNumber,lastName, photoURL, firstName, id, validateUser );
             console.log('usuario logueado',loggedUser);
           }
         }
