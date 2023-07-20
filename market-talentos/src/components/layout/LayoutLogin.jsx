@@ -7,6 +7,7 @@ import { singOutAsync } from '../../redux/actions/usersActions';
 import { useDispatch } from 'react-redux';
 import imgExit from '../../assets/exit.png';
 
+
 const LayoutLogin = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -35,6 +36,12 @@ const LayoutLogin = () => {
         }
     ]
 
+    const handlesingOutSync =  () =>{
+        dispatch(singOutAsync())
+        console.log("deslogueo user desde layout");
+        navigate("/")
+    }
+
     return (
         <>
             <header className="layoutLogin">
@@ -59,7 +66,7 @@ const LayoutLogin = () => {
                     <div>
                         <button
                             className='layoutHome__button-exit'
-                            onClick={() => dispatch(singOutAsync())}>
+                            onClick={() => handlesingOutSync()}>
                             <figure className='layoutHome__figure-exit'>
                                 <img src={imgExit} alt="exit" />
                             </figure>

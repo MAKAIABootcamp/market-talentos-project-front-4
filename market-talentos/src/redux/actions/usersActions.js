@@ -12,12 +12,14 @@ export const actionLoginAsync = ({ email, password }) => {
   return (dispatch) => {
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
-        const { displayName, accessToken, phothoURL, phoneNumber,  firstName, } =
+        console.log("actions-user, ", user);
+        const { displayName, accessToken, phothoURL, phoneNumber, firstName, lastName } =
           user.auth.currentUser;
         dispatch(
           singInActionSync({
             email,
             firstName,
+            lastName,
             name: displayName,
             accessToken,
             phothoURL,
@@ -84,6 +86,7 @@ export const singOutAsync = () => {
       try {
           await signOut(auth);
           dispatch(singOutSync());
+          console.log("usario deslogueado", dispatch);
       } catch (error) {
           console.log(error);
 

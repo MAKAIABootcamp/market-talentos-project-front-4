@@ -52,13 +52,8 @@ const LoginTalent = () => {
     } else {
       Swal.fire(" Good job!", "se has iniciado exitosamente!", "success").then(
         () => {
-          console.log(talentId);
-          if (talentId) {
-            navigate("/talentDetails/" + talentId);
-          } else {
-            navigate("/");
-        
-          }
+          navigate("/talentDetails");
+          
         }
       );
     }

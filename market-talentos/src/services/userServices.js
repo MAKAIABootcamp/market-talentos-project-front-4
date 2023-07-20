@@ -84,28 +84,7 @@ export const keepPersistentUserData = async (token) => {
         ...doc.data(),
       });
     });
-    // for (const element of usersCollections) {
-    //   const referenceCollection = collection(firestore, element.name);
-    //   const q = query(referenceCollection, where("accessToken", "==", token));
-
-    //     const querySnapshot = await getDocs(q);
-    //     console.log(querySnapshot);
-    //     querySnapshot.forEach((doc) => {
-    //       user.push({
-    //         id: doc.id,
-    //         ...doc.data(),
-    //       });
-    //     });
-
-    //   const docSnap = await getDoc(q);
-    //   if (docSnap.exists()) {
-    //     console.log(docSnap.data());
-    //     return {
-    //       id: docSnap.id,
-    //       ...docSnap.data(),
-    //     };
-    //   }
-    // }
+    
     console.log(user);
     return user[0];
   } catch (error) {
