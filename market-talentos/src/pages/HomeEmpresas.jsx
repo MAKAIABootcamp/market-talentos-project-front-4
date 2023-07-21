@@ -43,6 +43,7 @@ const HomeEmpresas = () => {
           </div>
           <div className="company__talentsall">
             <TalentAllCompany />
+            hola
           </div>
         </div>
       </div>
