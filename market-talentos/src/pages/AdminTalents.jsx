@@ -32,7 +32,7 @@ import {
 } from '@chakra-ui/react'
 
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
-import { actionDeleteTalentAsync, actionGetTalentAsync , actionEditTalentAsync} from "../redux/actions/validateTalentActions";
+import { actionDeleteTalentAsync, actionGetTalentAsync, actionEditTalentAsync } from "../redux/actions/validateTalentActions";
 import LayoutTalents from "../components/layout/LayoutTalents";
 import Footer from "../components/footer/Footer";
 import { useNavigate, useParams } from "react-router-dom";
@@ -53,8 +53,8 @@ const AdminTalents = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
- 
-  
+
+
 
 
   useEffect(() => {
@@ -69,50 +69,21 @@ const AdminTalents = () => {
   const { uid } = useParams();
 
   const [detailTalent, setDetailTalent] = useState()
-  
 
-  const validacion = () =>{
 
+  const validacion = (uid) => {
     const dataTalents = talents.slice();
-        const descriptionTalents = dataTalents.find(talent => talent.uid === uid)
-        console.log(descriptionTalents)
-        setDetailTalent(descriptionTalents)
-
-       
-
-
-    // const valid = talents.filter((item) => item.validateUser === false);
-    // console.log(valid);
-
-    // const validRef = talents.validateUser 
-    
-    // const defaulValues = {
-    //   validateUser: valid ? valid.validateUser : true,
-    
-      
-    // };
-    // dispatch(actionEditTalentAsync());
-
-
+    const descriptionTalents = dataTalents.find(talent => talent.uid === uid);
+    if (descriptionTalents) {
+      descriptionTalents.validateUser = true;
+      setDetailTalent(descriptionTalents)
+      dispatch(actionEditTalentAsync(descriptionTalents));
+      dispatch(actionGetTalentAsync());
+      alert("Talento aprobado con éxito")
+    } else  {
+      alert("No se encontró el talento")
+    }
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   return (
@@ -122,12 +93,7 @@ const AdminTalents = () => {
       <LayoutAdmin />
 
 
-        <p className="message__p">Bienvenidos Makaia</p>
-
-
-
-
-
+      <p className="message__p">Bienvenidos Makaia</p>
 
       {/* ------------------------Section Tabs----------------------- */}
 
@@ -182,7 +148,7 @@ const AdminTalents = () => {
                           <Th isNumeric>Estado</Th>
                           <Th >Validación</Th>
                           <Th isNumeric>Eliminar</Th>
-                          
+
                         </Tr>
                       </Thead>
 
@@ -197,19 +163,19 @@ const AdminTalents = () => {
                               <Td>{item.phone}</Td>
                               <Td >{item.email}</Td>
                               <Td>{item.rol}</Td>
-                              <Td>{item.validateUser === true ? 'Aceptado' : 'Pendiente' }</Td>
+                              <Td>{item.validateUser === true ? 'Aceptado' : 'Pendiente'}</Td>
 
 
 
                               <Td className="main__container__tdA">
-                                
-                              {item.validateUser === true ? <CheckIcon/> : <button
-                              
-                              onClick={validacion}
-                              
-                              
-                              >Aceptar</button> }
-                                
+
+                                {item.validateUser === true ? <CheckIcon /> : <button
+
+                                  onClick={() => validacion(item.uid)}
+
+
+                                >Aceptar</button>}
+
                               </Td>
                               <Td > <DeleteIcon
                                 onClick={() => {
@@ -223,7 +189,7 @@ const AdminTalents = () => {
 
                               /> </Td>
 
-                             
+
 
 
                             </Tr>
