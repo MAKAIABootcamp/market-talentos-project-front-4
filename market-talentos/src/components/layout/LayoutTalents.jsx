@@ -86,7 +86,7 @@ const LayoutTalents = () => {
           <img  className='layoutTalent__notification'src={notification} alt="notification" />
           </div>
           <div
-            className='layoutTalent__container-imgTalent'
+            className='layoutTalent_container-imgTalent'
             onClick={handleToggleExitButton}
             onMouseEnter={() => setShowExitButton(true)}
             onMouseLeave={() => setShowExitButton(false)}

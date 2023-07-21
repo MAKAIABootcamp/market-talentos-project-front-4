@@ -14,9 +14,7 @@
 
   &__section {
     @include desk {
-      width: 100%;
-      height: 100%;
-      display: flex;
+          display: flex;
       justify-content: center;
       position: relative;
       margin-bottom: 73px;

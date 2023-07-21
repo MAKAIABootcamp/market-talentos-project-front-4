@@ -8,6 +8,7 @@ const Home = () => {
 
     return (
     <>
+    <section>
       <LayoutHome />
 
        <p>¡Bienvenidos a nuestra plataforma de <span>Talentos</span>! <br />
@@ -40,6 +41,7 @@ const Home = () => {
       </div>
             
       <Footer />
+      </section>
     </>
   );
 };
