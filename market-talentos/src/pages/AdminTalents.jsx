@@ -32,7 +32,7 @@ import {
 } from '@chakra-ui/react'
 
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
-import { actionDeleteTalentAsync, actionGetTalentAsync, actionEditTalentAsync } from "../redux/actions/validateTalentActions";
+import { actionDeleteTalentAsync, actionGetTalentAsync, actionEditTalentAsync, actionAddTalentAsync } from "../redux/actions/validateTalentActions";
 import LayoutTalents from "../components/layout/LayoutTalents";
 import Footer from "../components/footer/Footer";
 import { useNavigate, useParams } from "react-router-dom";
@@ -77,6 +77,7 @@ const AdminTalents = () => {
     if (descriptionTalents) {
       descriptionTalents.validateUser = true;     
       dispatch(actionEditTalentAsync(descriptionTalents));
+      dispatch(actionAddTalentAsync(descriptionTalents));
       dispatch(actionGetTalentAsync());
       alert("Talento aprobado con éxito")
     } else  {

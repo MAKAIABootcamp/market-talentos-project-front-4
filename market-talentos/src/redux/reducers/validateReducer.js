@@ -42,6 +42,12 @@ export const validateReducer = (state = talentState, action) => {
                 })
             }
 
+            case validateTalents.ADD_TALENT:
+            return {
+                ...state,
+                talents: [...state.talents, action.payload],
+            };
+
         default:
             return state;
 

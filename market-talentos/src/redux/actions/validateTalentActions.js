@@ -1,4 +1,4 @@
-import { collection, getDocs, doc, deleteDoc, updateDoc} from "@firebase/firestore";
+import { collection, getDocs, doc, deleteDoc, updateDoc, addDoc} from "@firebase/firestore";
 import { validateTalents } from "../types/validateTalents";
 import { dataBase } from "../../firebase/firebaseConfig";
 
@@ -81,3 +81,25 @@ export const actionEditTalentAsync = (talentEdit) => {
       payload: { ...talentEdit },
     };
   };
+
+  const collectionTalento = "talentos";
+
+export const actionAddTalentAsync = (usuario) => {
+  return async (dispatch) => {
+    try {
+      const talentoCollection = collection(dataBase, collectionTalento);
+      const docs = await addDoc(talentoCollection, usuario);
+      dispatch(actionAddTalentSync({ id: docs.id, ...usuario }));
+    } catch (error) {
+      console.log(error);
+      dispatch(actionAddTalentSync({}));
+    }
+  };
+};
+
+const actionAddTalentSync = (usuario) => {
+  return {
+    type: validateTalents.ADD_TALENT,
+    payload: usuario,
+  };
+};
