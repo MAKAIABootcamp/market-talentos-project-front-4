@@ -73,25 +73,25 @@ const AdminTalents = () => {
 
   const validacion = () =>{
 
-    // const dataTalents = talents.slice();
-    //     const descriptionTalents = dataTalents.find(talent => talent.uid === uid)
-    //     console.log(descriptionTalents)
-    //     setDetailTalent(descriptionTalents)
+    const dataTalents = talents.slice();
+        const descriptionTalents = dataTalents.find(talent => talent.uid === uid)
+        console.log(descriptionTalents)
+        setDetailTalent(descriptionTalents)
 
        
 
 
-    const valid = talents.filter((item) => item.validateUser === false);
-    console.log(valid);
+    // const valid = talents.filter((item) => item.validateUser === false);
+    // console.log(valid);
 
-    const validRef = talents.validateUser 
+    // const validRef = talents.validateUser 
     
-    const defaulValues = {
-      validateUser: valid ? valid.validateUser : true,
+    // const defaulValues = {
+    //   validateUser: valid ? valid.validateUser : true,
     
       
-    };
-    dispatch(actionEditTalentAsync());
+    // };
+    // dispatch(actionEditTalentAsync());
 
 
   }
