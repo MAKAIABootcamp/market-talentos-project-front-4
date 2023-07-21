@@ -14,9 +14,7 @@
 
   &__section {
     @include desk {
-      width: 100%;
-      height: 100%;
-      display: flex;
+          display: flex;
       justify-content: center;
       position: relative;
       margin-bottom: 73px;
@@ -230,11 +228,10 @@
     font-family: "Roboto", sans-serif;
     font-size: 12px;
     font-weight: 400;
-    // border: solid 1px gray;
-    border-radius: 5px;
+     border-radius: 5px;
     padding: 9px;
-    width: 48%;
-    
+    width: 100%;
+    column-count: 2;
 
     input {
       font-family: $fontRoboto;
@@ -243,6 +240,7 @@
       border: solid 1px gray;
       border-radius: 5px;
       padding: 3px;
+      
     }
     label {
       margin: 3px;

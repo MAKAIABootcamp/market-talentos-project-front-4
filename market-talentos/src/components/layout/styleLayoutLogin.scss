@@ -5,9 +5,12 @@
         width: 100%;
         height: auto;
         display: flex;
-        margin-left: 40px;
-        margin-top: 20px;
         align-items: center;
+        // margin-left: 20px;
+        // margin-top: 20px;
+        padding: 20px;
+        box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+        margin-bottom: 40px;
     }
     &__container-imgReturn{
         width: 100px;

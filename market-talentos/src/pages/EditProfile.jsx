@@ -6,16 +6,18 @@ import * as Yup from "yup";
 import imageFond from "../assets/EditProfileFondo.jpg";
 // import Footer from "../components/footer/Footer";
 import {
-  completeProfileAsync,
-  singOutAsync,
+  completeProfileAsync
 } from "../redux/actions/usersActions";
 import Swal from "sweetalert2";
 import { redirect, useNavigate } from "react-router-dom";
-import LayoutTalents from "../components/layout/LayoutTalents"; import { languageOptions } from "../services/dates";
+import LayoutTalents from "../components/layout/LayoutTalents"; 
+import { languageOptions } from "../services/dates";
 import { Spinner } from "react-bootstrap";
 import { doc, getDoc, } from "firebase/firestore";
 import { dataBase } from "../firebase/firebaseConfig";
 import { listTalents } from "../redux/actions/userActions";
+
+
 
 
 const EditProfile = () => {
@@ -176,16 +178,7 @@ const buscarDocumento = async (talentoID) => {
   return (
     <>
       <div className="editProfile">
-        {/* <div className="editProfile__boton">
-          <button
-            className="editProfile__boton"
-            onClick={() => dispatch(singOutAsync())}
-          >
-            Salir
-          </button>
-        </div> */}
-
-        <LayoutTalents />
+           <LayoutTalents />
 
         <section className="editProfile__section">
           <div className="editProfile__container">

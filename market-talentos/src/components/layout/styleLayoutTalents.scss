@@ -1,112 +1,136 @@
-@import '../../style/style.scss';
+@import "../../style/style.scss";
 
-.layoutTalent{
+.layoutTalent {
+  @include desk {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    // margin-left: 20px;
+    // margin-top: 20px;
+    padding: 20px;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+  }
+  &__container-imgReturn {
+    width: 100px;
+    height: auto;
+    display: flex;
+    margin-left: 10px;
+    align-items: center;
+  }
+  &__figure-imgReturn {
+    width: 15px;
+    height: 15px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &__container-logo {
+    width: 300px;
+  }
+
+  &__figure-logo {
+    width: 130px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    margin-left: -43px;
+
+    img {
+      width: 85%;
+      height: 85%;
+    }
+  }
+  &__container-navLink {
+    width: 750px;
+    display: flex;
+    align-items: center;
+    margin-left: -114px;
+  }
+  &__navbar-ul {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  &__link {
+    text-decoration: none;
+    @include text($fontRoboto, $w400, $s14, $gray);
+  }
+  &__container-login {
+    display: flex;
+    align-items: center;
+    width: 200px;
+    justify-content: center;
+    gap: 25px;
+  }
+
+  &__chatbot{
+    width: 30px;
+  }
+
+  &__notification{
+    width: 20px;
+  }
+  &__container-imgTalent {
     @include desk {
+      @include styleRound(
+        $skyBkue,
+        $skyBkue,
+        $wi35,
+        $he35,
+        $white,
+        $s14,
+        $w300,
+        $skyBkue,
+        $skyBkue,
+        $gray
+      );
+      position: relative;
+    }
+  }
+
+  &__card-figure {
+    @include desk {
+      @include styleRound(
+        $white,
+        $skyBkue,
+        $wi35,
+        $he35,
+        $white,
+        $s14,
+        $w300,
+        $white,
+        $skyBkue,
+        $gray
+      );
+
+      img {
         width: 100%;
-        height: auto;
-        display: flex;
-        margin-left: 20px;
-        margin-top: 20px;
+        height: 100%;
+        border-radius: 5rem;
+      }
     }
-    &__container-imgReturn{
-        width: 100px;
-        height: auto;
-        display: flex;
-        margin-left: 10px;
-        align-items: center;
-    }
-    &__figure-imgReturn{
-        width: 20px;
-        height: 20px;
-        img{
-            width: 100%;
-            height: 100%;
-        }
+  }
 
+  &__button-exit {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    background-color: transparent;
+    align-items: center;
+  }
+  
+  &__figure-exit {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    img {
+      width: 100%;
+      height: 100%;
     }
-    &__container-logo{
-        width: 300px;       
-    }
+  }
 
-    &__container-message{
-        display: flex;
-        margin-left: 160px;
-        margin-top: 15px;
-        
-        font-size: 24px;
-    }
-
-    &__figure-logo{
-        width: 150px;
-        height: auto;
-        display: flex;
-        justify-content: center;
-        
-        img{
-            width: 100%;
-            height: 100%;
-        }
-    }
-    &__container-navLink{
-       
-        width: 750px;
-        display: flex;
-        align-items: center;
-    }
-    &__navbar-ul{
-        display: flex;
-        gap: 35px;
-        
-    }
-    &__link{
-        text-decoration: none;
-        @include text ($fontRoboto, $w400, $s14, $gray)
-    }
-    &__container-login{
-        display: flex;
-        width: 200px;
-        justify-content: center;
-        gap: 10px;
-    }
-    &__container-imgTalent {
-        @include desk {
-            @include styleRound($skyBkue, $skyBkue, $wi45, $he45,
-                $white, $s14, $w300,
-                $skyBkue, $skyBkue, $gray);
-            position: relative;
-        }
-    }
-
-    &__card-figure {
-        @include desk {
-            @include styleRound($white, $skyBkue, $wi40, $he40,
-                $white, $s14, $w300,
-                $white, $skyBkue, $gray);
-
-            img {
-                width: 100%;
-                height: 100%;
-                border-radius: 5rem;
-            }
-        }
-    }
-    
-    &__button-exit{
-        
-        width: 40px;
-        height: 40px;
-        display: flex;
-        background-color: transparent;
-        align-items: center;
-    }
-    &__figure-exit{
-        
-        width: 25px;
-        height: 25px;
-        display: flex;
-        img{
-            width: 100%;
-            height: 100%;
-        }
-    }
+  
 }
