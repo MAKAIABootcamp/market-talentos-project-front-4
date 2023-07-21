@@ -2,33 +2,42 @@ import React, { useEffect } from 'react'
 import "../style/styleJobOffers.scss";
 import { useDispatch, useSelector } from 'react-redux';
 import { listOfferJob } from '../redux/actions/offerJobActions';
+import LayoutAdmin from '../components/layout/LayoutAdmin';
+import Footer from '../components/footer/Footer'
+import { useNavigate } from 'react-router-dom'
 
 const JobOffers = () => {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const offerJobList = useSelector((state) => state.offerJob);
 
   useEffect(() => {
     dispatch(listOfferJob())
   }, [dispatch]);
 
+  const handleRegisOffer = () => {
+        navigate('/OfferVacants');
+      }
+
   return (
     <div className='offerJobContianer'>
+      <LayoutAdmin/> 
 
       <h1 className='offerJobPageTitle'>Ofertas Laborales</h1>
 
 
-      <article className='offerJobPhrase'>
-        <p className="offerJobPhraseContent" >Las empresas están buscando talentos como el tuyo</p>
-      </article>
+      <button onClick={handleRegisOffer} className='offerJobPhrase'>
+      Publicar nueva oferta
+      </button>
 
 
       <div className='offersContainer'>
-        <section className='OffersFiltersContainer'>
+        {/* <section className='OffersFiltersContainer'>
           <button className='offersFilterButton'>Todos</button>
           <button className='offersFilterButton'>Front-End</button>
           <button className='offersFilterButton'>Backend</button>
-        </section>
+        </section> */}
 
         {offerJobList.offerJob?.map((offer, index) => {
           return <div className='offerCard'>
@@ -49,7 +58,7 @@ const JobOffers = () => {
               </div>
 
               <div className='offerSectionButton'>
-                <button className="applyButton" >Aplicar</button>
+                <button className="applyButton" >Eliminar</button>
               </div>
             </div>
           </div>
@@ -60,6 +69,7 @@ const JobOffers = () => {
 
 
       </div>
+      <Footer/>
     </div>
   )
 }
