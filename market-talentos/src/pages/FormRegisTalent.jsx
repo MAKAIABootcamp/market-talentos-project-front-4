@@ -205,20 +205,7 @@ const FormRegisTalent = () => {
                   {formik.touched.phone && formik.errors.phone && (
                     <span>{formik.errors.phone}</span>
                   )}
-                  <div className="register__habeasdata ">
-                    <input
-                      id="habeasDataCheckbox"
-                      name="habeasDataCheckbox"
-                      type="checkbox"
-                      value={formik.values.habeasDataCheckbox}
-                      onChange={formik.handleChange}
-                    />
-                    <label className="register__habeasdata-info">
-                      Habeas Data: Al completar este formulario, aceptas que tus
-                      datos sean almacenados y utilizados de acuerdo con nuestra
-                      política de privacidad.
-                    </label>
-                  </div>
+                
 
                   <div className="register__ussers">
                     <input
@@ -243,6 +230,20 @@ const FormRegisTalent = () => {
                     )}
                   </div>
                 </div>
+                <div className="register__habeasdata ">
+                    <input
+                      id="habeasDataCheckbox"
+                      name="habeasDataCheckbox"
+                      type="checkbox"
+                      value={formik.values.habeasDataCheckbox}
+                      onChange={formik.handleChange}
+                    />
+                    <label className="register__habeasdata-info">
+                      Habeas Data: Al completar este formulario, aceptas que tus
+                      datos sean almacenados y utilizados de acuerdo con nuestra
+                      política de privacidad.
+                    </label>
+                  </div>
 
                 <button className="register__crearCuenta" type="submit">
                   Crear cuenta
