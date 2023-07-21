@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../style/styleTalentDetails.scss';
 import CardTalent from '../components/cardTalent/CardTalent';
 import LayoutTalents from '../components/layout/LayoutTalents';
 import Footer from '../components/footer/Footer';
 import { useSelector } from 'react-redux';
+import WorkExperience from '../components/workExperience/WorkExperience';
+import StudiesTalent from '../components/studiosTalent/StudiesTalent';
 
 
 const TalentDetails = () => {
-  const userStore = useSelector((store) => store.user.user);
-  console.log(userStore);
 
+  const [buttonVisibility, setButtonVisibility] = useState(false);
+  const [activeButton, setActiveButton] = useState(false);
+
+ 
   return (
     <>
       <LayoutTalents />
@@ -39,47 +43,19 @@ const TalentDetails = () => {
           </div>
           <div className='talentDetails__container-filteres'>
             <button className='talentDetails__button-custom'
-            // onClick={() => handleClick("", "")}
+            
+             onClick={() => setButtonVisibility(true)}
             >Experiencia Laboral</button>
             <button className='talentDetails__button-custom'
-            // onClick={() => handleClick("", "")}
+            onClick={() => setButtonVisibility(false)}
             >Estudios</button>
           </div>
+           {buttonVisibility?<WorkExperience/>:<StudiesTalent />} 
           <section className='talentDetails__workExperience'>
-            <div className='talentDetails__container-workExperience'>
-              <div className='talentDetails__container-imgCompany'>
-                <figure className='talentDetails__figure-imgCompany'>
-                  <img src="" alt="" />
-                </figure>
-              </div>
-              <div className='talentDetails__container-infoCompany'>
-                <h2 className='talentDetails__title-Company'><strong>Makaia</strong></h2>
-                <div className='talentDetails__dateCompany'>
-                  <img src="" alt="calendary" />
-                  <span>febrero - 2023 </span>
-                  <span>julio - 2023 </span>
-                </div>
-                <h2 className='talentDetails__title-rol'>Desarrolladora Front End</h2>
-                <span className='talentDetails__funtions'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. A praesentium quidem pariatur aperiam quas, amet aliquam quibusdam fuga quos consequuntur ex at possimus, rerum facere dolorum porro in officia repellat.</span>
-              </div>
-            </div>
-            <div className='talentDetails__container-workExperience'>
-              <div className='talentDetails__container-imgCompany'>
-                <figure className='talentDetails__figure-imgCompany'>
-                  <img src="" alt="" />
-                </figure>
-              </div>
-              <div className='talentDetails__container-infoCompany'>
-                <h2 className='talentDetails__title-Company'><strong>Makaia</strong></h2>
-                <div className='talentDetails__dateCompany'>
-                  <img src="" alt="calendary" />
-                  <span>junio - 2021 </span>
-                  <span>enero - 2022 </span>
-                </div>
-                <h2 className='talentDetails__title-rol'>Desarrolladora Front End</h2>
-                <span className='talentDetails__funtions'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. A praesentium quidem pariatur aperiam quas, amet aliquam quibusdam fuga quos consequuntur ex at possimus, rerum facere dolorum porro in officia repellat.</span>
-              </div>
-            </div>
+            {/* <WorkExperience/> */}
+          </section>
+          <section className='talentDetails__workExperience'>
+            {/* <StudiesTalent/> */}
           </section>
 
         </div>

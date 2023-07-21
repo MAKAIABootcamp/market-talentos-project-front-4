@@ -10,7 +10,7 @@ const TalentsAll = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const talentsList = useSelector((store) => store.userTalents);
-
+    console.log(talentsList, "talentos");
     useEffect(() => {
         dispatch(listTalents())
     }, [dispatch]);

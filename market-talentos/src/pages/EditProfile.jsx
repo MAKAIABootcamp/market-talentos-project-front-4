@@ -16,31 +16,45 @@ import { Spinner } from "react-bootstrap";
 import { doc, getDoc } from "firebase/firestore";
 import { dataBase } from "../firebase/firebaseConfig";
 import { listTalents } from "../redux/actions/userActions";
+import { debugErrorMap } from "firebase/auth";
+import fileUpLoad from "../services/fileUpload";
+import videoUpLoad from "../services/videoUpload";
 
 
 const EditProfile = () => {
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [talento,setTalento]=useState({})
-
+ 
+  const talentosEncontrados = useSelector((store) => store.userTalents);
+  console.log("talentosEncontrados", talentosEncontrados);
   const { user } = useSelector((state) => state.user);
+  console.log("user",user);
 
+  const findTalents = talentosEncontrados.userTalents.find(talento => talento.id === user.id);
+  console.log("findTalents", findTalents);
+ 
   useEffect(() => {
-    console.log("info talento: ",talento);
-    console.log(user);
-    user?.id?buscarDocumento(user.id):"";
+    dispatch(listTalents())
+        
     setTimeout(() => {
       if (user?.validateUser==false) {
         navigate("/")
+        
+       } else {
         
        }
      
     
       setIsLoading(false);
     }, 2000); 
-  
-  }, [user])
 
+    
+    
+  
+  }, [dispatch])
+
+  
   // const usuarioEncontrado = user.map((user) => {
   //   if (user?.uid) {
   //       return user;
@@ -73,7 +87,7 @@ const buscarDocumento = async (talentoID) => {
         console.log("hay datosTalento",datosTalento);
         // setTalento(datosTalento)
       }
-      console.log(talento);
+      // console.log(talento);
       
     } else {
       console.log("El documento no existe.");
@@ -115,18 +129,18 @@ const buscarDocumento = async (talentoID) => {
       .required("Este campo es obligatorio"),
   });
 
-  const handleSubmit = (values) => {
+  const handleSubmit = async (values) => {
     console.log(values);
-    values.cv = "";
-    values.video = "";
+    const cvURL = await fileUpLoad(values.cv);
+    const videoURL = await videoUpLoad(values.video);
 
     const newTalent = {
       github: values.github,
       linkedIn: values.linkedIn,
-      stacks: [...values.stacks, values.otherLanguages],
+      stacks: [...values.stacks, values.otherLanguages?? ""],
       profile: values.profile,
-      curriculum: values.cv,
-      video: values.video,
+      curriculum: cvURL,
+      video: videoURL,
       displayName:user.displayName,
       idUsuario: user.uid,
       rol: user.rol,
@@ -160,15 +174,16 @@ const buscarDocumento = async (talentoID) => {
 
   const formik = useFormik({
     initialValues: {
-      github: talento?.github,
-      linkedIn: "",
+      github: findTalents?.github,
+      linkedIn: findTalents?.linkedIn,
       // knowledge: false,
-      profile: "",
-      stacks: [],
-      otherLanguages: "",
+      profile: findTalents?.profile,
+      stacks: findTalents?.stacks ?? [],
+      otherLanguages: findTalents?.otherLanguages,
     },
     validationSchema,
     onSubmit: handleSubmit,
+    enableReinitialize: true,
   });
 
 
