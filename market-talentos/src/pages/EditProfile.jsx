@@ -13,27 +13,77 @@ import Swal from "sweetalert2";
 import { redirect, useNavigate } from "react-router-dom";
 import LayoutTalents from "../components/layout/LayoutTalents"; import { languageOptions } from "../services/dates";
 import { Spinner } from "react-bootstrap";
+import { doc, getDoc } from "firebase/firestore";
+import { dataBase } from "../firebase/firebaseConfig";
+import { listTalents } from "../redux/actions/userActions";
 
 
 const EditProfile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [talento,setTalento]=useState({})
 
   const { user } = useSelector((state) => state.user);
 
   useEffect(() => {
+    console.log("info talento: ",talento);
     console.log(user);
+    user?.id?buscarDocumento(user.id):"";
     setTimeout(() => {
       if (user?.validateUser==false) {
         navigate("/")
         
        }
+     
     
       setIsLoading(false);
     }, 2000); 
   
-  }, [])
+  }, [user])
+
+  // const usuarioEncontrado = user.map((user) => {
+  //   if (user?.uid) {
+  //       return user;
+  //   } else {
+  //     console.log("usuario no encontrado");
+  //   }
+  // })
+//   const talentsList = useSelector((store) => store.userTalents);
+
+//   useEffect(() => {
+//     dispatch(listTalents())
+// }, [dispatch]);
+
+  // console.log("todos talent", talentsList);
+
+  // talentsList.map(talent  => talent.id)
   
+const buscarDocumento = async (talentoID) => {
+  try {
+    const docRef = doc(dataBase, "talentos", talentoID); // "talentos" es el nombre de la colección
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      // El documento existe, puedes acceder a los datos utilizando docSnap.data()
+      const datosTalento = docSnap.data();
+      console.log("Datos del talento:", datosTalento);
+      if (Object.entries(datosTalento).length > 0) {
+        
+
+        console.log("hay datosTalento",datosTalento);
+        // setTalento(datosTalento)
+      }
+      console.log(talento);
+      
+    } else {
+      console.log("El documento no existe.");
+     
+    }
+  } catch (error) {
+    console.error("Error al buscar el documento:", error);
+  
+  }
+};
 
   const validationSchema = Yup.object().shape({
     github: Yup.string()
@@ -110,7 +160,7 @@ const EditProfile = () => {
 
   const formik = useFormik({
     initialValues: {
-      github: "",
+      github: talento?.github,
       linkedIn: "",
       // knowledge: false,
       profile: "",

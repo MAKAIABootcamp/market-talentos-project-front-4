@@ -52,6 +52,7 @@ const traerInfo = async (uid, accessToken) => {
   const dataFinal = docu.data();
   console.log(uid);
   console.log(dataFinal);
+ 
   dispatch(
     singInActionSync({
       displayName:dataFinal.displayName,
