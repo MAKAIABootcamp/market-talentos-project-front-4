@@ -127,6 +127,8 @@ const traerInfo = async (uid, accessToken) => {
               {/* <Route path="loginAdmin" element={<LoginAdmin />} /> */}
               <Route path="blog" element={<Blog />} />
               <Route path="OfferVacants" element={<OffertVacants />} />
+              <Route path="jobOffers" element={<JobOffers />} />
+              
             </Route>
             <Route element={<PrivateRouter isAutentication={isLogged} />}>
               <Route path="talents" element={<Talent />}></Route>
@@ -147,7 +149,7 @@ const traerInfo = async (uid, accessToken) => {
               <Route path="customer" element={<Customer />} />
               <Route path="formRegisCustom" element={<FormRegisCustom />} />
               <Route path="profileCustomer" element={<ProfileCustomer />} />
-              <Route path="jobOffers" element={<JobOffers />} />
+              
             </Route>
           </Route>
         </Routes>
