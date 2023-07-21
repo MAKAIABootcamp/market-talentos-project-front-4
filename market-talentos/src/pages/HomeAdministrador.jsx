@@ -30,7 +30,7 @@ const HomeAdministrador = () => {
 
       <li>
     <button className="admin__talents-button">
-        <NavLink to="/adminsV"> Vacantes </NavLink>
+        <NavLink to="/jobOffers"> Vacantes </NavLink>
         </button>
       </li>
 

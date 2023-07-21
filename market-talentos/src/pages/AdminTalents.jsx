@@ -68,15 +68,14 @@ const AdminTalents = () => {
 
   const { uid } = useParams();
 
-  const [detailTalent, setDetailTalent] = useState()
+  // const [detailTalent, setDetailTalent] = useState()
 
 
   const validacion = (uid) => {
     const dataTalents = talents.slice();
     const descriptionTalents = dataTalents.find(talent => talent.uid === uid);
     if (descriptionTalents) {
-      descriptionTalents.validateUser = true;
-      setDetailTalent(descriptionTalents)
+      descriptionTalents.validateUser = true;     
       dispatch(actionEditTalentAsync(descriptionTalents));
       dispatch(actionGetTalentAsync());
       alert("Talento aprobado con éxito")
@@ -181,6 +180,7 @@ const AdminTalents = () => {
                                 onClick={() => {
 
                                   dispatch(actionDeleteTalentAsync(item));
+                                  dispatch(actionGetTalentAsync());
                                   Swal.fire("Se ha eliminado con éxito", "success");
 
 
