@@ -36,6 +36,10 @@ import OffertVacants from "../pages/OffertVacants";
 import { doc, getDoc } from "@firebase/firestore";
 // import Login from "../pages/Login";
 // import FormRegister from "../pages/FormRegister";
+import HomeAdministrador from "../pages/HomeAdministrador";
+import AdminTalents from "../pages/AdminTalents";
+import AdminVacants from "../pages/AdminVacants";
+
 
 const AppRouter = () => {
   // const [loggedUser, setLoggedUser] = useState(null);
@@ -49,6 +53,7 @@ console.log(loggedUser);
 const traerInfo = async (uid, accessToken) => {
   const docRef = doc(dataBase, `usuarios/${uid}`);
   const docu = await getDoc(docRef);
+  console.log(docu);
   const dataFinal = docu.data();
   console.log(uid);
   console.log(dataFinal);
@@ -160,6 +165,10 @@ const traerInfo = async (uid, accessToken) => {
               <Route path="formRegisCustom" element={<FormRegisCustom />} />
               <Route path="profileCustomer" element={<ProfileCustomer />} />
               <Route path="jobOffers" element={<JobOffers />} />
+              <Route path="homeadmins" element={<HomeAdministrador />} />
+              <Route path="adminsT" element={<AdminTalents />} />
+              <Route path="adminsV" element={<AdminVacants />} />
+              <Route path="OfferVacants" element={<OffertVacants />} />
             </Route>
           </Route>
         </Routes>

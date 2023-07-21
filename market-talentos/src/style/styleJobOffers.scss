@@ -1,0 +1,142 @@
+@import "./mixin.scss";
+@import "./style.scss";
+
+.offerJobContianer {
+    display: flex;
+    flex-direction: column;
+
+    .offerJobPageTitle {
+        padding: 20px;
+        font-family: 'montserrat', sans-serif;
+        align-self: center;
+    }
+
+
+    .offerJobPhrase {
+        background: rgb(34, 193, 195);
+        background: linear-gradient(0deg, rgba(34, 193, 195, 1) 0%, rgba(45, 253, 125, 0.9472163865546218) 95%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        width: 800px;
+        height: 150px;
+        border-radius: 15px;
+        margin-left: 90px;
+
+        .offerJobPhraseContent {
+            margin: auto;
+            font-size: 30px;
+            font-weight: 600;
+        }
+    }
+
+    .offersContainer {
+        margin-top: 20px;
+        width: 90%;
+        background-color: #f0f1e9;
+        justify-self: center;
+        align-self: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+
+        .OffersFiltersContainer {
+
+            .offersFilterButton {
+                background: rgb(34, 193, 195);
+                background: linear-gradient(0deg, rgba(34, 193, 195, 1) 0%, rgba(45, 253, 125, 0.9472163865546218) 95%);
+                font-size: 25px;
+                margin: 15px;
+                padding: 10px;
+                border-radius: 10px;
+            }
+        }
+
+        .offerCard{
+            background-color: white;
+            border-radius: 15px;
+            margin: 15px;
+            padding: 15px;
+            font-family: 'montserrat', sans-serif;
+            width: 1350px;
+            height: 242px;
+            box-shadow: 0px 2px 9px 0px rgba(0,0,0,0.75);
+
+            .TitleCharge{
+                color: #384fec;
+                font-size: 35px;
+                margin-bottom: 15px;
+            }
+            
+            .offerJobInformation{
+                display: flex;
+
+                .offerSectionOne{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    width: 350px;
+                    
+                    .customName{
+                        text-align: start;
+                        margin: 15px;
+                        font-weight: 600;
+                    }
+
+                    .closeDate{
+                        text-align: start;
+                        margin: 15px;
+                        font-weight: 600;
+                    }
+                }
+
+                .offerSectionTwo{
+                    display: flex;
+                    flex-direction: column;
+                    width: 350px;
+                    align-items: center;
+
+                     .modality{
+                        text-align: start;
+                        margin: 15px;
+                        font-weight: 600;
+                     }
+
+                     .salary{
+                        text-align: start;
+                        margin: 15px;
+                        font-weight: 600;
+                     }
+                }
+
+                .offerSectionDescription{
+                    font-size: 20px;
+                    background-color: #6ee6af;
+                    padding: 10px;
+                    border-radius: 15px;
+                    width: 550px;
+                }
+
+                .offerSectionButton{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 250px;
+                    .applyButton{
+                        color: white;
+                        border-radius: 10px;
+                        background-color: #47da97;
+                        font-size: 25px;
+                        padding: 10px;
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+    }
+
+
+}

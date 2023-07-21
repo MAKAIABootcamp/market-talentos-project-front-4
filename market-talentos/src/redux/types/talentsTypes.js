@@ -12,3 +12,4 @@ export const userTypes = {
   USER_COMPLETETALENTS: "USER_COMPLETETALENTS",
 };
 
+
