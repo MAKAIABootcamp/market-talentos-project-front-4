@@ -19,9 +19,10 @@ const LayoutTalents = () => {
     setShowExitButton(!showExitButton);
   }
 
-  const handleExit = () => {
-    dispatch(singOutAsync());
-  }
+ 
+  // const handleExit = () => {
+  //   dispatch(singOutAsync());
+  // }
 
   const products = [
     {
@@ -92,13 +93,13 @@ const LayoutTalents = () => {
             onMouseLeave={() => setShowExitButton(false)}
           >
             <figure className='layoutTalent__card-figure'>
-              <img src={usuario} alt="imgTalent" />
+              <img src={usuario} alt="imgTalent"   onClick={() => dispatch(singOutAsync())} />
             </figure>
             {/* Mostrar el botón de "Salida" (Exit) solo cuando se hace clic en la imagen de usuario */}
             {showExitButton && (
               <button
                 className='layoutTalent__button-exit'
-                onClick={handleExit}
+              
               >
                 Salir
               </button>
