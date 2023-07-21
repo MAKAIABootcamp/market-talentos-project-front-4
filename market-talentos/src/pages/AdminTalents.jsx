@@ -1,61 +1,34 @@
 import React, { useEffect } from "react";
 import "../style/styleAdminTalents.scss";
-import dev from "../assets/iconDev.png";
-import back from "../assets/arrowleft.png";
-import NavlinkAdminHome from "../components/navlinAdmin/NavLinkAdminHome";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
-import FotoEmpresa from "../../src/assets/logo admin 2.jpeg";
-import LogoMakaia from "../../src/assets/Logo.png";
-import { DeleteIcon, CheckIcon, CloseIcon } from '@chakra-ui/icons';
+import { DeleteIcon, CheckIcon } from '@chakra-ui/icons';
 import Swal from "sweetalert2";
 
 
 import {
   Stat,
   StatLabel,
-  StatNumber,
-  StatHelpText,
-  StatArrow,
   StatGroup,
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
-  TableCaption,
+ 
   TableContainer,
-  CircularProgressLabel,
-  CircularProgress,
+ 
 } from '@chakra-ui/react'
-
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
 import { actionDeleteTalentAsync, actionGetTalentAsync, actionEditTalentAsync, actionAddTalentAsync } from "../redux/actions/validateTalentActions";
-import LayoutTalents from "../components/layout/LayoutTalents";
 import Footer from "../components/footer/Footer";
-import { useNavigate, useParams } from "react-router-dom";
 import LayoutAdmin from "../components/layout/LayoutAdmin";
-// import { swap } from "formik";
-
-
-
-
-
-
-
-
 
 
 const AdminTalents = () => {
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-
-
-
+  
 
   useEffect(() => {
 
@@ -66,9 +39,9 @@ const AdminTalents = () => {
   const { talents } = useSelector((state) => state.validateReducer);
   console.log(talents);
 
-  const { uid } = useParams();
 
-  // const [detailTalent, setDetailTalent] = useState()
+
+
 
 
   const validacion = (uid) => {
@@ -225,9 +198,7 @@ const AdminTalents = () => {
 
               {/* ------------------------Section Tabs Panels Intermediaciones----------------------- */}
 
-              {/* <TabPanel>
-                <p>four!</p>
-              </TabPanel> */}
+            
             </TabPanels>
           </section>
         </Tabs>
