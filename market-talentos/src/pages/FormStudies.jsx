@@ -5,7 +5,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import {
   completeProfileAsync,
-  singOutAsync,
+//   singOutAsync,
 } from "../redux/actions/usersActions";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";

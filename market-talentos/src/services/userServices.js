@@ -52,11 +52,14 @@ export const userRegister = async (user) => {
 export const completeTalentData = async (newTalent, type) => {
   try {
     if (type === collections.talentos) {
+      const docuRef= doc(dataBase,`${type}/${newTalent.idUsuario}`)
+      console.log(`${type}/${newTalent.idUsuario}`);
+      console.log(newTalent);
       const talentReference = collection(firestore, type);
 
-      const talentRef = await addDoc(talentReference, newTalent);
+      const talentRef = await setDoc(docuRef, newTalent);
       return {
-        idTalent: talentRef.id,
+        
         ...newTalent,
       };
     } else {
