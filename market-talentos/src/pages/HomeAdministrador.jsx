@@ -1,0 +1,57 @@
+import React from 'react'
+import LayoutTalents from '../components/layout/LayoutTalents'
+import { NavLink } from 'react-router-dom'
+import { LayoutGroup } from 'framer-motion'
+import LayoutAdminS from '../components/layout/LayoutAdminSimple'
+import Footer from '../components/footer/Footer'
+import "../style/styledHomeAdministrador.scss";
+
+
+
+
+
+const HomeAdministrador = () => {
+  return (
+    <div >
+  <LayoutAdminS/> 
+
+
+
+    <main className='admin__talents-main'>
+
+      <ul className="admin__talentsU" >
+
+      <li className="admin__talents-L">
+        <button className="admin__talentsB">
+
+        <NavLink className="admin__talentsN" to="/adminsT"> Talentos</NavLink>
+        </button>
+      </li>
+
+      <li>
+    <button className="admin__talents-button">
+        <NavLink to="/adminsV"> Vacantes </NavLink>
+        </button>
+      </li>
+
+      <li>
+    <button className="admin__talents-button">
+        <NavLink to="/dash"> DashBoards</NavLink>
+        </button>
+      </li>
+
+
+      </ul>
+      
+
+
+    </main>
+    
+
+    <Footer/>
+    </div>
+
+  )
+}
+
+export default HomeAdministrador;
