@@ -7,6 +7,101 @@ import {
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "../../firebase/firebaseConfig";
 
+// -------  función login Asincrona --------------
+export const actionLoginAsync = ({ email, password }) => {
+  return (dispatch) => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then(({ user }) => {
+        console.log("actions-user, ", user);
+        const { displayName, accessToken, phothoURL, phoneNumber, firstName, lastName } =
+          user.auth.currentUser;
+        dispatch(
+          singInActionSync({
+            email,
+            firstName,
+            lastName,
+            name: displayName,
+            accessToken,
+            phothoURL,
+            phoneNumber,
+            error: false,
+          })
+        );
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode);
+        console.log(errorMessage);
+        return error
+        // dispatch(singInActionSync({ email, error: true, errorMessage }));
+      });
+  };
+};
+
+// -------------- función login sincrona
+// const actionLoginSync = (talent) => {
+//   return {
+//     type: talentsTypes.TALENT_LOGIN,
+//     payload: {
+//       ...talent,
+//     },
+//   };
+// };
+
+// -------------- función para obtener un usuario logueado
+export const getLoggedUser = (token) => {
+  return async (dispatch) => {
+      try {
+          const response = await keepPersistentUserData(token);
+          console.log(response);
+          dispatch(singInActionSync(response, false));
+          
+      } catch (error) {
+          console.log(error);
+          const showError = {
+            code: error.code,
+            message: error.message,
+          };
+          dispatch(singInActionSync({}, showError));
+      }
+      
+  }
+}
+
+// -------------- función para obtener un usuario logueado
+export const singInActionSync = (user, error) => {
+return {
+  type: userTypes.USER_LOGIN,
+  payload: {
+    user: user,
+    error: error,
+  },
+};
+};
+
+// funcion asyncrona para desloguearse
+export const singOutAsync = () => {
+  return async (dispatch) => {
+      try {
+          await signOut(auth);
+          dispatch(singOutSync());
+          console.log("usario deslogueado", dispatch);
+      } catch (error) {
+          console.log(error);
+
+      }
+  }
+}
+
+// funcion syncrona para desloguearse
+const singOutSync = () => {
+  return {
+      type: userTypes.USER_LOGOUT
+  }
+}
+
+// funcion asyncrona para registrar un usuario desde el formulario formRegisterTalent
 
 export const registerActionAsync = (user) => {
     return async (dispatch) => {
@@ -25,6 +120,7 @@ export const registerActionAsync = (user) => {
     }
 }
 
+// funcion sincrona para registrar un usuario desde el formulario formRegisterTalent
 export const registerActionSync = (user, error) => {
     return {
         type: userTypes.USER_REGITER,
@@ -35,18 +131,13 @@ export const registerActionSync = (user, error) => {
     }
 }
 
-export const saveTalentId = (id) => {
-  return {
-      type: talentsTypes.SAVE_TALENT_ID,
-      payload: id
-  }
-}
-
-export const completeProfileAsync = ({ otherTalentData, id, type }) => {
+// funcion asyncrona para completar el perfil de un usuario desde el formulario editProfile
+export const completeProfileAsync = (newTalent, type) => {
   return async (dispatch) => {
     try {
-        await completeTalentData({ otherTalentData, id, type });
-        dispatch(completeProfileSync({...otherTalentData}, false));
+        const talent = await completeTalentData(newTalent, type);
+        console.log(newTalent,type);
+        dispatch(completeProfileSync(talent, false));
     } catch (error) {
       console.log(error);
       const showError = {
@@ -58,6 +149,7 @@ export const completeProfileAsync = ({ otherTalentData, id, type }) => {
   };
 };
 
+// funcion syncrona para completar el perfil de un usuario desde el formulario editProfile
 const completeProfileSync = (otherDataUser, error) => {
     return {
       type: userTypes.USER_COMPLETETALENTS,
@@ -68,77 +160,41 @@ const completeProfileSync = (otherDataUser, error) => {
     };
 }
 
+// función ingresar con google o facebook
+// export const actionLoginGoogleOrFacebook = (provider) => {
+//   return (dispatch) => {
+//     signInWithPopup(auth, provider)
+//       .then((result) => {
+//         const { displayName, accessToken, photoURL, phoneNumber, email } =
+//           result.talent;
+//         console.log(result.talent);
+//         dispatch(
+//           actionLoginSync({
+//             email,
+//             name: displayName,
+//             accessToken,
+//             photoURL,
+//             phoneNumber,
+//             error: false,
+//           })
+//         );
+//       })
+//       .catch((error) => {
+//         const errorCode = error.code;
+//         const errorMessage = error.message;
+//         const email = error.customData.email;
+//         console.log(error);
+//         console.log(errorCode);
+//         console.log(errorMessage);
+//         dispatch(actionLoginSync({ email, error: true, errorMessage }));
+//       });
+//   };
+// };
 
-export const getLoggedUser = (token) => {
-    return async (dispatch) => {
-        try {
-            const response = await keepPersistentUserData(token);
-            console.log(response);
-            dispatch(singInActionSync(response, false));
-            
-        } catch (error) {
-            console.log(error);
-            const showError = {
-              code: error.code,
-              message: error.message,
-            };
-            dispatch(singInActionSync({}, showError));
-        }
-        
-    }
-}
-
-export const singInActionSync = (user, error) => {
+export const saveTalentId = (id) => {
   return {
-    type: userTypes.USER_LOGIN,
-    payload: {
-      user: user,
-      error: error,
-    },
-  };
-};
-
-export const singOutAsync = () => {
-    return async (dispatch) => {
-        try {
-            await signOut(auth);
-            dispatch(singOutSync());
-        } catch (error) {
-            console.log(error);
-
-        }
-    }
+      type: talentsTypes.SAVE_TALENT_ID,
+      payload: id
+  }
 }
 
-const singOutSync = () => {
-    return {
-        type: userTypes.USER_LOGOUT
-    }
-}
-
-export const actionLoginAsync = ({ email, password }) => {
-  return (dispatch) => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then(({ user }) => {
-        const { displayName, accessToken, photoURL, phoneNumber } =
-          user.auth.currentUser;
-        dispatch(
-          singInActionSync({
-            email,
-            name: displayName,
-            accessToken,
-            photoURL,
-            phoneNumber,
-            error: false,
-          })
-        );
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode);
-        console.log(errorMessage);
-        dispatch(singInActionSync({ email, error: true, errorMessage }));
-      });
-  };
-};

@@ -15,10 +15,11 @@ const TalentsAll = () => {
         dispatch(listTalents())
     }, [dispatch]);
 
-    const handleNavigate = (id) => {
-        dispatch(saveTalentId(id));
-        navigate(`/talentDetails/${id}`);
-    }
+    // const handleNavigate = (id) => {
+    //     // hacer validacion de logueado
+    //     dispatch(saveTalentId(id));
+    //     navigate(`/talentDetails/${id}`);
+    // }
     return (
         <>
             <div className='talentsAll'>
@@ -26,7 +27,7 @@ const TalentsAll = () => {
                     {talentsList.userTalents?.map((talent, index) => {
                         return <div className='talentsAll__container'
                             key={index}
-                            onClick={() => handleNavigate(talent.id)}
+                            onClick={() => navigate("/login")}
                         >
                             <div className='talentsAll__container-imgTalent'>
                                 <figure className='talentsAll__card-figure'>
@@ -39,7 +40,7 @@ const TalentsAll = () => {
                               <img src={imgWhatsapp} alt="" />
                                 </figure> */}
                                     <div className='talentsAll__container-levelEnglish'>
-                                        <span className='talentsAll__know'>Ingles</span>
+                                        <span className='talentsAll__know'>R</span>
                                         <span className='talentsAll__know'>{talent.englishLevel}</span>
                                     </div>
                                 </div>

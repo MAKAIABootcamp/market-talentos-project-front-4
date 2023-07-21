@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../style/styleDashboardHome.scss";
 import dev from "../assets/iconDev.png";
 import back from "../assets/arrowleft.png";
 import NavlinkAdminHome from "../components/navlinAdmin/NavLinkAdminHome";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import FotoEmpresa from "../../src/assets/logo admin 2.jpeg";
 import LogoMakaia from "../../src/assets/Logo.png";
-import { DeleteIcon } from '@chakra-ui/icons'
+import { DeleteIcon, CheckIcon, CloseIcon } from '@chakra-ui/icons';
+import Swal from "sweetalert2";
 
 
 import {
@@ -31,6 +32,19 @@ import {
 } from '@chakra-ui/react'
 
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
+import { actionDeleteTalentAsync, actionGetTalentAsync } from "../redux/actions/validateTalentActions";
+import LayoutTalents from "../components/layout/LayoutTalents";
+import Footer from "../components/footer/Footer";
+import { useNavigate } from "react-router-dom";
+import LayoutAdmin from "../components/layout/LayoutAdmin";
+// import { swap } from "formik";
+
+
+
+
+
+
+
 
 const collectionFire = [
 
@@ -68,7 +82,33 @@ const collectionCompany = [
 ];
 
 const DashboardHome = () => {
-  // const [selectedItem, setSelectedItem] = useState(null);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+
+
+  useEffect(() => {
+
+    dispatch(actionGetTalentAsync())
+
+  }, []);
+
+  const {talents} = useSelector((state) => state.validateReducer);
+  console.log(talents);
+
+
+
+  
+
+
+
+
+  // const talentsRegis = talents.length;
+  // console.log(talentsRegis);
+
+
+
 
 
 
@@ -88,7 +128,10 @@ const DashboardHome = () => {
 
     <>
 
-      <nav className="main__container__navBar">
+      <LayoutAdmin />
+
+
+      {/* <nav className="main__container__navBar">
 
 
 
@@ -120,12 +163,15 @@ const DashboardHome = () => {
           </figure>
         </div>
 
-      </nav>
+      </nav> */}
 
 
 
 
       <p className="message__p">Bienvenidos Makaia</p>
+
+
+
 
 
 
@@ -135,16 +181,49 @@ const DashboardHome = () => {
 
 
 
+        {/* {
+          
+
+            <div className="worker__card">
+              {talents && talents.length ? (
+                talents.map((item, index) => (
+                  <article
+                    className="description"
+                    // onClick={() => {
+                    //   navigate(`/details/${item.id}`);
+                    // }}
+                    key={index}
+                  >
+                   <h5>{item.cohorte}</h5>
+                    <h4>{item.firstName}</h4>
+                  </article>
+                ))
+              ) : (
+                <div>El talento aún no ha sido validado</div>
+              )}
+            </div>
+
+
+
+         
+        } */}
+
+
+
+
+
+
+
 
         <Tabs className="main__container__tabs">
           {/* ------------------------Section Tabs List----------------------- */}
 
           <section className="main__container__sectiontabs" >
             <TabList className="main__container__sectiontabsL">
-              <Tab className="main__container__sectiontab">Talentos</Tab>
-              <Tab className="main__container__sectiontab">Empresas</Tab>
+              <Tab className="main__container__sectiontab">Dashboards</Tab>
+              {/* <Tab className="main__container__sectiontab">Empresas</Tab>
               <Tab className="main__container__sectiontab">Intermediaciones</Tab>
-              <Tab className="main__container__sectiontab">Mapeos</Tab>
+              <Tab className="main__container__sectiontab">Mapeos</Tab> */}
             </TabList>
 
           </section>
@@ -159,10 +238,10 @@ const DashboardHome = () => {
                   <span className="main__container__divpanel1">
                     <StatGroup>
 
-                    
+
                       <Stat>
                         <StatLabel className="main__container__divpanel2">Talentos Registrados</StatLabel>
-                        <StatNumber className="main__container__divpanel3">{registers}</StatNumber>
+                        <StatNumber className="main__container__divpanel3">{registers}  </StatNumber>
                       </Stat>
                     </StatGroup>
                   </span>
@@ -175,85 +254,126 @@ const DashboardHome = () => {
                     </StatGroup>
                   </span>
 
+                  <span className="main__container__divpanel1">
+                    <StatGroup>
+                      <Stat>
+                        <StatLabel className="main__container__divpanel2">Vacantes Registradas</StatLabel>
+                        <StatNumber className="main__container__divpanel3">{hv}</StatNumber>
+                      </Stat>
+                    </StatGroup>
+                  </span>
+
+                  
+
 
                 </div>
 
-                <div className="main__container__sectionT">
-                  <TableContainer  >
-                    <Table variant='striped' colorScheme='teal' className="main__container__tablepanel" >
+                <div className="main__container__divpanel">
+                  
+                  <span className="main__container__divpanel9">
+                    <StatGroup>
+                      <Stat>
+                        <StatLabel className="main__container__divpanel2">Vacantes Activas</StatLabel>
+                        <StatNumber className="main__container__divpanel3">{hv}</StatNumber>
+                      </Stat>
+                    </StatGroup>
+                  </span>
 
-                      <Thead >
+                  <span className="main__container__divpanel9">
+                    <StatGroup>
+                      <Stat>
+                        <StatLabel className="main__container__divpanel2">Talentos Autopostulados</StatLabel>
+                        <StatNumber className="main__container__divpanel3">{hv}</StatNumber>
+                      </Stat>
+                    </StatGroup>
+                  </span>
+
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+                
+
+
+
+                {/* <div className="main__container__sectionT">
+                  <TableContainer  >
+                    <Table variant='striped' colorScheme='teal' className="main__container__tablepanel" > */}
+
+
+
+
+                      {/* <Thead >
                         <Tr className="main__container__th">
                           <Th>Nombre</Th>
-                          <Th>Cédula</Th>
-                          <Th isNumeric>Fecha</Th>
-                          <Th isNumeric>Estado</Th>
-                          <Th isNumeric>Modificación</Th>
+                          <Th>Contacto</Th>
+                          <Th isNumeric>Correo</Th>
+                          <Th isNumeric>Cohorte</Th>
+                          <Th >Role</Th>                          
+                          <Th >Modificación</Th>
                         </Tr>
-                      </Thead>
-                      <Tbody className="main__container__trb" >
-                        <Tr  >
+                      </Thead> */}
+
+                      {/* <Tbody className="main__container__trb" >
+
+                        {
+                          talents.map((item, index) => (
+
+                            <Tr key={index} className="main__container__th">
+
+                              <Td> {item.firstName}</Td>
+                              <Td>{item.phone}</Td>
+                              <Td >{item.email}</Td>
+                              <Td>{item.cohorte}</Td>
+                              <Td>{item.rol}</Td>
+                              
+
+                              <Td > <DeleteIcon 
+                              onClick={() => {
+
+                                 dispatch (actionDeleteTalentAsync(item));
+                                Swal.fire("Se ha eliminado con éxito", "success");
+                                
+
+                                }}
+
+                              
+                              /> </Td>
+                            </Tr>
+
+
+
+                          ))
+                        } */}
+
+
+                        {/* <Tr>
                           <Td>Gesiel Gimenez</Td>
                           <Td>1531206</Td>
                           <Td isNumeric>15/07/2023</Td>
                           <Td>Registrado</Td>
                           <Td isNumeric> <DeleteIcon /> </Td>
-                        </Tr>
-
-                      </Tbody>
-
-                      <Tbody className="main__container__tr">
-                        <Tr>
-                          <Td>Diana Pinzón</Td>
-                          <Td>4102563</Td>
-                          <Td isNumeric>25/06/2023</Td>
-                          <Td>Pendiente</Td>
-                          <Td isNumeric> <DeleteIcon /> </Td>
-                        </Tr>
-
-                      </Tbody>
-
-                      <Tbody className="main__container__trb">
-                        <Tr>
-                          <Td>Dego Meriño</Td>
-                          <Td>4196758</Td>
-                          <Td isNumeric>15/05/2023</Td>
-                          <Td>Pendiente</Td>
-                          <Td isNumeric> <DeleteIcon /> </Td>
-                        </Tr>
-
-                      </Tbody>
-
-                      <Tbody className="main__container__tr">
-                        <Tr>
-                          <Td>Elizabeth Ospina</Td>
-                          <Td>4196731</Td>
-                          <Td isNumeric>10/02/2023</Td>
-                          <Td>Registrado</Td>
-                          <Td isNumeric> <DeleteIcon /> </Td>
-                        </Tr>
-
-                      </Tbody>
-
-                      <Tbody className="main__container__trb">
-                        <Tr>
-                          <Td>Santiago Gomez</Td>
-                          <Td>4063758</Td>
-                          <Td isNumeric>20/06/2023</Td>
-                          <Td>Pendiente</Td>
-                          <Td isNumeric> <DeleteIcon /> </Td>
-                        </Tr>
-
-                      </Tbody>
+                        </Tr> */}
+                      {/* 
+                      </Tbody> */}
 
 
 
 
 
-                    </Table>
+                    {/* </Table>
                   </TableContainer>
 
-                </div>
+                </div> */}
 
 
 
@@ -460,7 +580,20 @@ const DashboardHome = () => {
                           <Td>4063758</Td>
                           <Td isNumeric>20/06/2023</Td>
                           <Td>Pendiente</Td>
-                          <Td isNumeric> <DeleteIcon /> </Td>
+                          <Td isNumeric>
+
+                            <div>
+                              <button>
+                                CheckIcon
+                              </button>
+                            </div>
+                            <div>
+                              <button>
+                                CloseIcon
+                              </button>
+                            </div>
+
+                          </Td>
                         </Tr>
 
                       </Tbody>
@@ -499,7 +632,10 @@ const DashboardHome = () => {
 
 
 
+
       </main >
+
+      <Footer />
     </>
   );
 };

@@ -1,35 +1,89 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../style/styleEditProfile.scss";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import imageFond from "../assets/EditProfileFondo.jpg";
-import NavbarTalentos from "../components/navbarTalentos/NavbarTalentos";
 // import Footer from "../components/footer/Footer";
-import { completeProfileAsync } from "../redux/actions/usersActions";
-import Swal from 'sweetalert2';
-import { useNavigate } from "react-router-dom";
+import {
+  completeProfileAsync,
+  singOutAsync,
+} from "../redux/actions/usersActions";
+import Swal from "sweetalert2";
+import { redirect, useNavigate } from "react-router-dom";
+import LayoutTalents from "../components/layout/LayoutTalents"; import { languageOptions } from "../services/dates";
+import { Spinner } from "react-bootstrap";
+import { doc, getDoc, } from "firebase/firestore";
+import { dataBase } from "../firebase/firebaseConfig";
+import { listTalents } from "../redux/actions/userActions";
 
 
 const EditProfile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [talento,setTalento]=useState({})
 
   const { user } = useSelector((state) => state.user);
-  console.log(user);
+
+  useEffect(() => {
+    console.log("info talento: ",talento);
+    console.log(user);   
+    setTimeout(() => {
+      if (user?.validateUser==false) {
+        navigate("/")
+        
+       }
+     
+    
+      setIsLoading(false);
+    }, 2000); 
   
+  }, [user])
+ 
+  
+const buscarDocumento = async (talentoID) => {
+
+
+
+
+
+  try {
+    const docRef = doc(dataBase, "talentos", talentoID); // "talentos" es el nombre de la colección
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      // El documento existe, puedes acceder a los datos utilizando docSnap.data()
+      const datosTalento = docSnap.data();
+      console.log("Datos del talento:", datosTalento);
+      if (Object.entries(datosTalento).length > 0) {
+        
+
+        console.log("hay datosTalento",datosTalento);
+        // setTalento(datosTalento)
+      }
+      console.log(talento);
+      
+    } else {
+      console.log("El documento no existe.");
+     
+    }
+  } catch (error) {
+    console.error("Error al buscar el documento:", error);
+  
+  }
+};
 
   const validationSchema = Yup.object().shape({
-    inputGitUp: Yup.string()
+    github: Yup.string()
       .url("Ingresa un enlace válido. Ejemplo: https://github.com/tuusuario")
       .required("Este campo es obligatorio"),
-    inputlinkedin: Yup.string()
+    linkedIn: Yup.string()
       .url(
         "Ingresa un enlace válido. Ejemplo: https://www.linkedin.com/in/tuusuario"
       )
       .required("Este campo es obligatorio"),
     profile: Yup.string()
-      .max(160, "La presentación no debe exceder las 160 palabras.")
+      .max(160, "La presentación no debe exceder las 400 palabras.")
       .required("Este campo es obligatorio"),
     cv: Yup.mixed()
       .test("fileType", "Solo se permiten archivos PDF", (value) => {
@@ -53,24 +107,37 @@ const EditProfile = () => {
     console.log(values);
     values.cv = "";
     values.video = "";
-    console.log(user);
+
+    const newTalent = {
+      github: values.github,
+      linkedIn: values.linkedIn,
+      stacks: [...values.stacks, values.otherLanguages],
+      profile: values.profile,
+      curriculum: values.cv,
+      video: values.video,
+      displayName:user.displayName,
+      idUsuario: user.uid,
+      rol: user.rol,
+      cohorte: user.cohorte,
+      firstName:user.firstName,
+      lastName:user.lastName,
+      type: user.type,
+    };
+    console.log(user,user.displayName,newTalent,"neuvoalneto");
     dispatch(
-      completeProfileAsync({
-        otherTalentData: values,
-        id: user.id,
-        type: user.type,
-      })
+      completeProfileAsync(newTalent, user.type)
     )
       .then(() => {
         Swal.fire({
-          icon: 'success',
-          title: 'Información guardada exitosamente',
+          icon: "success",
+          title: "Información guardada exitosamente",
           showConfirmButton: false,
-          timer: 1500
+          timer: 1500,
         }).then(() => {
           // Redireccionar a la página de edición de perfil
           // Reemplaza '/editProfile' con la ruta correcta si es necesario
-          navigate('/talentDetails');
+         
+          navigate(`/talentDetails`);
         });
       })
       .catch((error) => {
@@ -79,41 +146,47 @@ const EditProfile = () => {
       });
   };
 
-
   const formik = useFormik({
     initialValues: {
-      inputGitUp: "",
-      inputlinkedin: "",
-      knowledge: false,
+      github: talento?.github,
+      linkedIn: "",
+      // knowledge: false,
       profile: "",
-      languages:[],
+      stacks: [],
       otherLanguages: "",
     },
     validationSchema,
     onSubmit: handleSubmit,
   });
 
-  const languageOptions = [
-    { id: "css", label: "CSS" },
-    { id: "sass", label: "SASS" },
-    { id: "react", label: "REACT" },
-    { id: "javaScript", label: "JavaScript" },
-    { id: "html", label: "HTML" },
-    { id: "styledComponent", label: "GITHUB" },
-    { id: "redux", label: "REDUX" },
-    { id: "bootstrap", label: "BOOTSTRAP" },
-    { id: "axios", label: "AXIOS" },
-    { id: "others", label: "Otros" },
-  ];
+
 
   const isFormValid =
     Object.keys(formik.errors).length === 0 &&
     Object.keys(formik.touched).length !== 0;
-
+    const [isLoading, setIsLoading] = useState(true);
+    if (isLoading) {
+      // Mostrar un spinner mientras se verifica el usuario
+      return <Spinner />;
+    }
+    if (user?.validateUser === false) {
+      navigate("/");
+      return null; // No se renderizará nada en este punto, ya que se está redirigiendo
+    }
   return (
     <>
       <div className="editProfile">
-        <NavbarTalentos />
+        {/* <div className="editProfile__boton">
+          <button
+            className="editProfile__boton"
+            onClick={() => dispatch(singOutAsync())}
+          >
+            Salir
+          </button>
+        </div> */}
+
+        <LayoutTalents />
+
         <section className="editProfile__section">
           <div className="editProfile__container">
             <div className="editProfile__background">
@@ -127,10 +200,7 @@ const EditProfile = () => {
               </div>
               <div className="editProfile__container-infoCustom">
                 <div className="editProfile__container-infoContacts">
-                  <div
-                    className="editProfile__container-imgTalent"
-                   
-                  >
+                  <div className="editProfile__container-imgTalent">
                     <figure className="editProfile__card-figure">
                       <img src={user?.photoURL} alt="imgTalent" />
                     </figure>
@@ -143,35 +213,33 @@ const EditProfile = () => {
                   <div className="editProfile__container-profile">
                     <input
                       type="url"
-                      name="inputGitUp"
-                      id="inputGithub"
+                      name="github"
                       className="editProfile__input"
                       placeholder="Ingresa el vínculo de tu cuenta en Github"
-                      value={formik.values.inputGitUp}
+                      value={formik.values.github}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                     />
-                    {formik.errors.inputGitUp && formik.touched.inputGitUp && (
+                    {formik.errors.github && formik.touched.github && (
                       <div className="editProfile__error-message">
-                        {formik.errors.inputGitUp}
+                        {formik.errors.github}
                       </div>
                     )}
                   </div>
                   <div className="editProfile__container-profile">
                     <input
                       type="url"
-                      name="inputlinkedin"
-                      id="inputlinkedin"
+                      name="linkedIn"
                       className="editProfile__input"
                       placeholder="Ingresa el vínculo de tu cuenta en Linkedin"
-                      value={formik.values.inputlinkedin}
+                      value={formik.values.linkedIn}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                     />
-                    {formik.errors.inputlinkedin &&
-                      formik.touched.inputlinkedin && (
+                    {formik.errors.linkedIn &&
+                      formik.touched.linkedIn && (
                         <div className="editProfile__error-message">
-                          {formik.errors.inputlinkedin}
+                          {formik.errors.linkedIn}
                         </div>
                       )}
                   </div>
@@ -179,14 +247,14 @@ const EditProfile = () => {
                     <div> Conocimientos</div>
 
                     <div className="editProfile__languages">
-                      {languageOptions.map((option) => (
-                        <div key={option.id} className="editProfile__language">
+                      {languageOptions.map((option,index) => (
+                        <div key={index} className="editProfile__language">
                           <input
                             type="checkbox"
+                            name="stacks"
                             id={option.id}
-                            name="languages"
                             value={option.id}
-                            checked={formik.values.languages.includes(
+                            checked={formik.values.stacks.includes(
                               option.id
                             )}
                             onChange={formik.handleChange}
@@ -209,11 +277,11 @@ const EditProfile = () => {
                       </div>
                     </div>
 
-                    {formik.errors.knowledge && formik.touched.knowledge && (
+                    {/* {formik.errors.knowledge && formik.touched.knowledge && (
                       <div className="editProfile__error-message">
                         {formik.errors.knowledge}
                       </div>
-                    )}
+                    )} */}
 
                     {formik.errors.otherLanguages &&
                       formik.touched.otherLanguages && (
@@ -222,6 +290,8 @@ const EditProfile = () => {
                         </div>
                       )}
                   </div>
+
+
                   <div className="editProfile__container-custom">
                     <label
                       htmlFor="profile"
@@ -303,9 +373,9 @@ const EditProfile = () => {
               </div>
             </section>
           </div>
-        </section>
+        </section >
         {/* <Footer /> */}
-      </div>
+      </div >
     </>
   );
 };

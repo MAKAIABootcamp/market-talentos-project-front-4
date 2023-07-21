@@ -5,13 +5,13 @@ import imgTalent from "../assets/elisa.jpeg";
 import imgGitUp from "../assets/logogithub.png";
 import imgLinkedin from "../assets/logolink.png";
 import imgVideo from "../assets/logovideo.png";
+import LayoutTalents from "../components/layout/LayoutTalents";
+import Footer from "../components/footer/Footer";
 // import logoMakaia from "../assets/icon/logoMakaia.png";
 // import fondoTalentdesk from "../assets/fondotalentdesk.jpg";
 
 const TalentOfferJob = () => {
-
   const navigate = useNavigate();
-  
 
   const jobsButtons = [
     {
@@ -48,6 +48,8 @@ const TalentOfferJob = () => {
 
   return (
     <section className="talentOffer">
+      <LayoutTalents />
+      <div className="talentOffer__card-jobs">
       <div className="talentOffer__container">
         {/* <div className="talentOffer__background">
           <img src={fondoTalentdesk} alt="fondoTalentdesk" />
@@ -62,9 +64,9 @@ const TalentOfferJob = () => {
           </div>
           <div className="talentOffer__container-info">
             <div className="talentOffer__container-state">
-              <div className="talentOffer__container-levelEnglish">
-                <span className="talentOffer__know">Ingles</span>
-                <span className="talentOffer__know">A1</span>
+              <div className="talentOffer__container-programs">
+                <span className="talentOffer__programs">HTML</span>
+                <span className="talentOffer__programs">CSS</span>
               </div>
             </div>
             <div className="talentOffer__line"></div>
@@ -101,9 +103,10 @@ const TalentOfferJob = () => {
             </div>
 
             <div className="talentOffer__container-otheroffert">
-              <button className="talentOffer__button-otheroffert"
-              onClick={() => navigate("/jobTalent")}
-             >
+              <button
+                className="talentOffer__button-otheroffert"
+                onClick={() => navigate("/jobTalent")}
+              >
                 Ver Mis Postulaciones
               </button>
             </div>
@@ -111,52 +114,56 @@ const TalentOfferJob = () => {
         </div>
       </div>
 
+      {/* ...........cards Ofertas laborales................ */}
 
-        {/* ...........cards Ofertas laborales................ */}
+      <div className="talentOffer__container-offert">
+        <div className="talentOffer__container-infojob">
+          <button className="talentOffer__button-otherjobs">
+            Ofertas Laborales
+          </button>
 
-        <div className="talentOffer__container-offert">
-      <div className="talentOffer__container-infojob">
-        <button className="talentOffer__button-otherjobs">
-          Ofertas Laborales
-        </button>
+          <div className="talentOffer__container-jobs">
+            
+            {jobsButtons.map((button, index) => (
+              <button className="talentOffer__button-costumer" key={index}>
+                {button.name}
+                <div className="talentOffer__div-costumer">
+                <span className="talentOffer__button-job">{button.cargo}</span>
+                <span className="talentOffer__button-changeinfo">
+                  {button.changeStatus}
+                </span>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
 
-        <div className="talentOffer__container-jobs">
-          {jobsButtons.map((button, index) => (
-            <button className="talentOffer__button-costumer" key={index}>
-              {button.name}
-              <span className="talentOffer__button-job">{button.cargo}</span>
-              <span className="talentOffer__button-changeinfo">
-                {button.changeStatus}
-              </span>
-            </button>
-          ))}
+        <div className="talentOffer__aplicattionJob">
+          <button className="talentOffer__button-offer">
+            Fecha cierre de convocatoria: 24/julio/2023
+          </button>
+          <button className="talentOffer__button-offer">
+            Cargo: Front End Developer Junior
+          </button>
+          <button className="talentOffer__button-requ">
+            Requerimientos: Desarrollar la parte visual de la aplicación web
+            Diseñar interfaces con foco en UX/UI Conectar interfaces con los
+            servicios de backend Brindar soporte al software de producción
+          </button>
+          <button className="talentOffer__button-offer">
+            Modalidad Presencial
+          </button>
+          <button className="talentOffer__button-offer">
+            Salario: 2´000.000
+          </button>
+          <button className="talentOffer__button-offer">
+            Ciudad: Medellín
+          </button>
+          <button className="talentOffer__button-talentOffer">Aplicar</button>
         </div>
       </div>
-
-      <div className="talentOffer__aplicattionJob">
-        <button className="talentOffer__button-offer">
-          Fecha de Convocatoria: 24 - julio- 2023
-        </button>
-        <button className="talentOffer__button-offer">
-          Cargo: Front End Developer Junior
-        </button>
-        <button className="talentOffer__button-requ">
-          Requerimientos: Desarrollar la parte visual de la aplicación web
-          Diseñar interfaces con foco en UX/UI Conectar interfaces con los
-          servicios de backend Brindar soporte al software de producción
-        </button>
-        <button className="talentOffer__button-offer">
-          Salario: 2´000.000
-        </button>
-        <button className="talentOffer__button-offer">Ciudad: Medellín</button>
-        <button className="talentOffer__button-talentOffer">Aplicar</button>
-        <button className="talentOffer__button-talentOffer">
-          Mis Postulaciones
-        </button>
       </div>
-      </div>
-
-
+      <div><Footer /></div>
     </section>
   );
 };

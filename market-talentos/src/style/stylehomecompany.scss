@@ -21,6 +21,7 @@ body {
   border: 2px solid $gray;
   border-radius: 20px;
   width: 160px;
+  height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,8 +55,11 @@ body {
     padding: 4px;
     border-radius: 5px;
   }
+  
 }
 .talents__button-offert {
+  position: relative;
+  left: 250px;
   button {
     background-color: $yellow;
     width: 240px;
@@ -72,4 +76,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+.company__progresocontainer {
+  display: flex;
+  gap: 20px;
 }

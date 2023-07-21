@@ -3,7 +3,7 @@ import { firestore } from '../../firebase/firebaseConfig';
 import { setOfferJob } from '../reducers/OfferJobReducer';
 import Swal from "sweetalert2";
 
-const collectionOfferJob = collection(firestore, "offerJob");
+const collectionOfferJob = collection(firestore, "ofertas");
 
 export const listOfferJob = () => {
   return async (dispatch) => {
@@ -13,6 +13,7 @@ export const listOfferJob = () => {
         id: doc.id,
         ...doc.data()
       }));
+      console.log(offerJobArray);
       dispatch(setOfferJob(offerJobArray));
     } catch (e) {
       console.error("Error listing document:", e);
@@ -23,7 +24,7 @@ export const listOfferJob = () => {
 
 export const addOfferJob = (jobData) => async () => {
   try {
-    await addDoc(collection(firestore, 'offerJob'), jobData);
+    await addDoc(collection(firestore, 'ofertas'), jobData);
     Swal.fire(" Good job!", "Oferta publicada de forma exitosa", "success")
   } catch (error) {
     console.error('Hubieron problemas al publicar la nueva oferta:', error);

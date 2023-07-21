@@ -1,0 +1,70 @@
+@import '../../style/style.scss';
+
+.layoutLogin{
+    @include desk {
+        width: 100%;
+        height: auto;
+        display: flex;
+        margin-left: 40px;
+        margin-top: 20px;
+        align-items: center;
+    }
+    &__container-imgReturn{
+        width: 100px;
+        height: auto;
+        display: flex;
+        margin-left: 50px;
+        align-items: center;
+       
+    }
+    &__figure-imgReturn{
+        width: 20px;
+        height: 20px;
+        img{
+            width: 100%;
+            height: 100%;
+        }
+
+    }
+    
+    &__container-navLink{
+        width: 1100px;
+        display: flex;
+        align-items: center;
+        padding-left: 50px;
+    }
+    &__navbar-ul{
+        display: flex;
+        gap: 35px;
+        
+    }
+    &__link{
+        text-decoration: none;
+        @include text ($fontRoboto, $w400, $s14, $gray)
+    }
+    &__container-login{
+        display: flex;
+        width: 200px;
+        justify-content: center;
+        gap: 10px;
+    }
+        
+    &__button-exit{
+        
+        width: 40px;
+        height: 40px;
+        display: flex;
+        background-color: transparent;
+        align-items: center;
+    }
+    &__figure-exit{
+        
+        width: 25px;
+        height: 25px;
+        display: flex;
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    }
+}

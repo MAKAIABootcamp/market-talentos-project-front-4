@@ -31,7 +31,7 @@ const CardTalentCompany = () => {
                   onClick={() => handleClick("editProfile", "")}
                   className="talents__buttons-edit"
                 >
-                  Editar{" "}
+                  Contactar
                 </button>
                 {/* <figure className='talents__buttons-state'>
                                 <img src={imgWhatsapp} alt="" />

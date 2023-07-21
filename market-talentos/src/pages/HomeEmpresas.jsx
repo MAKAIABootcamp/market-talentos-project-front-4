@@ -17,22 +17,24 @@ const HomeEmpresas = () => {
           <div className="container__options"></div>
         </div>
         <div className="container2">
-          <div className="talents__button-offert">
-            <button>Agregar Oferta Laboral</button>
-          </div>
-          <h1>Progreso</h1>
-          <div className="companny__dashboard">
-            <div className="company__bitacora">
-              <h3>Bitacora</h3>
+            <div className="talents__button-offert">
+              <button>Agregar Oferta Laboral</button>
             </div>
-            <div className="company__postulaciones">
-              <h3>Postulaciones</h3>
-            </div>
-            <div className="company__progreso">
-              <h3>Progreso</h3>
-            </div>
-            <div className="company__search">
-              <h3>Search</h3>
+            <h1>Progreso</h1>
+            <div className="companny__dashboard">
+          <div className="company__progresocontainer">
+              <div className="company__bitacora">
+                <h3>Bitacora</h3>
+              </div>
+              <div className="company__postulaciones">
+                <h3>Postulaciones</h3>
+              </div>
+              <div className="company__progreso">
+                <h3>Progreso</h3>
+              </div>
+              <div className="company__search">
+                <h3>Search</h3>
+              </div>
             </div>
           </div>
           <div className="company__button">
@@ -43,7 +45,6 @@ const HomeEmpresas = () => {
           </div>
           <div className="company__talentsall">
             <TalentAllCompany />
-            hola
           </div>
         </div>
       </div>

@@ -1,37 +1,42 @@
 import React from 'react';
 import LogoMakaia from "../../assets/Logo.png";
 import "./styledLayoutHome.scss";
-import { NavLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { singOutAsync } from '../../redux/actions/usersActions';
+import { NavLink, useNavigate } from 'react-router-dom';
 import usuario from "../../assets/avataradmo.png"
+import { singOutAsync } from '../../redux/actions/usersActions';
+import { useDispatch } from 'react-redux';
+import imgExit from '../../assets/exit.png'
+
 
 const LayoutHome = () => {
 
+    const navigate = useNavigate();
+    const login = () =>{
+        navigate("/login")
+
+    }
+
+    const dispatch = useDispatch();
+    
     const products = [
         {
             id: 1,
             name: "Acerca de nosotros",
             path: "/about"
         },
+        
         {
             id: 2,
-            name: "Ofertas Laborales",
-            path: "/jobOffers",
-        },
-        {
-            id: 3,
             name: "Blog",
             path: "/blog",
         },
-        ,
+
         {
-            id: 4,
+            id: 3,
             name: "Contáctenos",
             path: "/contacts",
         }
     ]
-    const dispatch = useDispatch();
 
     return (
         <>
@@ -52,23 +57,30 @@ const LayoutHome = () => {
                 </div>
                 <div className='layoutHome__container-login'>
                     <div className='layoutHome__container-imgTalent'>
-                        <figure className='layoutHome__card-figure'>
-                            <img src={usuario} alt="imgTalent" />
+                        <figure className='layoutHome__card-figure'
+                         
+                        
+                            >
+                            <img src={usuario} alt="imgTalent"                             
+                          
+                          onClick={login}
+                            
+                            
+                            />
+                           
                         </figure>
                     </div>
                     <div>
-                        <select className='layoutHome__select'>
-                            <option value=""></option>
-                            <option value="iniciar sesion">Iniciar Sesion</option>
-                            <option
-                                value="iniciar sesion"
-                                onClick={() => dispatch(singOutAsync())}
-                            >Cerrar Sesion</option>
-                        </select>
+                        <button
+                            className='layoutHome__button-exit'
+                            onClick={() => dispatch(singOutAsync())}>
+                            <figure className='layoutHome__figure-exit'>
+                                <img src={imgExit} alt="exit" />
+                            </figure>
+                        </button>
                     </div>
-
                 </div>
-            </header>
+            </header >
 
         </>
     )

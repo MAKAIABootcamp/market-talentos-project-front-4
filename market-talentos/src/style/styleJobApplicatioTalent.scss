@@ -1,8 +1,14 @@
 @import "./style.scss";
 
 .jobtalent {
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+  margin-left: 20px;
   display: flex;
   justify-content: center;
+  position: absolute;
+  flex-direction: column;
   // flex-wrap: wrap;
   // @include desk {
   //   width: 100%;
@@ -10,6 +16,13 @@
   //   display: flex;
   //   position: absolute;
   // }
+
+  &__card-jobs{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+  }
 
   &__container {
     @include desk {
@@ -104,12 +117,12 @@
     }
   }
 
-  &__container-levelEnglish {
-    @include desk {
-      display: flex;
-      gap: 5px;
-    }
-  }
+  // &__container-levelEnglish {
+  //   @include desk {
+  //     display: flex;
+  //     gap: 5px;
+  //   }
+  // }
 
   &__buttons-state {
     @include desk {
@@ -120,6 +133,29 @@
       }
     }
   }
+
+  &__container-programs {
+    @include desk {
+        width: 20%px;
+        height: 55px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+      }
+}
+
+&__programs {
+    @include desk {
+        @include span($wiAuto, $he25, $trasparent, $grayLight,
+            $fontNunito, $w300, $s10, $black);
+    }
+}
+
+
+
+  
 
   &__line {
     @include desk {
@@ -216,11 +252,20 @@
 
 
   &__container-addpstulation{
+    padding: 13px;
+    position: relative;
     display: flex;
+    background-color: white;
     flex-direction: column;
     justify-content: center;
-
+    width: 274px;
+    z-index: 1000;
+    border-radius: 33px;
+    
   }
+
+
+
   &__button-otherjobs {
     margin-bottom: 10px;
     width: 100%;
@@ -247,32 +292,36 @@
     // padding: 18px;
     background-color: $skyBkue;
     border-radius: 9px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 
     form {
       display: flex;
-      gap: 9px;
+      gap: 3px;
       padding: 15px;
       align-items: center;
+      flex-direction: column;     
     }
+
   }
 
   &__button-other {
     background-color: $white;
-    padding: 15px;
+    padding: 9px;
     color: $gray;
     border-radius: 5px;
-    width: 80%;
+    width: 90%;
     height: 10px;
     margin-top: 5px;
+    margin-bottom: 15px;
   }
+
   &__button-aceptar {
     @include desk {
       @include styleOval(
         $yellow,
         $yellow,
         $wi95,
-        $he25,
+        $he15,
         $gray,
         $s12,
         $w300,
@@ -282,23 +331,6 @@
       );
     }
   }
-
-
-
-  // &__container {
-  //   @include desk {
-  //     margin: 1rem;
-  //     width: 30rem;
-  //     height: 40rem;
-
-  //     padding: 5px;
-  //     display: flex;
-  //     flex-direction: column;
-  //     align-items: center;
-  //     gap: 3px;
-  //     border-radius: 10px;
-  //   }
-  // }
 
 
   /* ...........cards Mis postulaciones............*/
@@ -408,6 +440,10 @@
     &__button-costumer {
       width: 100%;
     }
+    &__footer{
+      display: flex;
+      margin-top:350px;
+    }
   }
 }
 
@@ -440,5 +476,11 @@
     &__button-costumer {
       width: 100%;
     }
+
+    &__footer{
+      margin-top: 404px;
+    }
+
+    
   }
 }

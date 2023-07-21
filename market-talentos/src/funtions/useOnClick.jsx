@@ -43,12 +43,12 @@ const useOnClick = () => {
             navigate("/profile")
         }
         else if (parametro === "formRegisTalent") {
-            console.log("hice click en profile ", parametro);
+            console.log("hice click en formRegisTalent ", parametro);
             navigate("/formRegisTalent")
         }
-        else if (parametro === "registerTalent") {
+        else if (parametro === "formStudies") {
             console.log("hice click en profile ", parametro);
-            navigate("/formRegisTalent")
+            navigate("/editProfile")
         }
         else if (parametro === "cardTalent") {
             console.log("hice click en cardTalent ", parametro);

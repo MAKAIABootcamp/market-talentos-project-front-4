@@ -3,11 +3,16 @@ import "./styleLayoutTalents.scss";
 import LogoMakaia from "../../assets/Logo.png";
 import usuario from "../../assets/avataradmo.png";
 import imgReturn from "../../assets/arrowleft.png"
-import { NavLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { singOutAsync } from '../../redux/actions/usersActions';
+import { useDispatch } from 'react-redux';
+import imgExit from '../../assets/exit.png';
+
 
 const LayoutTalents = () => {
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const products = [
     {
@@ -18,26 +23,28 @@ const LayoutTalents = () => {
     {
       id: 2,
       name: "Ofertas Laborales",
-      path: "/jobOffers",
+      path: "/talentOfferJob",
     },
     {
       id: 4,
       name: "Mis Postulaciones",
-      path: "/contacts",
+      path: "/jobTalent",
     },
     {
       id: 5,
       name: "Blog",
-      path: "/contacts",
+      path: "/blog",
     }
   ]
-  const dispatch = useDispatch();
+  
   return (
     <>
       <header className="layoutTalent">
         <div className='layoutTalent__container-imgReturn'>
-          <figure className="layoutTalent__figure-imgReturn">
-          <img src={imgReturn} alt="imgReturn" />
+          <figure
+            onClick={() => navigate("/")}
+            className="layoutTalent__figure-imgReturn">
+            <img src={imgReturn} alt="imgReturn" />
           </figure>
         </div>
         <div className="layoutTalent__container-logo">
@@ -49,7 +56,7 @@ const LayoutTalents = () => {
           <ul className='layoutTalent__navbar-ul'>
             {products.map((item) => (
               <li key={item.id}>
-                <NavLink path={item.path} className={"layoutHome__link"} to={item.name}>{item.name}</NavLink>
+                <NavLink className={"layoutTalent__link"} to={item.path}>{item.name}</NavLink>
               </li>
             ))}
           </ul>
@@ -61,14 +68,13 @@ const LayoutTalents = () => {
             </figure>
           </div>
           <div>
-            <select className='layoutTalent__select'>
-              <option value=""></option>
-              <option value="iniciar sesion">Iniciar Sesion</option>
-              <option
-                value="iniciar sesion"
-                onClick={() => dispatch(singOutAsync())}
-              >Cerrar Sesion</option>
-            </select>
+            <button
+              className='layoutTalent__button-exit'
+              onClick={() => dispatch(singOutAsync())}>
+              <figure className='layoutTalent__figure-exit'>
+                <img src={imgExit} alt="exit" />
+              </figure>
+            </button>
           </div>
         </div>
       </header>
