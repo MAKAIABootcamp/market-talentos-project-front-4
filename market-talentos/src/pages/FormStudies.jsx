@@ -1,22 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import "../style/styleFormStudies.scss";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import {
-  completeProfileAsync,
-//   singOutAsync,
-} from "../redux/actions/usersActions";
+  completeProfileAsync} from "../redux/actions/usersActions";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
 import LayoutTalents from "../components/layout/LayoutTalents"; 
+import { listTalents } from '../redux/actions/userActions';
 
 const FormStudies = () => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
+    const talents = useSelector((store) => store.userTalents);
+    console.log(talents, "talentos");
 
-    const { user } = useSelector((state) => state.user);
-    console.log(user);
+    useEffect(() => {
+        dispatch(listTalents())
+    }, [dispatch]);
 
     const validationSchema = Yup.object().shape({
     institute: Yup.string().required("la Institucion educativa es requerida"),
@@ -28,18 +28,20 @@ const FormStudies = () => {
 
   const handleSubmit = (values) => {
     console.log(values);
-    values.cv = "";
-    values.video = "";
+    
 
-    const newTalent = {
+    const newInfoStudies = {
       institute: values.institute,
+      initialDate: values.initialDate,
+      finishDate: values.finishDate,
       programName: values.programName,
       degree: values.degree,
       graduationYear: values.graduationYear,
      
     };
+    console.log( institute, initialDate, user.displayName, finishDate, newInfoStudies, programName, programName, degree, graduationYear, user.type, "NuevoTalento");
     dispatch(
-      completeProfileAsync(newTalent, user.type)
+      completeProfileAsync(newInfoStudies, user.type)
     )
       .then(() => {
         Swal.fire({

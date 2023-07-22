@@ -5,15 +5,15 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import imageFond from "../assets/EditProfileFondo.jpg";
 // import Footer from "../components/footer/Footer";
-import {
+import { 
   completeProfileAsync,
   singOutAsync,
 } from "../redux/actions/usersActions";
 import Swal from "sweetalert2";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import LayoutTalents from "../components/layout/LayoutTalents"; import { languageOptions } from "../services/dates";
 import { Spinner } from "react-bootstrap";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, } from "firebase/firestore";
 import { dataBase } from "../firebase/firebaseConfig";
 import { listTalents } from "../redux/actions/userActions";
 import { debugErrorMap } from "firebase/auth";
@@ -39,40 +39,19 @@ const EditProfile = () => {
         
     setTimeout(() => {
       if (user?.validateUser==false) {
+        console.log("usuario no validado por el administrador");
+        dispatch(singOutAsync());
         navigate("/")
         
-       } else {
-        
-       }
-     
-    
+       } 
       setIsLoading(false);
     }, 2000); 
-
-    
-    
-  
+   
   }, [dispatch])
 
   
-  // const usuarioEncontrado = user.map((user) => {
-  //   if (user?.uid) {
-  //       return user;
-  //   } else {
-  //     console.log("usuario no encontrado");
-  //   }
-  // })
-//   const talentsList = useSelector((store) => store.userTalents);
-
-//   useEffect(() => {
-//     dispatch(listTalents())
-// }, [dispatch]);
-
-  // console.log("todos talent", talentsList);
-
-  // talentsList.map(talent  => talent.id)
-  
 const buscarDocumento = async (talentoID) => {
+
   try {
     const docRef = doc(dataBase, "talentos", talentoID); // "talentos" es el nombre de la colección
     const docSnap = await getDoc(docRef);
@@ -82,9 +61,7 @@ const buscarDocumento = async (talentoID) => {
       const datosTalento = docSnap.data();
       console.log("Datos del talento:", datosTalento);
       if (Object.entries(datosTalento).length > 0) {
-        
-
-        console.log("hay datosTalento",datosTalento);
+          console.log("hay datosTalento",datosTalento);
         // setTalento(datosTalento)
       }
       // console.log(talento);
@@ -135,6 +112,17 @@ const buscarDocumento = async (talentoID) => {
     const videoURL = await videoUpLoad(values.video);
 
     const newTalent = {
+      displayName:user.displayName,
+      firstName:user.firstName,
+      lastName:user.lastName,
+      cohorte: user.cohorte,
+      email: user.email,
+      englishLevel: user.englishLevel,
+      id: user.uid,
+      phone: user.phone,
+      photoURL: user.photoURL,
+      rol: user.rol,
+      type: user.type,
       github: values.github,
       linkedIn: values.linkedIn,
       stacks: [...values.stacks, values.otherLanguages?? ""],
@@ -142,14 +130,9 @@ const buscarDocumento = async (talentoID) => {
       curriculum: cvURL,
       video: videoURL,
       displayName:user.displayName,
-      idUsuario: user.uid,
-      rol: user.rol,
-      cohorte: user.cohorte,
-      firstName:user.firstName,
-      lastName:user.lastName,
-      type: user.type,
+      validateUser: user.validateUser,
     };
-    console.log(user,user.displayName,newTalent,"neuvoalneto");
+    console.log(user, id, user.displayName, newTalent, "NuevoTalento");
     dispatch(
       completeProfileAsync(newTalent, user.type)
     )
@@ -185,7 +168,6 @@ const buscarDocumento = async (talentoID) => {
     onSubmit: handleSubmit,
     enableReinitialize: true,
   });
-
 
 
   const isFormValid =

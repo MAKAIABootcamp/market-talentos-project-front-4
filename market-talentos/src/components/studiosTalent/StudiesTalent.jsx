@@ -1,8 +1,10 @@
 import React from 'react'
 
 const StudiesTalent = () => {
+       
     return (
         <>
+        <h1></h1>
             <div className='studies__container-studies'>
                 <div className='studies__container-imgInstitute'>
                     <figure className='studies__figure-imgInstitute'>

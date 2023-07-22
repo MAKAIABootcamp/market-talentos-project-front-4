@@ -1,7 +1,7 @@
 import React from 'react';
 import LogoMakaia from "../../assets/Logo.png";
 import "./styledLayoutHome.scss";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import usuario from "../../assets/avataradmo.png"
 import { singOutAsync } from '../../redux/actions/usersActions';
 import { useDispatch } from 'react-redux';
@@ -9,6 +9,12 @@ import imgExit from '../../assets/exit.png'
 
 
 const LayoutHome = () => {
+
+    const navigate = useNavigate();
+    const login = () =>{
+        navigate("/login")
+
+    }
 
     const dispatch = useDispatch();
     
@@ -51,8 +57,15 @@ const LayoutHome = () => {
                 </div>
                 <div className='layoutHome__container-login'>
                     <div className='layoutHome__container-imgTalent'>
-                        <figure className='layoutHome__card-figure'>
-                            <img src={usuario} alt="imgTalent" />
+                        <figure className='layoutHome__card-figure'
+                                               
+                            >
+                            <img src={usuario} alt="imgTalent"                             
+                          
+                          onClick={login}
+                            
+                            />
+                           
                         </figure>
                     </div>
                     <div>
