@@ -221,9 +221,9 @@ const DashboardHome = () => {
           <section className="main__container__sectiontabs" >
             <TabList className="main__container__sectiontabsL">
               <Tab className="main__container__sectiontab">Dashboards</Tab>
-              <Tab className="main__container__sectiontab">Empresas</Tab>
+              {/* <Tab className="main__container__sectiontab">Empresas</Tab>
               <Tab className="main__container__sectiontab">Intermediaciones</Tab>
-              <Tab className="main__container__sectiontab">Mapeos</Tab>
+              <Tab className="main__container__sectiontab">Mapeos</Tab> */}
             </TabList>
 
           </section>
@@ -254,17 +254,65 @@ const DashboardHome = () => {
                     </StatGroup>
                   </span>
 
+                  <span className="main__container__divpanel1">
+                    <StatGroup>
+                      <Stat>
+                        <StatLabel className="main__container__divpanel2">Vacantes Registradas</StatLabel>
+                        <StatNumber className="main__container__divpanel3">{hv}</StatNumber>
+                      </Stat>
+                    </StatGroup>
+                  </span>
+
+                  
+
 
                 </div>
 
-                <div className="main__container__sectionT">
+                <div className="main__container__divpanel">
+                  
+                  <span className="main__container__divpanel9">
+                    <StatGroup>
+                      <Stat>
+                        <StatLabel className="main__container__divpanel2">Vacantes Activas</StatLabel>
+                        <StatNumber className="main__container__divpanel3">{hv}</StatNumber>
+                      </Stat>
+                    </StatGroup>
+                  </span>
+
+                  <span className="main__container__divpanel9">
+                    <StatGroup>
+                      <Stat>
+                        <StatLabel className="main__container__divpanel2">Talentos Autopostulados</StatLabel>
+                        <StatNumber className="main__container__divpanel3">{hv}</StatNumber>
+                      </Stat>
+                    </StatGroup>
+                  </span>
+
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+                
+
+
+
+                {/* <div className="main__container__sectionT">
                   <TableContainer  >
-                    <Table variant='striped' colorScheme='teal' className="main__container__tablepanel" >
+                    <Table variant='striped' colorScheme='teal' className="main__container__tablepanel" > */}
 
 
 
 
-                      <Thead >
+                      {/* <Thead >
                         <Tr className="main__container__th">
                           <Th>Nombre</Th>
                           <Th>Contacto</Th>
@@ -273,9 +321,9 @@ const DashboardHome = () => {
                           <Th >Role</Th>                          
                           <Th >Modificación</Th>
                         </Tr>
-                      </Thead>
+                      </Thead> */}
 
-                      <Tbody className="main__container__trb" >
+                      {/* <Tbody className="main__container__trb" >
 
                         {
                           talents.map((item, index) => (
@@ -305,7 +353,7 @@ const DashboardHome = () => {
 
 
                           ))
-                        }
+                        } */}
 
 
                         {/* <Tr>
@@ -315,61 +363,17 @@ const DashboardHome = () => {
                           <Td>Registrado</Td>
                           <Td isNumeric> <DeleteIcon /> </Td>
                         </Tr> */}
-
-                      </Tbody>
-
-                      <Tbody className="main__container__tr">
-                        <Tr>
-                          <Td>Diana Pinzón</Td>
-                          <Td>4102563</Td>
-                          <Td isNumeric>25/06/2023</Td>
-                          <Td>Pendiente</Td>
-                          <Td isNumeric> <DeleteIcon /> </Td>
-                        </Tr>
-
-                      </Tbody>
-
-                      <Tbody className="main__container__trb">
-                        <Tr>
-                          <Td>Dego Meriño</Td>
-                          <Td>4196758</Td>
-                          <Td isNumeric>15/05/2023</Td>
-                          <Td>Pendiente</Td>
-                          <Td isNumeric> <DeleteIcon /> </Td>
-                        </Tr>
-
-                      </Tbody>
-
-                      <Tbody className="main__container__tr">
-                        <Tr>
-                          <Td>Elizabeth Ospina</Td>
-                          <Td>4196731</Td>
-                          <Td isNumeric>10/02/2023</Td>
-                          <Td>Registrado</Td>
-                          <Td isNumeric> <DeleteIcon /> </Td>
-                        </Tr>
-
-                      </Tbody>
-
-                      <Tbody className="main__container__trb">
-                        <Tr>
-                          <Td>Santiago Gomez</Td>
-                          <Td>4063758</Td>
-                          <Td isNumeric>20/06/2023</Td>
-                          <Td>Pendiente</Td>
-                          <Td isNumeric> <DeleteIcon /> </Td>
-                        </Tr>
-
-                      </Tbody>
+                      {/* 
+                      </Tbody> */}
 
 
 
 
 
-                    </Table>
+                    {/* </Table>
                   </TableContainer>
 
-                </div>
+                </div> */}
 
 
 
