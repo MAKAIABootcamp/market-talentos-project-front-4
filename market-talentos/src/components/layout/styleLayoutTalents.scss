@@ -1,11 +1,11 @@
 @import "../../style/style.scss";
 
 .layoutTalent {
-  @include desk {
-    width: 100%;
-    height: auto;
+  @include desk {   
+   height: auto;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     // margin-left: 20px;
     // margin-top: 20px;
     padding: 20px;
@@ -43,8 +43,12 @@
       height: 85%;
     }
   }
+
+  // &__iconHmaburguer{
+  //   display: none;
+  // }
+
   &__container-navLink {
-    width: 750px;
     display: flex;
     align-items: center;
     margin-left: -114px;
@@ -59,6 +63,14 @@
     @include text($fontRoboto, $w400, $s14, $gray);
   }
   &__container-login {
+    display: flex;
+    align-items: center;
+    width: 200px;
+    justify-content: center;
+    gap: 25px;
+  }
+
+  &__container-loginHamburguer{
     display: flex;
     align-items: center;
     width: 200px;
@@ -132,5 +144,29 @@
     }
   }
 
-  
+}
+
+
+
+@media screen and (max-width: 375px) {
+
+  .layoutTalent {
+
+    &__navbar-ul{
+      display: none;
+    }
+
+    &__container-login{
+      display: none;
+    }
+
+    &__iconHmaburguer{
+      display: block;
+    }
+
+
+  }
+  // .hamburger-menu-wrapper {
+  //   display: none;
+  // }
 }
