@@ -8,10 +8,11 @@ const Home = () => {
 
     return (
     <>
+    <section>
       <LayoutHome />
 
        <p>¡Bienvenidos a nuestra plataforma de <span>Talentos</span>! <br />
-        Encuentra aquí a los proximos <span>desarrolladores</span> que conformarán tu equipo de trabajo.</p>
+        Encuentra aquí a los próximos <span>desarrolladores</span> que conformarán tu equipo de trabajo.</p>
 
       <div className="info__container">
         <div className="info__search">
@@ -36,10 +37,9 @@ const Home = () => {
       </div>
       <div className="info__grid2">
         <TalentsAll/>
-
-      </div>
-            
+      </div>            
       <Footer />
+      </section>
     </>
   );
 };

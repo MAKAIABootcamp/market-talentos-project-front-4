@@ -82,6 +82,7 @@
         }
     }
     &__container-mail{
+        margin-top: 20px;
         width: 340px;
         height: 60px;
         display: flex;
@@ -156,17 +157,30 @@
         @include desk{
         width: 310px;
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
         margin-bottom: 20px;
         }
     }
     &__span-register{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
         @include text ($fontRoboto, $w400, $s12, $white)
     }
-    &__span-registerLink{
+
+    &__container-buttonRegister{
+        display: flex;
+       
+    }
+    &__button-registerLink{
         text-decoration: underline;
         cursor: pointer;
-        @include text ($fontRoboto, $w400, $s12, $white);  
+        @include styleOval($gray, $gray, $wi150, $he25, 
+        $white, $s12, $w400, 
+         $gray, $skyBkue, $white);
+        
     }
     &__container-copyRight{
 
@@ -187,4 +201,5 @@
             height: 100%;
         }
     }
+   
 }

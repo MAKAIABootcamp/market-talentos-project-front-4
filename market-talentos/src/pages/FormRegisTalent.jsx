@@ -6,9 +6,9 @@ import "../style/styleFormRegisTalent.scss";
 import fondoImg from "../assets/fondoregist.jpg";
 import logoUser from "../assets/icon/logoUser.png";
 import Swal from "sweetalert2";
-import { useDispatch } from "react-redux";
+import { useDispatch  } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { registerActionAsync } from "../redux/actions/usersActions";
+import { registerActionAsync, singOutAsync } from "../redux/actions/usersActions";
 import LayoutTalents from "../components/layout/LayoutTalents";
 import Footer from "../components/footer/Footer";
 import { TiposDeUsuarios, roles } from "../services/dates";
@@ -62,15 +62,18 @@ const FormRegisTalent = () => {
         type: TiposDeUsuarios.TALENTO
       };
       console.log("New User:", newUser);
+
       Swal.fire({
         icon: "success",
-        title: "Usuario creado exitosamente",
+        title: "Su solicitud fue enviada, debe esperar aprobación del administrador",
         showConfirmButton: false,
         timer: 1500,
-      })
-        .then(() => {
-          navigate("/editProfile");
-        })
+      }).then(() => {
+          dispatch(singOutAsync());
+          navigate("/");
+          
+         })
+       
         .catch((error) => {
           // Manejar errores en caso de que ocurra un problema durante el registro del usuario
           console.log(error);
@@ -206,20 +209,7 @@ const FormRegisTalent = () => {
                   {formik.touched.phone && formik.errors.phone && (
                     <span>{formik.errors.phone}</span>
                   )}
-                  <div className="register__habeasdata ">
-                    <input
-                      id="habeasDataCheckbox"
-                      name="habeasDataCheckbox"
-                      type="checkbox"
-                      value={formik.values.habeasDataCheckbox}
-                      onChange={formik.handleChange}
-                    />
-                    <label className="register__habeasdata-info">
-                      Habeas Data: Al completar este formulario, aceptas que tus
-                      datos sean almacenados y utilizados de acuerdo con nuestra
-                      política de privacidad.
-                    </label>
-                  </div>
+                
 
                   <div className="register__ussers">
                     <input
@@ -244,6 +234,20 @@ const FormRegisTalent = () => {
                     )}
                   </div>
                 </div>
+                <div className="register__habeasdata ">
+                    <input
+                      id="habeasDataCheckbox"
+                      name="habeasDataCheckbox"
+                      type="checkbox"
+                      value={formik.values.habeasDataCheckbox}
+                      onChange={formik.handleChange}
+                    />
+                    <label className="register__habeasdata-info">
+                      Habeas Data: Al completar este formulario, aceptas que tus
+                      datos sean almacenados y utilizados de acuerdo con nuestra
+                      política de privacidad.
+                    </label>
+                  </div>
 
                 <button className="register__crearCuenta" type="submit">
                   Crear cuenta
