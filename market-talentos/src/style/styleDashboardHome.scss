@@ -139,6 +139,19 @@
     height: 45vh;
     width: 80vw;
     margin-left: -70px;
+    
+    
+
+  }
+  &__sectionpanel2 {
+    // background-color:yellow;
+    margin-top: 20px;
+    height: 45vh;
+    width: 80vw;
+    margin-left: -70px;
+    
+    
+
   }
 
   &__tl {
@@ -171,6 +184,7 @@
   }
 
   &__divpanel1 {
+    margin-top: 30px;
     background-color: $skyBkue;
     height: 80px;
     border-radius: 15px;
@@ -178,9 +192,18 @@
 
   }
 
+  &__divpanel9 {
+    margin-top: 150px;
+    background-color: $skyBkue;
+    height: 80px;
+    border-radius: 15px;
+    width: 250px;
+
+  }
+
   &__divpanel2 {
     margin-top: 10px;
-    margin-left: 20px;
+    margin-left: 30px;
     color: white;
     // font-size: 16px;
     // font-weight: bold;

@@ -5,75 +5,75 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import imageFond from "../assets/EditProfileFondo.jpg";
 // import Footer from "../components/footer/Footer";
-import {
-  completeProfileAsync
+import { 
+  completeProfileAsync,
+  singOutAsync,
 } from "../redux/actions/usersActions";
 import Swal from "sweetalert2";
-import { redirect, useNavigate } from "react-router-dom";
-import LayoutTalents from "../components/layout/LayoutTalents"; 
-import { languageOptions } from "../services/dates";
+import { useNavigate } from "react-router-dom";
+import LayoutTalents from "../components/layout/LayoutTalents"; import { languageOptions } from "../services/dates";
 import { Spinner } from "react-bootstrap";
 import { doc, getDoc, } from "firebase/firestore";
 import { dataBase } from "../firebase/firebaseConfig";
 import { listTalents } from "../redux/actions/userActions";
-
-
+import fileUpLoad from "../services/fileUpload";
+import videoUpLoad from "../services/videoUpLoad"
 
 
 const EditProfile = () => {
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [talento,setTalento]=useState({})
-
+ 
+  const talentosEncontrados = useSelector((store) => store.userTalents);
+  console.log("talentosEncontrados", talentosEncontrados);
   const { user } = useSelector((state) => state.user);
+  console.log("user",user);
 
+  const findTalents = talentosEncontrados.userTalents.find(talento => talento.id === user.id);
+  console.log("findTalents", findTalents);
+ 
   useEffect(() => {
-    console.log("info talento: ",talento);
-    console.log(user);   
+    dispatch(listTalents())
+        
     setTimeout(() => {
-      if (user?.validateUser==false) {
+      if (user?.validateUser == false) {
+        console.log("usuario no validado por el administrador");
+        dispatch(singOutAsync());
         navigate("/")
         
-       }
-     
-    
+       } 
       setIsLoading(false);
     }, 2000); 
+   
+  }, [dispatch])
+
   
-  }, [user])
- 
-  
-const buscarDocumento = async (talentoID) => {
+// const buscarDocumento = async (talentoID) => {
 
+//   try {
+//     const docRef = doc(dataBase, "talentos", talentoID); // "talentos" es el nombre de la colección
+//     const docSnap = await getDoc(docRef);
 
-
-
-
-  try {
-    const docRef = doc(dataBase, "talentos", talentoID); // "talentos" es el nombre de la colección
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-      // El documento existe, puedes acceder a los datos utilizando docSnap.data()
-      const datosTalento = docSnap.data();
-      console.log("Datos del talento:", datosTalento);
-      if (Object.entries(datosTalento).length > 0) {
-        
-
-        console.log("hay datosTalento",datosTalento);
-        // setTalento(datosTalento)
-      }
-      console.log(talento);
+//     if (docSnap.exists()) {
+//       // El documento existe, puedes acceder a los datos utilizando docSnap.data()
+//       const datosTalento = docSnap.data();
+//       console.log("Datos del talento:", datosTalento);
+//       if (Object.entries(datosTalento).length > 0) {
+//           console.log("hay datosTalento",datosTalento);
+//         // setTalento(datosTalento)
+//       }
+//       // console.log(talento);
       
-    } else {
-      console.log("El documento no existe.");
+//     } else {
+//       console.log("El documento no existe.");
      
-    }
-  } catch (error) {
-    console.error("Error al buscar el documento:", error);
+//     }
+//   } catch (error) {
+//     console.error("Error al buscar el documento:", error);
   
-  }
-};
+//   }
+// };
 
   const validationSchema = Yup.object().shape({
     github: Yup.string()
@@ -105,27 +105,33 @@ const buscarDocumento = async (talentoID) => {
       .required("Este campo es obligatorio"),
   });
 
-  const handleSubmit = (values) => {
+  const handleSubmit = async (values) => {
     console.log(values);
-    values.cv = "";
-    values.video = "";
+    const cvURL = await fileUpLoad(values.cv);
+    const videoURL = await videoUpLoad(values.video);
 
     const newTalent = {
-      github: values.github,
-      linkedIn: values.linkedIn,
-      stacks: [...values.stacks, values.otherLanguages],
-      profile: values.profile,
-      curriculum: values.cv,
-      video: values.video,
       displayName:user.displayName,
-      idUsuario: user.uid,
-      rol: user.rol,
-      cohorte: user.cohorte,
       firstName:user.firstName,
       lastName:user.lastName,
+      cohorte: user.cohorte,
+      email: user.email,
+      englishLevel: user.englishLevel,
+      id: user.uid,
+      phone: user.phone,
+      photoURL: user.photoURL,
+      rol: user.rol,
       type: user.type,
+      github: values.github,
+      linkedIn: values.linkedIn,
+      stacks: [...values.stacks, values.otherLanguages?? ""],
+      profile: values.profile,
+      curriculum: cvURL,
+      video: videoURL,
+      displayName:user.displayName,
+      validateUser: user.validateUser,
     };
-    console.log(user,user.displayName,newTalent,"neuvoalneto");
+    // console.log(user, id, user.displayName, newTalent, "NuevoTalento");
     dispatch(
       completeProfileAsync(newTalent, user.type)
     )
@@ -150,17 +156,17 @@ const buscarDocumento = async (talentoID) => {
 
   const formik = useFormik({
     initialValues: {
-      github: talento?.github,
-      linkedIn: "",
+      github: findTalents?.github,
+      linkedIn: findTalents?.linkedIn,
       // knowledge: false,
-      profile: "",
-      stacks: [],
-      otherLanguages: "",
+      profile: findTalents?.profile,
+      stacks: findTalents?.stacks ?? [],
+      otherLanguages: findTalents?.otherLanguages,
     },
     validationSchema,
     onSubmit: handleSubmit,
+    enableReinitialize: true,
   });
-
 
 
   const isFormValid =

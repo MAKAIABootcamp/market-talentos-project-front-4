@@ -37,9 +37,7 @@ const Home = () => {
       </div>
       <div className="info__grid2">
         <TalentsAll/>
-
-      </div>
-            
+      </div>            
       <Footer />
       </section>
     </>
