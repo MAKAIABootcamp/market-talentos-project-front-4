@@ -12,7 +12,6 @@ import {
   actionLoginAsync } from "../redux/actions/usersActions";
 import { useNavigate } from "react-router-dom";
 import LayoutLogin from "../components/layout/LayoutLogin";
-import Footer from "../components/footer/Footer";
 import { getLoggedUser } from "../redux/actions/userActions";
 import { setIsLogged } from "../redux/actions/appActions";
 import { Box } from "@chakra-ui/react";
@@ -175,33 +174,35 @@ const LoginTalent = () => {
                   ))}
                 </div>
 
-                <Box>
+                
                   <div className="loginTalent__container-register">
                     <div className="loginTalent__container-spanRegister">
                       <span className="loginTalent__span-register">
                         ¿No tienes cuenta?
                       </span>
                     </div>
-                    <button
+                    <div className="loginTalent__container-buttonRegister">
+                    <button 
                       type="button"
                       id="btnRegister"
                       value="Register"
-                      className="loginTalent__span-registerLink"
+                      className="loginTalent__button-registerLink"
                       onClick={() => handleRegister()}
                     >
-                      Regístrarme como talento
+                      Registro Empresa
                     </button>
                     <button
                       type="button"
                       id="btnRegister"
                       value="Register"
-                      className="loginTalent__span-registerLink"
+                      className="loginTalent__button-registerLink"
                       onClick={() => navigate('/formRegisCustom')}
                     >
-                      Regístrarme como empresa
+                      Registro Talento
                     </button>
+                    </div>
                   </div>
-                </Box>
+                
                 <div className="loginTalent__container-copyRight">
                   <label className="loginTalent__label-footer">
                     © 2023 - Bootcamp Makaia front end 4
@@ -211,7 +212,7 @@ const LoginTalent = () => {
             </div>
           </form>
         </Box>
-        <Footer />
+      
       </section>
     </>
   );
