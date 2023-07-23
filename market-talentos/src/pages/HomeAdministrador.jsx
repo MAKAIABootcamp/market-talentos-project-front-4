@@ -5,6 +5,7 @@ import { LayoutGroup } from 'framer-motion'
 import LayoutAdminS from '../components/layout/LayoutAdminSimple'
 import Footer from '../components/footer/Footer'
 import "../style/styledHomeAdministrador.scss";
+import bannerAd from "../assets/bannerAd.png";
 
 
 
@@ -18,6 +19,12 @@ const HomeAdministrador = () => {
 
 
     <main className='admin__talents-main'>
+
+      <div>
+        <figure>
+          <img src={bannerAd} alt="" width={1200}/>
+        </figure>
+      </div>
 
       <ul className="admin__talentsU" >
 

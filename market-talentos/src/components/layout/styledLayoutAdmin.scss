@@ -25,6 +25,7 @@
 
     }
     &__container-logo{
+        margin-top: 5px;
         width: 300px;       
     }
 
@@ -48,15 +49,20 @@
     }
     &__container-navLink{
        
+            
         width: 750px;
         display: flex;
         align-items: center;
     }
-    &__navbar-ul{
+    &__navbar-ulAd{
+        margin-top: 10px;        
         display: flex;
         gap: 35px;
         
     }
+
+
+
     &__link{
         text-decoration: none;
         @include text ($fontRoboto, $w400, $s14, $gray)
@@ -67,12 +73,13 @@
         justify-content: center;
         gap: 10px;
     }
-    &__container-imgTalent {
+    &__container-imgTalentAd {
         @include desk {
             @include styleRound($skyBkue, $skyBkue, $wi45, $he45,
                 $white, $s14, $w300,
                 $skyBkue, $skyBkue, $gray);
-            position: relative;
+            // position: relative;
+            margin-top: 5px;
         }
     }
 
@@ -90,7 +97,8 @@
         }
     }
     
-    &__button-exit{
+    &__button-exitAd{
+        margin-top: 5px;
         
         width: 40px;
         height: 40px;
@@ -109,3 +117,11 @@
         }
     }
 }
+.layoutTalent__linkAd{
+    margin-left: 60px;
+    list-style: none;
+    color: black;
+    font-size: 20px;
+   
+}
+

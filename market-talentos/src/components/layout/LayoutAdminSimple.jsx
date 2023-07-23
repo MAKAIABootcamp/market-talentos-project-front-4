@@ -17,23 +17,18 @@ const LayoutAdminS = () => {
   const products = [
     {
       id: 1,
-      name: "Home",
-      path: "/homeadmins"
+      name: "Talentos",
+      path: "/adminsT"
     },
     {
       id: 2,
-      name: "Ofertas Laborales",
+      name: "Vacantes",
       path: "/jobOffers",
     },
     {
       id: 4,
-      name: "Mis Postulaciones",
-      path: "/contacts",
-    },
-    {
-      id: 5,
-      name: "Blog",
-      path: "/contacts",
+      name: "Mis Dashboards",
+      path: "/dash",
     }
   ]
   
@@ -55,27 +50,27 @@ const LayoutAdminS = () => {
         </div>
         <div className="layoutTalent__container-navLink">
 
-            <span className='layoutTalent__container-message'>Bienvenido Administrador</span>
+            {/* <span className='layoutTalent__container-message'>Bienvenido Administrador</span> */}
 
 
 
-          {/* <ul className='layoutTalent__navbar-ul'>
+          <ul className='layoutTalent__navbar-ulAd'>
             {products.map((item) => (
               <li key={item.id}>
-                <NavLink  className={"layoutTalent__link"} to={item.path}>{item.name}</NavLink>
+                <NavLink  className={"layoutTalent__linkAd"} to={item.path}>{item.name}</NavLink>
               </li>
             ))}
-          </ul> */}
+          </ul>
         </div>
         <div className='layoutTalent__container-login'>
-          <div className='layoutTalent__container-imgTalent'>
+          <div className='layoutTalent__container-imgTalentAd'>
             <figure className='layoutTalent__card-figure'>
               <img src={usuario} alt="imgTalent" />
             </figure>
           </div>
           <div>
             <button
-              className='layoutTalent__button-exit'
+              className='layoutTalent__button-exitAd'
               onClick={() => dispatch(singOutAsync())}>
               <figure className='layoutTalent__figure-exit'>
                 <img src={imgExit} alt="exit" />

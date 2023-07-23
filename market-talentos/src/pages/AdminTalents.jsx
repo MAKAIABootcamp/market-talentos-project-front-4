@@ -23,6 +23,7 @@ import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
 import { actionDeleteTalentAsync, actionGetTalentAsync, actionEditTalentAsync, actionAddTalentAsync } from "../redux/actions/validateTalentActions";
 import Footer from "../components/footer/Footer";
 import LayoutAdmin from "../components/layout/LayoutAdmin";
+import { NavLink } from "react-router-dom";
 
 
 const AdminTalents = () => {
@@ -120,6 +121,7 @@ const AdminTalents = () => {
                           <Th >Role</Th>
                           <Th isNumeric>Estado</Th>
                           <Th >Validación</Th>
+                          <Th >Ver Detalles</Th>
                           <Th isNumeric>Eliminar</Th>
 
                         </Tr>
@@ -150,12 +152,26 @@ const AdminTalents = () => {
                                 >Aceptar</button>}
 
                               </Td>
+
+                              <Td>
+
+                                <button>
+                                <NavLink to="/talentDetails"> Perfil </NavLink>
+                                </button>
+
+                              </Td>
+
+
                               <Td > <DeleteIcon
                                 onClick={() => {
 
                                   dispatch(actionDeleteTalentAsync(item));
                                   dispatch(actionGetTalentAsync());
-                                  Swal.fire("Se ha eliminado con éxito", "success");
+                                  Swal.fire({                                    
+                                    title: "Se ha eliminado con éxito",
+                                    icon:  "success", 
+                                  });
+                                
 
 
                                 }}
