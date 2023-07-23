@@ -15,9 +15,9 @@ import {
   Tr,
   Th,
   Td,
- 
+
   TableContainer,
- 
+
 } from '@chakra-ui/react'
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
 import { actionDeleteTalentAsync, actionGetTalentAsync, actionEditTalentAsync, actionAddTalentAsync } from "../redux/actions/validateTalentActions";
@@ -29,7 +29,7 @@ import { NavLink } from "react-router-dom";
 const AdminTalents = () => {
 
   const dispatch = useDispatch();
-  
+
 
   useEffect(() => {
 
@@ -49,12 +49,12 @@ const AdminTalents = () => {
     const dataTalents = talents.slice();
     const descriptionTalents = dataTalents.find(talent => talent.uid === uid);
     if (descriptionTalents) {
-      descriptionTalents.validateUser = true;     
+      descriptionTalents.validateUser = true;
       dispatch(actionEditTalentAsync(descriptionTalents));
       dispatch(actionAddTalentAsync(descriptionTalents));
       dispatch(actionGetTalentAsync());
       alert("Talento aprobado con éxito")
-    } else  {
+    } else {
       alert("No se encontró el talento")
     }
   }
@@ -156,7 +156,7 @@ const AdminTalents = () => {
                               <Td>
 
                                 <button>
-                                <NavLink to="/talentDetails"> Perfil </NavLink>
+                                  <NavLink to="/talentDetails"> Perfil </NavLink>
                                 </button>
 
                               </Td>
@@ -167,11 +167,11 @@ const AdminTalents = () => {
 
                                   dispatch(actionDeleteTalentAsync(item));
                                   dispatch(actionGetTalentAsync());
-                                  Swal.fire({                                    
+                                  Swal.fire({
                                     title: "Se ha eliminado con éxito",
-                                    icon:  "success", 
+                                    icon: "success",
                                   });
-                                
+
 
 
                                 }}
@@ -214,7 +214,7 @@ const AdminTalents = () => {
 
               {/* ------------------------Section Tabs Panels Intermediaciones----------------------- */}
 
-            
+
             </TabPanels>
           </section>
         </Tabs>

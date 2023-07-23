@@ -1,18 +1,149 @@
 @import "./variables.scss";
 @import "./style.scss";
 
+
+.admin__talents-mainB{
+
+ margin-left: 150px;
+}
+
+
+
+.cardTalents__card-figureAd {
+    margin-left: 50px;
+
+    color:black;
+
+    @include desk {
+      @include styleRound(
+        $white,
+        $skyBkue,
+        $wi105,
+        $he105,
+        $white,
+        $s14,
+        $w300,
+        $white,
+        $skyBkue,
+        $gray
+      );
+
+
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 5rem;
+      }
+    }
+
+    &__span{
+     
+        color: black;
+        font-size: 30px;
+    }
+
+  }
+
 .admin__talents-main{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 250px;
-    line-height: 60px;
-    margin-top: 60px;
-    witd:60px;
-    font-size: 30px;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    // align-items: center;
+    // margin-bottom: 250px;
+    // line-height: 60px;
+    // margin-top: 60px;
+    // width: 60px;
+    // font-size: 30px;
     
     // margin-left: 500px;
 
-   
+    &__principal{
+        // background-color: blue;
+        display: flex;
+
+    }   
+    }
+
+    .grid-left__admin{
+        // background-color: aqua;
+        margin-top: 70px;
+        width: 55%;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+
+        &__spanp{
+            margin-top: 50px;
+            background-color:$skyBkue;
+            height:40px;
+            width: 12vw;
+            text-align: center; 
+            border-radius: 15px;
+            position: relative;
+        }
+
+        &__span{                    
+            color: white;
+            font-size: 25px;
+           
+        }
+
+        &__pp{
+            margin-top: -8px;
+            background-color: $gray;
+            height: auto;
+            width: 30vw;
+            text-align: center; 
+            border-radius: 15px;
+        }
+
+        &__p{
+            margin-top: 15px;
+            color:white;
+            font-size: 22px;
+            justify-content: center;
+            margin-left: 50px;
+            
+
+        }
+    }
+
+    .grid-rigth__admin{
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        align-items: center;
+        margin-left: 80px;
+        margin-top: 30px;
+
+
+            &__card1{
+                margin-top: 40px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                border:4px solid $skyBkue;
+                border-radius: 15px;
+                padding: 20px;
+            }
+            &__card1T{
+                margin-top: 20px;
+               margin-left: 40px;
+               font-size: 18px;
+            }
+            &__card1B{
+                margin-top: 20px;
+               margin-left: 80px;
+               background: none;
+               background-color: $skyBkue;
+               width: 90px;
+               height: 30px;
+               border-radius: 15px;
+               color: white;
+               
+            }
+
+
+
     }
