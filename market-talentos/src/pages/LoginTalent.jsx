@@ -194,7 +194,7 @@ const LoginTalent = () => {
                       id="btnRegister"
                       value="Register"
                       className="loginTalent__button-registerLink"
-                      onClick={() => navigate('/formRegisCustom')}
+                      onClick={() => navigate('/formRegisTalent')}
                     >
                       Talento
                     </button>
