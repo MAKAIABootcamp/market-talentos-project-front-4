@@ -4,8 +4,6 @@ const talentState = { talents: [] };
 
 export const validateReducer = (state = talentState, action) => {
 
-    //casos
-
     switch (action.type) {
 
         case validateTalents.GET_TALENT:
@@ -26,8 +24,6 @@ export const validateReducer = (state = talentState, action) => {
                 )
             }
 
-
-
         case validateTalents.EDIT_TALENTS:
 
             return {
@@ -36,13 +32,13 @@ export const validateReducer = (state = talentState, action) => {
                     const originalTalents = cont;
                     if (cont.uid === action.payload.uid) {
                         originalTalents.validateUser = action.payload.validateUser;
-                        
+
                     }
                     return originalTalents
                 })
             }
 
-            case validateTalents.ADD_TALENT:
+        case validateTalents.ADD_TALENT:
             return {
                 ...state,
                 talents: [...state.talents, action.payload],
@@ -50,12 +46,5 @@ export const validateReducer = (state = talentState, action) => {
 
         default:
             return state;
-
     }
-
-
-
-
-
-
 }

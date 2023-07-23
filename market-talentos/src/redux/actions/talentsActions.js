@@ -2,7 +2,6 @@ import { talentsTypes } from "../types/talentsTypes";
 import { getTalentFromTalentsCollection } from "../../services/talentsServices";
 
 export const getTalentAsync = (id) => {
-    console.log(id)
   return async (dispatch) => {
       try {
           const talent = await getTalentFromTalentsCollection(id);

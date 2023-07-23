@@ -16,7 +16,6 @@ export const actionGetTalentAsync = () => {
                     ...doc.data()
                 });
             });
-            console.log(talents);
         } catch (error) {
             console.log(error);
         }finally{
@@ -26,11 +25,11 @@ export const actionGetTalentAsync = () => {
 }
 
 const actionGetTalentSync = (talents) => {
+    const talentsArr = talents.filter(item => item.type === 'talentos')
     return {
         type: validateTalents.GET_TALENT,
         payload: {
-
-           talents : talents
+           talents : talentsArr
         }
     }
 }

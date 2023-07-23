@@ -1,16 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../style/styleDashboardHome.scss";
 import dev from "../assets/iconDev.png";
 import back from "../assets/arrowleft.png";
 import NavlinkAdminHome from "../components/navlinAdmin/NavLinkAdminHome";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
 import FotoEmpresa from "../../src/assets/logo admin 2.jpeg";
 import LogoMakaia from "../../src/assets/Logo.png";
 import { DeleteIcon, CheckIcon, CloseIcon } from '@chakra-ui/icons';
 import Swal from "sweetalert2";
-
-
 import {
   Stat,
   StatLabel,
@@ -37,211 +34,70 @@ import LayoutTalents from "../components/layout/LayoutTalents";
 import Footer from "../components/footer/Footer";
 import { useNavigate } from "react-router-dom";
 import LayoutAdmin from "../components/layout/LayoutAdmin";
-// import { swap } from "formik";
+import { listOfferJob } from '../redux/actions/offerJobActions';
+import { getApplicationsAsync } from "../redux/actions/applicationActions";
 
 
-
-
-
-
-
-
-const collectionFire = [
-
-  {
-    "id": 0,
-    "title": "Talentos",
-    "name": "Douglas Hurley",
-    "images": "https://i.ibb.co/wSF8Cbx/image-douglas-hurley.png",
-    "registers": "20",
-    "hv": "30",
-
-    "role": "Commander",
-    "bio": "Douglas Gerald Hurley is an American engineer, former Marine Corps pilot and former NASA astronaut. He launched into space for the third time as commander of Crew Dragon Demo-2."
-  },
-
-
-
-];
-
-const collectionCompany = [
-
-  {
-    "id": 0,
-    "titlec": "Company",
-    "name": "Douglas Hurley",
-    "images": "https://i.ibb.co/wSF8Cbx/image-douglas-hurley.png",
-    "registersc": "60",
-    "hvc": "10",
-
-    "rolec": "Commander",
-    "bioc": "Douglas Gerald Hurley is an American engineer, former Marine Corps pilot and former NASA astronaut. He launched into space for the third time as commander of Crew Dragon Demo-2."
-  },
-
-
-];
 
 const DashboardHome = () => {
-
+  const { talents } = useSelector((store) => store.validateReducer); 
+  const { applications } = useSelector((store) => store.applications);
+  const offerJobList = useSelector((state) => state.offerJob);
+  const [totalTalents, setTotalTalents] = useState(0);
+  const [completedProfiles, setCompletedProfiles] = useState(0);
+  const [offers, setOffers] = useState(0);
+  const [activeOffers, setActiveOffers] = useState(0);
+  const [postulaciones, setPostulaciones] = useState(0);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-
 
   useEffect(() => {
-
-    dispatch(actionGetTalentAsync())
-
+    dispatch(actionGetTalentAsync());
+    dispatch(listOfferJob());
+    dispatch(getApplicationsAsync());
   }, []);
 
-  const {talents} = useSelector((state) => state.validateReducer);
-  console.log(talents);
+  useEffect(() => {
+    const completedProfilesArray = talents.filter(item => item.completedProfile === true)
+    setTotalTalents(talents.length);
+    setCompletedProfiles(completedProfilesArray.length)
+  }, [talents]);
 
+  useEffect(() => {
+    const activeOffers = offerJobList.offerJob.filter(offer => offer.closeDate > new Date())
+    setOffers(offerJobList.offerJob.length);
+    setActiveOffers(activeOffers)
+  }, [offerJobList]);
 
-
-  
-
-
-
-
-  // const talentsRegis = talents.length;
-  // console.log(talentsRegis);
-
-
-
-
-
-
-  const [list] = useState(collectionFire)
-  const [value, setValue] = useState(0);
-  const { hv, registers, title, role, bio } = list[value]
-
-  const [listC] = useState(collectionCompany)
-  const [values, setValues] = useState(0);
-  const { hvc, registersc, titlec, rolec, bioc } = listC[values]
-
-
-
+  useEffect(() => {
+    setPostulaciones(applications.length)
+    console.log("postulaciones", applications)
+  }, [applications]);
 
 
   return (
-
     <>
-
       <LayoutAdmin />
-
-
-      {/* <nav className="main__container__navBar">
-
-
-
-        <div className="section__contenedor1">
-          <figure className="section__back">
-            <img src={back} alt="Logo de makaia" width={20} />
-
-          </figure>
-          <figure className="section__logomakaia">
-
-            <img src={LogoMakaia} alt="Logo de makaia" />
-          </figure>
-        </div>
-
-
-
-        <div className="section__contenedor13">
-          <ul className="main__container__list">
-            <a href="#">Home</a>
-            <a href="#">Blog</a>
-            <a href="#">Contacto</a>
-
-          </ul>
-        </div>
-
-        <div className="section__contenedor12">
-          <figure className="section__icon">
-            <img src={dev} alt="Logo de makaia" width={40} />
-          </figure>
-        </div>
-
-      </nav> */}
-
-
-
-
       <p className="message__p">Bienvenidos Makaia</p>
-
-
-
-
-
-
       {/* ------------------------Section Tabs----------------------- */}
-
       <main className="main__container">
-
-
-
-        {/* {
-          
-
-            <div className="worker__card">
-              {talents && talents.length ? (
-                talents.map((item, index) => (
-                  <article
-                    className="description"
-                    // onClick={() => {
-                    //   navigate(`/details/${item.id}`);
-                    // }}
-                    key={index}
-                  >
-                   <h5>{item.cohorte}</h5>
-                    <h4>{item.firstName}</h4>
-                  </article>
-                ))
-              ) : (
-                <div>El talento aún no ha sido validado</div>
-              )}
-            </div>
-
-
-
-         
-        } */}
-
-
-
-
-
-
-
-
         <Tabs className="main__container__tabs">
           {/* ------------------------Section Tabs List----------------------- */}
-
           <section className="main__container__sectiontabs" >
             <TabList className="main__container__sectiontabsL">
               <Tab className="main__container__sectiontab">Dashboards</Tab>
-              {/* <Tab className="main__container__sectiontab">Empresas</Tab>
-              <Tab className="main__container__sectiontab">Intermediaciones</Tab>
-              <Tab className="main__container__sectiontab">Mapeos</Tab> */}
             </TabList>
-
           </section>
-
           {/* ------------------------Section Tabs Panels----------------------- */}
           <section className="main__container__sectionpanel">
             <TabPanels className="main__container__tl">
-
               {/* ------------------------Section Tabs Panels Talentos----------------------- */}
               <TabPanel className="main__container__sectiontpanel">
                 <div className="main__container__divpanel">
                   <span className="main__container__divpanel1">
                     <StatGroup>
-
-
                       <Stat>
                         <StatLabel className="main__container__divpanel2">Talentos Registrados</StatLabel>
-                        <StatNumber className="main__container__divpanel3">{registers}  </StatNumber>
+                        <StatNumber className="main__container__divpanel3">{totalTalents} </StatNumber>
                       </Stat>
                     </StatGroup>
                   </span>
@@ -249,140 +105,40 @@ const DashboardHome = () => {
                     <StatGroup>
                       <Stat>
                         <StatLabel className="main__container__divpanel2">HV Completadas</StatLabel>
-                        <StatNumber className="main__container__divpanel3">{hv}</StatNumber>
+                        <StatNumber className="main__container__divpanel3">{completedProfiles}</StatNumber>
                       </Stat>
                     </StatGroup>
                   </span>
-
                   <span className="main__container__divpanel1">
                     <StatGroup>
                       <Stat>
                         <StatLabel className="main__container__divpanel2">Vacantes Registradas</StatLabel>
-                        <StatNumber className="main__container__divpanel3">{hv}</StatNumber>
+                        <StatNumber className="main__container__divpanel3">{offers}</StatNumber>
                       </Stat>
                     </StatGroup>
                   </span>
-
-                  
-
-
                 </div>
-
-                <div className="main__container__divpanel">
-                  
+                <div className="main__container__divpanel">                  
                   <span className="main__container__divpanel9">
                     <StatGroup>
                       <Stat>
                         <StatLabel className="main__container__divpanel2">Vacantes Activas</StatLabel>
-                        <StatNumber className="main__container__divpanel3">{hv}</StatNumber>
+                        <StatNumber className="main__container__divpanel3">{activeOffers}</StatNumber>
                       </Stat>
                     </StatGroup>
                   </span>
-
                   <span className="main__container__divpanel9">
                     <StatGroup>
                       <Stat>
                         <StatLabel className="main__container__divpanel2">Talentos Autopostulados</StatLabel>
-                        <StatNumber className="main__container__divpanel3">{hv}</StatNumber>
+                        <StatNumber className="main__container__divpanel3">{postulaciones}</StatNumber>
                       </Stat>
                     </StatGroup>
                   </span>
-
-
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-                
-
-
-
-                {/* <div className="main__container__sectionT">
-                  <TableContainer  >
-                    <Table variant='striped' colorScheme='teal' className="main__container__tablepanel" > */}
-
-
-
-
-                      {/* <Thead >
-                        <Tr className="main__container__th">
-                          <Th>Nombre</Th>
-                          <Th>Contacto</Th>
-                          <Th isNumeric>Correo</Th>
-                          <Th isNumeric>Cohorte</Th>
-                          <Th >Role</Th>                          
-                          <Th >Modificación</Th>
-                        </Tr>
-                      </Thead> */}
-
-                      {/* <Tbody className="main__container__trb" >
-
-                        {
-                          talents.map((item, index) => (
-
-                            <Tr key={index} className="main__container__th">
-
-                              <Td> {item.firstName}</Td>
-                              <Td>{item.phone}</Td>
-                              <Td >{item.email}</Td>
-                              <Td>{item.cohorte}</Td>
-                              <Td>{item.rol}</Td>
-                              
-
-                              <Td > <DeleteIcon 
-                              onClick={() => {
-
-                                 dispatch (actionDeleteTalentAsync(item));
-                                Swal.fire("Se ha eliminado con éxito", "success");
-                                
-
-                                }}
-
-                              
-                              /> </Td>
-                            </Tr>
-
-
-
-                          ))
-                        } */}
-
-
-                        {/* <Tr>
-                          <Td>Gesiel Gimenez</Td>
-                          <Td>1531206</Td>
-                          <Td isNumeric>15/07/2023</Td>
-                          <Td>Registrado</Td>
-                          <Td isNumeric> <DeleteIcon /> </Td>
-                        </Tr> */}
-                      {/* 
-                      </Tbody> */}
-
-
-
-
-
-                    {/* </Table>
-                  </TableContainer>
-
-                </div> */}
-
-
-
               </TabPanel>
-
               {/* ------------------------Section Tabs Empresas----------------------- */}
-
               <TabPanel>
-
                 <div className="main__container__divpanel">
                   <span className="main__container__divpanel4">
                     <StatGroup>
@@ -410,11 +166,9 @@ const DashboardHome = () => {
                     </StatGroup>
                   </span>
                 </div>
-
                 <div className="main__container__sectionT">
                   <TableContainer  >
                     <Table variant='striped' colorScheme='teal' className="main__container__tablepanel" >
-
                       <Thead >
                         <Tr className="main__container__th">
                           <Th>Empresa</Th>
@@ -432,9 +186,7 @@ const DashboardHome = () => {
                           <Td>3134312456</Td>
                           <Td isNumeric> <DeleteIcon /> </Td>
                         </Tr>
-
                       </Tbody>
-
                       <Tbody className="main__container__tr">
                         <Tr>
                           <Td>Software Company</Td>
@@ -443,9 +195,7 @@ const DashboardHome = () => {
                           <Td>3006249875</Td>
                           <Td isNumeric> <DeleteIcon /> </Td>
                         </Tr>
-
                       </Tbody>
-
                       <Tbody className="main__container__trb1">
                         <Tr>
                           <Td>Makaia</Td>
@@ -454,9 +204,7 @@ const DashboardHome = () => {
                           <Td>3126954875</Td>
                           <Td isNumeric> <DeleteIcon /> </Td>
                         </Tr>
-
                       </Tbody>
-
                       <Tbody className="main__container__tr">
                         <Tr>
                           <Td>Company 2</Td>
@@ -465,9 +213,7 @@ const DashboardHome = () => {
                           <Td>64696576</Td>
                           <Td isNumeric> <DeleteIcon /> </Td>
                         </Tr>
-
                       </Tbody>
-
                       <Tbody className="main__container__trb1">
                         <Tr>
                           <Td>Company 3</Td>
@@ -476,16 +222,9 @@ const DashboardHome = () => {
                           <Td>313205495</Td>
                           <Td isNumeric> <DeleteIcon /> </Td>
                         </Tr>
-
                       </Tbody>
-
-
-
-
-
                     </Table>
                   </TableContainer>
-
                 </div>
                 {/* ------------------------Section Tabs Panels Intermediaciones----------------------- */}
               </TabPanel>
@@ -516,11 +255,9 @@ const DashboardHome = () => {
                     </StatGroup>
                   </span>
                 </div>
-
                 <div className="main__container__sectionT">
                   <TableContainer  >
                     <Table variant='striped' colorScheme='teal' className="main__container__tablepanel" >
-
                       <Thead >
                         <Tr className="main__container__th">
                           <Th>Nombre</Th>
@@ -538,9 +275,7 @@ const DashboardHome = () => {
                           <Td>Registrado</Td>
                           <Td isNumeric> <DeleteIcon /> </Td>
                         </Tr>
-
                       </Tbody>
-
                       <Tbody className="main__container__tr">
                         <Tr>
                           <Td>Diana Pinzón</Td>
@@ -549,9 +284,7 @@ const DashboardHome = () => {
                           <Td>Pendiente</Td>
                           <Td isNumeric> <DeleteIcon /> </Td>
                         </Tr>
-
                       </Tbody>
-
                       <Tbody className="main__container__trb">
                         <Tr>
                           <Td>Dego Meriño</Td>
@@ -560,9 +293,7 @@ const DashboardHome = () => {
                           <Td>Pendiente</Td>
                           <Td isNumeric> <DeleteIcon /> </Td>
                         </Tr>
-
                       </Tbody>
-
                       <Tbody className="main__container__tr">
                         <Tr>
                           <Td>Elizabeth Ospina</Td>
@@ -571,9 +302,7 @@ const DashboardHome = () => {
                           <Td>Registrado</Td>
                           <Td isNumeric> <DeleteIcon /> </Td>
                         </Tr>
-
                       </Tbody>
-
                       <Tbody className="main__container__trb">
                         <Tr>
                           <Td>Santiago Gomez</Td>
@@ -581,7 +310,6 @@ const DashboardHome = () => {
                           <Td isNumeric>20/06/2023</Td>
                           <Td>Pendiente</Td>
                           <Td isNumeric>
-
                             <div>
                               <button>
                                 CheckIcon
@@ -592,49 +320,17 @@ const DashboardHome = () => {
                                 CloseIcon
                               </button>
                             </div>
-
                           </Td>
                         </Tr>
-
                       </Tbody>
-
-
-
-
-
                     </Table>
                   </TableContainer>
-
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
               </TabPanel>
-              {/* <TabPanel>
-                <p>four!</p>
-              </TabPanel> */}
             </TabPanels>
           </section>
         </Tabs>
-
-
-
-
-
       </main >
-
       <Footer />
     </>
   );

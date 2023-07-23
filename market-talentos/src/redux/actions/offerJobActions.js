@@ -13,7 +13,6 @@ export const listOfferJob = () => {
         id: doc.id,
         ...doc.data()
       }));
-      console.log(offerJobArray);
       dispatch(setOfferJob(offerJobArray));
     } catch (e) {
       console.error("Error listing document:", e);
@@ -27,6 +26,6 @@ export const addOfferJob = (jobData) => async () => {
     await addDoc(collection(firestore, 'ofertas'), jobData);
     Swal.fire(" Good job!", "Oferta publicada de forma exitosa", "success")
   } catch (error) {
-    console.error('Hubieron problemas al publicar la nueva oferta:', error);
+    console.error('Hubo problemas al publicar la nueva oferta:', error);
   }
 };
