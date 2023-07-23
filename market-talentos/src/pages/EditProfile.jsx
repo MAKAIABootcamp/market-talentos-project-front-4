@@ -17,7 +17,7 @@ import { doc, getDoc, } from "firebase/firestore";
 import { dataBase } from "../firebase/firebaseConfig";
 import { listTalents } from "../redux/actions/userActions";
 import fileUpLoad from "../services/fileUpload";
-import videoUpLoad from "../services/videoUpLoad"
+import videoUpLoad from "../services/videoUpload";
 
 
 const EditProfile = () => {

@@ -14,8 +14,7 @@ import { useNavigate } from "react-router-dom";
 import LayoutLogin from "../components/layout/LayoutLogin";
 import { getLoggedUser } from "../redux/actions/userActions";
 import { setIsLogged } from "../redux/actions/appActions";
-import { Box } from "@chakra-ui/react";
-import { Spinner } from '@chakra-ui/react'
+import { Spinner } from '@chakra-ui/react';
 
 
 const schema = yup.object({
@@ -29,7 +28,7 @@ const schema = yup.object({
 const LoginTalent = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { error } = useSelector((store) => store.user);
+  // const { error } = useSelector((store) => store.user);
   const { loggedUser } = useSelector((store) => store.user);
   const { isLoading } = useSelector((store) => store.appReducer);
 
@@ -98,7 +97,6 @@ const LoginTalent = () => {
     <>
       <section className="loginTalent">
         <LayoutLogin />
-        <Box>
           <form className="loginTalent__form" onSubmit={handleSubmit(onSubmit)}>
             <div className="loginTalent__container-logo">
               <figure className="loginTalent__figure-logo">
@@ -178,7 +176,7 @@ const LoginTalent = () => {
                   <div className="loginTalent__container-register">
                     <div className="loginTalent__container-spanRegister">
                       <span className="loginTalent__span-register">
-                        ¿No tienes cuenta?
+                        ¿No tienes cuenta?. Regístrate
                       </span>
                     </div>
                     <div className="loginTalent__container-buttonRegister">
@@ -189,7 +187,7 @@ const LoginTalent = () => {
                       className="loginTalent__button-registerLink"
                       onClick={() => handleRegister()}
                     >
-                      Registro Empresa
+                      Empresa
                     </button>
                     <button
                       type="button"
@@ -198,7 +196,7 @@ const LoginTalent = () => {
                       className="loginTalent__button-registerLink"
                       onClick={() => navigate('/formRegisCustom')}
                     >
-                      Registro Talento
+                      Talento
                     </button>
                     </div>
                   </div>
@@ -210,9 +208,7 @@ const LoginTalent = () => {
                 </div>
               </div>
             </div>
-          </form>
-        </Box>
-      
+          </form>      
       </section>
     </>
   );
