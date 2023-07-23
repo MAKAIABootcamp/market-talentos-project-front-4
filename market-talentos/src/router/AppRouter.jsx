@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+// import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Administrator from "../components/adminLayout/Administrator";
 import Customer from "../pages/Customer";
@@ -23,17 +23,17 @@ import EditProfile from "../pages/EditProfile";
 import FormStudies from "../pages/FormStudies";
 import TalentOfferJob from "../pages/TalentOfferJob";
 import JobApplicatioTalent from "../pages/JobApplicatioTalent";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth, dataBase } from "../firebase/firebaseConfig";
-import { getLoggedUser,  singInActionSync } from "../redux/actions/usersActions";
+// import { onAuthStateChanged } from "firebase/auth";
+// import { auth, dataBase } from "../firebase/firebaseConfig";
+// import { getLoggedUser,  singInActionSync } from "../redux/actions/usersActions";
 import PublicRouter from "./PublicRouter";
 import PrivateRouter from "./PrivateRouter";
-import Spinner from 'react-bootstrap/Spinner';
+// import Spinner from 'react-bootstrap/Spinner';
 // import FormRegisAdmin from '../pages/FormRegisAdmin';
 // import HomeAdmin from '../pages/HomeAdmin';
 import DashboardHome from "../pages/DashboardHome";
 import OffertVacants from "../pages/OffertVacants";
-import { doc, getDoc } from "@firebase/firestore";
+// import { doc, getDoc } from "@firebase/firestore";
 // import Login from "../pages/Login";
 // import FormRegister from "../pages/FormRegister";
 import HomeAdministrador from "../pages/HomeAdministrador";
@@ -42,90 +42,92 @@ import AdminVacants from "../pages/AdminVacants";
 
 
 const AppRouter = () => {
+  const { isLogged } = useSelector((state) => state.appReducer);
   // const [loggedUser, setLoggedUser] = useState(null);
-  const dispatch = useDispatch();
-  const [isLogged, setIsLogged] = useState(null);
-  const { user: loggedUser} = useSelector((state) => state.user);
-  const [loading, setLoading] = useState(true);
-console.log(loggedUser);
+  // const dispatch = useDispatch();
+  // const [isLogged, setIsLogged] = useState(null);
+  // const { user: loggedUser} = useSelector((state) => state.user);
+  // const [loading, setLoading] = useState(true);
+// console.log(loggedUser);
 
 // Funcion para datos del usuario y persistencia 
-const traerInfo = async (uid, accessToken) => {
-  const docRef = doc(dataBase, `usuarios/${uid}`);
-  const docu = await getDoc(docRef);
-  console.log(docu);
-  const dataFinal = docu.data();
-  console.log(uid);
-  console.log(dataFinal);
+// const traerInfo = async (uid, accessToken) => {
+//   const docRef = doc(dataBase, `usuarios/${uid}`);
+//   const docu = await getDoc(docRef);
+//   console.log(docu);
+//   const dataFinal = docu.data();
+//   console.log(uid);
+//   console.log(dataFinal);
  
-  dispatch(
-    singInActionSync({
-      displayName:dataFinal.displayName,
-      firstName: dataFinal.firstName,
-      email: dataFinal.email,
-      accessToken,
-      phoneNumber: dataFinal.phoneNumber,
-      rol: dataFinal.rol,
-      cohorte: dataFinal.cohorte,
-      type: dataFinal.type,
-      photoURL: dataFinal.photoURL,
-      lastName:dataFinal.lastName,
-      id:uid,
-      validateUser: dataFinal.validateUser,
-      uid,
-      error: false,
+//   dispatch(
+//     singInActionSync({
+//       displayName:dataFinal.displayName,
+//       firstName: dataFinal.firstName,
+//       typeUser: dataFinal. typeUser,
+//       email: dataFinal.email,
+//       accessToken,
+//       phoneNumber: dataFinal.phoneNumber,
+//       rol: dataFinal.rol,
+//       cohorte: dataFinal.cohorte,
+//       type: dataFinal.type,
+//       photoURL: dataFinal.photoURL,
+//       lastName:dataFinal.lastName,
+//       id:uid,
+//       validateUser: dataFinal.validateUser,
+//       uid,
+//       error: false,
       
-    })
-  );
-};
+//     })
+//   );
+// };
 
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user?.uid) {
-        console.log(user.uid);
-        console.log(loggedUser);
-        setIsLogged(true);
+//   useEffect(() => {
+//     onAuthStateChanged(auth, (user) => {
+//       if (user?.uid) {
+//         console.log(user.uid);
+//         console.log(loggedUser);
+//         setIsLogged(true);
         
-        // if (!loggedUser) {
-        //   dispatch(getLoggedUser(user?.accessToken));
-        //   console.log(loggedUser);
-        //   // user.getIdToken().then((token) => {
-        //   //   dispatch(getLoggedUser(token));
-        //   // });
-        // }
-      } else {
-        setIsLogged(false);
-      }
-        setLoading(false);
-        if (user?.auth.currentUser) {
-          if (!loggedUser) {
-            const {
-              displayName,
-              firstName,
-              lastName,
-              email,
-              phoneNumber,
-              accessToken,
-              photoURL,
-              id,
-              uid,
-              cohorte,
-              type,
-              rol,
-              validateUser,
-            } = user.auth.currentUser;
+//         // if (!loggedUser) {
+//         //   dispatch(getLoggedUser(user?.accessToken));
+//         //   console.log(loggedUser);
+//         //   // user.getIdToken().then((token) => {
+//         //   //   dispatch(getLoggedUser(token));
+//         //   // });
+//         // }
+//       } else {
+//         setIsLogged(false);
+//       }
+//         setLoading(false);
+//         if (user?.auth.currentUser) {
+//           if (!loggedUser) {
+//             const {
+//               displayName,
+//               firstName,
+//               lastName,
+//               email,
+//               phoneNumber,
+//               accessToken,
+//               photoURL,
+//               id,
+//               uid,
+//               cohorte,
+//               type,
+//               rol,
+//               validateUser,
+//             } = user.auth.currentUser;
   
-            traerInfo(uid, accessToken);
-            console.log(displayName, email, phoneNumber,lastName, photoURL, firstName, id, validateUser );
-            console.log('usuario logueado',loggedUser);
-          }
-        }
-      });
-  }, [setIsLogged, loading]);
-  if (loading) {
-    return <Spinner animation="border" />;
-  }
+//             traerInfo(uid, accessToken);
+//             console.log(displayName, email, phoneNumber,lastName, photoURL, firstName, id, validateUser );
+//             console.log('usuario logueado',loggedUser);
+//           }
+//         }
+//       });
+//   }, [setIsLogged, loading]);
+//   if (loading) {
+//     return <Spinner animation="border" />;
+//   }
 
 
   return (

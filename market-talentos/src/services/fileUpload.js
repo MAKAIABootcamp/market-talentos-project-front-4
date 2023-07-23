@@ -16,7 +16,7 @@ const fileUpLoad = async (image) => {
       });
   
       if (!response.ok) {
-        return null;
+        return console.log("no subio");
       }
   
       const data = await response.json();
