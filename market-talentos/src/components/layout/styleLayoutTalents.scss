@@ -1,12 +1,12 @@
 @import "../../style/style.scss";
 
 .layoutTalent {
-  @include desk {   
-   height: auto;
+  @include desk {
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-     padding: 20px;
+    padding: 20px;
     box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
     margin-bottom: 40px;
   }
@@ -30,18 +30,17 @@
   }
 
   &__figure-logo {
-    width: 130px;
+    width: 150px;
     height: auto;
     display: flex;
     justify-content: center;
     margin-left: -60px;
 
     img {
-      width: 85%;
-      height: 85%;
+      width: 100%;
+      height: 100%;
     }
   }
-
 
   &__container-navLink {
     display: flex;
@@ -52,7 +51,6 @@
   &__container-navLinks {
     display: none;
   }
-
 
   &__navbar-ul {
     display: flex;
@@ -78,7 +76,7 @@
     gap: 25px;
   }
 
-  &__container-loginHamburguer{
+  &__container-loginHamburguer {
     display: flex;
     align-items: center;
     width: 200px;
@@ -86,11 +84,11 @@
     gap: 25px;
   }
 
-  &__chatbot{
+  &__chatbot {
     width: 30px;
   }
 
-  &__notification{
+  &__notification {
     width: 20px;
   }
   &__container-imgTalent {
@@ -135,13 +133,17 @@
   }
 
   &__button-exit {
-    width: 40px;
-    height: 40px;
+    width: 20px;
+    height: 20px;
     display: flex;
     background-color: transparent;
     align-items: center;
+    color: $skyBkue;
+    margin-left: 2px;
+   
+   
   }
-  
+
   &__figure-exit {
     width: 20px;
     height: 20px;
@@ -152,61 +154,41 @@
     }
   }
 
-  &__hamburger-icon{
-    @include desk { 
-    display: none;
+  &__hamburger-icon {
+    @include desk {
+      display: none;
+    }
   }
-}
-
 }
 
 @media screen and (max-width: 768px) {
   .layoutTalent {
-
     &__container-navLinks {
       display: block;
     }
     &__container-navLink {
       display: none;
     }
-    &__container-logins{
+    &__container-logins {
       display: none;
     }
-    &_figure-logo {
-    //  margin-left: -83px;
-  }
-
-      
-  }
-
-
-
-@media screen and (max-width: 375px) {
-
-  .layoutTalent {
-    &__container-navLinks {
-      display: block;
-    }
-    &__container-navLink {
-      display: none;
-    }
-    &__container-logins{
-      display: none;
-    }
-       &_figure-logo {
-    //  margin-left: -83px;
-  }
-  
-    // &__container-navLink {
-    //   display:none;
-    // }
-
-    // &__hamburger-icon{    
-    //   display: inline-block;
+    //   &_figure-logo {
+    //   //  margin-left: -83px;
     // }
   }
 
-
-
+  @media screen and (max-width: 375px) {
+    .layoutTalent {
+      &__container-navLinks {
+        display: block;
+      }
+      &__container-navLink {
+        display: none;
+      }
+      &__container-logins {
+        display: none;
+      }
+     
+  }
 }
 }
