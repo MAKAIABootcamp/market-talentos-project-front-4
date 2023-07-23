@@ -1,0 +1,25 @@
+.blog {
+  display: flex;
+  position: relative;
+  left: 40px;
+  &__containerinfo1 {
+    display: flex;
+    gap: 200px;
+  }
+  &__textinformation {
+    background-color: red;
+    h1 {
+        width: 400px;
+        font-size: 50px;
+    }
+  }
+  &__imagen {
+    background-color: blue;
+    width: 600px;
+    img {
+        width: 300px;
+        border-top-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+    }
+  }
+}
