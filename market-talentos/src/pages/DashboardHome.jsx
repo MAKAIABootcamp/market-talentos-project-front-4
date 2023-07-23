@@ -36,24 +36,29 @@ import { useNavigate } from "react-router-dom";
 import LayoutAdmin from "../components/layout/LayoutAdmin";
 import { listOfferJob } from '../redux/actions/offerJobActions';
 import { getApplicationsAsync } from "../redux/actions/applicationActions";
-
+import { getcompanyAsync } from "../redux/actions/companyActions";
 
 
 const DashboardHome = () => {
   const { talents } = useSelector((store) => store.validateReducer); 
   const { applications } = useSelector((store) => store.applications);
   const offerJobList = useSelector((state) => state.offerJob);
+  const {companies} = useSelector((state) => state.companies);
   const [totalTalents, setTotalTalents] = useState(0);
   const [completedProfiles, setCompletedProfiles] = useState(0);
   const [offers, setOffers] = useState(0);
   const [activeOffers, setActiveOffers] = useState(0);
   const [postulaciones, setPostulaciones] = useState(0);
+  const [empresas, setEmpresas] = useState(0);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(actionGetTalentAsync());
     dispatch(listOfferJob());
     dispatch(getApplicationsAsync());
+    dispatch(getcompanyAsync());
+
   }, []);
 
   useEffect(() => {
@@ -72,6 +77,11 @@ const DashboardHome = () => {
     setPostulaciones(applications.length)
     console.log("postulaciones", applications)
   }, [applications]);
+
+  useEffect(() => {
+    setEmpresas(companies.length)
+    console.log("companies", companies)
+  }, [companies]);
 
 
   return (
@@ -135,6 +145,14 @@ const DashboardHome = () => {
                       </Stat>
                     </StatGroup>
                   </span>
+                  <span className="main__container__divpanel9">
+                    <StatGroup>
+                      <Stat>
+                        <StatLabel className="main__container__divpanel2">empresas</StatLabel>
+                        <StatNumber className="main__container__divpanel3">{empresas}</StatNumber>
+                      </Stat>
+                    </StatGroup>
+                  </span>
                 </div>
               </TabPanel>
               {/* ------------------------Section Tabs Empresas----------------------- */}
@@ -144,7 +162,7 @@ const DashboardHome = () => {
                     <StatGroup>
                       <Stat>
                         <StatLabel className="main__container__divpanel5">Empresas Registradas</StatLabel>
-                        <StatNumber className="main__container__divpanel6">85</StatNumber>
+                        <StatNumber className="main__container__divpanel6"></StatNumber>
                       </Stat>
                     </StatGroup>
                   </span>

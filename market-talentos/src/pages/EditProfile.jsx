@@ -19,7 +19,6 @@ import { listTalents } from "../redux/actions/userActions";
 import fileUpLoad from "../services/fileUpload";
 import videoUpLoad from "../services/videoUpload";
 
-
 const EditProfile = () => {
   
   const dispatch = useDispatch();

@@ -59,15 +59,13 @@ const TalentDetails = () => {
             onClick={() => setButtonVisibility(false)}
             >Estudios</button>
           </div>
-           {buttonVisibility?<WorkExperience/>:<StudiesTalent />} 
+          
           <section className='talentDetails__workExperience'>
-            
+          {buttonVisibility?<WorkExperience/>:<StudiesTalent />} 
             {/* <WorkExperience/> */}
-          </section>
-          <section className='talentDetails__workExperience'>
             {/* <StudiesTalent/> */}
           </section>
-
+         
         </div>
 
       </section>

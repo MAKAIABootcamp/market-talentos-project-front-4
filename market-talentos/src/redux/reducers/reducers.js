@@ -6,6 +6,7 @@ import userReducer from './userReducer';
 import OfferJobReducer from './OfferJobReducer';
 import { validateReducer } from './validateReducer';
 import applicationsReducer from './applicationReducer';
+import companyReducer from './companyReducer'
 
 
 const rootReducer = combineReducers({
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   user: userReducer,
   offerJob: OfferJobReducer,
   applications: applicationsReducer,
+  companies: companyReducer,
   appReducer: appReducer
 });
 
