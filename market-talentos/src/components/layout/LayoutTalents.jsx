@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 import { Drawer, IconButton, List, ListItem, ListItemText } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
+import { signOut } from 'firebase/auth';
 
 const LayoutTalents = () => {
   const navigate = useNavigate();
@@ -48,6 +49,10 @@ const LayoutTalents = () => {
       path: "/blog",
     }
   ];
+  const handleExit = () =>{
+    dispatch(singOutAsync());
+    navigate("/");
+  }
 
   return (
     <>
@@ -90,8 +95,11 @@ const LayoutTalents = () => {
             <img src={usuario} alt="imgTalent" onClick={() => dispatch(singOutAsync())} />
           </figure>
           {showExitButton && (
-            <button className='layoutTalent__button-exit'>
+            <button className='layoutTalent__button-exit'
+            onClick={() => dispatch(singOutAsync())}
+            >
               Salir
+              
             </button>
           )}
         </div>
@@ -139,7 +147,7 @@ const LayoutTalents = () => {
           onMouseLeave={() => setShowExitButton(false)}
         >
           <figure className='layoutTalent__card-figure'>
-            <img src={usuario} alt="imgTalent" onClick={() => dispatch(singOutAsync())} />
+            <img src={usuario} alt="imgTalent" onClick={handleExit} />
           </figure>
           {showExitButton && (
             <button className='layoutTalent__button-exit'>
