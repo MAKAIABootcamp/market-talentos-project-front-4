@@ -11,10 +11,19 @@ const JobOffers = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const offerJobList = useSelector((state) => state.offerJob);
-
+  const options = {
+    day: 'numeric',
+    month: 'numeric',
+    year: 'numeric',
+  };
+  
   useEffect(() => {
-    dispatch(listOfferJob())
+    dispatch(listOfferJob());
   }, [dispatch]);
+
+  useEffect(() => {    
+    console.log("offerJobList", offerJobList.offerJob)
+  }, [offerJobList]);
 
   const handleRegisOffer = () => {
         navigate('/OfferVacants');
@@ -39,7 +48,7 @@ const JobOffers = () => {
           <button className='offersFilterButton'>Backend</button>
         </section> */}
 
-        {offerJobList.offerJob?.map((offer, index) => {
+        {offerJobList?.offerJob?.map((offer, index) => {
           return <div className='offerCard'>
             <div className='offerTitleCharge'>
               <h2 className='TitleCharge'>{offer.cargo}</h2>
@@ -47,7 +56,7 @@ const JobOffers = () => {
             <div className='offerJobInformation'>
               <div className='offerSectionOne'>
                 <p className='customName'>Empresa: {offer.empresa}</p>
-                <p className='closeDate'>Fecha de cierre: {offer.closeDate}</p>
+                <p className='closeDate'>Fecha de cierre: {new Date(offer.closeDate.seconds * 1000 + offer.closeDate.nanoseconds/1000000).toLocaleString('es-ES', options)}</p>
               </div>
               <div className='offerSectionTwo'>
                 <p className='modality'>Modalidad: {offer.modalidad}</p>
