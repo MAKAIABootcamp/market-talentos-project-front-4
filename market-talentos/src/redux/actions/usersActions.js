@@ -6,9 +6,10 @@ import {
 } from "../../services/userServices";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "../../firebase/firebaseConfig";
-
+import Swal from "sweetalert2";
 // -------  función login Asincrona --------------
 export const actionLoginAsync = ({ email, password }) => {
+
   return (dispatch) => {
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
@@ -32,6 +33,8 @@ export const actionLoginAsync = ({ email, password }) => {
         const errorMessage = error.message;
         console.log(errorCode);
         console.log(errorMessage);
+        window.location.replace('/login')
+        Swal.fire("Usuario o contraseña incorrectos")
         return error
         // dispatch(singInActionSync({ email, error: true, errorMessage }));
       });

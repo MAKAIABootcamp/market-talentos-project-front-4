@@ -14,11 +14,12 @@ const TalentsAll = () => {
     dispatch(listTalents());
   }, [dispatch]);
 
-  // const handleNavigate = (id) => {
-  //     // hacer validacion de logueado
-  //     dispatch(saveTalentId(id));
-  //     navigate(`/talentDetails/${id}`);
-  // }
+   const handleNavigate = (id) => {
+       // hacer validacion de logueado
+       dispatch(saveTalentId(id));
+       navigate(`/talentDetails/${id}`);
+  }
+
   return (
     <>
       <div className="talentsAll">
@@ -28,7 +29,7 @@ const TalentsAll = () => {
               <div
                 className="talentsAll__container"
                 key={index}
-                onClick={() => navigate("/login")}
+                onClick={() => handleNavigate(talent.id)}
               >
                 <div className="talentsAll__container-imgTalent">
                   <figure className="talentsAll__card-figure">

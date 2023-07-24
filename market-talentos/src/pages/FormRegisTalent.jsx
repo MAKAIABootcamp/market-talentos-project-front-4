@@ -59,10 +59,11 @@ const FormRegisTalent = () => {
         ...values,
         photoURL: avatar,
         displayName: `${values.firstName} ${values.lastName}`,
-        type: TiposDeUsuarios.TALENTO
+        type: TiposDeUsuarios.TALENTO,
+        validatedUser: false,
+        completedProfile: false
       };
-      console.log("New User:", newUser);
-
+      dispatch(registerActionAsync(newUser));
       Swal.fire({
         icon: "success",
         title: "Su solicitud fue enviada, debe esperar aprobación del administrador",
@@ -70,17 +71,11 @@ const FormRegisTalent = () => {
         timer: 1500,
       }).then(() => {
           dispatch(singOutAsync());
-          navigate("/");
-          
-         })
-       
+          navigate("/");          
+         })       
         .catch((error) => {
-          // Manejar errores en caso de que ocurra un problema durante el registro del usuario
           console.log(error);
         });
-      // dispatch(registerActionAsync(newUser));
-      // dispatch(actionAddTalentsAsync(newUser)); // Agregar esta línea para enviar los datos a Firebase
-      dispatch(registerActionAsync(newUser));
     },
   });
 

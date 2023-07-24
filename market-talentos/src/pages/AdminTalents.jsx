@@ -3,21 +3,14 @@ import "../style/styleAdminTalents.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { DeleteIcon, CheckIcon } from '@chakra-ui/icons';
 import Swal from "sweetalert2";
-
-
 import {
-  Stat,
-  StatLabel,
-  StatGroup,
   Table,
   Thead,
   Tbody,
   Tr,
   Th,
   Td,
-
-  TableContainer,
-
+  TableContainer
 } from '@chakra-ui/react'
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
 import { actionDeleteTalentAsync, actionGetTalentAsync, actionEditTalentAsync, actionAddTalentAsync } from "../redux/actions/validateTalentActions";
@@ -30,82 +23,51 @@ const AdminTalents = () => {
 
   const dispatch = useDispatch();
 
-
   useEffect(() => {
-
     dispatch(actionGetTalentAsync())
-
   }, []);
-
   const { talents } = useSelector((state) => state.validateReducer);
   console.log(talents);
 
-
-
-
-
-
-  const validacion = (uid) => {
+  const validacion = (talento) => {
+    const uid = talento.uid || talento.id
     const dataTalents = talents.slice();
-    const descriptionTalents = dataTalents.find(talent => talent.uid === uid);
-    if (descriptionTalents) {
+    const descriptionTalents = dataTalents.find(talent => talent.uid === uid || talent.id === uid);
+    if (descriptionTalents !== undefined && descriptionTalents !== null) {
       descriptionTalents.validateUser = true;
       dispatch(actionEditTalentAsync(descriptionTalents));
       dispatch(actionAddTalentAsync(descriptionTalents));
       dispatch(actionGetTalentAsync());
       alert("Talento aprobado con éxito")
-    } else {
+    } else { 
       alert("No se encontró el talento")
     }
   }
 
-
   return (
-
     <>
-
+      {/* -------------Header---------------------------- */}
       <LayoutAdmin />
 
+      {/* -------------Welcome Message---------------------------- */}
+      <p className="message__p">Bienvenido Administrador</p>
 
-      <p className="message__p">Bienvenidos Makaia</p>
-
-      {/* ------------------------Section Tabs----------------------- */}
-
+      {/* ------------------------Main----------------------- */}
       <main className="main__container">
 
+        {/* -------------Section Tabs---------------------------- */}
         <Tabs className="main__container__tabs">
-          {/* ------------------------Section Tabs List----------------------- */}
-
+          {/* ------------------------ Tabs List----------------------- */}
           <section className="main__container__sectiontabs" >
             <TabList className="main__container__sectiontabsL">
-              <Tab className="main__container__sectiontab"> Módulo Talentos</Tab>
-
-
+              <Tab className="main__container__sectiontab"> Métricas</Tab>
             </TabList>
-
           </section>
-
-          {/* ------------------------Section Tabs Panels----------------------- */}
+          {/* ------------------------Tabs Panels----------------------- */}
           <section className="main__container__sectionpanel">
             <TabPanels className="main__container__tl">
 
-              {/* ------------------------Section Tabs Panels Talentos----------------------- */}
               <TabPanel className="main__container__sectiontpanel">
-                <div className="main__container__divpanel">
-                  <span className="main__container__divpanel1A">
-                    <StatGroup>
-
-
-                      <Stat>
-                        <StatLabel className="main__container__divpanel2A">Estado de los Talentos</StatLabel>
-
-                      </Stat>
-                    </StatGroup>
-                  </span>
-
-
-                </div>
-
                 <div className="main__container__sectionT">
                   <TableContainer  >
                     <Table variant='striped' colorScheme='teal' className="main__container__tablepanelA" >
@@ -146,7 +108,7 @@ const AdminTalents = () => {
 
                                 {item.validateUser === true ? <CheckIcon /> : <button
 
-                                  onClick={() => validacion(item.uid)}
+                                  onClick={() => validacion(item)}
 
 
                                 >Aceptar</button>}
@@ -156,7 +118,7 @@ const AdminTalents = () => {
                               <Td>
 
                                 <button>
-                                  <NavLink to="/talentDetails"> Perfil </NavLink>
+                                  <NavLink to={`/talentDetails/${item.id}`}> Perfil </NavLink>
                                 </button>
 
                               </Td>
