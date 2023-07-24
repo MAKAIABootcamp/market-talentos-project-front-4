@@ -366,6 +366,12 @@
     border-radius: 10px;
     font-family: $fontMontserrat;
     align-items: center;
+    margin-top: -400px;
+  }
+  &__popup-close{
+    background-color: transparent;
+    display: flex;
+    margin-left: 369px;
   }
   &__button-offer {
     display: flex;
@@ -426,7 +432,6 @@
     }
 
     &__container-offert {
-      margin: 1rem;
       width: 80%;
       height: auto;
       padding: 5px;

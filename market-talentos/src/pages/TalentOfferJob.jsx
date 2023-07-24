@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../style/styleTalentOfferJob.scss";
 import { NavLink, useNavigate } from "react-router-dom";
 import imgTalent from "../assets/elisa.jpeg";
@@ -7,45 +7,45 @@ import imgLinkedin from "../assets/logolink.png";
 import imgVideo from "../assets/logovideo.png";
 import LayoutTalents from "../components/layout/LayoutTalents";
 import Footer from "../components/footer/Footer";
+import { listOfferJob } from "../redux/actions/offerJobActions";
+import { useDispatch, useSelector } from "react-redux";
+import { Timestamp } from "firebase/firestore";
 // import logoMakaia from "../assets/icon/logoMakaia.png";
 // import fondoTalentdesk from "../assets/fondotalentdesk.jpg";
 
 const TalentOfferJob = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const offerJobs = useSelector((state) => state.offerJob.offerJob);
 
-  const jobsButtons = [
-    {
-      id: 1,
-      empresa: "Magenta Developer",
-      cargo: "FrontEnd",
-      changeStatus: "Más Información",
-    },
-    {
-      id: 2,
-      empresa: "Soluciones web S.A",
-      cargo: "BackEnd",
-      changeStatus: "Más Información",
-    },
-    {
-      id: 3,
-      empresa: "Desing Red",
-      cargo: "FullStack",
-      changeStatus: "Más Información",
-    },
-    {
-      id: 4,
-      empresa: "Develop Juniors",
-      cargo: "BackEnd ",
-      changeStatus: "Más Información",
-    },
-    {
-      id: 5,
-      empresa: "Ingeniers web",
-      cargo: "FrontEnd ",
-      changeStatus: "Más Información",
-    },
-  ];
+  useEffect(() => {
+    dispatch(listOfferJob());
+  }, [dispatch]);
 
+const [selectedOfferJob, setSelectedOfferJob] = useState(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const handleShowApplicationJob = (offerJob) => {
+    setSelectedOfferJob(offerJob);
+    setIsPopupOpen(true);
+  };
+  const formatTimestamp = (timestamp) => {
+    if (timestamp instanceof Timestamp) {
+      // Convertir el objeto Timestamp de Firebase a una fecha legible
+      const date = timestamp.toDate();
+      return date.toLocaleDateString("es-ES", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+    }
+    return "";
+  };
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
+
+ 
   return (
     <section className="talentOffer">
       <LayoutTalents />
@@ -117,55 +117,67 @@ const TalentOfferJob = () => {
       {/* ...........cards Ofertas laborales................ */}
 
       <div className="talentOffer__container-offert">
-        <div className="talentOffer__container-infojob">
-          <button className="talentOffer__button-otherjobs">
-            Ofertas Laborales
-          </button>
+          <div className="talentOffer__container-infojob">
+            <button className="talentOffer__button-otherjobs">
+              Ofertas Laborales
+            </button>
 
-          <div className="talentOffer__container-jobs">
-            
-            {jobsButtons.map((button, index) => (
-              <button className="talentOffer__button-costumer" key={index}>
-                {button.empresa}
-                <div className="talentOffer__div-costumer">
-                <span className="talentOffer__button-job">{button.cargo}</span>
-                <span className="talentOffer__button-changeinfo">
-                  {button.changeStatus}
-                </span>
-                </div>
-              </button>
-            ))}
+            <div className="talentOffer__container-jobs">
+              {offerJobs.map((offerJob) => (
+                <button
+                  className="talentOffer__button-costumer"
+                  key={offerJob.id}
+                  onClick={() => handleShowApplicationJob(offerJob)}
+                >
+                  {offerJob.empresa}
+                  <div className="talentOffer__div-costumer">
+                    <span className="talentOffer__button-job">
+                      {offerJob.cargo}
+                    </span>
+                    <span className="talentOffer__button-changeinfo">
+                      Más Información
+                    </span>
+                  </div>
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+          
+           {/* Ventana emergente */}
 
-        <div className="talentOffer__aplicattionJob">
-          <button className="talentOffer__button-offer">
-            Fecha cierre de convocatoria: 24/julio/2023
-          </button>
-          <button className="talentOffer__button-offer">
-            Cargo: Front End Developer Junior
-          </button>
-          <button className="talentOffer__button-requ">
-            Requerimientos: Desarrollar la parte visual de la aplicación web
-            Diseñar interfaces con foco en UX/UI Conectar interfaces con los
-            servicios de backend Brindar soporte al software de producción
-          </button>
-          <button className="talentOffer__button-offer">
-            Modalidad Presencial
-          </button>
-          <button className="talentOffer__button-offer">
-            Salario: 2´000.000
-          </button>
-          <button className="talentOffer__button-offer">
-            Ciudad: Medellín
-          </button>
-          <button className="talentOffer__button-talentOffer">Aplicar</button>
+          {isPopupOpen && selectedOfferJob && (
+            <div className="talentOffer__aplicattionJob">
+                <button className="talentOffer__popup-close" onClick={handleClosePopup}>
+                X
+              </button>
+              <button className="talentOffer__button-offer">
+              Fecha cierre de convocatoria: {formatTimestamp(selectedOfferJob.closeDate)}
+              </button>
+              <button className="talentOffer__button-offer">
+                Cargo: {selectedOfferJob.cargo}
+              </button>
+              <button className="talentOffer__button-requ">
+                Requerimientos: {selectedOfferJob.description}
+              </button>
+              <button className="talentOffer__button-offer">
+                Modalidad: {selectedOfferJob.modalidad}
+              </button>
+              <button className="talentOffer__button-offer">
+                Salario: {selectedOfferJob.salary}
+              </button>
+              <button className="talentOffer__button-offer">
+                Ciudad: {selectedOfferJob.ciudad}
+              </button>
+              <button className="talentOffer__button-talentOffer">
+                Aplicar
+              </button>
+            </div>
+          )}
         </div>
-      </div>
       </div>
       <Footer />
     </section>
   );
 };
-//cambio pequeño//
+
 export default TalentOfferJob;
