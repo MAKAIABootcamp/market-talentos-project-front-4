@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector} from "react-redux";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import useOnClick from "../../funtions/useOnClick";
 import "./styleCardTalent.scss";
 import imgGitUp from "../../assets/logogithub.png";
@@ -8,22 +8,24 @@ import imgLinkedin from "../../assets/logolink.png";
 import imgVideo from "../../assets/logovideo.png";
 import imgPhone from "../../assets/celular.png";
 import imgMail from "../../assets/correo.png";
+import { getTalentFromTalentsCollection } from "../../services/talentsServices";
 // import imgWhatsapp from '../../assets/whatsapp.png';
 
-const CardTalent = () => {
-  const handleClick = useOnClick();
- 
-  const talentosEncontrados = useSelector((store) => store.userTalents);
-  console.log("cardTalent tE", talentosEncontrados);
-  const { user } = useSelector((state) => state.user);
-  console.log("user",user);
+const CardTalent = ({id}) => {
+  const [talento, setTalent] = useState("")
+  const navigate = useNavigate();
+  useEffect(()=>{      
+    async function fetchData() {
+      const talent = await getTalentFromTalentsCollection(id);      
+      console.log("talento", talent)
+      setTalent(talent)
+    }
+    fetchData();
+  }, [])
 
-  const findTalents = talentosEncontrados.userTalents.find(talento => talento.id === user.id);
-  console.log("findTalents", findTalents);
-
-
-const userStore = useSelector((store) => store.user.user);
-console.log("esta es a info de userStore", userStore);
+  const handleClick = (params) => {
+    console.log(params)
+  }
 
   return (
     
@@ -36,7 +38,7 @@ console.log("esta es a info de userStore", userStore);
             onClick={() => handleClick("editImgProfile", "")}
           >
             <figure className="cardTalents__card-figure">
-              <img src={userStore?userStore.phothoURL:""} alt="imgTalent" />
+              <img src={talento.photoURL} alt="imgTalent" />
             </figure>
           </div>
           <div className="cardTalents__container-info">
@@ -58,10 +60,10 @@ console.log("esta es a info de userStore", userStore);
             <div className="cardTalents__line"></div>
             <div className="cardTalents__container-infoPnal">
               <span className="cardTalents__name">
-                              <strong>{userStore?userStore.firstName:""}</strong>
+                              <strong>{talento.firstName}</strong>
               </span>
-              <span className="cardTalents__lastName">
-                <strong>{userStore?userStore.lastName:""}</strong>
+              <span className="cardTalents__lastName"> 
+                <strong>{talento.lastName}</strong>
               </span>
             <span className="cardTalents__know">
               <strong>Front End</strong>
@@ -95,7 +97,7 @@ console.log("esta es a info de userStore", userStore);
                     <img src={imgMail} alt="" />
                   </figure>
                   <span className="cardTalents__infoContact">
-                  {userStore?userStore.email:""}
+                  {talento.email}
                   </span>
                 </div>
                 <div className="cardTalents__container-mail">
@@ -123,7 +125,7 @@ console.log("esta es a info de userStore", userStore);
             </div>
             <div className="cardTalents__container-EditProfile">
               <button 
-              onClick={() => handleClick("formStudies", "")}
+              onClick={() => navigate('editProfile/'+talento.id)}
               className="cardTalents__button-EditProfile">
                 Editar Información
               </button>
