@@ -68,9 +68,9 @@ const DashboardHome = () => {
   }, [talents]);
 
   useEffect(() => {
-    const activeOffers = offerJobList.offerJob.filter(offer => offer.closeDate > new Date())
+    const activeOffers = offerJobList.offerJob.filter(offer => new Date(offer.closeDate.seconds * 1000 + offer.closeDate.nanoseconds/1000000) > new Date())
     setOffers(offerJobList.offerJob.length);
-    setActiveOffers(activeOffers)
+    setActiveOffers(activeOffers.length)
   }, [offerJobList]);
 
   useEffect(() => {
