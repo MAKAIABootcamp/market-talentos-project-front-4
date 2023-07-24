@@ -30,7 +30,7 @@ const TalentDetails = () => {
     <div className='talentDetails'>
       <LayoutTalents />
       <section className='talentDetails__section' >
-        <CardTalent />
+        <CardTalent id={id} />
         <div className='talentDetails__infoTalent'>
 
           <div className='talentDetails__statisticsTablew'>
