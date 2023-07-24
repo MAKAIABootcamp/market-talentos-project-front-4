@@ -7,11 +7,19 @@ import imgLinkedin from "../assets/logolink.png";
 import imgVideo from "../assets/logovideo.png";
 import LayoutTalents from "../components/layout/LayoutTalents";
 import Footer from "../components/footer/Footer";
+import { useDispatch, useSelector } from "react-redux";
 // import logoMakaia from "../assets/icon/logoMakaia.png";
 // import fondoTalentdesk from "../assets/fondotalentdesk.jpg";
 
 const TalentOfferJob = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const listaOfertas = useSelector((store) => store.offerJob);
+  console.log(listaOfertas, "listaOfertas");
+
+  useEffect(() => {
+    dispatch(listOfferJob());
+  }, [dispatch]);
 
   const jobsButtons = [
     {

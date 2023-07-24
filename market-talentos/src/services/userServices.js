@@ -7,6 +7,7 @@ import {
   setDoc,
   doc,
   addDoc,
+  updateDoc
 } from "firebase/firestore";
 import { auth, firestore, dataBase,  } from "../firebase/firebaseConfig";
 import { collections } from "./dates";
@@ -33,24 +34,14 @@ export const userRegister = async (user) => {
 export const completeTalentData = async (newTalent, type) => {
   try {
     if (type === collections.talentos) {
-      const docuRef= doc(dataBase,`${type}/${newTalent.idUsuario}`)
-      console.log(`${type}/${newTalent.idUsuario}`);
-      console.log(newTalent);
-      const talentReference = collection(firestore, type);
-      console.log(talentReference, "talentReference");
-
-      const talentRef = await setDoc(docuRef, newTalent);
-      console.log(talentRef,"talentRef");
-      return {
-        
-        ...newTalent,
-      };
+      const docuRef= doc(dataBase, type, newTalent.id)
+      await setDoc(docuRef, newTalent);
     } else {
       return {};
     }
   } catch (error) {
     console.log(error);
-    return {};
+    return error;
   }
 };
 
