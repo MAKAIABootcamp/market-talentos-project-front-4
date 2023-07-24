@@ -3,8 +3,10 @@ import "../style/styleJobOffers.scss";
 import { useDispatch, useSelector } from 'react-redux';
 import { listOfferJob } from '../redux/actions/offerJobActions';
 import LayoutAdmin from '../components/layout/LayoutAdmin';
-import Footer from '../components/footer/Footer'
-import { useNavigate } from 'react-router-dom'
+import Footer from '../components/footer/Footer';
+import { useNavigate } from 'react-router-dom';
+import edit from "../assets/pencil.svg";
+import deleteIcon from "../assets/trash.svg"
 
 const JobOffers = () => {
 
@@ -58,7 +60,8 @@ const JobOffers = () => {
               </div>
 
               <div className='offerSectionButton'>
-                <button className="applyButton" >Eliminar</button>
+                <button className="editButtonOffer" ><img className="buttonIconOffer" src={edit} alt="pencil" /></button>
+                <button className='deleteButtonOffer'><img className="buttonIconOffer" src={deleteIcon} alt="trash" /></button>
               </div>
             </div>
           </div>
