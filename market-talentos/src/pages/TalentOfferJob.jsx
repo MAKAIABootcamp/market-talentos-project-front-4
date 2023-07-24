@@ -10,8 +10,7 @@ import Footer from "../components/footer/Footer";
 import { listOfferJob } from "../redux/actions/offerJobActions";
 import { useDispatch, useSelector } from "react-redux";
 import { Timestamp } from "firebase/firestore";
-// import logoMakaia from "../assets/icon/logoMakaia.png";
-// import fondoTalentdesk from "../assets/fondotalentdesk.jpg";
+
 
 const TalentOfferJob = () => {
   const navigate = useNavigate();
@@ -147,9 +146,11 @@ const [selectedOfferJob, setSelectedOfferJob] = useState(null);
 
           {isPopupOpen && selectedOfferJob && (
             <div className="talentOffer__aplicattionJob">
+              <div className="talentOffer__contenerdorpopup-close">
                 <button className="talentOffer__popup-close" onClick={handleClosePopup}>
                 X
               </button>
+              </div>
               <button className="talentOffer__button-offer">
               Fecha cierre de convocatoria: {formatTimestamp(selectedOfferJob.closeDate)}
               </button>
