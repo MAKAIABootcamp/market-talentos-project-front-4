@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import LogoMakaia from "../../assets/Logo.png";
 import "./styledLayoutHome.scss";
 import { NavLink, useNavigate } from "react-router-dom";
-import usuario from "../../assets/avataradmo.png";
+import usuario from "../../assets/icon/usuario.png";
 import { singOutAsync } from "../../redux/actions/usersActions";
 import { useDispatch } from "react-redux";
 import notification from "../../assets/notificacionespng.png";
