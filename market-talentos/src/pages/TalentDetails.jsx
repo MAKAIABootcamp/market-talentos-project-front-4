@@ -15,10 +15,20 @@ import { getTalentFromTalentsCollection } from '../services/talentsServices';
 const TalentDetails = () => {
   const { id } = useParams();
   const [buttonVisibility, setButtonVisibility] = useState(false);
+  const [progreso, setProgreso] = useState(0);
 
     useEffect(()=>{      
       async function fetchData() {
         const talent = await getTalentFromTalentsCollection(id);
+        const arrayValues= Object.values(talent)
+        console.log(Object.values(talent))
+        const totalFields = arrayValues.length
+        const missingFields = arrayValues.filter(item => item === "" || item === " ")
+        if(missingFields.length > 0) {
+          setProgreso(totalFields/missingFields.length)
+        } else {
+          setProgreso(100)
+        }
       }
       fetchData();
     }, [])

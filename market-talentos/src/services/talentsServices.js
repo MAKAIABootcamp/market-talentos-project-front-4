@@ -23,3 +23,25 @@ export const getTalentFromTalentsCollection = async (idUsuario) => {
     return null;
   }
 };
+
+export const getTalentLoggued = async (idTalento) => {
+  try {
+    const talentLogued = [];
+    const referenceCollection = collection(firestore, collections.talentos);
+    let q = query(referenceCollection, where("id", "==", idTalento));
+     q = query(referenceCollection, where("uid", "==", idTalento));
+    const querySnapshot = await getDocs(q);
+    console.log(querySnapshot);
+    querySnapshot.forEach((doc) => {
+      talentLogued.push({
+        id: doc.id,
+        ...doc.data(),
+      });
+    });
+    console.log("talento", talentLogued)
+    return talentLogued[0];
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
