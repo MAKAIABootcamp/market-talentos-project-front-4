@@ -144,7 +144,7 @@ const EditProfile = () => {
           // Redireccionar a la página de edición de perfil
           // Reemplaza '/editProfile' con la ruta correcta si es necesario
          
-          navigate(`/talentDetails`);
+          navigate(`/talentDetails/${user.id}`);
         });
       })
       .catch((error) => {

@@ -59,7 +59,8 @@ const actionDeleteTalentSync = (talents) => {
 
 export const actionEditTalentAsync = (talentEdit) => {
     return async (dispatch) => {
-      const talentRefs = doc(dataBase, collectionName, talentEdit.uid);
+      const id = talentEdit.uid || talentEdit.id
+      const talentRefs = doc(dataBase, collectionName, id);
       try {
         await updateDoc(talentRefs, talentEdit);
         dispatch(

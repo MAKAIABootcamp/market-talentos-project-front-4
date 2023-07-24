@@ -57,7 +57,7 @@ const LoginTalent = () => {
         if(String(user.type) === 'talentos') {          
           dispatch(setIsLogged(true));
           setTimeout(() => {            
-            navigate('/talentDetails');
+            navigate(`/talentDetails/${user.id}`);
           }, 1000);          
         }
         if(String(user.type) === 'empresas') {
@@ -85,7 +85,8 @@ const LoginTalent = () => {
 
 
   const onSubmit = (data) => {
-    dispatch(actionLoginAsync(data));
+    const response = dispatch(actionLoginAsync(data));
+    console.log("Response", response)
     dispatch(getLoggedUser(data.email));
   };
 

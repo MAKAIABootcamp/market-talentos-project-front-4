@@ -5,9 +5,9 @@ import { collection, where, getDocs, query } from "firebase/firestore";
 export const getTalentFromTalentsCollection = async (idUsuario) => {
   try {
     const user = [];
-    const referenceCollection = collection(firestore, collections.talentos);
-    const q = query(referenceCollection, where("idUsuario", "==", idUsuario));
-
+    const referenceCollection = collection(firestore, collections.usuarios);
+    let q = query(referenceCollection, where("id", "==", idUsuario));
+     q = query(referenceCollection, where("uid", "==", idUsuario));
     const querySnapshot = await getDocs(q);
     console.log(querySnapshot);
     querySnapshot.forEach((doc) => {
@@ -16,6 +16,7 @@ export const getTalentFromTalentsCollection = async (idUsuario) => {
         ...doc.data(),
       });
     });
+    console.log("talento", user)
     return user[0];
   } catch (error) {
     console.log(error);
