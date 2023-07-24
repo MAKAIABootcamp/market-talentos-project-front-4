@@ -1,10 +1,9 @@
 @import "./style.scss";
 
 .talentOffer {
+  @include desk {
   width: 100%;
   display: flex;
-  margin-top: 20px;
-  margin-left: 20px;
   justify-content: center;
   flex-direction: column;
   // @include desk {
@@ -14,6 +13,7 @@
   //   justify-content: flex-start;
   //   padding: 20px;
   //    }
+  }
 
   &__card-jobs {
     display: flex;
@@ -404,6 +404,7 @@
 
 @media screen and (max-width: 768px) {
   .talentOffer {
+    
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -416,6 +417,8 @@
     &__card-jobs {
       display: flex;
       justify-content: center;
+      flex-direction: column;
+      align-items: center;
     }
 
     &__button-otherjobs {
@@ -444,6 +447,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+ 
 
     &__card-jobs {
       display: flex;

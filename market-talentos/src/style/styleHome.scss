@@ -1,6 +1,8 @@
 @import "../style/_variables";
 @import './style.scss';
 
+.home{
+
 p{
   width: 75%;
   margin-left: 240px;
@@ -23,7 +25,7 @@ span{
 }
 
 
-.info__container{
+&__container{
   display: flex;
   // justify-content: space-around;
   margin-top: 50px;
@@ -254,4 +256,5 @@ img {
 
 .img_b{
   margin-left:250px;
+}
 }

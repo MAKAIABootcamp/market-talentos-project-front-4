@@ -163,7 +163,7 @@ const TalentOfferJob = () => {
         </div>
       </div>
       </div>
-      <div><Footer /></div>
+      <Footer />
     </section>
   );
 };

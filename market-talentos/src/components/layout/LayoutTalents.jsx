@@ -112,12 +112,16 @@ const LayoutTalents = () => {
     </header>
 
     {/* Contenido del menú hamburguesa */}
+
+
     <Drawer
       anchor="right"
       open={menuAbierto}
       onClose={toggleMenu}
+      
+      
     >
-        {menuAbierto ? <CloseIcon onClick={toggleMenu}  /> : <MenuIcon onClick={toggleMenu} />}
+        {menuAbierto ? <CloseIcon onClick={toggleMenu} className="layoutTalent__close-icon" /> : <MenuIcon onClick={toggleMenu} />}
       <List>
         {products.map((item) => (
           <ListItem key={item.id} component={NavLink} to={item.path} onClick={toggleMenu}>

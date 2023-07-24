@@ -8,13 +8,13 @@ const Home = () => {
 
     return (
     <>
-    <section>
+    <section className="home">
       <LayoutHome />
 
        <p>¡Bienvenidos a nuestra plataforma de <span>Talentos</span>! <br />
         Encuentra aquí a los próximos <span>desarrolladores</span> que conformarán tu equipo de trabajo.</p>
 
-      <div className="info__container">
+      <div className="home__container">
         <div className="info__search">
           <form className="info__form">
             <div>
