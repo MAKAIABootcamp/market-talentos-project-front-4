@@ -149,7 +149,7 @@ const AppRouter = () => {
             <Route element={<PrivateRouter isAutentication={isLogged} />}>
               <Route path="talents" element={<Talent />}></Route>
               <Route path="searchTalent" element={<SearchTalent />} />
-              <Route path="talentDetails" element={<TalentDetails />} />
+              <Route path="talentDetails/:id" element={<TalentDetails />} />
               <Route path="editProfile" element={<EditProfile />} />
               {/* <Route path="editProfile" element={< FormStudies/>} /> */}
               <Route path="portfolio" element={<Portfolio />} />

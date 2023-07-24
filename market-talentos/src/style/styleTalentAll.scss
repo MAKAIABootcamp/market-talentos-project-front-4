@@ -19,7 +19,9 @@
 
   &__container-cards {
     margin: 50px;
-    width: 800px;
+    // width: 800px;
+    margin-left: -240px;
+    width: 80vw;
     height: 700px;
     display: flex;
     flex-wrap: wrap;
