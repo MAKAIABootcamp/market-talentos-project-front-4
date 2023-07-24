@@ -16,31 +16,31 @@ const TalentOfferJob = () => {
   const jobsButtons = [
     {
       id: 1,
-      name: "Magenta Developer",
+      empresa: "Magenta Developer",
       cargo: "FrontEnd",
       changeStatus: "Más Información",
     },
     {
       id: 2,
-      name: "Soluciones web S.A",
+      empresa: "Soluciones web S.A",
       cargo: "BackEnd",
       changeStatus: "Más Información",
     },
     {
       id: 3,
-      name: "Desing Red",
+      empresa: "Desing Red",
       cargo: "FullStack",
       changeStatus: "Más Información",
     },
     {
       id: 4,
-      name: "Develop Juniors",
+      empresa: "Develop Juniors",
       cargo: "BackEnd ",
       changeStatus: "Más Información",
     },
     {
       id: 5,
-      name: "Ingeniers web",
+      empresa: "Ingeniers web",
       cargo: "FrontEnd ",
       changeStatus: "Más Información",
     },
@@ -126,7 +126,7 @@ const TalentOfferJob = () => {
             
             {jobsButtons.map((button, index) => (
               <button className="talentOffer__button-costumer" key={index}>
-                {button.name}
+                {button.empresa}
                 <div className="talentOffer__div-costumer">
                 <span className="talentOffer__button-job">{button.cargo}</span>
                 <span className="talentOffer__button-changeinfo">

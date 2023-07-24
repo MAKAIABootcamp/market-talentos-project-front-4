@@ -59,7 +59,7 @@ const LayoutHome = () => {
                 <NavLink
                   path={item.path}
                   className={"layoutHome__link"}
-                  to={item.name}
+                  to={item.path}
                 >
                   {item.name}
                 </NavLink>

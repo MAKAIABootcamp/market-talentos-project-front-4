@@ -34,14 +34,14 @@ span{
   
 }
 
-.info__form{
+&__form{
   display: flex;
   align-items: center;
   margin-left: 420px;
   gap: 3px;
 }
 
-.info__form1{
+&__form1{
 
   input{
   background-color: gainsboro;
@@ -56,7 +56,7 @@ span{
 
 }
 
-.info__form2{
+&__form2{
 
   input{
   background-color: gainsboro;
@@ -70,7 +70,7 @@ span{
 
 }
 
-.info__form3{
+&__form3{
 
   button{
   background-color: $gray;
@@ -86,7 +86,7 @@ span{
 }
 
 
-.info__grid2{
+&__grid2{
   display: flex;
   width: 70%;
   align-items: center;

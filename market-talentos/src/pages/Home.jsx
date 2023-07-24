@@ -15,27 +15,27 @@ const Home = () => {
         Encuentra aquí a los próximos <span>desarrolladores</span> que conformarán tu equipo de trabajo.</p>
 
       <div className="home__container">
-        <div className="info__search">
-          <form className="info__form">
+        <div className="home__search">
+          <form className="home__form">
             <div>
-              <label className="info__form1">
+              <label className="home__form1">
                 <input type="text" placeholder="Buscar Talento" />
               </label>
             </div>
             <div>
-              <label className="info__form2">
+              <label className="home__form2">
                 <input type="select" placeholder="Front End" />
               </label>
             </div>
             <div>
-              <label className="info__form3">
+              <label className="home__form3">
                 <button>Search</button>
               </label>
             </div>
           </form>
         </div>
       </div>
-      <div className="info__grid2">
+      <div className="home__grid2">
         <TalentsAll/>
       </div>            
       <Footer />
