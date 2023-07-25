@@ -12,6 +12,7 @@ import { Drawer, IconButton, List, ListItem, ListItemText } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 
+
 const LayoutTalents = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -48,6 +49,10 @@ const LayoutTalents = () => {
       path: "/blog",
     }
   ];
+  const handleExit = () =>{
+    dispatch(singOutAsync());
+    navigate("/");
+  }
 
   return (
     <>
@@ -90,8 +95,11 @@ const LayoutTalents = () => {
             <img src={usuario} alt="imgTalent" onClick={() => dispatch(singOutAsync())} />
           </figure>
           {showExitButton && (
-            <button className='layoutTalent__button-exit'>
+            <button className='layoutTalent__button-exit'
+            onClick={() => dispatch(singOutAsync())}
+            >
               Salir
+              
             </button>
           )}
         </div>
@@ -112,16 +120,12 @@ const LayoutTalents = () => {
     </header>
 
     {/* Contenido del menú hamburguesa */}
-
-
     <Drawer
       anchor="right"
       open={menuAbierto}
       onClose={toggleMenu}
-      
-      
     >
-        {menuAbierto ? <CloseIcon onClick={toggleMenu} className="layoutTalent__close-icon" /> : <MenuIcon onClick={toggleMenu} />}
+        {menuAbierto ? <CloseIcon onClick={toggleMenu}  /> : <MenuIcon onClick={toggleMenu} />}
       <List>
         {products.map((item) => (
           <ListItem key={item.id} component={NavLink} to={item.path} onClick={toggleMenu}>
@@ -143,7 +147,7 @@ const LayoutTalents = () => {
           onMouseLeave={() => setShowExitButton(false)}
         >
           <figure className='layoutTalent__card-figure'>
-            <img src={usuario} alt="imgTalent" onClick={() => dispatch(singOutAsync())} />
+            <img src={usuario} alt="imgTalent" onClick={handleExit} />
           </figure>
           {showExitButton && (
             <button className='layoutTalent__button-exit'>
@@ -158,5 +162,4 @@ const LayoutTalents = () => {
 }
 
 export default LayoutTalents;
-
 

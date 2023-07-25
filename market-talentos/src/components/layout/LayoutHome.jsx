@@ -8,17 +8,13 @@ import { useDispatch } from "react-redux";
 import notification from "../../assets/notificacionespng.png";
 import chatbot from "../../assets/chatbot.png";
 
-
 const LayoutHome = () => {
   const navigate = useNavigate();
-    const login = () =>{
-        navigate("/login")
-
-    } 
+  const login = () => {
+    navigate("/login");
+  };
   const dispatch = useDispatch();
   const [showExitButton] = useState(false);
-
- 
 
   const handleExit = () => {
     dispatch(singOutAsync());
@@ -27,18 +23,23 @@ const LayoutHome = () => {
   const products = [
     {
       id: 1,
+      name: "Home",
+      path: "/",
+    },
+    {
+      id: 2,
       name: "Acerca de nosotros",
       path: "/about",
     },
 
     {
-      id: 2,
+      id: 3,
       name: "Blog",
       path: "/blog",
     },
 
     {
-      id: 3,
+      id: 4,
       name: "Contáctenos",
       path: "/contacts",
     },
@@ -78,11 +79,9 @@ const LayoutHome = () => {
               alt="notification"
             />
           </div>
-          <div
-            className="layoutHome_container-imgTalent"
-                    >
+          <div className="layoutHome_container-imgTalent">
             <figure className="layoutHome__card-figure">
-              <img src={usuario} alt="imgTalent" onClick={login}  />
+              <img src={usuario} alt="imgTalent" onClick={login} />
             </figure>
             {/* Mostrar el botón de "Salida" (Exit) solo cuando se hace clic en la imagen de usuario */}
             {showExitButton && (
@@ -92,7 +91,6 @@ const LayoutHome = () => {
             )}
           </div>
         </div>
-     
       </header>
     </>
   );

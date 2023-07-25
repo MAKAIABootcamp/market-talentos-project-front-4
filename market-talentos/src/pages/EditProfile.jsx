@@ -5,74 +5,40 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import imageFond from "../assets/EditProfileFondo.jpg";
 // import Footer from "../components/footer/Footer";
-import { 
+import {
   completeProfileAsync,
   singOutAsync,
 } from "../redux/actions/usersActions";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
-import LayoutTalents from "../components/layout/LayoutTalents"; import { languageOptions } from "../services/dates";
+import { useNavigate, useParams } from "react-router-dom";
+import LayoutTalents from "../components/layout/LayoutTalents";
+import { languageOptions } from "../services/dates";
 import { Spinner } from "react-bootstrap";
-import { doc, getDoc, } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { dataBase } from "../firebase/firebaseConfig";
 import { listTalents } from "../redux/actions/userActions";
 import fileUpLoad from "../services/fileUpload";
 import videoUpLoad from "../services/videoUpLoad";
+import {
+  getTalentFromTalentsCollection,
+  getTalentLoggued,
+} from "../services/talentsServices";
 
 const EditProfile = () => {
-  
   const dispatch = useDispatch();
+  const { id } = useParams();
   const navigate = useNavigate();
- 
-  const talentosEncontrados = useSelector((store) => store.userTalents);
-  console.log("talentosEncontrados", talentosEncontrados);
-  const { user } = useSelector((state) => state.user);
-  console.log("user",user);
+  const [user, setuser] = useState("");
 
-  const findTalents = talentosEncontrados.userTalents.find(talento => talento.id === user.id);
-  console.log("findTalents", findTalents);
- 
   useEffect(() => {
-    dispatch(listTalents())
-        
-    setTimeout(() => {
-      if (user?.validateUser == false) {
-        console.log("usuario no validado por el administrador");
-        dispatch(singOutAsync());
-        navigate("/")
-        
-       } 
-      setIsLoading(false);
-    }, 2000); 
-   
-  }, [dispatch])
-
-  
-// const buscarDocumento = async (talentoID) => {
-
-//   try {
-//     const docRef = doc(dataBase, "talentos", talentoID); // "talentos" es el nombre de la colección
-//     const docSnap = await getDoc(docRef);
-
-//     if (docSnap.exists()) {
-//       // El documento existe, puedes acceder a los datos utilizando docSnap.data()
-//       const datosTalento = docSnap.data();
-//       console.log("Datos del talento:", datosTalento);
-//       if (Object.entries(datosTalento).length > 0) {
-//           console.log("hay datosTalento",datosTalento);
-//         // setTalento(datosTalento)
-//       }
-//       // console.log(talento);
-      
-//     } else {
-//       console.log("El documento no existe.");
-     
-//     }
-//   } catch (error) {
-//     console.error("Error al buscar el documento:", error);
-  
-//   }
-// };
+    async function fetchData() {
+      const editTalent = await getTalentLoggued(id);
+      console.log("editTalent", editTalent);
+      setuser(editTalent);
+    }
+    fetchData();
+    console.log("user", user);
+  }, []);
 
   const validationSchema = Yup.object().shape({
     github: Yup.string()
@@ -110,9 +76,9 @@ const EditProfile = () => {
     const videoURL = await videoUpLoad(values.video);
 
     const newTalent = {
-      displayName:user.displayName,
-      firstName:user.firstName,
-      lastName:user.lastName,
+      displayName: user.displayName,
+      firstName: user.firstName,
+      lastName: user.lastName,
       cohorte: user.cohorte,
       email: user.email,
       englishLevel: user.englishLevel,
@@ -123,31 +89,25 @@ const EditProfile = () => {
       type: user.type,
       github: values.github,
       linkedIn: values.linkedIn,
-      stacks: [...values.stacks, values.otherLanguages?? ""],
+      stacks: [...values.stacks, ...values.otherLanguages],
       profile: values.profile,
       curriculum: cvURL,
       video: videoURL,
-      displayName:user.displayName,
+      displayName: user.displayName,
       validateUser: user.validateUser,
     };
-    // console.log(user, id, user.displayName, newTalent, "NuevoTalento");
-    dispatch(
-      completeProfileAsync(newTalent, user.type)
-    )
-      .then(() => {
+    dispatch(completeProfileAsync(newTalent, user.type))
+      .then((result) => {
         Swal.fire({
           icon: "success",
           title: "Información guardada exitosamente",
-          showConfirmButton: false,
-          timer: 1500,
+          showConfirmButton: true,
         }).then(() => {
-          // Redireccionar a la página de edición de perfil
-          // Reemplaza '/editProfile' con la ruta correcta si es necesario
-         
           navigate(`/talentDetails/${user.id}`);
         });
       })
       .catch((error) => {
+        Swal("error", "No se pudo actualizar el talento", "error");
         // Manejar errores en caso de que ocurra un problema al guardar la información
         console.log(error);
       });
@@ -155,20 +115,18 @@ const EditProfile = () => {
 
   const formik = useFormik({
     initialValues: {
-      github: findTalents?.github,
-      linkedIn: findTalents?.linkedIn,
-      // knowledge: false,
-      profile: findTalents?.profile,
-      stacks: findTalents?.stacks ?? [],
-      otherLanguages: findTalents?.otherLanguages,
+      github: user?.github || "",
+      linkedIn: user?.linkedIn || "",
+      profile: user?.profile || "",
+      stacks: user?.stacks || [],
+      otherLanguages: user?.otherLanguages || [],
     },
     validationSchema,
     onSubmit: handleSubmit,
     enableReinitialize: true,
   });
 
-
-  const isFormValid =
+  const isFormValid = () => {
     Object.keys(formik.errors).length === 0 &&
     Object.keys(formik.touched).length !== 0;
     const [isLoading, setIsLoading] = useState(true);
@@ -176,14 +134,12 @@ const EditProfile = () => {
       // Mostrar un spinner mientras se verifica el usuario
       return <Spinner />;
     }
-    if (user?.validateUser === false) {
-      navigate("/");
-      return null; // No se renderizará nada en este punto, ya que se está redirigiendo
-    }
+  };
+
   return (
     <>
       <div className="editProfile">
-           <LayoutTalents />
+        <LayoutTalents />
 
         <section className="editProfile__section">
           <div className="editProfile__container">
@@ -234,27 +190,24 @@ const EditProfile = () => {
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                     />
-                    {formik.errors.linkedIn &&
-                      formik.touched.linkedIn && (
-                        <div className="editProfile__error-message">
-                          {formik.errors.linkedIn}
-                        </div>
-                      )}
+                    {formik.errors.linkedIn && formik.touched.linkedIn && (
+                      <div className="editProfile__error-message">
+                        {formik.errors.linkedIn}
+                      </div>
+                    )}
                   </div>
                   <div className="editProfile__knowLedge">
                     <div> Conocimientos</div>
 
                     <div className="editProfile__languages">
-                      {languageOptions.map((option,index) => (
+                      {languageOptions.map((option, index) => (
                         <div key={index} className="editProfile__language">
                           <input
                             type="checkbox"
                             name="stacks"
                             id={option.id}
                             value={option.id}
-                            checked={formik.values.stacks.includes(
-                              option.id
-                            )}
+                            checked={formik.values.stacks.includes(option.id)}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                           />
@@ -288,7 +241,6 @@ const EditProfile = () => {
                         </div>
                       )}
                   </div>
-
 
                   <div className="editProfile__container-custom">
                     <label
@@ -371,9 +323,8 @@ const EditProfile = () => {
               </div>
             </section>
           </div>
-        </section >
-        {/* <Footer /> */}
-      </div >
+        </section>
+      </div>
     </>
   );
 };

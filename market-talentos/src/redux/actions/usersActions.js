@@ -132,7 +132,6 @@ export const completeProfileAsync = (newTalent, type) => {
   return async (dispatch) => {
     try {
       const talent = await completeTalentData(newTalent, type);
-      console.log(newTalent, type);
       dispatch(completeProfileSync(talent, false));
     } catch (error) {
       console.log(error);
@@ -141,6 +140,7 @@ export const completeProfileAsync = (newTalent, type) => {
         message: error.message,
       };
       dispatch(completeProfileSync({}, showError));
+      return error
     }
   };
 };
