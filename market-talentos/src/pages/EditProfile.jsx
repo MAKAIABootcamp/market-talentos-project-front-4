@@ -127,13 +127,10 @@ const EditProfile = () => {
   });
 
   const isFormValid = () => {
-    Object.keys(formik.errors).length === 0 &&
-    Object.keys(formik.touched).length !== 0;
-    const [isLoading, setIsLoading] = useState(true);
-    if (isLoading) {
-      // Mostrar un spinner mientras se verifica el usuario
-      return <Spinner />;
-    }
+   if( Object.keys(formik.errors).length === 0 &&
+    Object.keys(formik.touched).length !== 0) 
+    {return true}
+  
   };
 
   return (
