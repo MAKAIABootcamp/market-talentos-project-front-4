@@ -8,21 +8,26 @@ import imgLinkedin from "../../assets/logolink.png";
 import imgVideo from "../../assets/logovideo.png";
 import imgPhone from "../../assets/celular.png";
 import imgMail from "../../assets/correo.png";
-import { getTalentFromTalentsCollection } from "../../services/talentsServices";
+import { getTalentLoggued } from "../../services/talentsServices";
 
 const CardTalent = ({id}) => {
   const [talento, setTalent] = useState("")
   const navigate = useNavigate();
   useEffect(()=>{      
     async function fetchData() {
-      const talent = await getTalentFromTalentsCollection(id);
+      const talent = await getTalentLoggued(id);
       console.log("talento", talent)
       setTalent(talent)
     }
     fetchData();
+    
   }, [])
-  
 
+  useEffect(()=>{
+
+    console.log("cadtalent talento", talento);
+  }, [talento] )
+  
   const handleClick = (params) => {
     console.log(params)
   }
