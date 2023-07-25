@@ -113,9 +113,11 @@ const CardTalent = ({id}) => {
                 </div>
               </div>
               <div className="cardTalents__container-programs">
-                
-                  <span className="cardTalents__programs">HTML</span>
-               
+                {
+                  talento?.stacks?.map(item => 
+                    <span className="cardTalents__programs" key={item}>{item}</span>
+                  )
+                }
               </div>
               <div className="cardTalents__container-profile">
                 <h5 className="cardTalents__profile">

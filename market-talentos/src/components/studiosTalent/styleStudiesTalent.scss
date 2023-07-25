@@ -1,11 +1,17 @@
 @import "../../style/style.scss";
 
+
 .studies{
 
+  &__container-ppal{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+  }
   &__studies{
 
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       width: 700px;
       height: auto;
       border-radius: 20px;
@@ -15,7 +21,7 @@
              
     }
     &__container-estudies{
-      
+    
       display: flex;
       gap: 20px;
       margin-bottom: 20px;
@@ -23,15 +29,17 @@
     }    
 
     &__container-imgInstitute{
+     
       display: flex;
       width: 30px;
       height: 30px;
       margin-bottom: 20px;
     }
     &__figure-imgInstitute{
+      
       width: 30px;
       height: 30px;
-      background-color: gray;
+     
 
       img{
         width: 100%;
@@ -39,7 +47,7 @@
       }
     }
     &__container-infoInstitute{
-
+      
       display: flex;
       flex-direction: column;
      

@@ -65,7 +65,7 @@ const TalentDetails = () => {
             </div>
           </div>
           <div className='talentDetails__container-filteres'>
-            <button className='talentDetails__button-custom'
+            <button className='talentDetails__button-custom' 
 
               onClick={() => setButtonVisibility(true)}
             >Experiencia Laboral</button>
