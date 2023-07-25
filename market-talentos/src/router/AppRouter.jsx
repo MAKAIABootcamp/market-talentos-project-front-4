@@ -145,7 +145,7 @@ const AppRouter = () => {
               <Route path="blog" element={<Blog />} />
               <Route path="about" element={<About />} />
               <Route path="contacts" element={<Contactenos />} />
-              <Route path="OfferVacants" element={<OffertVacants />} />
+              
             </Route>
             <Route element={<PrivateRouter isAutentication={isLogged} />}>
               <Route path="talents" element={<Talent />}></Route>
