@@ -19,7 +19,7 @@ export const validateReducer = (state = talentState, action) => {
             return {
                 ...state,
                 talents: state.talents.filter((cont) =>
-                    cont.uid !== action.payload.uid
+                    cont.id !== action.payload.id
 
                 )
             }
@@ -30,7 +30,7 @@ export const validateReducer = (state = talentState, action) => {
                 ...state,
                 talents: state.talents.map((cont) => {
                     const originalTalents = cont;
-                    if (cont.uid === action.payload.uid) {
+                    if (cont.id === action.payload.id) {
                         originalTalents.validateUser = action.payload.validateUser;
 
                     }

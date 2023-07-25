@@ -56,7 +56,7 @@ const Blog = () => {
             />
           </div>
         </div>
-        <div className="blog__containerinfo2">
+        <section className="blog__containerinfo2">
           <div className="blog__textaqui">
             <h1>Temas Propuestos</h1>
           </div>
@@ -80,16 +80,68 @@ const Blog = () => {
               ))}
             </Carousel>
           </div>
-          <div className="blog__informationcard">
-            <div className="blog__textinformation">
-              <h3>Mas Informacion Aqui</h3>
+          <section className="blog__section2">
+            <div className="blog__informationcard">
+              <div className="blog__textinformation">
+                <h1>Corporativo</h1>
+              </div>
+              <div className="blog__notice">
+                <div className="blog__info">
+                  <h2>Propósito</h2>
+                  <p>
+                    Potenciamos capacidades para el desarrollo social desde la
+                    cooperación, la tecnología y la innovación.
+                  </p>
+                </div>
+              </div>
+              <div className="blog__notice">
+                <div className="blog__info">
+                  <h2>Vision</h2>
+                  <p>
+                    Potenciamos capacidades para el desarrollo social desde la
+                    cooperación, la tecnología y la innovación.
+                  </p>
+                </div>
+              </div>
+              <div className="blog__notice">
+                <div className="blog__info">
+                  <h2>Valores</h2>
+                  <p>
+                    <ul>
+                      <li>1. Compromiso Social.</li>
+                      <li>2. Vanguardia e Innovación.</li>
+                      <li>3. Inclusión y Diversidad.</li>
+                      <li>4. Pensamiento Global.</li>
+                      <li>5. Integridad y Transparencia</li>
+                    </ul>
+                  </p>
+                </div>
+              </div>
             </div>
-            <div className="blog__notice">1</div>
-            <div className="blog__notice">2</div>
-            <div className="blog__notice">3</div>
-          </div>
-        </div>
+          </section>
+        </section>
       </main>
+      <section className="blog__section3">
+        <h1>Informate</h1>
+        <div className="blog__containervideos">
+          <iframe
+            src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7082727709633589249?compact=1"
+            height="340"
+            width="530"
+            frameborder="0"
+            allowfullscreen=""
+            title="Publicación integrada"
+          ></iframe>
+          <iframe
+            src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7089236473979260929?compact=1"
+            height="340"
+            width="530"
+            frameborder="0"
+            allowfullscreen=""
+            title="Publicación integrada"
+          ></iframe>
+        </div>
+      </section>
       <Footer />
     </>
   );

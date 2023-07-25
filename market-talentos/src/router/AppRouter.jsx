@@ -1,5 +1,5 @@
 // import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Administrator from "../components/adminLayout/Administrator";
 import Customer from "../pages/Customer";
@@ -41,93 +41,29 @@ import AdminTalents from "../pages/AdminTalents";
 import AdminVacants from "../pages/AdminVacants";
 import Contactenos from "../pages/Contactenos";
 import About from "../pages/About";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase/firebaseConfig";
+import { useEffect, useState } from "react";
+import { setIsLogged } from "../redux/actions/appActions";
+import { getLoggedUser } from "../redux/actions/userActions"; 
 
 const AppRouter = () => {
-  const { isLogged } = useSelector((state) => state.appReducer);
-  // const [loggedUser, setLoggedUser] = useState(null);
-  // const dispatch = useDispatch();
-  // const [isLogged, setIsLogged] = useState(null);
-  // const { user: loggedUser} = useSelector((state) => state.user);
-  // const [loading, setLoading] = useState(true);
-  // console.log(loggedUser);
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const {isLogged} = useSelector(store => store.appReducer)
+  const dispatch = useDispatch();
 
-  // Funcion para datos del usuario y persistencia
-  // const traerInfo = async (uid, accessToken) => {
-  //   const docRef = doc(dataBase, `usuarios/${uid}`);
-  //   const docu = await getDoc(docRef);
-  //   console.log(docu);
-  //   const dataFinal = docu.data();
-  //   console.log(uid);
-  //   console.log(dataFinal);
-
-  //   dispatch(
-  //     singInActionSync({
-  //       displayName:dataFinal.displayName,
-  //       firstName: dataFinal.firstName,
-  //       typeUser: dataFinal. typeUser,
-  //       email: dataFinal.email,
-  //       accessToken,
-  //       phoneNumber: dataFinal.phoneNumber,
-  //       rol: dataFinal.rol,
-  //       cohorte: dataFinal.cohorte,
-  //       type: dataFinal.type,
-  //       photoURL: dataFinal.photoURL,
-  //       lastName:dataFinal.lastName,
-  //       id:uid,
-  //       validateUser: dataFinal.validateUser,
-  //       uid,
-  //       error: false,
-
-  //     })
-  //   );
-  // };
-
-  //   useEffect(() => {
-  //     onAuthStateChanged(auth, (user) => {
-  //       if (user?.uid) {
-  //         console.log(user.uid);
-  //         console.log(loggedUser);
-  //         setIsLogged(true);
-
-  //         // if (!loggedUser) {
-  //         //   dispatch(getLoggedUser(user?.accessToken));
-  //         //   console.log(loggedUser);
-  //         //   // user.getIdToken().then((token) => {
-  //         //   //   dispatch(getLoggedUser(token));
-  //         //   // });
-  //         // }
-  //       } else {
-  //         setIsLogged(false);
-  //       }
-  //         setLoading(false);
-  //         if (user?.auth.currentUser) {
-  //           if (!loggedUser) {
-  //             const {
-  //               displayName,
-  //               firstName,
-  //               lastName,
-  //               email,
-  //               phoneNumber,
-  //               accessToken,
-  //               photoURL,
-  //               id,
-  //               uid,
-  //               cohorte,
-  //               type,
-  //               rol,
-  //               validateUser,
-  //             } = user.auth.currentUser;
-
-  //             traerInfo(uid, accessToken);
-  //             console.log(displayName, email, phoneNumber,lastName, photoURL, firstName, id, validateUser );
-  //             console.log('usuario logueado',loggedUser);
-  //           }
-  //         }
-  //       });
-  //   }, [setIsLogged, loading]);
-  //   if (loading) {
-  //     return <Spinner animation="border" />;
-  //   }
+  useEffect(()=>{
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsAuthenticated(true);
+        setIsLogged(true)
+        dispatch(getLoggedUser(user.email)) 
+      } else {
+        setIsAuthenticated(false);
+        setIsLogged(false)
+      }
+    });
+  },[isAuthenticated, setIsAuthenticated, isLogged])
 
   return (
     <>
@@ -136,7 +72,7 @@ const AppRouter = () => {
           <Route path="/">
             <Route index element={<Home />} />
             <Route path="formStudies" element={<FormStudies />} />
-            <Route element={<PublicRouter isAutentication={isLogged} />}>
+            <Route element={<PublicRouter isAutentication={false} />}>
               <Route path="login" element={<LoginTalent />} />
               {/* <Route path="login" element={<Login/>} /> */}
               <Route path="formRegisTalent" element={<FormRegisTalent />} />
@@ -149,7 +85,7 @@ const AppRouter = () => {
               <Route path="jobOffers" element={<JobOffers />} />
               
             </Route>
-            <Route element={<PrivateRouter isAutentication={isLogged} />}>
+            <Route element={<PrivateRouter isAutentication={isAuthenticated} />}>
               <Route path="talents" element={<Talent />}></Route>
               <Route path="searchTalent" element={<SearchTalent />} />
               <Route path="talentDetails/:id" element={<TalentDetails />} />

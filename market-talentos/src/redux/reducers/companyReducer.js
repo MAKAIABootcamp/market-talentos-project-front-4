@@ -20,7 +20,7 @@ export const companyReducer = (state = initialState, action) => {
             return {
                 ...state,
                 companies: state.companies.filter((cont) =>
-                    cont.uid !== action.payload.uid
+                    cont.id !== action.payload.id
 
                 )
             }
@@ -31,7 +31,7 @@ export const companyReducer = (state = initialState, action) => {
                 ...state,
                 companies: state.companies.map((cont) => {
                     const originalCompany = cont;
-                    if (cont.uid === action.payload.uid) {
+                    if (cont.id === action.payload.id) {
                         originalCompany.validateUser = action.payload.validateUser;
 
                     }

@@ -299,7 +299,7 @@ const DashboardHome = () => {
                           <Td>Diana Pinzón</Td>
                           <Td>4102563</Td>
                           <Td isNumeric>25/06/2023</Td>
-                          <Td>Pendiente</Td>
+                          <Td>Pendiente</ Td>
                           <Td isNumeric> <DeleteIcon /> </Td>
                         </Tr>
                       </Tbody>

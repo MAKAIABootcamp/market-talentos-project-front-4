@@ -28,9 +28,8 @@ const schema = yup.object({
 const LoginTalent = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const { error } = useSelector((store) => store.user);
   const { loggedUser } = useSelector((store) => store.user);
-  const { isLoading } = useSelector((store) => store.appReducer);
+  const { isLoading, isLogged } = useSelector((store) => store.appReducer);
 
   const {
     register,
@@ -44,7 +43,12 @@ const LoginTalent = () => {
     },
   });
 
+  useEffect(()=>{
+    console.log("estoy entrando al login")
+  }, [])
+
   useEffect(() => {
+    console.log("loggedUser",loggedUser)
     if (loggedUser !== undefined && loggedUser !== null && loggedUser.length > 0) {
       const user = loggedUser[0];
       if (user.validateUser === true) {
@@ -81,12 +85,11 @@ const LoginTalent = () => {
           });
       }
     }
-  }, [loggedUser])
+  }, [loggedUser]) 
 
 
   const onSubmit = (data) => {
-    const response = dispatch(actionLoginAsync(data));
-    console.log("Response", response)
+    dispatch(actionLoginAsync(data));
     dispatch(getLoggedUser(data.email));
   };
 
