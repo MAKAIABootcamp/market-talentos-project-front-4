@@ -2,27 +2,24 @@
 
 .jobtalent {
   @include desk {
-      width: 99%;
-  height: auto;
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  flex-direction: column;
-  // flex-wrap: wrap;
-  // @include desk {
-  //   width: 100%;
-  //   height: 100%;
-  //   display: flex;
-  //   position: absolute;
-  // }
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    // flex-wrap: wrap;
+    // @include desk {
+    //   width: 100%;
+    //   height: 100%;
+    //   display: flex;
+    //   position: absolute;
+    // }
   }
-  &__layout{
+  &__layout {
     // background-color: red;
     width: 100%;
   }
 
-  &__card-jobs{
+  &__card-jobs {
     display: flex;
     justify-content: center;
     width: 100%;
@@ -40,13 +37,12 @@
       align-items: center;
       gap: 3px;
       border-radius: 10px;
-      
     }
   }
 
   &__container-cards {
-     display: flex;
-     margin-top: 20px;
+    display: flex;
+    margin-top: 20px;
     flex-wrap: wrap;
     gap: 5px;
     margin-bottom: 8px;
@@ -55,7 +51,6 @@
     padding: 15px;
     gap: 12px;
     border: 1px solid grey;
-    
   }
   &__container-imgTalent {
     margin-top: 25px;
@@ -141,22 +136,30 @@
 
   &__container-programs {
     @include desk {
-        width: 20%px;
-        height: 55px;
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-        margin-bottom: 10px;
-        margin-top: 10px;
-      }
-}
-
-&__programs {
-    @include desk {
-        @include span($wiAuto, $he25, $trasparent, $grayLight,
-            $fontNunito, $w300, $s10, $black);
+      width: 20%px;
+      height: 55px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 10px;
+      margin-top: 10px;
     }
-}
+  }
+
+  &__programs {
+    @include desk {
+      @include span(
+        $wiAuto,
+        $he25,
+        $trasparent,
+        $grayLight,
+        $fontNunito,
+        $w300,
+        $s10,
+        $black
+      );
+    }
+  }
 
   &__line {
     @include desk {
@@ -196,7 +199,6 @@
     @include desk {
       display: flex;
       justify-content: center;
-      
     }
   }
 
@@ -251,12 +253,10 @@
     }
   }
 
-
-  &__container-addpstulation{
+  &__container-addpstulation {
     padding: 13px;
     position: relative;
     display: flex;
-    background-color: white;
     flex-direction: column;
     justify-content: center;
     width: 274px;
@@ -264,8 +264,6 @@
     border-radius: 33px;
     
   }
-
-
 
   &__button-otherjobs {
     margin-bottom: 10px;
@@ -279,6 +277,22 @@
     border-radius: 7px;
     background-color: $yellow;
     z-index: 1;
+  }
+
+  &__button-otheroffertjobs {
+    margin-bottom: 10px;
+    width: 100%;
+    height: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px;
+    align-items: center;
+    border-radius: 7px;
+    background-color: $yellow;
+    z-index: 1;
+    position: relative;
+    top: auto;
   }
 
   &__container-other {
@@ -300,9 +314,8 @@
       gap: 3px;
       padding: 15px;
       align-items: center;
-      flex-direction: column;     
+      flex-direction: column;
     }
-
   }
 
   &__button-other {
@@ -333,7 +346,6 @@
     }
   }
 
-
   /* ...........cards Mis postulaciones............*/
   &__container-infojob {
     @include desk {
@@ -348,9 +360,9 @@
       border-radius: 8px;
     }
   }
-  &__button-infojob{
+  &__button-infojob {
     margin-top: -13px;
- 
+
     @include styleSquare(
       $skyBkue,
       $skyBkue,
@@ -364,7 +376,6 @@
       $white
     );
   }
-
 
   &__container-costumer {
     display: flex;
@@ -410,15 +421,29 @@
     align-items: center;
     background-color: $yellow;
   }
+  &__container-other {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    margin-top: -17px;
+    gap: 10px;
+    background-color: #25ABBC;
+    border-radius: 9px;
+    margin-bottom: 15px;
+    position: relative;
+    top: -372px;
+    z-index: 2;
+}
+}
 
-  }
-
-
- /* .........media query tablet.......... */
+/* .........media query tablet.......... */
 
 @media screen and (max-width: 768px) {
   .jobtalent {
-  
+    width: 100%;
 
     &__container-infojob {
       width: 80%;
@@ -431,7 +456,6 @@
       border-radius: 8px;
       position: absolute;
       top: 611px;
-      
     }
     &__container-costumer {
       max-height: 272px;
@@ -441,25 +465,41 @@
     &__button-costumer {
       width: 100%;
     }
-    &__footer{
+    &__footer {
       display: flex;
-      margin-top:350px;
+      margin-top: 350px;
     }
-      
+
     &__card-jobs {
       display: flex;
       justify-content: center;
       width: 100%;
       height: auto;
       margin-bottom: 336px;
-      gap:20px;
+      gap: 20px;
+    }
+    &__container-other {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      width: 100%;
+      margin-top: -17px;
+      gap: 10px;
+      background-color: #25ABBC;
+      border-radius: 9px;
+      margin-bottom: 15px;
+      position: relative;
+      top: -372px;
+      z-index: 2;
   }
   }
 }
 
 @media screen and (max-width: 375px) {
   .jobtalent {
-    // width: 100%;
+    width: 100%;
     // height: 100%;
     // display: flex;
     // position: absolute;
@@ -476,7 +516,6 @@
       border-radius: 8px;
       position: absolute;
       top: 607px;
-      
     }
     &__container-costumer {
       max-height: 272px;
@@ -487,7 +526,7 @@
       width: 100%;
     }
 
-    &__footer{
+    &__footer {
       margin-top: 404px;
     }
 
@@ -497,9 +536,25 @@
       width: 100%;
       height: auto;
       margin-bottom: 336px;
-      gap:20px;
-  }
+      gap: 20px;
+    }
 
-    
+   
+    &__container-other {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      width: 100%;
+      margin-top: -17px;
+      gap: 10px;
+      background-color: #25ABBC;
+      border-radius: 9px;
+      margin-bottom: 15px;
+      position: relative;
+      top: -372px;
+      z-index: 2;
+  }
   }
 }

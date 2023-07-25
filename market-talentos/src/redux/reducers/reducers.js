@@ -7,6 +7,7 @@ import OfferJobReducer from './OfferJobReducer';
 import { validateReducer } from './validateReducer';
 import applicationsReducer from './applicationReducer';
 import companyReducer from './companyReducer'
+import talentAplicationReducer from './talentAplicationReducer';
 
 
 const rootReducer = combineReducers({
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   offerJob: OfferJobReducer,
   applications: applicationsReducer,
   companies: companyReducer,
-  appReducer: appReducer
+  appReducer: appReducer,
+  myAplication: talentAplicationReducer
 });
 
 export default rootReducer;
