@@ -53,6 +53,7 @@ export const getLoggedUser = (mail) => {
         id: doc.id,
         ...doc.data()
       }));
+      console.log("user logged", usersArray)
       dispatch(setLoggedUserSync(usersArray));
       dispatch(setLoading(false))
     } catch (e) {

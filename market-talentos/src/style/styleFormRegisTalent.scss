@@ -102,11 +102,13 @@
       }
       input {
         color: white;
+        background-color: transparent;
+      }
+      div {
+        display: flex;
+        justify-content: center;
       }
     }
-  }
-  &__select {
-    display: none;
   }
 
   &__file-input-label {

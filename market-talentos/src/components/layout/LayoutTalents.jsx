@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux';
 import { Drawer, IconButton, List, ListItem, ListItemText } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-import { signOut } from 'firebase/auth';
+
 
 const LayoutTalents = () => {
   const navigate = useNavigate();
@@ -162,5 +162,4 @@ const LayoutTalents = () => {
 }
 
 export default LayoutTalents;
-
 

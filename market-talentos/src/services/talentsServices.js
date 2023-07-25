@@ -7,7 +7,6 @@ export const getTalentFromTalentsCollection = async (idUsuario) => {
     const user = [];
     const referenceCollection = collection(firestore, collections.usuarios);
     let q = query(referenceCollection, where("id", "==", idUsuario));
-     q = query(referenceCollection, where("uid", "==", idUsuario));
     const querySnapshot = await getDocs(q);
     console.log(querySnapshot);
     querySnapshot.forEach((doc) => {
@@ -29,7 +28,6 @@ export const getTalentLoggued = async (idTalento) => {
     const talentLogued = [];
     const referenceCollection = collection(firestore, collections.talentos);
     let q = query(referenceCollection, where("id", "==", idTalento));
-     q = query(referenceCollection, where("uid", "==", idTalento));
     const querySnapshot = await getDocs(q);
     console.log(querySnapshot);
     querySnapshot.forEach((doc) => {
