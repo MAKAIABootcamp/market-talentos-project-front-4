@@ -18,8 +18,9 @@
   }
   &__imagen {
     width: 600px;
+    margin-left: 70px;
     img {
-      width: 400px;
+      width: 100%;
       border-top-left-radius: 30px;
       border-bottom-right-radius: 30px;
     }
@@ -35,7 +36,7 @@
     margin-top: 60px;
   }
   &__textaqui {
-    text-align: center;
+    display: flex;
     h1 {
       font-family: $fontNunito;
     }
@@ -47,21 +48,38 @@
     margin-top: 15px;
   }
   &__notice {
-    background-color: pink;
-    width: 300px;
-    height: 100px;
+    display: flex;
+    flex-direction: column;
+  }
+  &__info {
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    position: relative;
+    left: -200px;
+    p {
+      text-align: left;
+      position: relative;
+      left: -240px;
+    }
+    h2 {
+      justify-content: center;
+      font-family: $fontMontserrat;
+    }
   }
   &__textinformation {
-    h3 {
+    h1 {
       font-family: $fontNunito;
+      width: 300px;
     }
+  }
+  &__section2 {
+    position: relative;
+    left: -3200px;
   }
 }
 
 .blog__carrusel--left {
-  width: 500px;
-  margin-top: 60px;
-  margin-left: 70px;
   img {
     border-radius: 10px;
   }
@@ -69,10 +87,32 @@
 
 .blog__carrusel--left .carousel-root {
   position: relative;
-  left: -310px;
+  top: 120px;
+  img {
+    width: 300px;
+  }
+}
+.blog__section2 {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  h1 {
+    font-family: $fontNunito;
+  }
+}
+.blog__section3 {
+  position: relative;
+  left: 60px;
+}
+.blog__containervideos {
+  display: flex;
+  gap: 60px;
+  padding-top: 30px;
+}
+.carousel-item {
+  width: 500px;
 }
 @include mobile {
-
   .blog {
     &__imagen {
       img {
@@ -113,6 +153,5 @@
     top: -100px;
     left: -90px;
     width: 300px;
-    
   }
 }
