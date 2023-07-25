@@ -1,47 +1,29 @@
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import {
   collection,
-  addDoc,
   query,
   where,
   getDocs,
   setDoc,
   doc,
+  addDoc,
+  updateDoc
 } from "firebase/firestore";
-import { auth, firestore, dataBase } from "../firebase/firebaseConfig";
+import { auth, firestore, dataBase,  } from "../firebase/firebaseConfig";
 import { collections } from "./dates";
+// import { log } from "util";
 
 export const userRegister = async (user) => {
-  console.log(user);
   const nameCollection = collections.usuarios;
   const referenceCollection = collection(firestore, nameCollection);
+  const newUser = await addDoc(referenceCollection, user);
   try {
-    const response = await createUserWithEmailAndPassword(
+    await createUserWithEmailAndPassword(
       auth,
       user.email,
       user.password
     );
 
-    await updateProfile(auth.currentUser, {
-      displayName: user.displayName,
-      photoURL: user.photoURL,
-    });
-    const collectionName = 'usuarios';
-    const usuarioColletion = collection(dataBase, collectionName);
-    const docuRef= doc(dataBase,`usuarios/${response.user.uid}`)
-    const newUserReference = await setDoc(docuRef, {
-      ...user,
-      accessToken: response.user.accessToken,
-      uid: response.user.uid,
-      validateUser: false
-    });
-    const newUser = {
-      ...user,
-      password: "",
-      id: newUserReference.id,
-      accessToken: response.user.accessToken,
-      uid: response.user.uid,
-    };
     return newUser;
   } catch (error) {
     console.log(error);
@@ -52,19 +34,14 @@ export const userRegister = async (user) => {
 export const completeTalentData = async (newTalent, type) => {
   try {
     if (type === collections.talentos) {
-      const talentReference = collection(firestore, type);
-
-      const talentRef = await addDoc(talentReference, newTalent);
-      return {
-        idTalent: talentRef.id,
-        ...newTalent,
-      };
+      const docuRef= doc(dataBase, type, newTalent.id)
+      await setDoc(docuRef, newTalent);
     } else {
       return {};
     }
   } catch (error) {
     console.log(error);
-    return {};
+    return error;
   }
 };
 

@@ -3,7 +3,9 @@ import { userTypes, talentsTypes } from "../types/talentsTypes";
 const initialState = {
   user: null,
   error: null,
-  selectedTalentId: null
+  selectedTalentId: null,
+  generalUsers:[],
+  loggedUser: null
 };
 
 const userReducer = (state = initialState, action) => {
@@ -14,6 +16,19 @@ const userReducer = (state = initialState, action) => {
         user: action.payload.user,
         error: action.payload.error,
       };
+
+    case userTypes.SET_GENERAL_USERS:
+      return {
+        ...state,
+        generalUsers: action.payload
+      };
+
+    case userTypes.SET_LOGGED_USER:
+      return {
+        ...state,
+        loggedUser: action.payload
+      };
+
     case userTypes.USER_REGITER:
       return {
         ...state,

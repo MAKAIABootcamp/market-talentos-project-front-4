@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector} from "react-redux";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import useOnClick from "../../funtions/useOnClick";
 import "./styleCardTalent.scss";
 import imgGitUp from "../../assets/logogithub.png";
@@ -8,20 +8,25 @@ import imgLinkedin from "../../assets/logolink.png";
 import imgVideo from "../../assets/logovideo.png";
 import imgPhone from "../../assets/celular.png";
 import imgMail from "../../assets/correo.png";
+import { getTalentFromTalentsCollection } from "../../services/talentsServices";
 // import imgWhatsapp from '../../assets/whatsapp.png';
 
-const CardTalent = () => {
-  const handleClick = useOnClick();
- 
+const CardTalent = ({id}) => {
+  const [talento, setTalent] = useState("")
+  const navigate = useNavigate();
+  useEffect(()=>{      
+    async function fetchData() {
+      const talent = await getTalentFromTalentsCollection(id);
+      console.log("talento", talent)
+      setTalent(talent)
+    }
+    fetchData();
+  }, [])
   
-//   const { user } = useSelector((state) => state.user);
-//   console.log("infor de cart: ", user);
 
-//   const { talentSelected } = useSelector((state) => state.talents);
-//   console.log(talentSelected);
-
-const userStore = useSelector((store) => store.user.user);
-console.log("esta es a info de userStore", userStore);
+  const handleClick = (params) => {
+    console.log(params)
+  }
 
   return (
     
@@ -34,7 +39,7 @@ console.log("esta es a info de userStore", userStore);
             onClick={() => handleClick("editImgProfile", "")}
           >
             <figure className="cardTalents__card-figure">
-              <img src={userStore?userStore.phothoURL:""} alt="imgTalent" />
+              <img src={talento.photoURL} alt="imgTalent" />
             </figure>
           </div>
           <div className="cardTalents__container-info">
@@ -50,36 +55,36 @@ console.log("esta es a info de userStore", userStore);
                             </figure> */}
               <div className="cardTalents__container-levelEnglish">
                 <span className="cardTalents__know">Ingles</span>
-                <span className="cardTalents__know">A1</span>
+                <span className="cardTalents__know">{talento.englishLevel}</span>
               </div>
             </div>
             <div className="cardTalents__line"></div>
             <div className="cardTalents__container-infoPnal">
               <span className="cardTalents__name">
-                              <strong>{userStore?userStore.firstName:""}</strong>
+                              <strong>{talento.firstName}</strong>
               </span>
-              <span className="cardTalents__lastName">
-                <strong>{userStore?userStore.lastName:""}</strong>
+              <span className="cardTalents__lastName"> 
+                <strong>{talento.lastName}</strong>
               </span>
             <span className="cardTalents__know">
-              <strong>Front End</strong>
+              <strong>{talento.rol}</strong>
               </span>
             </div>
           </div>
           <section className="cardTalents__seccion-info">
             <div className="cardTalents__container-links">
               <button className="cardTalents__button-link">
-                <NavLink to="">
+                <NavLink to={talento.githup}>
                   <figure className="cardTalents__figure-icons-gitUp">
                     <img src={imgGitUp} alt="git" />
                   </figure>
                 </NavLink>
-                <NavLink>
+                <NavLink to={talento.linkedIn}>
                   <figure className="cardTalents__figure-icons-linkedin">
                     <img src={imgLinkedin} alt="link" />
                   </figure>
                 </NavLink>
-                <NavLink>
+                <NavLink to={talento.video}>
                   <figure className="cardTalents__figure-icons-video">
                     <img src={imgVideo} alt="vid" />
                   </figure>
@@ -93,35 +98,30 @@ console.log("esta es a info de userStore", userStore);
                     <img src={imgMail} alt="" />
                   </figure>
                   <span className="cardTalents__infoContact">
-                  {userStore?userStore.email:""}
+                  {talento.email}
                   </span>
                 </div>
                 <div className="cardTalents__container-mail">
                   <figure className="cardTalents__iconPhone">
                     <img src={imgPhone} alt="" />
                   </figure>
-                  <span className="cardTalents__infoContact">+57 3002791131</span>
+                  <span className="cardTalents__infoContact">+57 {talento.phone}</span>
                 </div>
               </div>
               <div className="cardTalents__container-programs">
-                <span className="cardTalents__programs">HTML</span>
-                <span className="cardTalents__programs">CSS</span>
-                <span className="cardTalents__programs">JAVA_SCRIPT</span>
-                <span className="cardTalents__programs">SASS</span>
-                <span className="cardTalents__programs">REACT</span>
-                <span className="cardTalents__programs">BOOBSTRAP</span>
-
-                <span className="cardTalents__programs">GIT_UP</span>
+                
+                  <span className="cardTalents__programs">HTML</span>
+               
               </div>
               <div className="cardTalents__container-profile">
                 <h5 className="cardTalents__profile">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, cum, quis veniam dicta, ducimus sint necessitatibus recusandae velit ipsum maxime repellendus doloremque voluptatibus corporis laborum. Praesentium vel obcaecati atque quas.
+                  {talento.profile}
                 </h5>
               </div>
             </div>
             <div className="cardTalents__container-EditProfile">
               <button 
-              onClick={() => handleClick("formStudies", "")}
+              onClick={() => navigate('/editProfile/'+talento.id)}
               className="cardTalents__button-EditProfile">
                 Editar Información
               </button>
@@ -137,7 +137,7 @@ console.log("esta es a info de userStore", userStore);
                 className="cardTalents__button-custom"
                 onClick={() => handleClick("curriculum", "")}
               >
-                hoja de vida
+                Hoja de vida
               </button>
             </div>
           </section>

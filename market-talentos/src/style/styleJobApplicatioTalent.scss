@@ -1,10 +1,10 @@
 @import "./style.scss";
 
 .jobtalent {
-  width: 100%;
+  @include desk {
+      width: 99%;
   height: auto;
   margin-top: 20px;
-  margin-left: 20px;
   display: flex;
   justify-content: center;
   position: absolute;
@@ -16,6 +16,11 @@
   //   display: flex;
   //   position: absolute;
   // }
+  }
+  &__layout{
+    // background-color: red;
+    width: 100%;
+  }
 
   &__card-jobs{
     display: flex;
@@ -152,10 +157,6 @@
             $fontNunito, $w300, $s10, $black);
     }
 }
-
-
-
-  
 
   &__line {
     @include desk {
@@ -429,7 +430,7 @@
       align-items: center;
       border-radius: 8px;
       position: absolute;
-      top: 520px;
+      top: 611px;
       
     }
     &__container-costumer {
@@ -444,6 +445,15 @@
       display: flex;
       margin-top:350px;
     }
+      
+    &__card-jobs {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      height: auto;
+      margin-bottom: 336px;
+      gap:20px;
+  }
   }
 }
 
@@ -465,7 +475,7 @@
       align-items: center;
       border-radius: 8px;
       position: absolute;
-      top: 520px;
+      top: 607px;
       
     }
     &__container-costumer {
@@ -480,6 +490,15 @@
     &__footer{
       margin-top: 404px;
     }
+
+    &__card-jobs {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      height: auto;
+      margin-bottom: 336px;
+      gap:20px;
+  }
 
     
   }

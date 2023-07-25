@@ -1,27 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../style/styleEditProfile.scss";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import imageFond from "../assets/EditProfileFondo.jpg";
 // import Footer from "../components/footer/Footer";
-import {
+import { 
   completeProfileAsync,
   singOutAsync,
 } from "../redux/actions/usersActions";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import LayoutTalents from "../components/layout/LayoutTalents"; import { languageOptions } from "../services/dates";
+import { Spinner } from "react-bootstrap";
+import { doc, getDoc, } from "firebase/firestore";
+import { dataBase } from "../firebase/firebaseConfig";
+import { listTalents } from "../redux/actions/userActions";
+import fileUpLoad from "../services/fileUpload";
+import videoUpLoad from "../services/videoUpLoad";
+import { getTalentFromTalentsCollection, getTalentLoggued} from "../services/talentsServices";
 
 
 const EditProfile = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const {id} = useParams()
+   const navigate = useNavigate();
+   const [user, setuser] = useState("")
 
-  const { user } = useSelector((state) => state.user);
-  console.log(user);
+  useEffect(()=>{      
+    async function fetchData() {
+      const editTalent = await getTalentLoggued(id);      
+      console.log("editTalent", editTalent);
+      setuser(editTalent);
+    }
+    fetchData();
+    console.log("user", user) 
+  }, [])
 
-  const validationSchema = Yup.object().shape({
+    const validationSchema = Yup.object().shape({
     github: Yup.string()
       .url("Ingresa un enlace válido. Ejemplo: https://github.com/tuusuario")
       .required("Este campo es obligatorio"),
@@ -51,39 +67,45 @@ const EditProfile = () => {
       .required("Este campo es obligatorio"),
   });
 
-  const handleSubmit = (values) => {
+  const handleSubmit = async (values) => {
     console.log(values);
-    values.cv = "";
-    values.video = "";
+    const cvURL = await fileUpLoad(values.cv);
+    const videoURL = await videoUpLoad(values.video);
 
     const newTalent = {
+      displayName:user.displayName ,
+      firstName:user.firstName,
+      lastName:user.lastName,
+      cohorte: user.cohorte,
+      email: user.email,
+      englishLevel: user.englishLevel,
+      id: user.uid,
+      phone: user.phone,
+      photoURL: user.photoURL,
+      rol: user.rol,
+      type: user.type,
       github: values.github,
       linkedIn: values.linkedIn,
-      stacks: [...values.stacks, values.otherLanguages],
+      stacks: [...values.stacks, ...values.otherLanguages],
       profile: values.profile,
-      curriculum: values.cv,
-      video: values.video,
-      idUsuario: user.id,
-      rol: user.rol,
-      cohorte: user.cohorte,
+      curriculum: cvURL,
+      video: videoURL,
+      displayName:user.displayName,
+      validateUser: user.validateUser,
     };
     dispatch(
       completeProfileAsync(newTalent, user.type)
-    )
-      .then(() => {
+    ).then((result) => {
         Swal.fire({
           icon: "success",
           title: "Información guardada exitosamente",
-          showConfirmButton: false,
-          timer: 1500,
+          showConfirmButton: true,
         }).then(() => {
-          // Redireccionar a la página de edición de perfil
-          // Reemplaza '/editProfile' con la ruta correcta si es necesario
-         
-          navigate(`/talentDetails`);
+          navigate(`/talentDetails/${user.id}`);
         });
-      })
+      }) 
       .catch((error) => {
+        Swal('error', "No se pudo actualizar el talento", 'error')
         // Manejar errores en caso de que ocurra un problema al guardar la información
         console.log(error);
       });
@@ -91,36 +113,32 @@ const EditProfile = () => {
 
   const formik = useFormik({
     initialValues: {
-      github: "",
-      linkedIn: "",
-      // knowledge: false,
-      profile: "",
-      stacks: [],
-      otherLanguages: "",
+      github: user?.github || "",
+      linkedIn: user?.linkedIn || "",
+      profile: user?.profile || '',
+      stacks: user?.stacks || [],
+      otherLanguages: user?.otherLanguages || [],
     },
     validationSchema,
     onSubmit: handleSubmit,
+    enableReinitialize: true,
   });
 
 
-
-  const isFormValid =
+  const isFormValid = () =>{
     Object.keys(formik.errors).length === 0 &&
     Object.keys(formik.touched).length !== 0;
+    const [isLoading, setIsLoading] = useState(true);
+    if (isLoading) {
+      // Mostrar un spinner mientras se verifica el usuario
+      return <Spinner />;
+    }
+  }
 
   return (
     <>
       <div className="editProfile">
-        {/* <div className="editProfile__boton">
-          <button
-            className="editProfile__boton"
-            onClick={() => dispatch(singOutAsync())}
-          >
-            Salir
-          </button>
-        </div> */}
-
-        <LayoutTalents />
+           <LayoutTalents />
 
         <section className="editProfile__section">
           <div className="editProfile__container">
@@ -182,8 +200,8 @@ const EditProfile = () => {
                     <div> Conocimientos</div>
 
                     <div className="editProfile__languages">
-                      {languageOptions.map((option) => (
-                        <div key={option.id} className="editProfile__language">
+                      {languageOptions.map((option,index) => (
+                        <div key={index} className="editProfile__language">
                           <input
                             type="checkbox"
                             name="stacks"
@@ -309,7 +327,6 @@ const EditProfile = () => {
             </section>
           </div>
         </section >
-        {/* <Footer /> */}
       </div >
     </>
   );
