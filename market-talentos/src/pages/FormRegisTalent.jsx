@@ -6,9 +6,9 @@ import "../style/styleFormRegisTalent.scss";
 import fondoImg from "../assets/fondoregist.jpg";
 import logoUser from "../assets/icon/logoUser.png";
 import Swal from "sweetalert2";
-import { useDispatch } from "react-redux";
+import { useDispatch  } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { registerActionAsync } from "../redux/actions/usersActions";
+import { registerActionAsync, singOutAsync } from "../redux/actions/usersActions";
 import LayoutTalents from "../components/layout/LayoutTalents";
 import Footer from "../components/footer/Footer";
 import { TiposDeUsuarios, roles } from "../services/dates";
@@ -23,24 +23,25 @@ const FormRegisTalent = () => {
       lastName: "",
       rol: "",
       cohorte: "",
-      // englishLevel: "",
+      englishLevel: "",
       email: "",
       phone: "",
-      // user: "",
+      user: "",
       password: "",
       photoURL: null,
+      // typeUser: "talentos",
     },
     validationSchema: Yup.object({
       firstName: Yup.string().required("El nombre es requerido"),
       lastName: Yup.string().required("Los apellidos son requeridos"),
       rol: Yup.string().required("Selecciona un tipo de talento"),
       cohorte: Yup.string().required("La cohorte es requerida"),
-      // englishLevel: Yup.string().required("El nivel de inglés es requerido"),
+      englishLevel: Yup.string().required("El nivel de inglés es requerido"),
       email: Yup.string()
         .email("Correo electrónico inválido")
         .required("El correo electrónico es requerido"),
       phone: Yup.string().required("El número de celular es requerido"),
-      // user: Yup.string().required("El user es requerido"),
+      user: Yup.string().required("El user es requerido"),
       password: Yup.string()
         .required("La contraseña es requerida")
         .min(3, "La contraseña debe contener al menos 3 caracteres.")
@@ -49,7 +50,7 @@ const FormRegisTalent = () => {
     }),
 
     onSubmit: async (values) => {
-      //  console.log(values);
+      console.log(values);
 
       // Enviar la imagen a Cloudinary utilizando fileUpLoad
       const avatar = await fileUpLoad(values.photoURL[0]);
@@ -61,15 +62,18 @@ const FormRegisTalent = () => {
         type: TiposDeUsuarios.TALENTO
       };
       console.log("New User:", newUser);
+
       Swal.fire({
         icon: "success",
-        title: "Usuario creado exitosamente",
+        title: "Su solicitud fue enviada, debe esperar aprobación del administrador",
         showConfirmButton: false,
         timer: 1500,
-      })
-        .then(() => {
-          navigate("/editProfile");
-        })
+      }).then(() => {
+          dispatch(singOutAsync());
+          navigate("/");
+          
+         })
+       
         .catch((error) => {
           // Manejar errores en caso de que ocurra un problema durante el registro del usuario
           console.log(error);
@@ -157,13 +161,13 @@ const FormRegisTalent = () => {
                     <option value="">Selecciona una opción</option>
                     {roles.map((rol) => (
                       <option key={rol.id} value={rol.name}>{rol.name}</option>
-                    ))}                    
+                    ))}
                   </select>
                   {formik.touched.rol && formik.errors.rol && (
                     <span>{formik.errors.rol}</span>
                   )}
 
-                  {/* <input
+                  <input
                     name="cohorte"
                     placeholder="Cohorte"
                     value={formik.values.cohorte}
@@ -171,10 +175,10 @@ const FormRegisTalent = () => {
                   />
                   {formik.touched.cohorte && formik.errors.cohorte && (
                     <span>{formik.errors.cohorte}</span>
-                  )} */}
-                  
+                  )}
 
-                  {/* <input
+
+                  <input
                     name="englishLevel"
                     placeholder="Nivel de inglés"
                     value={formik.values.englishLevel}
@@ -183,7 +187,7 @@ const FormRegisTalent = () => {
                   {formik.touched.englishLevel &&
                     formik.errors.englishLevel && (
                       <span>{formik.errors.englishLevel}</span>
-                    )} */}
+                    )}
 
                   <input
                     name="email"
@@ -194,7 +198,7 @@ const FormRegisTalent = () => {
                   {formik.touched.email && formik.errors.email && (
                     <span>{formik.errors.email}</span>
                   )}
-                  
+
 
                   <input
                     name="phone"
@@ -205,7 +209,32 @@ const FormRegisTalent = () => {
                   {formik.touched.phone && formik.errors.phone && (
                     <span>{formik.errors.phone}</span>
                   )}
-                  <div className="register__habeasdata ">
+                
+
+                  <div className="register__ussers">
+                    <input
+                      name="user"
+                      placeholder="correo electrónico"
+                      value={formik.values.user}
+                      onChange={formik.handleChange}
+                    />
+                    {formik.touched.user && formik.errors.user && (
+                      <span>{formik.errors.user}</span>
+                    )}
+
+                    <input
+                      name="password"
+                      placeholder="Contraseña"
+                      type="password"
+                      value={formik.values.password}
+                      onChange={formik.handleChange}
+                    />
+                    {formik.touched.password && formik.errors.password && (
+                      <span>{formik.errors.password}</span>
+                    )}
+                  </div>
+                </div>
+                <div className="register__habeasdata ">
                     <input
                       id="habeasDataCheckbox"
                       name="habeasDataCheckbox"
@@ -220,30 +249,6 @@ const FormRegisTalent = () => {
                     </label>
                   </div>
 
-                  <div className="register__ussers">
-                    {/* <input
-                      name="user"
-                      placeholder="correo electrónico"
-                      value={formik.values.user}
-                      onChange={formik.handleChange}
-                    />
-                    {formik.touched.user && formik.errors.user && (
-                      <span>{formik.errors.user}</span>
-                    )} */}
-
-                    <input
-                      name="password"
-                      placeholder="Contraseña"
-                      type="password"
-                      value={formik.values.password}
-                      onChange={formik.handleChange}
-                    />
-                    {formik.touched.password && formik.errors.password && (
-                      <span>{formik.errors.password}</span>
-                    )}
-                  </div>
-                </div>
-
                 <button className="register__crearCuenta" type="submit">
                   Crear cuenta
                 </button>
@@ -252,9 +257,9 @@ const FormRegisTalent = () => {
           </div>
         </div>
       </div>
-     
-        <Footer />
-      
+
+      <Footer />
+
     </section>
   );
 };

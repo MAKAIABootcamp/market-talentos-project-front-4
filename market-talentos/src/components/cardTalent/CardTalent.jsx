@@ -13,12 +13,14 @@ import imgMail from "../../assets/correo.png";
 const CardTalent = () => {
   const handleClick = useOnClick();
  
-  
-//   const { user } = useSelector((state) => state.user);
-//   console.log("infor de cart: ", user);
+  const talentosEncontrados = useSelector((store) => store.userTalents);
+  console.log("cardTalent tE", talentosEncontrados);
+  const { user } = useSelector((state) => state.user);
+  console.log("user",user);
 
-//   const { talentSelected } = useSelector((state) => state.talents);
-//   console.log(talentSelected);
+  const findTalents = talentosEncontrados.userTalents.find(talento => talento.id === user.id);
+  console.log("findTalents", findTalents);
+
 
 const userStore = useSelector((store) => store.user.user);
 console.log("esta es a info de userStore", userStore);

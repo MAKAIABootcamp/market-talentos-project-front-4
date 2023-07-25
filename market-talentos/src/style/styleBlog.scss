@@ -1,0 +1,32 @@
+@import '../style/_variables.scss';
+.blog {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  left: 40px;
+  &__containerinfo1 {
+    display: flex;
+    gap: 200px;
+  }
+  &__textinformation {
+    h1 {
+        width: 400px;
+        font-size: 50px;
+        
+    }
+  }
+  &__imagen {
+    width: 600px;
+    img {
+        width: 400px;
+        border-top-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+    }
+  }
+  &__linea {
+    width: 430px;
+    height: 3px;
+    background-color: $skyBkue;
+    margin-top: 70px;
+  }
+}

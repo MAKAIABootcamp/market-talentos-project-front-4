@@ -1,15 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../style/styleDashboardHome.scss";
 import dev from "../assets/iconDev.png";
 import back from "../assets/arrowleft.png";
 import NavlinkAdminHome from "../components/navlinAdmin/NavLinkAdminHome";
-import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import FotoEmpresa from "../../src/assets/logo admin 2.jpeg";
 import LogoMakaia from "../../src/assets/Logo.png";
-import { DeleteIcon } from '@chakra-ui/icons'
-
-
+import { DeleteIcon, CheckIcon, CloseIcon } from '@chakra-ui/icons';
+import Swal from "sweetalert2";
 import {
   Stat,
   StatLabel,
@@ -31,138 +29,85 @@ import {
 } from '@chakra-ui/react'
 
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
+import { actionDeleteTalentAsync, actionGetTalentAsync } from "../redux/actions/validateTalentActions";
+import LayoutTalents from "../components/layout/LayoutTalents";
+import Footer from "../components/footer/Footer";
+import { useNavigate } from "react-router-dom";
+import LayoutAdmin from "../components/layout/LayoutAdmin";
+import { listOfferJob } from '../redux/actions/offerJobActions';
+import { getApplicationsAsync } from "../redux/actions/applicationActions";
+import { getcompanyAsync } from "../redux/actions/companyActions";
 
-const collectionFire = [
-
-  {
-    "id": 0,
-    "title": "Talentos",
-    "name": "Douglas Hurley",
-    "images": "https://i.ibb.co/wSF8Cbx/image-douglas-hurley.png",
-    "registers": "20",
-    "hv": "30",
-
-    "role": "Commander",
-    "bio": "Douglas Gerald Hurley is an American engineer, former Marine Corps pilot and former NASA astronaut. He launched into space for the third time as commander of Crew Dragon Demo-2."
-  },
-
-
-
-];
-
-const collectionCompany = [
-
-  {
-    "id": 0,
-    "titlec": "Company",
-    "name": "Douglas Hurley",
-    "images": "https://i.ibb.co/wSF8Cbx/image-douglas-hurley.png",
-    "registersc": "60",
-    "hvc": "10",
-
-    "rolec": "Commander",
-    "bioc": "Douglas Gerald Hurley is an American engineer, former Marine Corps pilot and former NASA astronaut. He launched into space for the third time as commander of Crew Dragon Demo-2."
-  },
-
-
-];
 
 const DashboardHome = () => {
-  // const [selectedItem, setSelectedItem] = useState(null);
+  const { talents } = useSelector((store) => store.validateReducer); 
+  const { applications } = useSelector((store) => store.applications);
+  const offerJobList = useSelector((state) => state.offerJob);
+  const {companies} = useSelector((state) => state.companies);
+  const [totalTalents, setTotalTalents] = useState(0);
+  const [completedProfiles, setCompletedProfiles] = useState(0);
+  const [offers, setOffers] = useState(0);
+  const [activeOffers, setActiveOffers] = useState(0);
+  const [postulaciones, setPostulaciones] = useState(0);
+  const [empresas, setEmpresas] = useState(0);
 
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(actionGetTalentAsync());
+    dispatch(listOfferJob());
+    dispatch(getApplicationsAsync());
+    dispatch(getcompanyAsync());
 
-  const [list] = useState(collectionFire)
-  const [value, setValue] = useState(0);
-  const { hv, registers, title, role, bio } = list[value]
+  }, []);
 
-  const [listC] = useState(collectionCompany)
-  const [values, setValues] = useState(0);
-  const { hvc, registersc, titlec, rolec, bioc } = listC[values]
+  useEffect(() => {
+    const completedProfilesArray = talents.filter(item => item.completedProfile === true)
+    setTotalTalents(talents.length);
+    setCompletedProfiles(completedProfilesArray.length)
+  }, [talents]);
 
+  useEffect(() => {
+    const activeOffers = offerJobList.offerJob.filter(offer => offer.closeDate > new Date())
+    setOffers(offerJobList.offerJob.length);
+    setActiveOffers(activeOffers)
+  }, [offerJobList]);
 
+  useEffect(() => {
+    setPostulaciones(applications.length)
+    console.log("postulaciones", applications)
+  }, [applications]);
 
+  useEffect(() => {
+    setEmpresas(companies.length)
+    console.log("companies", companies)
+  }, [companies]);
 
 
   return (
-
     <>
-
-      <nav className="main__container__navBar">
-
-
-
-        <div className="section__contenedor1">
-          <figure className="section__back">
-            <img src={back} alt="Logo de makaia" width={20} />
-
-          </figure>
-          <figure className="section__logomakaia">
-
-            <img src={LogoMakaia} alt="Logo de makaia" />
-          </figure>
-        </div>
-
-
-
-        <div className="section__contenedor13">
-          <ul className="main__container__list">
-            <a href="#">Home</a>
-            <a href="#">Blog</a>
-            <a href="#">Contacto</a>
-
-          </ul>
-        </div>
-
-        <div className="section__contenedor12">
-          <figure className="section__icon">
-            <img src={dev} alt="Logo de makaia" width={40} />
-          </figure>
-        </div>
-
-      </nav>
-
-
-
-
+      <LayoutAdmin />
       <p className="message__p">Bienvenidos Makaia</p>
-
-
-
       {/* ------------------------Section Tabs----------------------- */}
-
       <main className="main__container">
-
-
-
-
         <Tabs className="main__container__tabs">
           {/* ------------------------Section Tabs List----------------------- */}
-
           <section className="main__container__sectiontabs" >
             <TabList className="main__container__sectiontabsL">
-              <Tab className="main__container__sectiontab">Talentos</Tab>
-              <Tab className="main__container__sectiontab">Empresas</Tab>
-              <Tab className="main__container__sectiontab">Intermediaciones</Tab>
-              <Tab className="main__container__sectiontab">Mapeos</Tab>
+              <Tab className="main__container__sectiontab">Dashboards</Tab>
             </TabList>
-
           </section>
-
           {/* ------------------------Section Tabs Panels----------------------- */}
           <section className="main__container__sectionpanel">
             <TabPanels className="main__container__tl">
-
               {/* ------------------------Section Tabs Panels Talentos----------------------- */}
               <TabPanel className="main__container__sectiontpanel">
                 <div className="main__container__divpanel">
                   <span className="main__container__divpanel1">
                     <StatGroup>
-
-                    
                       <Stat>
                         <StatLabel className="main__container__divpanel2">Talentos Registrados</StatLabel>
-                        <StatNumber className="main__container__divpanel3">{registers}</StatNumber>
+                        <StatNumber className="main__container__divpanel3">{totalTalents} </StatNumber>
                       </Stat>
                     </StatGroup>
                   </span>
@@ -170,105 +115,54 @@ const DashboardHome = () => {
                     <StatGroup>
                       <Stat>
                         <StatLabel className="main__container__divpanel2">HV Completadas</StatLabel>
-                        <StatNumber className="main__container__divpanel3">{hv}</StatNumber>
+                        <StatNumber className="main__container__divpanel3">{completedProfiles}</StatNumber>
                       </Stat>
                     </StatGroup>
                   </span>
-
-
+                  <span className="main__container__divpanel1">
+                    <StatGroup>
+                      <Stat>
+                        <StatLabel className="main__container__divpanel2">Vacantes Registradas</StatLabel>
+                        <StatNumber className="main__container__divpanel3">{offers}</StatNumber>
+                      </Stat>
+                    </StatGroup>
+                  </span>
                 </div>
-
-                <div className="main__container__sectionT">
-                  <TableContainer  >
-                    <Table variant='striped' colorScheme='teal' className="main__container__tablepanel" >
-
-                      <Thead >
-                        <Tr className="main__container__th">
-                          <Th>Nombre</Th>
-                          <Th>Cédula</Th>
-                          <Th isNumeric>Fecha</Th>
-                          <Th isNumeric>Estado</Th>
-                          <Th isNumeric>Modificación</Th>
-                        </Tr>
-                      </Thead>
-                      <Tbody className="main__container__trb" >
-                        <Tr  >
-                          <Td>Gesiel Gimenez</Td>
-                          <Td>1531206</Td>
-                          <Td isNumeric>15/07/2023</Td>
-                          <Td>Registrado</Td>
-                          <Td isNumeric> <DeleteIcon /> </Td>
-                        </Tr>
-
-                      </Tbody>
-
-                      <Tbody className="main__container__tr">
-                        <Tr>
-                          <Td>Diana Pinzón</Td>
-                          <Td>4102563</Td>
-                          <Td isNumeric>25/06/2023</Td>
-                          <Td>Pendiente</Td>
-                          <Td isNumeric> <DeleteIcon /> </Td>
-                        </Tr>
-
-                      </Tbody>
-
-                      <Tbody className="main__container__trb">
-                        <Tr>
-                          <Td>Dego Meriño</Td>
-                          <Td>4196758</Td>
-                          <Td isNumeric>15/05/2023</Td>
-                          <Td>Pendiente</Td>
-                          <Td isNumeric> <DeleteIcon /> </Td>
-                        </Tr>
-
-                      </Tbody>
-
-                      <Tbody className="main__container__tr">
-                        <Tr>
-                          <Td>Elizabeth Ospina</Td>
-                          <Td>4196731</Td>
-                          <Td isNumeric>10/02/2023</Td>
-                          <Td>Registrado</Td>
-                          <Td isNumeric> <DeleteIcon /> </Td>
-                        </Tr>
-
-                      </Tbody>
-
-                      <Tbody className="main__container__trb">
-                        <Tr>
-                          <Td>Santiago Gomez</Td>
-                          <Td>4063758</Td>
-                          <Td isNumeric>20/06/2023</Td>
-                          <Td>Pendiente</Td>
-                          <Td isNumeric> <DeleteIcon /> </Td>
-                        </Tr>
-
-                      </Tbody>
-
-
-
-
-
-                    </Table>
-                  </TableContainer>
-
+                <div className="main__container__divpanel">                  
+                  <span className="main__container__divpanel9">
+                    <StatGroup>
+                      <Stat>
+                        <StatLabel className="main__container__divpanel2">Vacantes Activas</StatLabel>
+                        <StatNumber className="main__container__divpanel3">{activeOffers}</StatNumber>
+                      </Stat>
+                    </StatGroup>
+                  </span>
+                  <span className="main__container__divpanel9">
+                    <StatGroup>
+                      <Stat>
+                        <StatLabel className="main__container__divpanel2">Talentos Autopostulados</StatLabel>
+                        <StatNumber className="main__container__divpanel3">{postulaciones}</StatNumber>
+                      </Stat>
+                    </StatGroup>
+                  </span>
+                  <span className="main__container__divpanel9">
+                    <StatGroup>
+                      <Stat>
+                        <StatLabel className="main__container__divpanel2">empresas</StatLabel>
+                        <StatNumber className="main__container__divpanel3">{empresas}</StatNumber>
+                      </Stat>
+                    </StatGroup>
+                  </span>
                 </div>
-
-
-
               </TabPanel>
-
               {/* ------------------------Section Tabs Empresas----------------------- */}
-
               <TabPanel>
-
                 <div className="main__container__divpanel">
                   <span className="main__container__divpanel4">
                     <StatGroup>
                       <Stat>
                         <StatLabel className="main__container__divpanel5">Empresas Registradas</StatLabel>
-                        <StatNumber className="main__container__divpanel6">85</StatNumber>
+                        <StatNumber className="main__container__divpanel6"></StatNumber>
                       </Stat>
                     </StatGroup>
                   </span>
@@ -290,11 +184,9 @@ const DashboardHome = () => {
                     </StatGroup>
                   </span>
                 </div>
-
                 <div className="main__container__sectionT">
                   <TableContainer  >
                     <Table variant='striped' colorScheme='teal' className="main__container__tablepanel" >
-
                       <Thead >
                         <Tr className="main__container__th">
                           <Th>Empresa</Th>
@@ -312,9 +204,7 @@ const DashboardHome = () => {
                           <Td>3134312456</Td>
                           <Td isNumeric> <DeleteIcon /> </Td>
                         </Tr>
-
                       </Tbody>
-
                       <Tbody className="main__container__tr">
                         <Tr>
                           <Td>Software Company</Td>
@@ -323,9 +213,7 @@ const DashboardHome = () => {
                           <Td>3006249875</Td>
                           <Td isNumeric> <DeleteIcon /> </Td>
                         </Tr>
-
                       </Tbody>
-
                       <Tbody className="main__container__trb1">
                         <Tr>
                           <Td>Makaia</Td>
@@ -334,9 +222,7 @@ const DashboardHome = () => {
                           <Td>3126954875</Td>
                           <Td isNumeric> <DeleteIcon /> </Td>
                         </Tr>
-
                       </Tbody>
-
                       <Tbody className="main__container__tr">
                         <Tr>
                           <Td>Company 2</Td>
@@ -345,9 +231,7 @@ const DashboardHome = () => {
                           <Td>64696576</Td>
                           <Td isNumeric> <DeleteIcon /> </Td>
                         </Tr>
-
                       </Tbody>
-
                       <Tbody className="main__container__trb1">
                         <Tr>
                           <Td>Company 3</Td>
@@ -356,16 +240,9 @@ const DashboardHome = () => {
                           <Td>313205495</Td>
                           <Td isNumeric> <DeleteIcon /> </Td>
                         </Tr>
-
                       </Tbody>
-
-
-
-
-
                     </Table>
                   </TableContainer>
-
                 </div>
                 {/* ------------------------Section Tabs Panels Intermediaciones----------------------- */}
               </TabPanel>
@@ -396,11 +273,9 @@ const DashboardHome = () => {
                     </StatGroup>
                   </span>
                 </div>
-
                 <div className="main__container__sectionT">
                   <TableContainer  >
                     <Table variant='striped' colorScheme='teal' className="main__container__tablepanel" >
-
                       <Thead >
                         <Tr className="main__container__th">
                           <Th>Nombre</Th>
@@ -418,9 +293,7 @@ const DashboardHome = () => {
                           <Td>Registrado</Td>
                           <Td isNumeric> <DeleteIcon /> </Td>
                         </Tr>
-
                       </Tbody>
-
                       <Tbody className="main__container__tr">
                         <Tr>
                           <Td>Diana Pinzón</Td>
@@ -429,9 +302,7 @@ const DashboardHome = () => {
                           <Td>Pendiente</Td>
                           <Td isNumeric> <DeleteIcon /> </Td>
                         </Tr>
-
                       </Tbody>
-
                       <Tbody className="main__container__trb">
                         <Tr>
                           <Td>Dego Meriño</Td>
@@ -440,9 +311,7 @@ const DashboardHome = () => {
                           <Td>Pendiente</Td>
                           <Td isNumeric> <DeleteIcon /> </Td>
                         </Tr>
-
                       </Tbody>
-
                       <Tbody className="main__container__tr">
                         <Tr>
                           <Td>Elizabeth Ospina</Td>
@@ -451,55 +320,36 @@ const DashboardHome = () => {
                           <Td>Registrado</Td>
                           <Td isNumeric> <DeleteIcon /> </Td>
                         </Tr>
-
                       </Tbody>
-
                       <Tbody className="main__container__trb">
                         <Tr>
                           <Td>Santiago Gomez</Td>
                           <Td>4063758</Td>
                           <Td isNumeric>20/06/2023</Td>
                           <Td>Pendiente</Td>
-                          <Td isNumeric> <DeleteIcon /> </Td>
+                          <Td isNumeric>
+                            <div>
+                              <button>
+                                CheckIcon
+                              </button>
+                            </div>
+                            <div>
+                              <button>
+                                CloseIcon
+                              </button>
+                            </div>
+                          </Td>
                         </Tr>
-
                       </Tbody>
-
-
-
-
-
                     </Table>
                   </TableContainer>
-
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
               </TabPanel>
-              {/* <TabPanel>
-                <p>four!</p>
-              </TabPanel> */}
             </TabPanels>
           </section>
         </Tabs>
-
-
-
-
       </main >
+      <Footer />
     </>
   );
 };

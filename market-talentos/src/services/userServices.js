@@ -1,20 +1,21 @@
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import {
   collection,
-  addDoc,
   query,
   where,
   getDocs,
   setDoc,
   doc,
 } from "firebase/firestore";
-import { auth, firestore, dataBase } from "../firebase/firebaseConfig";
+import { auth, firestore, dataBase,  } from "../firebase/firebaseConfig";
 import { collections } from "./dates";
+// import { log } from "util";
 
 export const userRegister = async (user) => {
   console.log(user);
   const nameCollection = collections.usuarios;
   const referenceCollection = collection(firestore, nameCollection);
+  console.log(referenceCollection, "referenceCollection");
   try {
     const response = await createUserWithEmailAndPassword(
       auth,
@@ -28,6 +29,7 @@ export const userRegister = async (user) => {
     });
     const collectionName = 'usuarios';
     const usuarioColletion = collection(dataBase, collectionName);
+    console.log(usuarioColletion, "usuarioColletion " );
     const docuRef= doc(dataBase,`usuarios/${response.user.uid}`)
     const newUserReference = await setDoc(docuRef, {
       ...user,
@@ -35,6 +37,7 @@ export const userRegister = async (user) => {
       uid: response.user.uid,
       validateUser: false
     });
+
     const newUser = {
       ...user,
       password: "",
@@ -52,11 +55,16 @@ export const userRegister = async (user) => {
 export const completeTalentData = async (newTalent, type) => {
   try {
     if (type === collections.talentos) {
+      const docuRef= doc(dataBase,`${type}/${newTalent.idUsuario}`)
+      console.log(`${type}/${newTalent.idUsuario}`);
+      console.log(newTalent);
       const talentReference = collection(firestore, type);
+      console.log(talentReference, "talentReference");
 
-      const talentRef = await addDoc(talentReference, newTalent);
+      const talentRef = await setDoc(docuRef, newTalent);
+      console.log(talentRef,"talentRef");
       return {
-        idTalent: talentRef.id,
+        
         ...newTalent,
       };
     } else {
