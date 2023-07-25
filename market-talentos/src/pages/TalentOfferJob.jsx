@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../style/styleTalentOfferJob.scss";
 import { NavLink, useNavigate } from "react-router-dom";
 import imgTalent from "../assets/elisa.jpeg";
