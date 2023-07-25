@@ -52,12 +52,12 @@ export const actionLoginAsync = ({ email, password }) => {
 // };
 
 // -------------- función para obtener un usuario logueado
-export const getLoggedUser = (token) => {
+export const getLoggedUsertoken = (token) => {
   return async (dispatch) => {
     try {
-      const response = await keepPersistentUserData(token);
-      console.log(response);
-      dispatch(singInActionSync(response, false));
+      //const response = await keepPersistentUserData(token);
+      //console.log(response);
+      // dispatch(singInActionSync(response, false));
 
     } catch (error) {
       console.log(error);

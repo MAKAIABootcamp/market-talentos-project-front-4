@@ -1,0 +1,34 @@
+@import "../style/style.scss";
+
+.section {
+  background-image: url("https://www.sistemaimpulsa.com/blog/wp-content/uploads/2021/07/tipos-de-empresa2.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 400px;
+  margin-top: -40px;
+
+  .section-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    padding: 20px;
+    margin-left: -70px;
+    .section-title {
+      font-size: 28px;
+      font-weight: bold;
+      color: $black;
+      margin-bottom: 40px;
+      font-family: $fontMontserrat;
+    }
+
+    .section-paragraph {
+      font-size: 14px;
+      font-weight: 500;
+      color: $black;
+      text-align: left;
+      width: 540px;
+      font-family: $fontMontserrat;
+    }
+  }
+}

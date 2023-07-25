@@ -9,10 +9,16 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import Footer from "../components/footer/Footer";
 import LayoutTalents from "../components/layout/LayoutTalents";
+import { addmyAplication } from "../redux/actions/talentAplicationActions";
+import { useDispatch } from "react-redux";
+
 
 const JobApplicatioTalent = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showForm, setShowForm] = useState(false);
+
+
 
   const validationSchema = Yup.object().shape({
     cargo: Yup.string().required("Este campo es obligatorio"),
@@ -23,6 +29,22 @@ const JobApplicatioTalent = () => {
     salary: Yup.string().required("Este campo es obligatorio"),
     offerLink: Yup.string().required('Campo requerido').url('El enlace no es válido'),
   });
+
+
+  const handleSubmit = async (values) => {
+        const newAplication = {
+      cargo: values.cargo,
+      closeDate: values.closeDate,
+      description: values.description,
+      empresa: values.empresa,
+      modalidad: values.modalidad,
+      salary: values.salary,
+      offerLink: values.offerLink,
+    };
+    console.log("nueva aplicación", values, newAplication );
+
+    dispatch(addmyAplication(newAplication));
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -35,11 +57,10 @@ const JobApplicatioTalent = () => {
       offerLink: '',
     },
     validationSchema,
-    onSubmit: (values) => {
-      console.log(values);
-    },
+    onSubmit: handleSubmit,
+    enableReinitialize: true,
   });
-
+  
   const costumerButtons = [
     {
       id: 1,
@@ -132,7 +153,15 @@ const JobApplicatioTalent = () => {
                   </button>
                 </div>
 
+
                 <div className="jobtalent__container-addpstulation">
+                <button
+                    className="jobtalent__button-otheroffertjobs"
+                    onClick={() => navigate("/talentOfferJob")}
+                  >
+                    {/* onClick={() => navigate(`/talentOfferJob/${id}`)} */}
+                    Ver Ofertas Laborales
+                  </button>
                   <button
                     className="jobtalent__button-otherjobs"
                     onClick={handleAddPostulaciones}
@@ -269,12 +298,7 @@ const JobApplicatioTalent = () => {
                     </div>
                   )}
 
-                  <button
-                    className="jobtalent__button-otherjobs"
-                    onClick={() => navigate("/talentOfferJob")}
-                  >
-                    Ver Ofertas Laborales
-                  </button>
+                 
                 </div>
               </div>
             </div>
@@ -302,9 +326,9 @@ const JobApplicatioTalent = () => {
             </div>
           </div>
         </section>
-        {/* <div className="jobtalent__footer">  */}
+     
         <Footer />
-        {/* </div> */}
+       
       </section>
     </>
   );

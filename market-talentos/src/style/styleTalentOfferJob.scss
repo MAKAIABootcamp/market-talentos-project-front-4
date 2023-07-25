@@ -1,10 +1,9 @@
 @import "./style.scss";
 
 .talentOffer {
+  @include desk {
   width: 100%;
   display: flex;
-  margin-top: 20px;
-  margin-left: 20px;
   justify-content: center;
   flex-direction: column;
   // @include desk {
@@ -14,6 +13,7 @@
   //   justify-content: flex-start;
   //   padding: 20px;
   //    }
+  }
 
   &__card-jobs {
     display: flex;
@@ -366,6 +366,17 @@
     border-radius: 10px;
     font-family: $fontMontserrat;
     align-items: center;
+    margin-top: -400px;
+  }
+
+  &__contenerdorpopup-close{
+    position: relative;
+    left: 186px;;
+  }
+  &__popup-close{
+    background-color: transparent;
+    display: flex;
+   
   }
   &__button-offer {
     display: flex;
@@ -404,6 +415,7 @@
 
 @media screen and (max-width: 768px) {
   .talentOffer {
+    
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -416,6 +428,8 @@
     &__card-jobs {
       display: flex;
       justify-content: center;
+      flex-direction: column;
+      align-items: center;
     }
 
     &__button-otherjobs {
@@ -423,7 +437,6 @@
     }
 
     &__container-offert {
-      margin: 1rem;
       width: 80%;
       height: auto;
       padding: 5px;
@@ -444,6 +457,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+ 
 
     &__card-jobs {
       display: flex;
@@ -496,12 +510,22 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      width: 96%;
+      width: 70%;
       padding: 21px;
       background-color: #25abbc;
       border-radius: 10px;
       font-family: "montserrat", sans-serif;
       align-items: center;
+    }
+    &__contenerdorpopup-close{
+      position: relative;
+      left: 112px;
+    }
+    &__popup-close{
+      background-color: transparent;
+      display: flex;
+    
+    
     }
   }
 }

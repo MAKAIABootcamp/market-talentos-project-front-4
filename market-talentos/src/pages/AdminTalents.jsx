@@ -30,9 +30,8 @@ const AdminTalents = () => {
   console.log(talents);
 
   const validacion = (talento) => {
-    const uid = talento.uid || talento.id
     const dataTalents = talents.slice();
-    const descriptionTalents = dataTalents.find(talent => talent.uid === uid || talent.id === uid);
+    const descriptionTalents = dataTalents.find(talent => talent.id === talento.id);
     if (descriptionTalents !== undefined && descriptionTalents !== null) {
       descriptionTalents.validateUser = true;
       dispatch(actionEditTalentAsync(descriptionTalents));
