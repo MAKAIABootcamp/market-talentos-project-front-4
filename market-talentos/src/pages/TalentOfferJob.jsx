@@ -19,6 +19,7 @@ const TalentOfferJob = ({ id }) => {
   const dispatch = useDispatch();
   const offerJobs = useSelector((state) => state.offerJob.offerJob);
 
+
   useEffect(() => {
     dispatch(listOfferJob());
   }, [dispatch]);
@@ -63,6 +64,7 @@ const TalentOfferJob = ({ id }) => {
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
+
 
   return (
     <section className="talentOffer">

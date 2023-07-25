@@ -1,43 +1,47 @@
 import React, { useEffect } from 'react'
 import "../style/styleJobOffers.scss";
 import { useDispatch, useSelector } from 'react-redux';
-import { listOfferJob } from '../redux/actions/offerJobActions';
+import { deleteOfferJob, listOfferJob } from '../redux/actions/offerJobActions';
+import { searchOffer } from '../redux/actions/offerJobActions';
 import LayoutAdmin from '../components/layout/LayoutAdmin';
-import Footer from '../components/footer/Footer'
-import { useNavigate } from 'react-router-dom'
+import Footer from '../components/footer/Footer';
+import { useNavigate } from 'react-router-dom';
+import edit from "../assets/pencil.svg";
+import deleteIcon from "../assets/trash.svg"
 
 const JobOffers = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const offerJobList = useSelector((state) => state.offerJob);
-  const options = {
-    day: 'numeric',
-    month: 'numeric',
-    year: 'numeric',
-  };
-  
+
   useEffect(() => {
-    dispatch(listOfferJob());
+    dispatch(listOfferJob())
   }, [dispatch]);
 
-  useEffect(() => {    
-    console.log("offerJobList", offerJobList.offerJob)
-  }, [offerJobList]);
-
   const handleRegisOffer = () => {
-        navigate('/OfferVacants');
-      }
+    navigate('/OfferVacants');
+  }
+
+  const handleEditOffer = (offerId) => {
+    dispatch(searchOffer(offerId));
+    navigate(`/OfferVacants`); 
+  };
+
+  const handleDeleteOffer = (offerId) => {
+    dispatch(deleteOfferJob(offerId));
+    dispatch(listOfferJob())
+  };
 
   return (
     <div className='offerJobContianer'>
-      <LayoutAdmin/> 
+      <LayoutAdmin />
 
       <h1 className='offerJobPageTitle'>Ofertas Laborales</h1>
 
 
       <button onClick={handleRegisOffer} className='offerJobPhrase'>
-      Publicar nueva oferta
+        Publicar nueva oferta
       </button>
 
 
@@ -48,7 +52,7 @@ const JobOffers = () => {
           <button className='offersFilterButton'>Backend</button>
         </section> */}
 
-        {offerJobList?.offerJob?.map((offer, index) => {
+        {offerJobList.offerJob?.map((offer, index) => {
           return <div className='offerCard'>
             <div className='offerTitleCharge'>
               <h2 className='TitleCharge'>{offer.cargo}</h2>
@@ -56,7 +60,7 @@ const JobOffers = () => {
             <div className='offerJobInformation'>
               <div className='offerSectionOne'>
                 <p className='customName'>Empresa: {offer.empresa}</p>
-                <p className='closeDate'>Fecha de cierre: {new Date(offer.closeDate.seconds * 1000 + offer.closeDate.nanoseconds/1000000).toLocaleString('es-ES', options)}</p>
+                {/* <p className='closeDate'>Fecha de cierre: {offer.closeDate}</p> */}
               </div>
               <div className='offerSectionTwo'>
                 <p className='modality'>Modalidad: {offer.modalidad}</p>
@@ -67,7 +71,8 @@ const JobOffers = () => {
               </div>
 
               <div className='offerSectionButton'>
-                <button className="applyButton" >Eliminar</button>
+                <button className="editButtonOffer" onClick={() => handleEditOffer(offer.id)} ><img className="buttonIconOffer" src={edit} alt="pencil" /></button>
+                <button className='deleteButtonOffer' onClick={() => handleDeleteOffer(offer.id)} ><img className="buttonIconOffer" src={deleteIcon} alt="trash" /></button>
               </div>
             </div>
           </div>
@@ -78,7 +83,7 @@ const JobOffers = () => {
 
 
       </div>
-      <Footer/>
+      <Footer />
     </div>
   )
 }

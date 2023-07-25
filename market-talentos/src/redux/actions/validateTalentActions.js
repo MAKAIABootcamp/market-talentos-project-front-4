@@ -36,7 +36,7 @@ const actionGetTalentSync = (talents) => {
 
 export const actionDeleteTalentAsync =(talents) => {
     return  async (dispatch) => {
-        const talentRef = doc(dataBase, collectionName, talents.uid)
+        const talentRef = doc(dataBase, collectionName, talents.id)
         try {
             await deleteDoc(talentRef);
             dispatch(actionDeleteTalentSync(talents))
@@ -53,19 +53,19 @@ export const actionDeleteTalentAsync =(talents) => {
 const actionDeleteTalentSync = (talents) => {
     return {
         type: validateTalents.DELETE_TALENTS,
-        payload: {id: talents.uid}
+        payload: {id: talents.id}
     }
 }
 
 export const actionEditTalentAsync = (talentEdit) => {
     return async (dispatch) => {
-      const id = talentEdit.uid || talentEdit.id
+      const id =  talentEdit.id
       const talentRefs = doc(dataBase, collectionName, id);
       try {
         await updateDoc(talentRefs, talentEdit);
         dispatch(
           actionEditTalentSync({
-            uid: talentRefs.uid,
+            id: talentRefs.id,
             ...talentEdit,
           })
         );
