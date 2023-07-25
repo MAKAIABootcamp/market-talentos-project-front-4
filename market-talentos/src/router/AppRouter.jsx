@@ -39,7 +39,8 @@ import OffertVacants from "../pages/OffertVacants";
 import HomeAdministrador from "../pages/HomeAdministrador";
 import AdminTalents from "../pages/AdminTalents";
 import AdminVacants from "../pages/AdminVacants";
-
+import Contactenos from "../pages/Contactenos";
+import About from "../pages/About";
 
 const AppRouter = () => {
   const { isLogged } = useSelector((state) => state.appReducer);
@@ -48,87 +49,85 @@ const AppRouter = () => {
   // const [isLogged, setIsLogged] = useState(null);
   // const { user: loggedUser} = useSelector((state) => state.user);
   // const [loading, setLoading] = useState(true);
-// console.log(loggedUser);
+  // console.log(loggedUser);
 
-// Funcion para datos del usuario y persistencia 
-// const traerInfo = async (uid, accessToken) => {
-//   const docRef = doc(dataBase, `usuarios/${uid}`);
-//   const docu = await getDoc(docRef);
-//   console.log(docu);
-//   const dataFinal = docu.data();
-//   console.log(uid);
-//   console.log(dataFinal);
- 
-//   dispatch(
-//     singInActionSync({
-//       displayName:dataFinal.displayName,
-//       firstName: dataFinal.firstName,
-//       typeUser: dataFinal. typeUser,
-//       email: dataFinal.email,
-//       accessToken,
-//       phoneNumber: dataFinal.phoneNumber,
-//       rol: dataFinal.rol,
-//       cohorte: dataFinal.cohorte,
-//       type: dataFinal.type,
-//       photoURL: dataFinal.photoURL,
-//       lastName:dataFinal.lastName,
-//       id:uid,
-//       validateUser: dataFinal.validateUser,
-//       uid,
-//       error: false,
-      
-//     })
-//   );
-// };
+  // Funcion para datos del usuario y persistencia
+  // const traerInfo = async (uid, accessToken) => {
+  //   const docRef = doc(dataBase, `usuarios/${uid}`);
+  //   const docu = await getDoc(docRef);
+  //   console.log(docu);
+  //   const dataFinal = docu.data();
+  //   console.log(uid);
+  //   console.log(dataFinal);
 
+  //   dispatch(
+  //     singInActionSync({
+  //       displayName:dataFinal.displayName,
+  //       firstName: dataFinal.firstName,
+  //       typeUser: dataFinal. typeUser,
+  //       email: dataFinal.email,
+  //       accessToken,
+  //       phoneNumber: dataFinal.phoneNumber,
+  //       rol: dataFinal.rol,
+  //       cohorte: dataFinal.cohorte,
+  //       type: dataFinal.type,
+  //       photoURL: dataFinal.photoURL,
+  //       lastName:dataFinal.lastName,
+  //       id:uid,
+  //       validateUser: dataFinal.validateUser,
+  //       uid,
+  //       error: false,
 
-//   useEffect(() => {
-//     onAuthStateChanged(auth, (user) => {
-//       if (user?.uid) {
-//         console.log(user.uid);
-//         console.log(loggedUser);
-//         setIsLogged(true);
-        
-//         // if (!loggedUser) {
-//         //   dispatch(getLoggedUser(user?.accessToken));
-//         //   console.log(loggedUser);
-//         //   // user.getIdToken().then((token) => {
-//         //   //   dispatch(getLoggedUser(token));
-//         //   // });
-//         // }
-//       } else {
-//         setIsLogged(false);
-//       }
-//         setLoading(false);
-//         if (user?.auth.currentUser) {
-//           if (!loggedUser) {
-//             const {
-//               displayName,
-//               firstName,
-//               lastName,
-//               email,
-//               phoneNumber,
-//               accessToken,
-//               photoURL,
-//               id,
-//               uid,
-//               cohorte,
-//               type,
-//               rol,
-//               validateUser,
-//             } = user.auth.currentUser;
-  
-//             traerInfo(uid, accessToken);
-//             console.log(displayName, email, phoneNumber,lastName, photoURL, firstName, id, validateUser );
-//             console.log('usuario logueado',loggedUser);
-//           }
-//         }
-//       });
-//   }, [setIsLogged, loading]);
-//   if (loading) {
-//     return <Spinner animation="border" />;
-//   }
+  //     })
+  //   );
+  // };
 
+  //   useEffect(() => {
+  //     onAuthStateChanged(auth, (user) => {
+  //       if (user?.uid) {
+  //         console.log(user.uid);
+  //         console.log(loggedUser);
+  //         setIsLogged(true);
+
+  //         // if (!loggedUser) {
+  //         //   dispatch(getLoggedUser(user?.accessToken));
+  //         //   console.log(loggedUser);
+  //         //   // user.getIdToken().then((token) => {
+  //         //   //   dispatch(getLoggedUser(token));
+  //         //   // });
+  //         // }
+  //       } else {
+  //         setIsLogged(false);
+  //       }
+  //         setLoading(false);
+  //         if (user?.auth.currentUser) {
+  //           if (!loggedUser) {
+  //             const {
+  //               displayName,
+  //               firstName,
+  //               lastName,
+  //               email,
+  //               phoneNumber,
+  //               accessToken,
+  //               photoURL,
+  //               id,
+  //               uid,
+  //               cohorte,
+  //               type,
+  //               rol,
+  //               validateUser,
+  //             } = user.auth.currentUser;
+
+  //             traerInfo(uid, accessToken);
+  //             console.log(displayName, email, phoneNumber,lastName, photoURL, firstName, id, validateUser );
+  //             console.log('usuario logueado',loggedUser);
+  //           }
+  //         }
+  //       });
+  //   }, [setIsLogged, loading]);
+  //   if (loading) {
+  //     return <Spinner animation="border" />;
+  //   }
 
   return (
     <>
@@ -136,7 +135,7 @@ const AppRouter = () => {
         <Routes>
           <Route path="/">
             <Route index element={<Home />} />
-            <Route path="formStudies" element={< FormStudies/>} />
+            <Route path="formStudies" element={<FormStudies />} />
             <Route element={<PublicRouter isAutentication={isLogged} />}>
               <Route path="login" element={<LoginTalent />} />
               {/* <Route path="login" element={<Login/>} /> */}
@@ -144,6 +143,8 @@ const AppRouter = () => {
               {/* <Route path="formRegister" element={< FormRegister/>} /> */}
               {/* <Route path="loginAdmin" element={<LoginAdmin />} /> */}
               <Route path="blog" element={<Blog />} />
+              <Route path="about" element={<About />} />
+              <Route path="contacts" element={<Contactenos />} />
               <Route path="OfferVacants" element={<OffertVacants />} />
             </Route>
             <Route element={<PrivateRouter isAutentication={isLogged} />}>
