@@ -18,10 +18,11 @@ const TalentOfferJob = ({ id }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const offerJobs = useSelector((state) => state.offerJob.offerJob);
-
+  const { loggedUser } = useSelector((store) => store.user);
 
   useEffect(() => {
     dispatch(listOfferJob());
+    console.log("user", loggedUser)
   }, [dispatch]);
 
   useEffect(() => {
