@@ -16,12 +16,13 @@ const CardTalent = ({id}) => {
   const navigate = useNavigate();
   useEffect(()=>{      
     async function fetchData() {
-      const talent = await getTalentFromTalentsCollection(id);      
+      const talent = await getTalentFromTalentsCollection(id);
       console.log("talento", talent)
       setTalent(talent)
     }
     fetchData();
   }, [])
+  
 
   const handleClick = (params) => {
     console.log(params)
@@ -54,7 +55,7 @@ const CardTalent = ({id}) => {
                             </figure> */}
               <div className="cardTalents__container-levelEnglish">
                 <span className="cardTalents__know">Ingles</span>
-                <span className="cardTalents__know">A1</span>
+                <span className="cardTalents__know">{talento.englishLevel}</span>
               </div>
             </div>
             <div className="cardTalents__line"></div>
@@ -66,24 +67,24 @@ const CardTalent = ({id}) => {
                 <strong>{talento.lastName}</strong>
               </span>
             <span className="cardTalents__know">
-              <strong>Front End</strong>
+              <strong>{talento.rol}</strong>
               </span>
             </div>
           </div>
           <section className="cardTalents__seccion-info">
             <div className="cardTalents__container-links">
               <button className="cardTalents__button-link">
-                <NavLink to="">
+                <NavLink to={talento.githup}>
                   <figure className="cardTalents__figure-icons-gitUp">
                     <img src={imgGitUp} alt="git" />
                   </figure>
                 </NavLink>
-                <NavLink>
+                <NavLink to={talento.linkedIn}>
                   <figure className="cardTalents__figure-icons-linkedin">
                     <img src={imgLinkedin} alt="link" />
                   </figure>
                 </NavLink>
-                <NavLink>
+                <NavLink to={talento.video}>
                   <figure className="cardTalents__figure-icons-video">
                     <img src={imgVideo} alt="vid" />
                   </figure>
@@ -104,28 +105,23 @@ const CardTalent = ({id}) => {
                   <figure className="cardTalents__iconPhone">
                     <img src={imgPhone} alt="" />
                   </figure>
-                  <span className="cardTalents__infoContact">+57 3002791131</span>
+                  <span className="cardTalents__infoContact">+57 {talento.phone}</span>
                 </div>
               </div>
               <div className="cardTalents__container-programs">
-                <span className="cardTalents__programs">HTML</span>
-                <span className="cardTalents__programs">CSS</span>
-                <span className="cardTalents__programs">JAVA_SCRIPT</span>
-                <span className="cardTalents__programs">SASS</span>
-                <span className="cardTalents__programs">REACT</span>
-                <span className="cardTalents__programs">BOOBSTRAP</span>
-
-                <span className="cardTalents__programs">GIT_UP</span>
+                
+                  <span className="cardTalents__programs">HTML</span>
+               
               </div>
               <div className="cardTalents__container-profile">
                 <h5 className="cardTalents__profile">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, cum, quis veniam dicta, ducimus sint necessitatibus recusandae velit ipsum maxime repellendus doloremque voluptatibus corporis laborum. Praesentium vel obcaecati atque quas.
+                  {talento.profile}
                 </h5>
               </div>
             </div>
             <div className="cardTalents__container-EditProfile">
               <button 
-              onClick={() => navigate('editProfile/'+talento.id)}
+              onClick={() => navigate('/editProfile/'+talento.id)}
               className="cardTalents__button-EditProfile">
                 Editar Información
               </button>
@@ -141,7 +137,7 @@ const CardTalent = ({id}) => {
                 className="cardTalents__button-custom"
                 onClick={() => handleClick("curriculum", "")}
               >
-                hoja de vida
+                Hoja de vida
               </button>
             </div>
           </section>

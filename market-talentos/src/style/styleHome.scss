@@ -1,8 +1,6 @@
 @import "../style/_variables";
 @import './style.scss';
 
-.home{
-
 p{
   width: 75%;
   margin-left: 240px;
@@ -25,7 +23,7 @@ span{
 }
 
 
-&__container{
+.info__container{
   display: flex;
   // justify-content: space-around;
   margin-top: 50px;
@@ -34,14 +32,14 @@ span{
   
 }
 
-&__form{
+.info__form{
   display: flex;
   align-items: center;
   margin-left: 420px;
   gap: 3px;
 }
 
-&__form1{
+.info__form1{
 
   input{
   background-color: gainsboro;
@@ -56,7 +54,7 @@ span{
 
 }
 
-&__form2{
+.info__form2{
 
   input{
   background-color: gainsboro;
@@ -70,7 +68,7 @@ span{
 
 }
 
-&__form3{
+.info__form3{
 
   button{
   background-color: $gray;
@@ -86,7 +84,7 @@ span{
 }
 
 
-&__grid2{
+.info__grid2{
   display: flex;
   width: 70%;
   align-items: center;
@@ -256,5 +254,4 @@ img {
 
 .img_b{
   margin-left:250px;
-}
 }

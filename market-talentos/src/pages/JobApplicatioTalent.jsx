@@ -37,6 +37,7 @@ const JobApplicatioTalent = () => {
     validationSchema,
     onSubmit: (values) => {
       console.log(values);
+      
     },
   });
 
