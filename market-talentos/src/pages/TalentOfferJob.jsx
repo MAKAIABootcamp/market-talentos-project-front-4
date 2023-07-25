@@ -10,6 +10,7 @@ import { listOfferJob } from "../redux/actions/offerJobActions";
 import { useDispatch, useSelector } from "react-redux";
 import { Timestamp } from "firebase/firestore";
 import { getTalentFromTalentsCollection } from "../services/talentsServices";
+import { addmyAplication } from "../redux/actions/talentAplicationActions";
 
 const TalentOfferJob = ({ id }) => {
     console.log("Valor de id al renderizar el componente:", id);
@@ -22,7 +23,7 @@ const TalentOfferJob = ({ id }) => {
 
   useEffect(() => {
     dispatch(listOfferJob());
-    console.log("user", loggedUser)
+    console.log("user", loggedUser[0])
   }, [dispatch]);
 
   useEffect(() => {
@@ -65,6 +66,19 @@ const TalentOfferJob = ({ id }) => {
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
+
+  const handleApplicate = (offer) => {
+    console.log("entré a aplicate")
+    const talents = offer.talents || []
+    talents.push(loggedUser)
+    const postulacion = {
+      offerId: offer.id,
+      talentId: loggedUser[0].id
+    }
+    dispatch(addmyAplication(postulacion))
+    alert("aplicacion registrada correctamente")
+    handleClosePopup()
+  }
 
 
   return (
@@ -192,7 +206,7 @@ const TalentOfferJob = ({ id }) => {
               <button className="talentOffer__button-offer">
                 Ciudad: {selectedOfferJob.ciudad}
               </button>
-              <button className="talentOffer__button-talentOffer">
+              <button className="talentOffer__button-talentOffer" onClick={()=> handleApplicate(selectedOfferJob)}>
                 Aplicar
               </button>
             </div>
