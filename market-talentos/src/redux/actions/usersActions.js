@@ -57,7 +57,7 @@ export const getLoggedUsertoken = (token) => {
     try {
       //const response = await keepPersistentUserData(token);
       //console.log(response);
-      dispatch(singInActionSync(response, false));
+      // dispatch(singInActionSync(response, false));
 
     } catch (error) {
       console.log(error);
