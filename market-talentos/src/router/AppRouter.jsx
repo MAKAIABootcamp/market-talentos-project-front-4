@@ -145,6 +145,8 @@ const AppRouter = () => {
               <Route path="blog" element={<Blog />} />
               <Route path="about" element={<About />} />
               <Route path="contacts" element={<Contactenos />} />
+              <Route path="OfferVacants" element={<OffertVacants />} />
+              <Route path="jobOffers" element={<JobOffers />} />
               
             </Route>
             <Route element={<PrivateRouter isAutentication={isLogged} />}>
@@ -170,7 +172,7 @@ const AppRouter = () => {
               <Route path="homeadmins" element={<HomeAdministrador />} />
               <Route path="adminsT" element={<AdminTalents />} />
               <Route path="adminsV" element={<AdminVacants />} />
-              <Route path="OfferVacants" element={<OffertVacants />} />
+              
             </Route>
           </Route>
         </Routes>
