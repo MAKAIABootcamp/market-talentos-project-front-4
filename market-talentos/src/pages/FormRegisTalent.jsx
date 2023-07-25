@@ -60,7 +60,7 @@ const FormRegisTalent = () => {
         photoURL: avatar,
         displayName: `${values.firstName} ${values.lastName}`,
         type: TiposDeUsuarios.TALENTO,
-        validatedUser: false,
+        validateUser: false,
         completedProfile: false
       };
       dispatch(registerActionAsync(newUser));

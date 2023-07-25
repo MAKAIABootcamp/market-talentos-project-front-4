@@ -36,6 +36,8 @@ export const completeTalentData = async (newTalent, type) => {
     if (type === collections.talentos) {
       const docuRef= doc(dataBase, type, newTalent.id)
       await setDoc(docuRef, newTalent);
+      const docuRefUsuario= doc(dataBase, "usuarios", newTalent.id)
+      await setDoc(docuRef, newTalent);
     } else {
       return {};
     }

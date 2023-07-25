@@ -29,12 +29,11 @@ const EditProfile = () => {
 
   useEffect(()=>{      
     async function fetchData() {
-      const editTalent = await getTalentLoggued(id);      
+      const editTalent = await getTalentLoggued(id);
+      setuser(editTalent);            
       console.log("editTalent", editTalent);
-      setuser(editTalent);
     }
     fetchData();
-    console.log("user", user) 
   }, [])
 
     const validationSchema = Yup.object().shape({
@@ -68,7 +67,7 @@ const EditProfile = () => {
   });
 
   const handleSubmit = async (values) => {
-    console.log(values);
+    console.log("user", user);
     const cvURL = await fileUpLoad(values.cv);
     const videoURL = await videoUpLoad(values.video);
 
@@ -79,7 +78,7 @@ const EditProfile = () => {
       cohorte: user.cohorte,
       email: user.email,
       englishLevel: user.englishLevel,
-      id: user.uid,
+      id: user.id,
       phone: user.phone,
       photoURL: user.photoURL,
       rol: user.rol,

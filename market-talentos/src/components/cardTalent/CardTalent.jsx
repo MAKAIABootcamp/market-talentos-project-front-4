@@ -9,7 +9,6 @@ import imgVideo from "../../assets/logovideo.png";
 import imgPhone from "../../assets/celular.png";
 import imgMail from "../../assets/correo.png";
 import { getTalentFromTalentsCollection } from "../../services/talentsServices";
-// import imgWhatsapp from '../../assets/whatsapp.png';
 
 const CardTalent = ({id}) => {
   const [talento, setTalent] = useState("")
