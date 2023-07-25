@@ -55,7 +55,7 @@ const TalentOfferJob = () => {
           <img src={fondoTalentdesk} alt="fondoTalentdesk" />
         </div> */}
 
-        {/* ...........cards talento................ */}
+        {/* ...........cards talento.................... */}
         <div className="talentOffer__container-cards">
           <div className="talentOffer__container-imgTalent">
             <figure className="talentOffer__card-fig">
