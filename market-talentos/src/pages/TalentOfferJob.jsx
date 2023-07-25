@@ -17,10 +17,6 @@ const TalentOfferJob = () => {
   const listaOfertas = useSelector((store) => store.offerJob);
   console.log(listaOfertas, "listaOfertas");
 
-  useEffect(() => {
-    dispatch(listOfferJob());
-  }, [dispatch]);
-
   const jobsButtons = [
     {
       id: 1,

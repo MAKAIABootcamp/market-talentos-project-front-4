@@ -85,26 +85,9 @@ const LoginTalent = () => {
 
 
   const onSubmit = (data) => {
-<<<<<<< HEAD
-    console.log("esta es la informacio en data: ", data);
-    dispatch(actionLoginAsync(data));
-    console.log("este es el error: ", error);
-
-    if (error) {
-      Swal.fire("Oops!", `Ha ocurrido un error`, "error");
-    } else {
-      Swal.fire(" Good job!", "se has iniciado exitosamente!", "success").then(
-        () => {
-          navigate("/talentDetails");
-          
-        }
-      );
-    }
-=======
     const response = dispatch(actionLoginAsync(data));
     console.log("Response", response)
     dispatch(getLoggedUser(data.email));
->>>>>>> b4d3ba6d6cb41c64986c99633d7e90e5e909364d
   };
 
   const handleRegister = () => {
