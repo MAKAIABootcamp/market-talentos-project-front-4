@@ -24,8 +24,6 @@ const JobApplicatioTalent = () => {
   const { applications } = useSelector((store) => store.applications);
   const offerJobList = useSelector((state) => state.offerJob);
   const { loggedUser } = useSelector((store) => store.user);
-
-  
   const validationSchema = Yup.object().shape({
     cargo: Yup.string().required("Este campo es obligatorio"),
     closeDate: Yup.date().required("Este campo es obligatorio"),
@@ -134,7 +132,7 @@ const JobApplicatioTalent = () => {
             <div className="jobtalent__container-cards">
               <div className="jobtalent__container-imgTalent">
                 <figure className="jobtalent__card-fig">
-                  <img src={loggedUser[0].photoURL} alt="imgTalent" />
+                  <img src={imgTalent} alt="imgTalent" />
                 </figure>
               </div>
               <div className="jobtalent__container-info">
@@ -147,12 +145,12 @@ const JobApplicatioTalent = () => {
                 <div className="jobtalent__line"></div>
                 <div className="jobtalent__container-infoPnal">
                   <span className="jobtalent__name">
-                    <strong>{loggedUser[0].firstName}</strong>
+                    <strong>Elisabeth Cristina</strong>
                   </span>
                   <span className="jobtalent__lastName">
-                    <strong>{loggedUser[0].lastName}</strong>
+                    <strong>Ospina Graciano</strong>
                   </span>
-                  <span className="jobtalent__know"></span>
+                  <span className="jobtalent__know">FrontEnd developer</span>
                 </div>
               </div>
 
