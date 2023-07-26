@@ -26,11 +26,7 @@ const Home = () => {
                     <input type="text" placeholder="Buscar Talento" />
                   </label>
                 </div>
-                <div>
-                  <label className="home__info-form2">
-                    <input type="select" placeholder="Front End" />
-                  </label>
-                </div>
+               
                 <div>
                   <label className="home__info-form3">
                     <button>Search</button>

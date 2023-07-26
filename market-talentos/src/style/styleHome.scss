@@ -54,7 +54,7 @@
   &__info-form1 {
     input {
       background-color: gainsboro;
-      width: 30vw;
+      width: 40vw;
       height: 6vh;
       border-radius: 14px;
       padding: 15px;
@@ -79,11 +79,20 @@
       background-color: $gray;
       color: white;
       font-weight: bold;
-      width: 9vw;
+      width: 3vw;
       height: 6vh;
-      background-color:#25ABBC;
+      background-color:$gray;
       border-radius: 10px;
       font-size: 16px;
+      cursor: pointer;
+
+    &:hover {
+        background: $yellow;
+        border: 1px solid $yellow;
+        opacity: 100%;
+        color: $gray;
+    }
+      
     }
   }
 
