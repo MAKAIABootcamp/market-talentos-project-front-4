@@ -1,20 +1,22 @@
 @import '../../style/style.scss';
 
-.LayoutAdmin{
+
+.layoutAdmin{
     @include desk {
         width: 98%;
         height: auto;
-        display: flex;
-        margin-left: 20px;
-        margin-top: 20px;
-    }
+        display: flex; 
+        justify-content: space-around; 
+        padding: 10px;
+    margin-top: 15px;       
+    } 
     &__container-imgReturn{
         width: 100px;
         height: auto;
         display: flex;
         margin-left: 40px;
         align-items: center;
-    }
+        }
     &__figure-imgReturn{
         width: 20px;
         height: 20px;
@@ -22,18 +24,10 @@
             width: 100%;
             height: 100%;
         }
-
     }
     &__container-logo{
         margin-top: 5px;
         width: 300px;       
-    }
-
-    &__container-message{
-        display: flex;
-        margin-left: 160px;
-        margin-top: 15px;        
-        font-size: 24px;
     }
 
     &__figure-logo{
@@ -47,17 +41,18 @@
             height: 100%;
         }
     }
-    &__container-navLink{
-       
+    &__container-navLink{       
             
         width: 750px;
         display: flex;
         align-items: center;
     }
-    &__navbar-ulAd{
-        margin-top: 10px;        
+    &__navbar-ul{
+        margin-top: 10px;
+        margin-left: 80px;     
         display: flex;
         gap: 35px;
+   
         
     }
 
@@ -117,11 +112,17 @@
         }
     }
 }
-.layoutTalent__linkAd{
-    margin-left: 60px;
+
+
+.layoutAdmin__link{   
     list-style: none;
-    color: black;
-    font-size: 20px;
+    color: black;    
+    font-size: 16px;
+    display: flex;
+
+
    
 }
+
+
 

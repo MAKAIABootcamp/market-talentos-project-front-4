@@ -6,7 +6,7 @@ import NavlinkAdminHome from "../components/navlinAdmin/NavLinkAdminHome";
 import { useDispatch, useSelector } from "react-redux";
 import FotoEmpresa from "../../src/assets/logo admin 2.jpeg";
 import LogoMakaia from "../../src/assets/Logo.png";
-import { DeleteIcon, CheckIcon, CloseIcon } from '@chakra-ui/icons';
+import { DeleteIcon, TimeIcon, ExternalLinkIcon, CheckCircleIcon, ArrowRightIcon, EditIcon, StarIcon } from '@chakra-ui/icons';
 import Swal from "sweetalert2";
 import {
   Stat,
@@ -40,10 +40,10 @@ import { getcompanyAsync } from "../redux/actions/companyActions";
 
 
 const DashboardHome = () => {
-  const { talents } = useSelector((store) => store.validateReducer); 
+  const { talents } = useSelector((store) => store.validateReducer);
   const { applications } = useSelector((store) => store.applications);
   const offerJobList = useSelector((state) => state.offerJob);
-  const {companies} = useSelector((state) => state.companies);
+  const { companies } = useSelector((state) => state.companies);
   const [totalTalents, setTotalTalents] = useState(0);
   const [completedProfiles, setCompletedProfiles] = useState(0);
   const [offers, setOffers] = useState(0);
@@ -68,7 +68,7 @@ const DashboardHome = () => {
   }, [talents]);
 
   useEffect(() => {
-    const activeOffers = offerJobList.offerJob.filter(offer => new Date(offer.closeDate.seconds * 1000 + offer.closeDate.nanoseconds/1000000) > new Date())
+    const activeOffers = offerJobList.offerJob.filter(offer => new Date(offer.closeDate.seconds * 1000 + offer.closeDate.nanoseconds / 1000000) > new Date())
     setOffers(offerJobList.offerJob.length);
     setActiveOffers(activeOffers.length)
   }, [offerJobList]);
@@ -87,72 +87,127 @@ const DashboardHome = () => {
   return (
     <>
       <LayoutAdmin />
-      <p className="message__p">Bienvenidos Makaia</p>
+
       {/* ------------------------Section Tabs----------------------- */}
       <main className="main__container">
-        <Tabs className="main__container__tabs">
+        <Tabs className="main__container__tabsAd">
           {/* ------------------------Section Tabs List----------------------- */}
-          <section className="main__container__sectiontabs" >
-            <TabList className="main__container__sectiontabsL">
-              <Tab className="main__container__sectiontab">Dashboards</Tab>
+          <section className="main__container__sectiontabsAd" >
+            <TabList className="main__container__sectiontabsLad">
+              <Tab className="main__container__sectiontabAd">Dashboards</Tab>
             </TabList>
           </section>
           {/* ------------------------Section Tabs Panels----------------------- */}
-          <section className="main__container__sectionpanel">
+          <section className="main__container__sectionpanelAd">
             <TabPanels className="main__container__tl">
               {/* ------------------------Section Tabs Panels Talentos----------------------- */}
               <TabPanel className="main__container__sectiontpanel">
                 <div className="main__container__divpanel">
                   <span className="main__container__divpanel1">
-                    <StatGroup>
-                      <Stat>
-                        <StatLabel className="main__container__divpanel2">Talentos Registrados</StatLabel>
-                        <StatNumber className="main__container__divpanel3">{totalTalents} </StatNumber>
+                    <StatGroup className="insigths">
+                      <Stat >
+                        <div className="upInfo">
+                          <StatLabel className="main__container__divpanel2"><CheckCircleIcon /></StatLabel>
+                          <StatLabel className="main__container__divpanel2">Talentos Registrados</StatLabel>
+                        </div>
+                        <div className="upInfo1">
+                          <StatNumber className="main__container__divpanel3Ad">{totalTalents} </StatNumber>
+                        </div>
+                        <div className="upInfo3">
+                          <span>Indicador ingresos</span>
+                        </div>
                       </Stat>
                     </StatGroup>
                   </span>
                   <span className="main__container__divpanel1">
                     <StatGroup>
-                      <Stat>
-                        <StatLabel className="main__container__divpanel2">HV Completadas</StatLabel>
-                        <StatNumber className="main__container__divpanel3">{completedProfiles}</StatNumber>
+                      <Stat className="insigths">
+                        <div className="upInfo">
+                          <StatLabel className="main__container__divpanel2"><ArrowRightIcon /></StatLabel>
+                          <StatLabel className="main__container__divpanel2">HV Completadas</StatLabel>
+                        </div>
+                        <div className="upInfo1">
+                          <StatNumber className="main__container__divpanel3Ad">{completedProfiles}</StatNumber>
+                        </div>
+                        <div className="upInfo3">
+                          <span>Indicador seguimiento</span>
+                        </div>
                       </Stat>
                     </StatGroup>
                   </span>
+
                   <span className="main__container__divpanel1">
                     <StatGroup>
-                      <Stat>
-                        <StatLabel className="main__container__divpanel2">Vacantes Registradas</StatLabel>
-                        <StatNumber className="main__container__divpanel3">{offers}</StatNumber>
+                      <Stat className="insigths">
+                        <div className="upInfo">
+                          <StatLabel className="main__container__divpanel2"><EditIcon /></StatLabel>
+                          <StatLabel className="main__container__divpanel2">Vacantes Resgistradas</StatLabel>
+                        </div>
+                        <div className="upInfo1">
+                          <StatNumber className="main__container__divpanel3Ad">{offers}</StatNumber>
+                        </div>
+                        <div className="upInfo3">
+                          <span>Indicador registros</span>
+                        </div>
                       </Stat>
                     </StatGroup>
                   </span>
+
                 </div>
-                <div className="main__container__divpanel">                  
-                  <span className="main__container__divpanel9">
+
+                <div className="main__container__divpanel">
+
+                  <span className="main__container__divpanel1">
                     <StatGroup>
-                      <Stat>
-                        <StatLabel className="main__container__divpanel2">Vacantes Activas</StatLabel>
-                        <StatNumber className="main__container__divpanel3">{activeOffers}</StatNumber>
+                      <Stat className="insigths">
+                        <div className="upInfo">
+                          <StatLabel className="main__container__divpanel2"><TimeIcon /></StatLabel>
+                          <StatLabel className="main__container__divpanel2">Vacantes Activas</StatLabel>
+                        </div>
+                        <div className="upInfo1">
+                          <StatNumber className="main__container__divpanel3Ad">{activeOffers}</StatNumber>
+                        </div>
+                        <div className="upInfo3">
+                          <span>Indicador vacantes</span>
+                        </div>
                       </Stat>
                     </StatGroup>
                   </span>
-                  <span className="main__container__divpanel9">
+
+                  <span className="main__container__divpanel1">
                     <StatGroup>
-                      <Stat>
-                        <StatLabel className="main__container__divpanel2">Talentos Autopostulados</StatLabel>
-                        <StatNumber className="main__container__divpanel3">{postulaciones}</StatNumber>
+                      <Stat className="insigths">
+                        <div className="upInfo">
+                          <StatLabel className="main__container__divpanel2"><ExternalLinkIcon /></StatLabel>
+                          <StatLabel className="main__container__divpanel2">Talentos Autopostulados</StatLabel>
+                        </div>
+                        <div className="upInfo1">
+                          <StatNumber className="main__container__divpanel3Ad">{postulaciones}</StatNumber>
+                        </div>
+                        <div className="upInfo3">
+                          <span>Indicador seguimiento</span>
+                        </div>
                       </Stat>
                     </StatGroup>
                   </span>
-                  <span className="main__container__divpanel9">
+
+                  <span className="main__container__divpanel1">
                     <StatGroup>
-                      <Stat>
-                        <StatLabel className="main__container__divpanel2">empresas</StatLabel>
-                        <StatNumber className="main__container__divpanel3">{empresas}</StatNumber>
+                      <Stat className="insigths">
+                        <div className="upInfo">
+                          <StatLabel className="main__container__divpanel2"><StarIcon /></StatLabel>
+                          <StatLabel className="main__container__divpanel2">Empresas</StatLabel>
+                        </div>
+                        <div className="upInfo1">
+                          <StatNumber className="main__container__divpanel3Ad">{empresas}</StatNumber>
+                        </div>
+                        <div className="upInfo3">
+                          <span>Indicador registros</span>
+                        </div>
                       </Stat>
                     </StatGroup>
                   </span>
+
                 </div>
               </TabPanel>
               {/* ------------------------Section Tabs Empresas----------------------- */}

@@ -41,8 +41,6 @@
   border-radius: 15px;
   height: 30vh;
 
-
-
 }
 
 .section__contenedor1 {
@@ -60,18 +58,37 @@
   margin-top: 30px;
 }
 
-
-.message__p{
-  width: 50vw;
+.message__pt{
   text-align: initial;
-  margin-left: 120px;
-  margin-top: 50px;
-  color:$yellow;
+  color:$gray;
   font-weight: bold;
-  // background-color: #383B4B;
+  margin-top: 60px;
 
 
 }
+
+.message__bt{
+  text-align: initial;
+  color:$gray;
+  font-weight: bold;
+  margin-top: 40px;
+  margin-left: -50px;
+
+
+
+}
+
+.infoAdminUp{
+  display: flex; 
+  text-align: initial;
+  color:$gray;
+  font-weight: bold;
+  margin-top: 60px;
+
+  
+}
+
+
 
 
 
@@ -136,6 +153,8 @@
 
   &__sectiontab {
     background-color: transparent;
+    color: $skyBkue;
+    margin-left: 350px;
     font-size: 20px;
   }
 
@@ -149,6 +168,7 @@
 
   &__tl {
     // background-color: black;
+    
     height: 10vh;
 
 
@@ -176,62 +196,7 @@
 
   }
 
-  &__divpanel1A {
-    background-color: $skyBkue;   
-    text-align: center;
-    margin-left: -580px;  
-    height: 80px;
-    border-radius: 15px;
-    width: 320px;
-   height: auto;
-
-  }
-
-  &__divpanel2A {
-    margin-top: 2px;
-    margin-left: 20px;
-    width: 280px;
-    color: white;
-    // font-size: 16px;
-    // font-weight: bold;
-
-  }
-
-  
-
-  &__divpanel3 {
-    margin-top: 6px;
-    margin-left: 90px;
-    font-size: 30px;
-    color: white;
-
-
-  }
-
-  &__divpanel4 {
-    background-color: $softblue;
-    height: 80px;
-    border-radius: 15px;
-    width: 220px;
-
-  }
-
-  &__divpanel5 {
-    margin-top: 10px;
-    margin-left: 20px;
-    color: white;
-    // font-weight: bold;
-
-  }
-
-  &__divpanel6 {
-    margin-top: 6px;
-    margin-left: 90px;
-    font-size: 30px;
-    color: white;
-
-
-  }
+ 
 
 
   &__sectionT {
@@ -250,8 +215,10 @@
     // border-radius: 15px;
   }
 
-  &__thA {
-    height: 6vh;
+  &__th {
+    background-color:gainsboro;   
+    color:$gray;
+    height: 10vh;
     
   }
 
@@ -260,12 +227,7 @@
     height: 6vh;
   }
 
-  &__trbA {
-    text-align: center;
-    background-color: $skyBkue;   
-    color: white;
-    height: 6vh;
-  }
+ 
 
   &__trb1 {
     text-align: center;
@@ -274,13 +236,35 @@
     height: 6vh;
   }
 
-  &__separador {
-    position: absolute;
-    left: 30%;
-    top: 98.93%;
-    width: 250px;
-    background: #383B4B;
-      }
+  
+}
 
+.main__container__tdA{
+  background: none ;
+  color: white;
+  margin-left: 25px;
+  margin-bottom: 12px;
+  font-weight: bold;  
+  
+}
 
+.main__container__tdL{
+  background: none ;
+  background-color: transparent;
+  color: white;
+  list-style: none;
+  border: none; 
+  margin-bottom: 12px;
+  font-weight: bold; 
+  align-items: center;
+  color: white;
+  text-decoration: none;
+  
+
+  &__tdLink{
+    background-color: transparent;
+    color: white;
+    text-decoration: none;
+  }
+  
 }

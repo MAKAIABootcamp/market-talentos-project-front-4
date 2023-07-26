@@ -1,11 +1,11 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import LayoutAdminS from '../components/layout/LayoutAdminSimple';
 import Footer from '../components/footer/Footer'
 import "../style/styledHomeAdministrador.scss";
 import bannerAd from "../assets/bannerAd.png";
 import { useSelector } from 'react-redux';
 import { Card, CardHeader, CardBody, CardFooter, SimpleGrid, Heading, Button, Text } from '@chakra-ui/react'
+import LayoutAdminS from '../components/layout/LayoutAdminSimple';
 // import { Progress } from '@chakra-ui/react'
 
 
