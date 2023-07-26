@@ -97,6 +97,6 @@ export const roles = [
     { id: "sql", label: "SQL" },
     { id: "StyledComponent", label: "STYLECOMPONENT" },
     { id: "material ui", label: "MATERIAL UI" },
-    { id: "axios", label: "AXIOS" },
+    
 
 ];

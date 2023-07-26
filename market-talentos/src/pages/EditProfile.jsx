@@ -1,27 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import "../style/styleEditProfile.scss";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import imageFond from "../assets/EditProfileFondo.jpg";
 // import Footer from "../components/footer/Footer";
 import {
-  completeProfileAsync,
-  singOutAsync,
+  completeProfileAsync
+  
 } from "../redux/actions/usersActions";
 import Swal from "sweetalert2";
 import { useNavigate, useParams } from "react-router-dom";
 import LayoutTalents from "../components/layout/LayoutTalents";
 import { languageOptions } from "../services/dates";
-import { Spinner } from "react-bootstrap";
-import { doc, getDoc } from "firebase/firestore";
-import { dataBase } from "../firebase/firebaseConfig";
-import { listTalents } from "../redux/actions/userActions";
+// import { Spinner } from "react-bootstrap";
 import fileUpLoad from "../services/fileUpload";
 import videoUpLoad from "../services/videoUpLoad";
 import {
-  getTalentFromTalentsCollection,
-  getTalentLoggued,
+  getTalentLoggued
 } from "../services/talentsServices";
 
 const EditProfile = () => {
@@ -51,7 +47,7 @@ const EditProfile = () => {
       )
       .required("Este campo es obligatorio"),
     profile: Yup.string()
-      .max(160, "La presentación no debe exceder las 400 palabras.")
+      .max(600, "La presentación no debe exceder las 600 palabras.")
       .required("Este campo es obligatorio"),
     cv: Yup.mixed()
       .test("fileType", "Solo se permiten archivos PDF", (value) => {

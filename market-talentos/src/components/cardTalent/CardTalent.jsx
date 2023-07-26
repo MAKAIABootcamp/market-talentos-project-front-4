@@ -36,9 +36,7 @@ const CardTalent = ({id}) => {
   return (
     
     <>
-    <h1>{talento.github}</h1>
       <section className="cardTalents">
-           
         <div className="cardTalents__container">
           <div
             className="cardTalents__container-imgTalent"
