@@ -136,7 +136,7 @@ const TalentOfferJob = ({ id }) => {
                   </button>
                 </div>
 
-                <div>
+                
                   <div className="talentOffer__container-otheroffert">
                     <button
                       className="talentOffer__button-otheroffert"
@@ -144,17 +144,18 @@ const TalentOfferJob = ({ id }) => {
                     >
                       Ver Mis Postulaciones
                     </button>
-                  </div>
-
-                  <div className="talentOffer__container-otheroffert">
+                    
                     <button
                       className="talentOffer__button-otheroffert"
-                      onClick={() => navigate("/talentDetails")}
+                      // onClick={() =>  navigate(`/talentDetails/${user.id}`)}
+                      
                     >
                       Ir a Perfil
                     </button>
+                
                   </div>
-                </div>
+
+                
               </div>
             </div>
           )}
