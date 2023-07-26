@@ -1,257 +1,138 @@
 @import "../style/_variables";
-@import './style.scss';
+@import "./style.scss";
 
-p{
-  width: 75%;
-  margin-left: 240px;
-  font-size: 22px;
-  font-family: $fontMontserrat;
-  text-align: center;
-  
-  
-}
+.home {
+  @include desk {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
 
-span{
-  color: $skyBkue;
-}
-
-.text__sec{
-  margin-top: 30px;
-  font-size: 24px;
-  font-weight: bold;
-
-}
-
-
-.info__container{
-  display: flex;
-  // justify-content: space-around;
-  margin-top: 50px;
-  margin-left: -10px;
-
-  
-}
-
-.info__form{
-  display: flex;
-  align-items: center;
-  margin-left: 420px;
-  gap: 3px;
-}
-
-.info__form1{
-
-  input{
-  background-color: gainsboro;
-  width:30vw;
-  height: 6vh;
-  border-radius: 2px;
-  padding: 6px;
-  font-size: 16px;
-  font-style:oblique;
-  
-  }
-
-}
-
-.info__form2{
-
-  input{
-  background-color: gainsboro;
-  width:10vw;
-  height: 6vh;
-  border-radius: 2px;
-  padding: 6px;
-  font-size: 16px;
-  font-style:oblique;
-  }
-
-}
-
-.info__form3{
-
-  button{
-  background-color: $gray;
-  color: white;
-  font-weight: bold;
-  width:5vw;
-  height: 6vh;
-  border: 1px solid gainsboro ;
-  border-radius: 5px;
-  font-size: 16px;
-  }
-
-}
-
-
-.info__grid2{
-  display: flex;
-  width: 70%;
-  align-items: center;
-  // padding-left: 200px;
-  justify-content: center;
-}
-
-.info__grid3{
-  display: flex;
-  // flex-direction: column;
-
-  
-
-}
-
-.talents__container{
-  display: flex;
-  justify-content:space-around ;
-  margin-left: 250px;
-  // margin: 2rem;
-  margin-top: 6rem;        
-  //   width: 18rem;
-  //   height: 28.5rem;
-  //   background-color: white;
-  //   padding: 5px;
-  //   display: flex;
-  //   // flex-direction: column;
-  //   align-items: center;
-    gap: 120px;
-  //   // clip-path: polygon(0% 0%, 54.7% 1.3%, 100% 15%, 100% 100%, 0% 100%);
-    border-radius: 10px;
-
-}
-
-.info_card_info{
-  display: flex;
-  margin-top: 10px;
-  gap: 10px;
-  align-items: center;
-
-}
-
-.talents__container-state{
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  margin-left: 15px;
-  align-items: center;
-  margin-top: 8px;
-}
-
-.talents__container-levelEnglish{
-  display: flex;
-
-}
-
-
-.container__cards{
-  
-  border-radius: 10px;
-  width: 18vw;
-}
-
-.talents__container-imgTalent{
-
-  @include styleRound($gray, $gray, $wi115, $heAuto,
-  $white, $s14, $w300,
-  $gray, $gray, $gray);
-// position: relative;
-margin-left: 75px;
-
-}
-
-.talents__card-figure{
-
-  @include styleRound($white, $gray, $wi105, $he105,
-  $white, $s14, $w300,
-  $white, $gray, $gray);
-
-img {
-  width: 100%;
-  height: 100%;
-  border-radius: 5rem;
-}
-}
-
-.talents__line {
-  
-      margin-left: 10px;
-      width: 3px;
-      height: 55px;
-      background-color: $grayLight;
-      
-  
-}
-
-
-.talents__container-infoPnal {
-
+    &__container{
       display: flex;
+      justify-content: center;
       flex-direction: column;
-      width: 30vw;
-      
-     
-  
+    }
 
-}
+    &__title-container{
+      display: flex;
+      justify-content: center;
+    }
+    &__title {
+      width: 75%; 
+      font-size: 22px;
+      font-family: $fontMontserrat;
+      text-align: center;
 
-.talents__name{
-  @include text ($fontMontserrat, $w400, $s12, $gray);
-  margin-left: 30px;
- margin-top: 15px;
-
-}
-
-.talents__know{
-  @include text ($fontMontserrat , $w400, $s12, $skyBkue);
-  margin-left: 15px;
-  
-}
-
-
-.button__more{
-  margin-left: 700px;
-  margin-top: 60px;
-  
-}
-
-.info__form4{
-
-  button{
-  background-color: $gray;
-  color: white;
-  font-weight: bold;
-  width:10vw;
-  height: 8vh;
-  border: 1px solid gainsboro ;
-  border-radius: 5px;
-  font-size: 19px;
+      span {
+        color: $skyBkue;
+      }
+    }
   }
 
+  .text__sec {
+    margin-top: 30px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  &__info-container {
+    display: flex;
+    justify-content: center;
+    // justify-content: space-around;
+    margin-top: 50px;
+    // margin-left: -10px;
+  }
+
+  &__info-form {
+    display: flex;
+    align-items: center;
+    // margin-left: 420px;
+    gap: 3px;
+  }
+
+  &__info-form1 {
+    input {
+      background-color: gainsboro;
+      width: 30vw;
+      height: 6vh;
+      border-radius: 14px;
+      padding: 15px;
+      font-size: 16px;
+      
+    }
+  }
+
+  &__info-form2 {
+    input {
+      background-color: gainsboro;
+      width: 10vw;
+      height: 6vh;
+      border-radius: 14px;
+      padding: 15px;
+      font-size: 16px;
+      
+    }
+  }
+  &__info-form3 {
+    button {
+      background-color: $gray;
+      color: white;
+      font-weight: bold;
+      width: 9vw;
+      height: 6vh;
+      background-color:#25ABBC;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+  }
+
+  &__info-grid2 {
+    display: flex;
+    width: 70%;
+    align-items: center;
+    // padding-left: 200px;
+    justify-content: center;
+  }
+
+ 
+  &__info-form3 button {
+    width: 18vw;
+  }
+
+  &__info-form2 input {
+    background-color: gainsboro;
+    width: 24vw;
+  }
+
+  &__info-grid3 {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+ 
 }
 
-.banner{
-  display: flex;
-  // justify-content: space-around;
-  background-color: $skyBkue;
-  height: 30vh;
-  margin-top: 60px;
-  margin-left: 70px;
-  width: 85vw;
-  align-items: center;
-  border-radius: 15px;
-}
 
-.p__banner{
-  margin-left: 120px;
-  width: 40%;
-  color: white;
-  font-weight: bold;
-  font-size: 24px;
-}
 
-.icon_b{
-  margin-left: -135px;
-}
+@media screen and (max-width: 375px) {
+  .home {
 
-.img_b{
-  margin-left:250px;
+    &__info-form1 input {
+      background-color: gainsboro;
+      width: 40vw;
+    }
+
+   
+    &__info-form2 {
+      input {
+        display: none;
+      }
+
+  }
+
+  &__info-form3 button {
+    width: 24vw;
+  }
+}
 }

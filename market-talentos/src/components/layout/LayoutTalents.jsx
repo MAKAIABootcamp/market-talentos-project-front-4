@@ -125,11 +125,11 @@ const LayoutTalents = () => {
       open={menuAbierto}
       onClose={toggleMenu}
     >
-        {menuAbierto ? <CloseIcon onClick={toggleMenu}  /> : <MenuIcon onClick={toggleMenu} />}
+        {menuAbierto ? <CloseIcon onClick={toggleMenu} style={{ color: '#25ABBC', marginLeft: '10px', marginTop:'10px' }}  /> : <MenuIcon onClick={toggleMenu} />}
       <List>
         {products.map((item) => (
           <ListItem key={item.id} component={NavLink} to={item.path} onClick={toggleMenu}>
-            <ListItemText primary={item.name} />
+            <ListItemText primary={item.name} style={{ color: '#25ABBC' }} />
           </ListItem>
         ))}
       </List>
