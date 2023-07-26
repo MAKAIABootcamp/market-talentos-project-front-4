@@ -38,11 +38,10 @@ const StudiesTalent = () => {
                             <span> a </span>
                             <span>diciembre - 2019 </span>
                         </div>
-                        <h2 className='studies__title-rol'>Auxiliar en Desarrollo de Software</h2>
+                        <h2 className='studies__title-rol'>Técnica Auxiliar en desarrollo de software</h2>
                     </div>
                 </div>
             </div>
-
         </>
     )
 }

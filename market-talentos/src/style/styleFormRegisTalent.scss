@@ -111,6 +111,12 @@
     }
   }
 
+  &__container-inputPhoto{
+   
+    display: flex;
+    flex-direction: column;
+  }
+
   &__file-input-label {
     display: flex;
     cursor: pointer;

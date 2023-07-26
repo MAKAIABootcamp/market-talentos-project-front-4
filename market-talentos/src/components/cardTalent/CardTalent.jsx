@@ -12,6 +12,7 @@ import { getTalentLoggued } from "../../services/talentsServices";
 
 const CardTalent = ({id}) => {
   const [talento, setTalent] = useState("")
+  
   const navigate = useNavigate();
   useEffect(()=>{      
     async function fetchData() {
@@ -35,6 +36,7 @@ const CardTalent = ({id}) => {
   return (
     
     <>
+    <h1>{talento.github}</h1>
       <section className="cardTalents">
            
         <div className="cardTalents__container">

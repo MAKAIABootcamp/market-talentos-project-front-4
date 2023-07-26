@@ -115,26 +115,30 @@ const FormRegisTalent = () => {
                     </label>
                     <h5>Subir foto de perfil</h5>
                     {/* Input de tipo file oculto */}
-                    <div>
-                    <input
-                      id="avatarInput"
-                      className="register__select"
-                      name="photoURL"
-                      type="file"
-                      accept="image/*"
-                      onChange={(event) => {
-                        formik.setFieldValue(
-                          "photoURL",
-                          event.currentTarget.files
-                        );
-                      }}
-                    />
-                    {formik.touched.avatar && formik.errors.avatar && (
-                      <span className="register__span">
-                        {formik.errors.avatar}
-                      </span>
-                    )}
-                  </div>
+                    <div className="register__container-inputPhoto">
+                      <div>
+                        <input
+                          id="avatarInput"
+                          className="register__select"
+                          name="photoURL"
+                          type="file"
+                          accept="image/*"
+                          onChange={(event) => {
+                            formik.setFieldValue(
+                              "photoURL",
+                              event.currentTarget.files
+                            );
+                          }}
+                        />
+                      </div>
+                      <div>
+                        {formik.touched.avatar && formik.errors.avatar && (
+                          <span className="register__span">
+                            {formik.errors.avatar}
+                          </span>
+                        )}
+                      </div>
+                    </div>
                   </div>
 
                   <input
