@@ -63,7 +63,7 @@ const AppRouter = () => {
         setIsLogged(false)
       }
     });
-  },[isAuthenticated, setIsAuthenticated, isLogged])
+  },[isAuthenticated, setIsAuthenticated, isLogged, dispatch])
 
   return (
     <>

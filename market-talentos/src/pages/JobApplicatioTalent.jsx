@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../style/styleJobApplicatioTalent.scss";
-import imgTalent from "../assets/elisa.jpeg";
+// import imgTalent from "../assets/elisa.jpeg";
 import { NavLink, useNavigate } from "react-router-dom";
 import imgGitUp from "../assets/logogithub.png";
 import imgLinkedin from "../assets/logolink.png";
@@ -11,7 +11,10 @@ import Footer from "../components/footer/Footer";
 import LayoutTalents from "../components/layout/LayoutTalents";
 import { addmyAplication } from "../redux/actions/talentAplicationActions";
 import { useDispatch, useSelector } from "react-redux";
-import { getApplicationsAsync } from "../redux/actions/applicationActions";
+import {
+  //getApplicationsAsync,
+  getApplicationsUserAsync,
+} from "../redux/actions/applicationActions";
 import { listOfferJob } from "../redux/actions/offerJobActions";
 
 
@@ -19,11 +22,16 @@ const JobApplicatioTalent = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showForm, setShowForm] = useState(false);
-  const [myApplications, setMyApplications] = useState([]);
-  const [myOffers, setMyOffers] = useState([]);
-  const { applications } = useSelector((store) => store.applications);
-  const offerJobList = useSelector((state) => state.offerJob);
+  //const [myApplications, setMyApplications] = useState([]);
+  //const [myOffers, setMyOffers] = useState([]);
+  //const { applications } = useSelector((store) => store.applications);
+  const {offerJob} = useSelector((state) => state.offerJob);
   const { loggedUser } = useSelector((store) => store.user);
+  const { applications } = useSelector((store) => store.applications);
+  console.log(loggedUser[0]);
+  console.log(applications);
+
+  
   const validationSchema = Yup.object().shape({
     cargo: Yup.string().required("Este campo es obligatorio"),
     closeDate: Yup.date().required("Este campo es obligatorio"),
@@ -35,26 +43,33 @@ const JobApplicatioTalent = () => {
   });
 
   useEffect(() => {
-    dispatch(getApplicationsAsync());
+    //dispatch(getApplicationsAsync());
+    dispatch(getApplicationsUserAsync(loggedUser[0].id));
     dispatch(listOfferJob());
-  }, [])
+  }, [dispatch, loggedUser]);
 
-  useEffect(() => {    
-    const myapps = applications.filter(item => item.talentId === loggedUser[0].id)
-   setMyApplications(myapps)
-  },[applications])
+  // useEffect(() => {
+  //   const myapps = applications.filter(
+  //     (item) => item.talentId === loggedUser[0].id
+  //   );
+  //   setMyApplications(myapps);
+  // }, [applications, loggedUser]);
 
-  useEffect(()=>{
-    const myoffers = [];
-    for (let index = 0; index < myApplications.length; index++) {
-      myoffers.push(offerJobList.offerJob.find(item => item.id === myApplications[index].offerId))      
-    }
-    setMyOffers(myoffers)
-    console.log("postulaciones", myoffers)
-  },[offerJobList, myApplications])
+  // const [myoffersTalent, setyoffersTalent]= useState({});
+
+  // useEffect(()=>{
+  //   const myoffers = [];
+  //   for (let index = 0; index < myApplications.length; index++) {
+  //     myoffers.push(offerJobList.offerJob.find(item => item.id === myApplications[index].offerId))      
+  //   }
+  //   setMyOffers(myoffers)
+  //   console.log("postulaciones", myoffers)
+  // },[offerJobList, myApplications])
 
   const handleSubmit = async (values) => {
     const newAplication = {
+      talentId: loggedUser[0].id,
+      offerId: "NA",
       cargo: values.cargo,
       closeDate: values.closeDate,
       description: values.description,
@@ -63,7 +78,7 @@ const JobApplicatioTalent = () => {
       salary: values.salary,
       offerLink: values.offerLink,
     };
-    console.log("nueva aplicación", values, newAplication);
+    //console.log("nueva aplicación", values, newAplication);
 
     dispatch(addmyAplication(newAplication));
   };
@@ -83,38 +98,6 @@ const JobApplicatioTalent = () => {
     enableReinitialize: true,
   });
 
-  const costumerButtons = [
-    {
-      id: 1,
-      name: "Magenta Developer",
-      status: "Entrevista",
-      changeStatus: "Cambiar estado",
-    },
-    {
-      id: 2,
-      name: "Soluciones web S.A",
-      status: "Inactivo",
-      changeStatus: "Cambiar estado",
-    },
-    {
-      id: 3,
-      name: "Desing Red",
-      status: "Pendiente",
-      changeStatus: "Cambiar estado",
-    },
-    {
-      id: 4,
-      name: "Develop Juniors",
-      status: "En proceso",
-      changeStatus: "Cambiar estado",
-    },
-    {
-      id: 5,
-      name: "Ingeniers web",
-      status: "Inactivo",
-      changeStatus: "Cambiar estado",
-    },
-  ];
 
   const handleAddPostulaciones = () => {
     setShowForm(!showForm);
@@ -132,7 +115,7 @@ const JobApplicatioTalent = () => {
             <div className="jobtalent__container-cards">
               <div className="jobtalent__container-imgTalent">
                 <figure className="jobtalent__card-fig">
-                  <img src={imgTalent} alt="imgTalent" />
+                  <img src={loggedUser[0].photoURL} alt="imgTalent" />
                 </figure>
               </div>
               <div className="jobtalent__container-info">
@@ -145,12 +128,12 @@ const JobApplicatioTalent = () => {
                 <div className="jobtalent__line"></div>
                 <div className="jobtalent__container-infoPnal">
                   <span className="jobtalent__name">
-                    <strong>Elisabeth Cristina</strong>
+                    <strong>{loggedUser[0].firstName}</strong>
                   </span>
                   <span className="jobtalent__lastName">
-                    <strong>Ospina Graciano</strong>
+                    <strong>{loggedUser[0].lastName}</strong>
                   </span>
-                  <span className="jobtalent__know">FrontEnd developer</span>
+                  <span className="jobtalent__know"></span>
                 </div>
               </div>
 
@@ -174,7 +157,6 @@ const JobApplicatioTalent = () => {
                     </NavLink>
                   </button>
                 </div>
-
 
                 <div className="jobtalent__container-addpstulation">
                   <button
@@ -309,7 +291,6 @@ const JobApplicatioTalent = () => {
                             </div>
                           )}
 
-
                         <button
                           className="jobtalent__button-aceptar"
                           type="submit"
@@ -319,8 +300,6 @@ const JobApplicatioTalent = () => {
                       </form>
                     </div>
                   )}
-
-
                 </div>
               </div>
             </div>
@@ -332,25 +311,25 @@ const JobApplicatioTalent = () => {
               Mis Postulaciones
             </button>
             <div className="jobtalent__container-costumer">
-              {costumerButtons.map((button, index) => (
-                <button className="jobtalent__button-costumer" key={index}>
-                  {button.name}
+              {applications.length &&
+                applications.map((button, index) => (
+                  <button className="jobtalent__button-costumer" key={index}>
+                    {button.empresa}
 
-                  <span className="jobtalent__button-status">
-                    {button.status}
-                  </span>
+                    <span className="jobtalent__button-status">
+                      {button.cargo}
+                    </span>
 
-                  <span className="jobtalent__button-changeStatus">
-                    {button.changeStatus}
-                  </span>
-                </button>
-              ))}
+                    <span className="jobtalent__button-changeStatus">
+                      {button.salary}
+                    </span>
+                   </button>
+                ))}
             </div>
           </div>
         </section>
 
         <Footer />
-
       </section>
     </>
   );

@@ -92,11 +92,11 @@ const LayoutTalents = () => {
           onMouseLeave={() => setShowExitButton(false)}
         >
           <figure className='layoutTalent__card-figure'>
-            <img src={usuario} alt="imgTalent" onClick={() => dispatch(singOutAsync())} />
+            <img src={usuario} alt="imgTalent"  />
           </figure>
           {showExitButton && (
             <button className='layoutTalent__button-exit'
-            onClick={() => dispatch(singOutAsync())}
+            onClick={handleExit}
             >
               Salir
               
