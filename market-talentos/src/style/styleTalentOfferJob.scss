@@ -242,6 +242,7 @@
 
   &__container-otheroffert {
     display: flex;
+    gap: 10px;
     flex-direction: column;
     justify-content: center;
   }
@@ -370,12 +371,18 @@
   }
 
   &__contenerdorpopup-close{
-    position: relative;
-    left: 186px;;
+    display: flex;
+    justify-content: right;
+    width: 100%;
+    // position: relative;
+    // left: 186px;
   }
   &__popup-close{
     background-color: transparent;
     display: flex;
+    justify-content: left;
+
+    
    
   }
   &__button-offer {

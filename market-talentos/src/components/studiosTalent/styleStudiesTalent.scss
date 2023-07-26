@@ -79,3 +79,78 @@
     }
  
 }
+
+
+// @import "../../style/style.scss";
+
+// .studies{
+
+//   &__studies{
+
+//       display: flex;
+//       flex-direction: column;
+//       width: 700px;
+//       height: auto;
+//       border-radius: 20px;
+//       border: 1px solid $gray;
+//       padding: 30px;
+//       gap: 20px;
+             
+//     }
+//     &__container-estudies{
+      
+//       display: flex;
+//       gap: 20px;
+//       margin-bottom: 20px;
+      
+//     }    
+
+//     &__container-imgInstitute{
+//       display: flex;
+//       width: 30px;
+//       height: 30px;
+//       margin-bottom: 20px;
+//     }
+//     &__figure-imgInstitute{
+//       width: 30px;
+//       height: 30px;
+//       background-color: gray;
+
+//       img{
+//         width: 100%;
+//         height: 100%;
+//       }
+//     }
+//     &__container-infoInstitute{
+
+//       display: flex;
+//       flex-direction: column;
+     
+//     }
+//     &__title-Institute{
+//       @include text ($fontNunito, $w400, $s16, $gray);
+//     }
+//     &__dateInstitute{
+//       width: 300px;
+//       height: auto;
+//       display: flex;
+//       gap: 10px;
+//       margin-bottom: 10px;
+//       img{
+//         width: 10px;
+//         height: 10px;
+//       }
+//       span{
+//         @include text ($fontNunito, $w400, $s14, $gray);
+//       }
+//     }
+
+//     &__title-rol{
+//       @include text ($fontNunito, $w400, $s16, $grayLight);
+//     }
+
+//     &__funtions{
+//       @include text ($fontNunito, $w400, $s12, $gray);
+//     }
+ 
+// }
