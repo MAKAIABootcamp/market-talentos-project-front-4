@@ -31,52 +31,6 @@
     background-color: $skyBkue;
     margin-top: 70px;
   }
-  &__containerinfo2 {
-    display: flex;
-    margin-top: 60px;
-  }
-  &__textaqui {
-    display: flex;
-    h1 {
-      font-family: $fontNunito;
-    }
-  }
-  &__informationcard {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    margin-top: 15px;
-  }
-  &__notice {
-    display: flex;
-    flex-direction: column;
-  }
-  &__info {
-    display: flex;
-    flex-direction: column;
-    width: 800px;
-    position: relative;
-    left: -200px;
-    p {
-      text-align: left;
-      position: relative;
-      left: -240px;
-    }
-    h2 {
-      justify-content: center;
-      font-family: $fontMontserrat;
-    }
-  }
-  &__textinformation {
-    h1 {
-      font-family: $fontNunito;
-      width: 300px;
-    }
-  }
-  &__section2 {
-    position: relative;
-    left: -3200px;
-  }
 }
 
 .blog__carrusel--left {
@@ -87,32 +41,50 @@
 
 .blog__carrusel--left .carousel-root {
   position: relative;
-  top: 120px;
+  top: 20px;
   img {
-    width: 300px;
+    width: 20px;
   }
 }
 .blog__section2 {
   display: flex;
   flex-direction: column;
   position: relative;
-  h1 {
-    font-family: $fontNunito;
-  }
+ 
 }
 .blog__section3 {
   position: relative;
   left: 60px;
+  h1 {
+    position: relative;
+    top: 30px;
+    font-size: 50px;
+    font-family: $fontMontserrat;
+  }
+}
+.blog__textaqui {
+  h1 {
+    font-size: 50px;
+    font-family: $fontMontserrat;
+  }
 }
 .blog__containervideos {
   display: flex;
   gap: 60px;
-  padding-top: 30px;
+  padding-top: 60px;
 }
 .carousel-item {
   width: 500px;
 }
 @include mobile {
+  .blog__section3 {
+    h1 {
+      font-size: 30px;
+      position: relative;
+      top: 30px;
+      left: -20px;
+    }
+  }
   .blog {
     &__imagen {
       img {
@@ -144,14 +116,47 @@
         left: -40px;
       }
     }
+    
+    &__containervideos {
+      flex-direction: column;
+      gap: 30px;
+      position: relative;
+      top: 40px;
+      left: -27px;
+      iframe {
+        width: 340px;
+        height: 200px;
+      }
+    }
+    
+  }
+  .blog__linea {
+    width: 200px;
+    position: relative;
+    top: -60px;
+    left: -14px;
+  }
+  .blog__imagen {
+    position: relative;
+    left: 30px;
+  }
+  .blog__textaqui {
+    h1 {
+      position: relative;
+      left: 4px;
+      font-size: 30px;
+    }
   }
   .blog__carrusel--left .carousel-root {
     left: 20px;
   }
   .blog__carrusel--left {
     position: relative;
-    top: -100px;
-    left: -90px;
+    top: -50px;
+    left: -20px;
+    width: 100%;
+  }
+  .carousel-item {
     width: 300px;
   }
 }
