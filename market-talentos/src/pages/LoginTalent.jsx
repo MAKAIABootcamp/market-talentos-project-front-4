@@ -191,7 +191,7 @@ const LoginTalent = () => {
                       className="loginTalent__button-registerLink"
                       onClick={() => handleRegister()}
                     >
-                      Empresa
+                      Talento
                     </button>
                     <button
                       type="button"
@@ -200,7 +200,7 @@ const LoginTalent = () => {
                       className="loginTalent__button-registerLink"
                       onClick={() => navigate('/formRegisTalent')}
                     >
-                      Talento
+                      Empresa
                     </button>
                     </div>
                   </div>

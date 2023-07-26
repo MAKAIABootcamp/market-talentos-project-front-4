@@ -277,7 +277,7 @@
   &__container-programs {
     @include desk {
       width: 261px;
-      height: 71px;
+      height: auto;
       display: flex;
       flex-wrap: wrap;
       gap: 9px;
