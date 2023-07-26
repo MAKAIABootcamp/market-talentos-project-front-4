@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../style/styleJobApplicatioTalent.scss";
 import imgTalent from "../assets/elisa.jpeg";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -10,16 +10,20 @@ import * as Yup from "yup";
 import Footer from "../components/footer/Footer";
 import LayoutTalents from "../components/layout/LayoutTalents";
 import { addmyAplication } from "../redux/actions/talentAplicationActions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getApplicationsAsync } from "../redux/actions/applicationActions";
+import { listOfferJob } from "../redux/actions/offerJobActions";
 
 
 const JobApplicatioTalent = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showForm, setShowForm] = useState(false);
-
-
-
+  const [myApplications, setMyApplications] = useState([]);
+  const [myOffers, setMyOffers] = useState([]);
+  const { applications } = useSelector((store) => store.applications);
+  const offerJobList = useSelector((state) => state.offerJob);
+  const { loggedUser } = useSelector((store) => store.user);
   const validationSchema = Yup.object().shape({
     cargo: Yup.string().required("Este campo es obligatorio"),
     closeDate: Yup.date().required("Este campo es obligatorio"),
@@ -30,9 +34,27 @@ const JobApplicatioTalent = () => {
     offerLink: Yup.string().required('Campo requerido').url('El enlace no es válido'),
   });
 
+  useEffect(() => {
+    dispatch(getApplicationsAsync());
+    dispatch(listOfferJob());
+  }, [])
+
+  useEffect(() => {    
+    const myapps = applications.filter(item => item.talentId === loggedUser[0].id)
+   setMyApplications(myapps)
+  },[applications])
+
+  useEffect(()=>{
+    const myoffers = [];
+    for (let index = 0; index < myApplications.length; index++) {
+      myoffers.push(offerJobList.offerJob.find(item => item.id === myApplications[index].offerId))      
+    }
+    setMyOffers(myoffers)
+    console.log("postulaciones", myoffers)
+  },[offerJobList, myApplications])
 
   const handleSubmit = async (values) => {
-        const newAplication = {
+    const newAplication = {
       cargo: values.cargo,
       closeDate: values.closeDate,
       description: values.description,
@@ -41,7 +63,7 @@ const JobApplicatioTalent = () => {
       salary: values.salary,
       offerLink: values.offerLink,
     };
-    console.log("nueva aplicación", values, newAplication );
+    console.log("nueva aplicación", values, newAplication);
 
     dispatch(addmyAplication(newAplication));
   };
@@ -60,7 +82,7 @@ const JobApplicatioTalent = () => {
     onSubmit: handleSubmit,
     enableReinitialize: true,
   });
-  
+
   const costumerButtons = [
     {
       id: 1,
@@ -155,7 +177,7 @@ const JobApplicatioTalent = () => {
 
 
                 <div className="jobtalent__container-addpstulation">
-                <button
+                  <button
                     className="jobtalent__button-otheroffertjobs"
                     onClick={() => navigate("/talentOfferJob")}
                   >
@@ -269,24 +291,24 @@ const JobApplicatioTalent = () => {
                             {formik.errors.salary}
                           </div>
                         )}
-                     
-                           <input
-                            className="jobtalent__button-other"
-                            type="text"
-                            id="offerLink"
-                            name="offerLink"
-                            value={formik.values.offerLink}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            placeholder="Enlace de la oferta"
-                          />
-                          {formik.errors.offerLink &&
-                            formik.touched.offerLink && (
-                              <div className="jobtalent__error-message">
-                                {formik.errors.offerLink}
-                              </div>
-                            )}
-                        
+
+                        <input
+                          className="jobtalent__button-other"
+                          type="text"
+                          id="offerLink"
+                          name="offerLink"
+                          value={formik.values.offerLink}
+                          onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
+                          placeholder="Enlace de la oferta"
+                        />
+                        {formik.errors.offerLink &&
+                          formik.touched.offerLink && (
+                            <div className="jobtalent__error-message">
+                              {formik.errors.offerLink}
+                            </div>
+                          )}
+
 
                         <button
                           className="jobtalent__button-aceptar"
@@ -298,7 +320,7 @@ const JobApplicatioTalent = () => {
                     </div>
                   )}
 
-                 
+
                 </div>
               </div>
             </div>
@@ -326,9 +348,9 @@ const JobApplicatioTalent = () => {
             </div>
           </div>
         </section>
-     
+
         <Footer />
-       
+
       </section>
     </>
   );

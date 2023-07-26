@@ -28,12 +28,13 @@ const EditProfile = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const navigate = useNavigate();
-  const [user, setuser] = useState("");
+  const [user, setUser] = useState("");
 
   useEffect(() => {
     async function fetchData() {
       const editTalent = await getTalentLoggued(id);
-
+      console.log("talent useeffect", editTalent)
+      setUser(editTalent)
     }
     fetchData();
 
@@ -95,6 +96,7 @@ const EditProfile = () => {
       video: videoURL,
       displayName: user.displayName,
       validateUser: user.validateUser,
+      completeProfile: true
     };
     dispatch(completeProfileAsync(newTalent, user.type))
       .then((result) => {
@@ -105,6 +107,8 @@ const EditProfile = () => {
         }).then(() => {
           navigate(`/talentDetails/${user.id}`);
         });
+        
+        navigate(`/talentDetails/${user.id}`);
       })
       .catch((error) => {
         Swal("error", "No se pudo actualizar el talento", "error");
@@ -127,13 +131,10 @@ const EditProfile = () => {
   });
 
   const isFormValid = () => {
-    Object.keys(formik.errors).length === 0 &&
-    Object.keys(formik.touched).length !== 0;
-    const [isLoading, setIsLoading] = useState(true);
-    if (isLoading) {
-      // Mostrar un spinner mientras se verifica el usuario
-      return <Spinner />;
-    }
+   if( Object.keys(formik.errors).length === 0 &&
+    Object.keys(formik.touched).length !== 0) 
+    {return true}
+  
   };
 
   return (

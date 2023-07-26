@@ -15,7 +15,6 @@ export const getTalentFromTalentsCollection = async (idUsuario) => {
         ...doc.data(),
       });
     });
-    console.log("talento", user)
     return user[0];
   } catch (error) {
     console.log(error);

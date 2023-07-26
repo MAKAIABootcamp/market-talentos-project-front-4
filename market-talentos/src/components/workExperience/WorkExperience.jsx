@@ -18,7 +18,7 @@ const WorkExperience = () => {
                   <span>julio - 2023 </span>
                 </div>
                 <h2 className='workExperience__title-rol'>Desarrolladora Front End</h2>
-                <span className='workExperience__funtions'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. A praesentium quidem pariatur aperiam quas, amet aliquam quibusdam fuga quos consequuntur ex at possimus, rerum facere dolorum porro in officia repellat.</span>
+                <span className='workExperience__funtions'>Realizar página web empresarial en wordpress. // Asesoría y Manejo en Redes Sociales  // Elaborar los Informes requeridos por la entidad // Sistematizar la información.</span>
               </div>
             </div>
             <div className='workExperience__container-workExperience'>
@@ -35,7 +35,7 @@ const WorkExperience = () => {
                   <span>enero - 2022 </span>
                 </div>
                 <h2 className='workExperience__title-rol'>Desarrolladora Front End</h2>
-                <span className='workExperience__funtions'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. A praesentium quidem pariatur aperiam quas, amet aliquam quibusdam fuga quos consequuntur ex at possimus, rerum facere dolorum porro in officia repellat.</span>
+                <span className='workExperience__funtions'>Realizar página web empresarial en wordpress. // Asesoría y Manejo en Redes Sociales  // Elaborar los Informes requeridos por la entidad // Sistematizar la información</span>
               </div>
             </div>
     </>

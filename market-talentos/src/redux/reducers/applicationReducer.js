@@ -1,4 +1,4 @@
-import { appTypes } from "../types/appTypes";
+import { applicationTypes } from "../types/applicationTypes";
 
 const initialState = {
     applications: []
@@ -6,7 +6,7 @@ const initialState = {
 
 const applicationsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case appTypes.SET_APPLICATIONS:
+        case applicationTypes.SET_APPLICATIONS:
             return {
                 ...state,
                 applications: action.payload

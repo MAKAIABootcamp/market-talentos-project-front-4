@@ -8,7 +8,7 @@ import imgLinkedin from "../../assets/logolink.png";
 import imgVideo from "../../assets/logovideo.png";
 import imgPhone from "../../assets/celular.png";
 import imgMail from "../../assets/correo.png";
-import { getTalentFromTalentsCollection, getTalentLoggued } from "../../services/talentsServices";
+import { getTalentLoggued } from "../../services/talentsServices";
 
 const CardTalent = ({id}) => {
   const [talento, setTalent] = useState("")
@@ -21,10 +21,14 @@ const CardTalent = ({id}) => {
       setTalent(talent)
     }
     fetchData();
+    
   }, [])
-  
-  console.log("talento", talento);
 
+  useEffect(()=>{
+
+    console.log("cadtalent talento", talento);
+  }, [talento] )
+  
   const handleClick = (params) => {
     console.log(params)
   }
@@ -111,9 +115,11 @@ const CardTalent = ({id}) => {
                 </div>
               </div>
               <div className="cardTalents__container-programs">
-                
-                  <span className="cardTalents__programs">HTML</span>
-               
+                {
+                  talento?.stacks?.map(item => 
+                    <span className="cardTalents__programs" key={item}>{item}</span>
+                  )
+                }
               </div>
               <div className="cardTalents__container-profile">
                 <h5 className="cardTalents__profile">
