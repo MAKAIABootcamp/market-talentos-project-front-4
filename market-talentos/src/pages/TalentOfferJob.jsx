@@ -22,12 +22,12 @@ const TalentOfferJob = ({ id }) => {
 
   useEffect(() => {
     dispatch(listOfferJob());
-    console.log("user", loggedUser[0]);
+   
   }, [dispatch]);
 
   useEffect(() => {
     async function fetchData() {
-      console.log("Valor de id:", id);
+      
       try {
         const talent = await getTalentFromTalentsCollection(id);
         console.log("talento", talent);
@@ -93,7 +93,7 @@ const TalentOfferJob = ({ id }) => {
             <div className="talentOffer__container-cards">
               <div className="talentOffer__container-imgTalent">
                 <figure className="talentOffer__card-fig">
-                  <img src={talento.photoURL} alt="imgTalent" />
+                  <img src={loggedUser[0].photoURL} alt="imgTalent" />
                 </figure>
               </div>
               <div className="talentOffer__container-info">
@@ -106,12 +106,12 @@ const TalentOfferJob = ({ id }) => {
                 <div className="talentOffer__line"></div>
                 <div className="talentOffer__container-infoPnal">
                   <span className="talentOffer__name">
-                    <strong>{talento.firstName}</strong>
+                    <strong>{loggedUser[0].firstName}</strong>
                   </span>
                   <span className="talentOffer__lastName">
-                    <strong>{talento.lastName}</strong>
+                    <strong>{loggedUser[0].lastName}</strong>
                   </span>
-                  <span className="talentOffer__know">{talento.rol}</span>
+                  <span className="talentOffer__know">{loggedUser[0].rol}</span>
                 </div>
               </div>
 
