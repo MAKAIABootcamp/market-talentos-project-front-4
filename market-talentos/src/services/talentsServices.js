@@ -35,8 +35,9 @@ export const getTalentLoggued = async (idTalento) => {
         ...doc.data(),
       });
     });
-    console.log("talento", talentLogued)
+    
     return talentLogued[0];
+    
   } catch (error) {
     console.log(error);
     return null;

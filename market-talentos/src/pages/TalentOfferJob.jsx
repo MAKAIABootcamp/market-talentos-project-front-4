@@ -13,7 +13,6 @@ import { getTalentFromTalentsCollection } from "../services/talentsServices";
 import { addmyAplication } from "../redux/actions/talentAplicationActions";
 
 const TalentOfferJob = ({ id }) => {
-    console.log("Valor de id al renderizar el componente:", id);
   const [talento, setTalent] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
@@ -23,7 +22,7 @@ const TalentOfferJob = ({ id }) => {
 
   useEffect(() => {
     dispatch(listOfferJob());
-    console.log("user", loggedUser[0])
+    console.log("user", loggedUser[0]);
   }, [dispatch]);
 
   useEffect(() => {
@@ -68,18 +67,17 @@ const TalentOfferJob = ({ id }) => {
   };
 
   const handleApplicate = (offer) => {
-    console.log("entré a aplicate")
-    const talents = offer.talents || []
-    talents.push(loggedUser)
+    console.log("entré a aplicate");
+    const talents = offer.talents || [];
+    talents.push(loggedUser);
     const postulacion = {
       offerId: offer.id,
-      talentId: loggedUser[0].id
-    }
-    dispatch(addmyAplication(postulacion))
-    alert("aplicacion registrada correctamente")
-    handleClosePopup()
-  }
-
+      talentId: loggedUser[0].id,
+    };
+    dispatch(addmyAplication(postulacion));
+    // alert("aplicacion registrada correctamente")
+    handleClosePopup();
+  };
 
   return (
     <section className="talentOffer">
@@ -138,14 +136,26 @@ const TalentOfferJob = ({ id }) => {
                   </button>
                 </div>
 
-                <div className="talentOffer__container-otheroffert">
-                  <button
-                    className="talentOffer__button-otheroffert"
-                    onClick={() => navigate("/jobTalent")}
-                  >
-                    Ver Mis Postulaciones
-                  </button>
-                </div>
+                
+                  <div className="talentOffer__container-otheroffert">
+                    <button
+                      className="talentOffer__button-otheroffert"
+                      onClick={() => navigate("/jobTalent")}
+                    >
+                      Ver Mis Postulaciones
+                    </button>
+                    
+                    <button
+                      className="talentOffer__button-otheroffert"
+                      // onClick={() =>  navigate(`/talentDetails/${user.id}`)}
+                      
+                    >
+                      Ir a Perfil
+                    </button>
+                
+                  </div>
+
+                
               </div>
             </div>
           )}
@@ -184,12 +194,16 @@ const TalentOfferJob = ({ id }) => {
           {isPopupOpen && selectedOfferJob && (
             <div className="talentOffer__aplicattionJob">
               <div className="talentOffer__contenerdorpopup-close">
-                <button className="talentOffer__popup-close" onClick={handleClosePopup}>
+                <button
+                  className="talentOffer__popup-close"
+                  onClick={handleClosePopup}
+                >
                   X
                 </button>
               </div>
               <button className="talentOffer__button-offer">
-                Fecha cierre de convocatoria: {formatTimestamp(selectedOfferJob.closeDate)}
+                Fecha cierre de convocatoria:{" "}
+                {formatTimestamp(selectedOfferJob.closeDate)}
               </button>
               <button className="talentOffer__button-offer">
                 Cargo: {selectedOfferJob.cargo}
@@ -206,7 +220,10 @@ const TalentOfferJob = ({ id }) => {
               <button className="talentOffer__button-offer">
                 Ciudad: {selectedOfferJob.ciudad}
               </button>
-              <button className="talentOffer__button-talentOffer" onClick={()=> handleApplicate(selectedOfferJob)}>
+              <button
+                className="talentOffer__button-talentOffer"
+                onClick={() => handleApplicate(selectedOfferJob)}
+              >
                 Aplicar
               </button>
             </div>

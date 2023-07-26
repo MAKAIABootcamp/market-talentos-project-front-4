@@ -6,7 +6,7 @@ import Footer from '../components/footer/Footer';
 import { useParams } from 'react-router';
 import bitacora from "../assets/bitacora.png";
 import postulaciones from "../assets/postulaciones.png";
-import progreso from "../assets/progreso.png";
+import imgprogreso from "../assets/progreso.png";
 import buscar from "../assets/search.png"
 import WorkExperience from '../components/workExperience/WorkExperience';
 import StudiesTalent from '../components/studiosTalent/StudiesTalent';
@@ -21,7 +21,7 @@ const TalentDetails = () => {
       async function fetchData() {
         const talent = await getTalentFromTalentsCollection(id);
         const arrayValues= Object.values(talent)
-        console.log(Object.values(talent))
+        // console.log(Object.values(talent))
         const totalFields = arrayValues.length
         const missingFields = arrayValues.filter(item => item === "" || item === " ")
         if(missingFields.length > 0) {
@@ -55,7 +55,7 @@ const TalentDetails = () => {
                 {/* <span>Postulaciones</span> */}
               </div>
               <div className='talentDetails__container-progress'>
-                <img src={progreso} alt="progreso" />
+                <img src={imgprogreso} alt="progreso" />
                 {/* <span>Progreso</span> */}
               </div>
               <div className='talentDetails__container-search'>
@@ -65,7 +65,7 @@ const TalentDetails = () => {
             </div>
           </div>
           <div className='talentDetails__container-filteres'>
-            <button className='talentDetails__button-custom'
+            <button className='talentDetails__button-custom' 
 
               onClick={() => setButtonVisibility(true)}
             >Experiencia Laboral</button>

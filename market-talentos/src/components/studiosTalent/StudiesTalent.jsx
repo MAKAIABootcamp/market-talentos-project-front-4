@@ -1,45 +1,47 @@
-import React from 'react'
+import React from 'react';
+import './styleStudiesTalent.scss';
+
 
 const StudiesTalent = () => {
-       
+
     return (
         <>
-        <h1></h1>
-            <div className='studies__container-studies'>
-                <div className='studies__container-imgInstitute'>
-                    <figure className='studies__figure-imgInstitute'>
-                        <img src="" alt="" />
-                    </figure>
-                </div>
-                <div className='studies__container-infoInstitute'>
-                    <h2 className='studies__title-Institute'><strong>La Calle</strong></h2>
-                    <div className='studies__dateInstitute'>
-                        <img src="" alt="calendary" />
-                        <span>febrero - 2023 </span>
-                        <span>julio - 2023 </span>
+            <div>
+                <div className='studies__container-ppal'>
+                    <div className='studies__container-imgInstitute'>
+                        <figure className='studies__figure-imgInstitute'>
+                            <img src="" alt="" />
+                        </figure>
                     </div>
-                    <h2 className='studies__title-rol'>Desarrolladora Front End</h2>
-                    <span className='studies__funtions'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. A praesentium quidem pariatur aperiam quas, amet aliquam quibusdam fuga quos consequuntur ex at possimus, rerum facere dolorum porro in officia repellat.</span>
+                    <div className='studies__container-infoInstitute'>
+                        <h2 className='studies__title-Institute'><strong>MAKAIA</strong></h2>
+                        <div className='studies__dateInstitute'>
+                            <img src="" alt="calendary" />
+                            <span>febrero - 2023 </span>
+                            <span> a </span>
+                            <span>julio - 2023 </span>
+                        </div>
+                        <h2 className='studies__title-rol'>Desarrolladora Front End</h2>
+                    </div>
+                </div>
+                <div className='studies__container-ppal'>
+                    <div className='studies__container-imgInstitute'>
+                        <figure className='studies__figure-imgInstitute'>
+                            <img src="" alt="" />
+                        </figure>
+                    </div>
+                    <div className='studies__container-infoInstitute'>
+                        <h2 className='studies__title-Institute'><strong>INSTITUCION UNIVERSITARIA PASCUAL BRAVO</strong></h2>
+                        <div className='studies__dateInstitute'>
+                            <img src="" alt="calendary" />
+                            <span>junio - 2019 </span>
+                            <span> a </span>
+                            <span>diciembre - 2019 </span>
+                        </div>
+                        <h2 className='studies__title-rol'>Técnica Auxiliar en desarrollo de software</h2>
+                    </div>
                 </div>
             </div>
-            <div className='studies__container-studies'>
-                <div className='studies__container-imgInstitute'>
-                    <figure className='studies__figure-imgInstitute'>
-                        <img src="" alt="" />
-                    </figure>
-                </div>
-                <div className='studies__container-infoInstitute'>
-                    <h2 className='studies__title-Institute'><strong>Makaia</strong></h2>
-                    <div className='studies__dateInstitute'>
-                        <img src="" alt="calendary" />
-                        <span>junio - 2021 </span>
-                        <span>enero - 2022 </span>
-                    </div>
-                    <h2 className='studies__title-rol'>Desarrolladora Front End</h2>
-                    <span className='studies__funtions'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. A praesentium quidem pariatur aperiam quas, amet aliquam quibusdam fuga quos consequuntur ex at possimus, rerum facere dolorum porro in officia repellat.</span>
-                </div>
-            </div>
-
         </>
     )
 }
