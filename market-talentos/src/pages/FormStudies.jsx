@@ -83,10 +83,6 @@ const FormStudies = () => {
     // },
     initialValues: {
       studies:[
-      user?.institution || "",
-      user?.initialDate || "",
-      user?.finishDate || "",
-     user?.programName || "",
     ]
      
     },
@@ -189,14 +185,14 @@ const FormStudies = () => {
                       >
                         Omitir
                       </button>
-                      {/* <button
+                      <button
                         className="formStudies__crearCuenta"
                         type="submit"
                         disabled={!isFormValid}
                         // onClick={() => navigate(`/talentDetails/${user.id}`)}
                       >
                         Guardar
-                      </button> */}
+                      </button>
 
                     </div>
 

@@ -1,6 +1,7 @@
-import { collection, getDocs, doc, deleteDoc, updateDoc, addDoc} from "@firebase/firestore";
+import { collection, getDocs, doc, deleteDoc, updateDoc, addDoc, where, query} from "firebase/firestore";
 import { validateTalents } from "../types/validateTalents";
 import { dataBase } from "../../firebase/firebaseConfig";
+
 
 const collectionName = 'usuarios';
 
@@ -162,3 +163,4 @@ export const actionFilterAsync = (searchParam) => {
     }
   };
 };
+

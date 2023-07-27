@@ -6,14 +6,15 @@ import TalentsAll from "../components/cardTalent/TalentsAll";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { actionGetTalentAsync } from "../redux/actions/validateTalentActions";
+import { actionFilterTalentAsync, actionGetTalentAsync } from "../redux/actions/validateTalentActions";
 
 const Home = () => {
 
   const dispatch = useDispatch();
   let newTalent=useSelector((state)=> state?.talentReducer?._id )
+  const talentsList = useSelector((store) => store.userTalents);
   console.log("newTalent", newTalent);
-
+  const { user } = useSelector((state) => state.user);
 
   useEffect(() => {
     dispatch(actionGetTalentAsync());

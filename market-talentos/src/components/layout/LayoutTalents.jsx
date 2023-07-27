@@ -108,13 +108,13 @@ const LayoutTalents = () => {
       <div className="layoutTalent__container-navLinks">
         {/* Mostrar el menú hamburguesa solo en pantallas pequeñas */}
         <IconButton 
-          edge="right"
+          edge="end"
           color="inherit"
           aria-label="menu"
           onClick={toggleMenu}
           className="layoutTalent__hamburger-icon" // Estilo para el ícono de hamburguesa
         >
-          {menuAbierto ? <MenuIcon onClick={toggleMenu} /> : <MenuIcon onClick={toggleMenu} />}
+          {menuAbierto ? <MenuIcon  /> : <MenuIcon  />}
         </IconButton>
       </div>
     </header>
