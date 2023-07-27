@@ -74,10 +74,7 @@ export const roles = [
     id: 3,
     name: "FullStack"
   },
-  {
-    id: 4,
-    name: "UI/UX Designer"
-  }
+  
 ]
 
 export const languageOptions = [

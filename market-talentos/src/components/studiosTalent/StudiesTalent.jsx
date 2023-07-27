@@ -1,5 +1,7 @@
 import React from 'react';
 import './styleStudiesTalent.scss';
+import imgExp1 from "../../assets/icon/morradoexpert.png";
+import imgExp2 from "../../assets/icon/expertTalent.png";
 
 
 const StudiesTalent = () => {
@@ -10,7 +12,7 @@ const StudiesTalent = () => {
                 <div className='studies__container-ppal'>
                     <div className='studies__container-imgInstitute'>
                         <figure className='studies__figure-imgInstitute'>
-                            <img src="" alt="" />
+                            <img src={imgExp1} alt="" />
                         </figure>
                     </div>
                     <div className='studies__container-infoInstitute'>
@@ -27,7 +29,7 @@ const StudiesTalent = () => {
                 <div className='studies__container-ppal'>
                     <div className='studies__container-imgInstitute'>
                         <figure className='studies__figure-imgInstitute'>
-                            <img src="" alt="" />
+                            <img src={imgExp2} alt="" />
                         </figure>
                     </div>
                     <div className='studies__container-infoInstitute'>

@@ -15,9 +15,9 @@ import {
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
 import { actionDeleteTalentAsync, actionGetTalentAsync, actionEditTalentAsync, actionAddTalentAsync } from "../redux/actions/validateTalentActions";
 import Footer from "../components/footer/Footer";
+import { NavLink, useNavigate } from "react-router-dom";
+import LayoutAdminS from "../components/layout/LayoutAdminSimple";
 import LayoutAdmin from "../components/layout/LayoutAdmin";
-import { NavLink } from "react-router-dom";
-
 
 
 const AdminTalents = () => {
@@ -29,7 +29,7 @@ const AdminTalents = () => {
     dispatch(actionGetTalentAsync())
   }, );
   const { talents } = useSelector((state) => state.validateReducer);
-  console.log(talents);
+  
 
   const validacion = (talento) => {
     const dataTalents = talents.slice();
