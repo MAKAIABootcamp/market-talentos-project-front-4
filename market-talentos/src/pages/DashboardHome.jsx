@@ -30,13 +30,13 @@ import {
 
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
 import { actionDeleteTalentAsync, actionGetTalentAsync } from "../redux/actions/validateTalentActions";
-import LayoutTalents from "../components/layout/LayoutTalents";
+
 import Footer from "../components/footer/Footer";
 import { useNavigate } from "react-router-dom";
-import LayoutAdmin from "../components/layout/LayoutAdmin";
 import { listOfferJob } from '../redux/actions/offerJobActions';
 import { getApplicationsAsync } from "../redux/actions/applicationActions";
 import { getcompanyAsync } from "../redux/actions/companyActions";
+import LayoutAdminS from "../components/layout/LayoutAdminSimple";
 
 
 const DashboardHome = () => {
@@ -86,7 +86,7 @@ const DashboardHome = () => {
 
   return (
     <>
-      <LayoutAdmin />
+      <LayoutAdminS />
 
       {/* ------------------------Section Tabs----------------------- */}
       <main className="main__container">

@@ -135,15 +135,15 @@ const CardTalent = ({id}) => {
             <div className="cardTalents__container-custom">
               <button
                 className="cardTalents__button-custom"
-                onClick={() => handleClick("portfolio", "")}
+                onClick={() => navigate('/formStudies/'+talento.id)}
               >
-                Demoday
+                Estudios
               </button>
               <button
                 className="cardTalents__button-custom"
-                onClick={() => handleClick("curriculum", "")}
+                
               >
-                Hoja de vida
+              Experiencia
               </button>
             </div>
           </section>

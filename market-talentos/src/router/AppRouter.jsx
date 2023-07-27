@@ -71,7 +71,7 @@ const AppRouter = () => {
         <Routes>
           <Route path="/">
             <Route index element={<Home />} />
-            <Route path="formStudies" element={<FormStudies />} />
+           
             <Route element={<PublicRouter isAutentication={false} />}>
               <Route path="login" element={<LoginTalent />} />
               {/* <Route path="login" element={<Login/>} /> */}
@@ -90,6 +90,7 @@ const AppRouter = () => {
               <Route path="searchTalent" element={<SearchTalent />} />
               <Route path="talentDetails/:id" element={<TalentDetails />} />
               <Route path="editProfile/:id" element={<EditProfile />} />
+              <Route path="formStudies/:id" element={<FormStudies />} />
               {/* <Route path="editProfile" element={< FormStudies/>} /> */}
               <Route path="portfolio" element={<Portfolio />} />
               <Route path="curriculum" element={<Curriculum />} />

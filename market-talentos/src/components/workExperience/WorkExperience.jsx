@@ -1,5 +1,7 @@
 import React from 'react';
 import "../workExperience/styleWorkExperience.scss";
+import imgExp1 from "../../assets/icon/morradoexpert.png";
+import imgExp2 from "../../assets/icon/expertTalent.png";
 
 const WorkExperience = () => {
   return (
@@ -7,11 +9,11 @@ const WorkExperience = () => {
         <div className='workExperience__container-workExperience'>
               <div className='workExperience__container-imgCompany'>
                 <figure className='workExperience__figure-imgCompany'>
-                  <img src="" alt="" />
+                  <img src={imgExp1} alt="" />
                 </figure>
               </div>
               <div className='workExperience__container-infoCompany'>
-                <h2 className='workExperience__title-Company'><strong>Makaia</strong></h2>
+                <h2 className='workExperience__title-Company'><strong>MAKAIA</strong></h2>
                 <div className='workExperience__dateCompany'>
                   <img src="" alt="calendary" />
                   <span>febrero - 2023 </span>
@@ -24,11 +26,11 @@ const WorkExperience = () => {
             <div className='workExperience__container-workExperience'>
               <div className='workExperience__container-imgCompany'>
                 <figure className='workExperience__figure-imgCompany'>
-                  <img src="" alt="" />
+                  <img src={imgExp2} alt="" />
                 </figure>
               </div>
               <div className='workExperience__container-infoCompany'>
-                <h2 className='workExperience__title-Company'><strong>Makaia</strong></h2>
+                <h2 className='workExperience__title-Company'><strong>GIANOVA</strong></h2>
                 <div className='workExperience__dateCompany'>
                   <img src="" alt="calendary" />
                   <span>junio - 2021 </span>

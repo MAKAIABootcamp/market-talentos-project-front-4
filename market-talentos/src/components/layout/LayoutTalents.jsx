@@ -42,12 +42,8 @@ const LayoutTalents = () => {
       id: 3,
       name: "Mis Postulaciones",
       path: "/jobTalent",
-    },
-    {
-      id: 4,
-      name: "Blog",
-      path: "/blog",
     }
+    
   ];
   const handleExit = () =>{
     dispatch(singOutAsync());

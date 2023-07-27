@@ -3,11 +3,11 @@ import "../style/styleJobOffers.scss";
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteOfferJob, listOfferJob } from '../redux/actions/offerJobActions';
 import { searchOffer } from '../redux/actions/offerJobActions';
-import LayoutAdmin from '../components/layout/LayoutAdmin';
 import Footer from '../components/footer/Footer';
 import { useNavigate } from 'react-router-dom';
 import edit from "../assets/pencil.svg";
 import deleteIcon from "../assets/trash.svg"
+import LayoutAdminS from '../components/layout/LayoutAdminSimple';
 
 const JobOffers = () => {
 
@@ -35,7 +35,7 @@ const JobOffers = () => {
 
   return (
     <div className='offerJobContianer'>
-      <LayoutAdmin />
+      <LayoutAdminS />
 
       <h1 className='offerJobPageTitle'>Ofertas Laborales</h1>
 
