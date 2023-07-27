@@ -3,7 +3,7 @@ import "../style/styleFormStudies.scss";
 import Swal from "sweetalert2";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { completeProfileAsync } from "../redux/actions/usersActions";
+import { completeProfileAsync, editTalentAsync } from "../redux/actions/usersActions";
 import { useNavigate, useParams } from "react-router-dom";
 import LayoutTalents from "../components/layout/LayoutTalents";
 import { Spinner } from "react-bootstrap";
@@ -48,7 +48,9 @@ const FormStudies = () => {
     // };
 
     const newStudie = {
+      id: user?.id,
       studies: [
+        
         values.institution,
         values.initialDate,
         values.finishDate,
@@ -56,7 +58,8 @@ const FormStudies = () => {
         values.title]
     };
     dispatch(
-      completeProfileAsync(newStudie, user.type)
+      editTalentAsync(newStudie, user.type)
+      
     ).then((result) => {
       Swal.fire({
         icon: "success",

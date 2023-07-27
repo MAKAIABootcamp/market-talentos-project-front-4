@@ -3,6 +3,7 @@ import {
   userRegister,
   completeTalentData,
   keepPersistentUserData,
+  editTalentData,
 } from "../../services/userServices";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "../../firebase/firebaseConfig";
@@ -147,6 +148,26 @@ export const completeProfileAsync = (newTalent, type) => {
   };
 };
 
+
+// funcion asyncrona para completar el perfil de un usuario desde el formulario editProfile
+export const editTalentAsync = (newTalent, type) => {
+
+  return async (dispatch) => {
+    try {
+      console.log("newTalent", newTalent);
+      const talent = await editTalentData(newTalent, type);
+      dispatch(editProfileSync(talent, false));
+    } catch (error) {
+      console.log(error);
+      const showError = {
+        code: error.code,
+        message: error.message,
+      };
+      dispatch(editProfileSync({}, showError));
+      return error
+    }
+  };
+};
 // funcion syncrona para completar el perfil de un usuario desde el formulario editProfile
 const completeProfileSync = (otherDataUser, error) => {
   return {
@@ -157,7 +178,16 @@ const completeProfileSync = (otherDataUser, error) => {
     },
   };
 }
-
+// funcion syncrona para editar el perfil de un usuario desde el formulario editProfile
+const editProfileSync = (otherDataUser, error) => {
+  return {
+    type: userTypes.USER_EDITTALENTS,
+    payload: {
+      otherData: otherDataUser,
+      error: error
+    },
+  };
+}
 // función ingresar con google o facebook
 // export const actionLoginGoogleOrFacebook = (provider) => {
 //   return (dispatch) => {

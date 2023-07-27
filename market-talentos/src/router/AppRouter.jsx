@@ -94,7 +94,7 @@ const AppRouter = () => {
               <Route path="talentDetails/:id" element={<TalentDetails />} />
               <Route path="editProfile/:id" element={<EditProfile />} />
               {/* <Route path="editProfile" element={< FormStudies/>} /> */}
-            <Route path="formstudies" element={<FormStudies />} />
+            <Route path="formstudies/:id" element={<FormStudies />} />
               <Route path="portfolio" element={<Portfolio />} />
               <Route path="curriculum" element={<Curriculum />} />
               <Route path="jobTalent" element={<JobApplicatioTalent />} />
