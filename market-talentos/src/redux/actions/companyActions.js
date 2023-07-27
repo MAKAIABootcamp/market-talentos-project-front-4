@@ -1,6 +1,7 @@
 import { companyTypes } from "../types/companyTypes";
 import { getCompanyFromFirebase } from "../../services/companyServices";
 
+
 export const setcompanySync = (companies) => {
     return {
         type: companyTypes.SET_COMPANY,

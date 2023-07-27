@@ -1,0 +1,31 @@
+@import '../../style/style.scss';
+
+.seccionFilter{
+
+    
+    display: flex;
+    width: 700px;
+    justify-content: center;
+    align-items: center;
+   
+
+    &__container-filter{
+        display: flex;
+        width: 400px;
+        gap: 20px;
+    }
+    
+    &__button-all{
+        @include styleSquare($skyBkue, $skyBkue, $wi75, $he25, 
+     $gray, $s12, $w400, 
+       $yellow, $yellow, $gray);
+    }
+
+    &__button-rol{
+        @include styleSquare($skyBkue, $skyBkue, $wi105, $he25, 
+     $gray, $s12, $w400, 
+       $yellow, $yellow, $gray);
+    }
+   
+
+}

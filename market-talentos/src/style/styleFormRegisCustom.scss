@@ -1,6 +1,6 @@
 @import "./style.scss";
 
-.formStudies {
+.registerCompany {
   margin-top: 20px;
   display: flex;
   flex-direction: column;
@@ -88,6 +88,34 @@
     }
   }
 
+  &__user-photo {
+    @include desk {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      h5 {
+        display: flex;
+        color: white;
+        justify-content: center;
+        font-family: $fontMontserrat;
+      }
+      input {
+        color: white;
+        background-color: transparent;
+      }
+      div {
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+
+  &__container-inputPhoto{
+   
+    display: flex;
+    flex-direction: column;
+  }
 
   &__file-input-label {
     display: flex;
@@ -144,17 +172,13 @@
     margin-left: 10px;
     width: 93%;
   }
-  &__container-buttons{
-    display: flex;
-    justify-content: space-around;
-    gap: 20px;
-  }
+
   &__crearCuenta {
     @include desk {
       @include styleSquare(
         $yellow,
         $yellow,
-        $wi150,
+        $wi85,
         $he25,
         $gray,
         $s12,
@@ -165,23 +189,6 @@
       );
     }
   }
-  & &__omitir {
-    @include desk {
-      @include styleSquare(
-        $yellow,
-        $yellow,
-        $wi150,
-        $he25,
-        $gray,
-        $s12,
-        $w400,
-        $white,
-        $gray,
-        $gray
-      );
-    }
-  }
-
 }
 
 @media screen and (max-width: 768px) {
