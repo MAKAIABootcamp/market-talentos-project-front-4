@@ -135,7 +135,7 @@ const CardTalent = ({id}) => {
             <div className="cardTalents__container-custom">
               <button
                 className="cardTalents__button-custom"
-                onClick={() => handleClick("portfolio", "")}
+                onclick ={() =>navigate('/formstudies/'+talento.id)}
               >
                 Demoday
               </button>

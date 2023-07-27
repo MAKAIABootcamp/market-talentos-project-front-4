@@ -37,8 +37,7 @@ const FormStudies = () => {
   });
 
   const handleSubmit = async (values) => {
-    console.log("values", values);
-    console.log("user", user);
+    
 
     // const newStudie = {
     //   institution: values.institution,

@@ -129,8 +129,10 @@ export const registerActionSync = (user, error) => {
 
 // funcion asyncrona para completar el perfil de un usuario desde el formulario editProfile
 export const completeProfileAsync = (newTalent, type) => {
+
   return async (dispatch) => {
     try {
+      console.log("newTalent", newTalent);
       const talent = await completeTalentData(newTalent, type);
       dispatch(completeProfileSync(talent, false));
     } catch (error) {
