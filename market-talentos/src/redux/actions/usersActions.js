@@ -2,7 +2,6 @@ import { userTypes, talentsTypes } from "../types/talentsTypes"
 import {
   userRegister,
   completeTalentData,
-  keepPersistentUserData,
   editTalentData,
 } from "../../services/userServices";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";

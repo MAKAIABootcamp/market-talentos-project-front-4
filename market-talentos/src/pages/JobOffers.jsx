@@ -52,10 +52,10 @@ const JobOffers = () => {
           <button className='offersFilterButton'>Backend</button>
         </section> */}
 
-        {offerJobList.offerJob?.map((offer, index) => {
+        {offerJobList.offerJob?.map((offer) => {
           return <div className='offerCard'>
             <div className='offerTitleCharge'>
-              <h2 className='TitleCharge'>{offer.cargo}</h2>
+              <h2 className='TitleCharge' key={offer.id}>{offer.cargo} </h2>
             </div>
             <div className='offerJobInformation'>
               <div className='offerSectionOne'>

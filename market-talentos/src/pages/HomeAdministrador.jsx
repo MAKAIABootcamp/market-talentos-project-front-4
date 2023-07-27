@@ -17,7 +17,7 @@ const HomeAdministrador = () => {
 
   const talentosEncontrados = useSelector((store) => store.userTalents);
   const { user } = useSelector((state) => state.user);
-  const findTalents = talentosEncontrados.userTalents.find(talento => talento.id === user.id);
+  // const findTalents = talentosEncontrados.userTalents.find(talento => talento.id === user.id);
   const userStore = useSelector((store) => store.user.user);
   const navigate = useNavigate();
 

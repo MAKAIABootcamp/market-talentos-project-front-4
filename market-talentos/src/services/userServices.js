@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import {
   collection,
   query,
@@ -36,7 +36,6 @@ export const completeTalentData = async (newTalent, type) => {
     if (type === collections.talentos) {
       const docuRef= doc(dataBase, type, newTalent.id)
       await setDoc(docuRef, newTalent);
-      const docuRefUsuario= doc(dataBase, "usuarios", newTalent.id)
       await setDoc(docuRef, newTalent);
     } else {
       return {};

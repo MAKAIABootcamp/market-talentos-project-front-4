@@ -29,7 +29,7 @@ const LoginTalent = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { loggedUser } = useSelector((store) => store.user);
-  const { isLoading, isLogged } = useSelector((store) => store.appReducer);
+  const { isLoading } = useSelector((store) => store.appReducer);
 
   const {
     register,
