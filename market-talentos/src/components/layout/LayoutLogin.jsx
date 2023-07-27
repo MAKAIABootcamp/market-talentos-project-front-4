@@ -115,16 +115,16 @@ const LayoutLogin = () => {
         <div className="layoutLogin__container-navLinks">
           {/* Mostrar el menú hamburguesa solo en pantallas pequeñas */}
           <IconButton
-            edge="right"
+            edge="end"
             color="inherit"
             aria-label="menu"
             onClick={toggleMenu}
             className="layoutLogin__hamburger-icon" // Estilo para el ícono de hamburguesa
           >
             {menuAbierto ? (
-              <MenuIcon onClick={toggleMenu} />
+              <MenuIcon />
             ) : (
-              <MenuIcon onClick={toggleMenu} />
+              <MenuIcon />
             )}
           </IconButton>
         </div>

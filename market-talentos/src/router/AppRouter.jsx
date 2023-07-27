@@ -12,7 +12,7 @@ import Talent from "../pages/Talent";
 import FormRegisTalent from "../pages/FormRegisTalent";
 import Curriculum from "../pages/Curriculum";
 import SearchTalent from "../pages/SearchTalent";
-import FormRegisCustom from "../pages/FormRegisCustom";
+
 import ProfileCustomer from "../pages/ProfileCustomer";
 import JobOffers from "../pages/JobOffers";
 import Blog from "../pages/Blog";
@@ -46,6 +46,8 @@ import { auth } from "../firebase/firebaseConfig";
 import { useEffect, useState } from "react";
 import { setIsLogged } from "../redux/actions/appActions";
 import { getLoggedUser } from "../redux/actions/userActions"; 
+import FormRegisCustom from "../pages/FormRegisCustom";
+import HomeCompany from "../pages/HomeCompany";
 
 const AppRouter = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -63,7 +65,7 @@ const AppRouter = () => {
         setIsLogged(false)
       }
     });
-  },[isAuthenticated, setIsAuthenticated, isLogged])
+  },[isAuthenticated, setIsAuthenticated, isLogged, dispatch])
 
   return (
     <>
@@ -71,11 +73,11 @@ const AppRouter = () => {
         <Routes>
           <Route path="/">
             <Route index element={<Home />} />
-            <Route path="formStudies" element={<FormStudies />} />
             <Route element={<PublicRouter isAutentication={false} />}>
               <Route path="login" element={<LoginTalent />} />
               {/* <Route path="login" element={<Login/>} /> */}
               <Route path="formRegisTalent" element={<FormRegisTalent />} />
+              <Route path="formRegisCustom" element={<FormRegisCustom />} />
               {/* <Route path="formRegister" element={< FormRegister/>} /> */}
               {/* <Route path="loginAdmin" element={<LoginAdmin />} /> */}
               <Route path="blog" element={<Blog />} />
@@ -90,7 +92,7 @@ const AppRouter = () => {
               <Route path="searchTalent" element={<SearchTalent />} />
               <Route path="talentDetails/:id" element={<TalentDetails />} />
               <Route path="editProfile/:id" element={<EditProfile />} />
-              {/* <Route path="editProfile" element={< FormStudies/>} /> */}
+              <Route path="formstudies/:id" element={<FormStudies />} />
               <Route path="portfolio" element={<Portfolio />} />
               <Route path="curriculum" element={<Curriculum />} />
               <Route path="jobTalent" element={<JobApplicatioTalent />} />
@@ -102,13 +104,12 @@ const AppRouter = () => {
               <Route path="homecompany" element={<HomeEmpresas />} />
               <Route path="searchcompany" element={<SearchCompany />} />
               <Route path="customer" element={<Customer />} />
-              <Route path="formRegisCustom" element={<FormRegisCustom />} />
               <Route path="profileCustomer" element={<ProfileCustomer />} />
               <Route path="jobOffers" element={<JobOffers />} />
               <Route path="homeadmins" element={<HomeAdministrador />} />
               <Route path="adminsT" element={<AdminTalents />} />
               <Route path="adminsV" element={<AdminVacants />} />
-              
+              <Route path="homeempresas" element={<HomeCompany />} />
             </Route>
           </Route>
         </Routes>

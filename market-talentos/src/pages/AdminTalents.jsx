@@ -15,19 +15,20 @@ import {
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
 import { actionDeleteTalentAsync, actionGetTalentAsync, actionEditTalentAsync, actionAddTalentAsync } from "../redux/actions/validateTalentActions";
 import Footer from "../components/footer/Footer";
-import LayoutAdmin from "../components/layout/LayoutAdmin";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import LayoutAdminS from "../components/layout/LayoutAdminSimple";
 
 
 const AdminTalents = () => {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(actionGetTalentAsync())
   }, []);
   const { talents } = useSelector((state) => state.validateReducer);
-  console.log(talents);
+  
 
   const validacion = (talento) => {
     const dataTalents = talents.slice();
@@ -46,11 +47,18 @@ const AdminTalents = () => {
   return (
     <>
       {/* -------------Header---------------------------- */}
-      <LayoutAdmin />
+      {/* <LayoutAdmin /> */}
+     <LayoutAdminS />
 
       {/* -------------Welcome Message---------------------------- */}
-      <p className="message__p">Bienvenido Administrador</p>
-
+      <div className="infoAdminUp">
+      <p className="message__pt" >Bienvenido Administrador</p>
+      {/* <button
+      className="message__bt"
+      onClick={() => navigate("/homeadmins")}>
+        Home
+      </button> */}
+      </div>
       {/* ------------------------Main----------------------- */}
       <main className="main__container">
 
@@ -59,7 +67,7 @@ const AdminTalents = () => {
           {/* ------------------------ Tabs List----------------------- */}
           <section className="main__container__sectiontabs" >
             <TabList className="main__container__sectiontabsL">
-              <Tab className="main__container__sectiontab"> Métricas</Tab>
+              <Tab className="main__container__sectiontab"> Validación de Talentos</Tab>
             </TabList>
           </section>
           {/* ------------------------Tabs Panels----------------------- */}
@@ -103,12 +111,12 @@ const AdminTalents = () => {
 
 
 
-                              <Td className="main__container__tdA">
+                              <Td >
 
                                 {item.validateUser === true ? <CheckIcon /> : <button
 
                                   onClick={() => validacion(item)}
-
+                                  className="main__container__tdA"
 
                                 >Aceptar</button>}
 
@@ -116,8 +124,8 @@ const AdminTalents = () => {
 
                               <Td>
 
-                                <button>
-                                  <NavLink to={`/talentDetails/${item.id}`}> Perfil </NavLink>
+                                <button className="main__container__tdL">
+                                  <NavLink className="main__container__tdLink" to={`/talentDetails/${item.id}`}> Perfil </NavLink>
                                 </button>
 
                               </Td>

@@ -47,18 +47,19 @@ export const TiposDeUsuarios = {
 };
 
 export const typesUsers = [
-  {id: 1,
-  name: "administradores"
-  }, 
-  {id: 2,
+  {
+    id: 1,
+    name: "administradores"
+  },
+  {
+    id: 2,
     name: "empresas"
   },
-  {id: 3,
-      name: "talentos"
+  {
+    id: 3,
+    name: "talentos"
   },
 ]
- 
-
 
 export const roles = [
   {
@@ -73,30 +74,25 @@ export const roles = [
     id: 3,
     name: "FullStack"
   },
-  {
-    id: 4,
-    name: "UI/UX Designer"
-  }
+  
 ]
 
- export const languageOptions = [
+export const languageOptions = [
+  { id: "Java", label: "JAVA" },
+  { id: "Python.", label: "PYTHON." },
+  { id: "php", label: "PHP" },
+  { id: "sql", label: "SQL" },
+  { id: "ruby", label: "RUBY" },
+  { id: "html", label: "HTML" },
+  { id: "javaScript", label: "JAVASCRIPT" },
+  { id: "react", label: "REACT" },
+  { id: "redux", label: "REDUX" },
+  { id: "github", label: "GITHUB" },
+  { id: "axios", label: "AXIOS" },
   { id: "css", label: "CSS" },
-    { id: "sass", label: "SASS" },
-    { id: "react", label: "REACT" },
-    { id: "javaScript", label: "JAVASCRIPT" },
-    { id: "html", label: "HTML" },
-    { id: "github", label: "GITHUB" },
-    { id: "redux", label: "REDUX" },
-    { id: "bootstrap", label: "BOOTSTRAP" },
-    { id: "axios", label: "AXIOS" },
-    { id: "Java", label: "JAVA" },
-    { id: "Python.", label: "PYTHON." },
-    { id: "php", label: "PHP" },
-    { id: "ruby", label: "RUBY" },
-    { id: "nodeJs", label: "NODEJS" },
-    { id: "sql", label: "SQL" },
-    { id: "StyledComponent", label: "STYLECOMPONENT" },
-    { id: "material ui", label: "MATERIAL UI" },
-    
-
+  { id: "sass", label: "SASS" },
+  { id: "bootstrap", label: "BOOTSTRAP" },
+  { id: "nodeJs", label: "NODEJS" },
+  { id: "StyledComponent", label: "STYLECOMPONENT" },
+  { id: "material ui", label: "MATERIAL UI" },
 ];

@@ -43,7 +43,7 @@ const LayoutAdmin = () => {
         <div className='layoutTalent__container-imgReturn'>
 
           <figure
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/homeadmins")}
             className="layoutTalent__figure-imgReturn">
             <img src={imgReturn} alt="imgReturn" />
           </figure>
@@ -57,7 +57,7 @@ const LayoutAdmin = () => {
           <ul className='layoutTalent__navbar-ul'>
             {products.map((item) => (
               <li key={item.id}>
-                <NavLink  className={"layoutTalent__link"} to={item.path}>{item.name}</NavLink>
+                <NavLink  className="layoutTalent__link" to={item.path}>{item.name}</NavLink>
               </li>
             ))}
           </ul>

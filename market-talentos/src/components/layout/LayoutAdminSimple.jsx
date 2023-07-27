@@ -31,11 +31,11 @@ const LayoutAdminS = () => {
       path: "/dash",
     }
   ]
-  
+
   return (
     <>
-      <header className="layoutTalent">
-        <div className='layoutTalent__container-imgReturn'>
+      <header className="layoutAdmin">
+        <div className='layoutAdmin__container-imgReturn'>
 
           <figure
             onClick={() => navigate("/")}
@@ -43,34 +43,30 @@ const LayoutAdminS = () => {
             <img src={imgReturn} alt="imgReturn" />
           </figure>
         </div>
-        <div className="layoutTalent__container-logo">
+        <div className="layoutAdmin__container-logo">
           <figure className="layoutTalent__figure-logo">
             <img src={LogoMakaia} alt="logo de la empresa" />
           </figure>
         </div>
-        <div className="layoutTalent__container-navLink">
+        <div className="layoutAdmin__container-navLink">
 
-            {/* <span className='layoutTalent__container-message'>Bienvenido Administrador</span> */}
-
-
-
-          <ul className='layoutTalent__navbar-ulAd'>
+          <ul className='layoutAdmin__navbar-ul'>
             {products.map((item) => (
               <li key={item.id}>
-                <NavLink  className={"layoutTalent__linkAd"} to={item.path}>{item.name}</NavLink>
+                <NavLink className="layoutAdmin__link" to={item.path}>{item.name}</NavLink>
               </li>
             ))}
           </ul>
         </div>
-        <div className='layoutTalent__container-login'>
-          <div className='layoutTalent__container-imgTalentAd'>
+       <div className='layoutTalent__container-login'>
+          <div className='layoutTalent__container-imgTalent'>
             <figure className='layoutTalent__card-figure'>
               <img src={usuario} alt="imgTalent" />
             </figure>
           </div>
           <div>
             <button
-              className='layoutTalent__button-exitAd'
+              className='layoutTalent__button-exit'
               onClick={() => dispatch(singOutAsync())}>
               <figure className='layoutTalent__figure-exit'>
                 <img src={imgExit} alt="exit" />

@@ -1,0 +1,207 @@
+@import "../../style/style.scss";
+
+.layoutCompany {
+  @include desk {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+  }
+  &__container-imgReturn {
+    width: 100px;
+    height: auto;
+    display: flex;
+    margin-left: 10px;
+    align-items: center;
+  }
+  &__figure-imgReturn {
+    width: 15px;
+    height: 15px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &__container-logo {
+    width: 260px;
+  }
+
+  &__figure-logo {
+    width: 150px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    margin-left: -60px;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__container-navLink {
+    display: flex;
+    align-items: center;
+    margin-left: -114px;
+  }
+
+  &__container-navLinks {
+    display: none;
+  }
+
+  &__navbar-ul {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  &__link {
+    text-decoration: none;
+    @include text($fontRoboto, $w400, $s14, $gray);
+  }
+  &__container-logins {
+    display: flex;
+    align-items: center;
+    width: 280px;
+    justify-content: center;
+    gap: 25px;
+  }
+  &__container-login {
+    display: flex;
+    align-items: center;
+    width: 200px;
+    justify-content: center;
+    gap: 25px;
+  }
+
+  &__container-loginHamburguer {
+    display: flex;
+    align-items: center;
+    width: 200px;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 20px;
+  }
+
+  &__chatbot {
+    width: 30px;
+  }
+
+  &__notification {
+    width: 20px;
+  }
+  &__container-imgTalent {
+    @include desk {
+      @include styleRound(
+        $skyBkue,
+        $skyBkue,
+        $wi35,
+        $he35,
+        $white,
+        $s14,
+        $w300,
+        $skyBkue,
+        $skyBkue,
+        $gray
+      );
+      position: relative;
+    }
+  }
+
+  &__card-figure {
+    @include desk {
+      @include styleRound(
+        $white,
+        $skyBkue,
+        $wi35,
+        $he35,
+        $white,
+        $s14,
+        $w300,
+        $white,
+        $skyBkue,
+        $gray
+      );
+
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 5rem;
+      }
+    }
+  }
+
+  &__button-exit {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    background-color: transparent;
+    align-items: center;
+    color: $skyBkue;
+    margin-left: 2px;
+  }
+
+  &__figure-exit {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__hamburger-icon {
+    @include desk {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .layoutCompany {
+    &__container-navLinks {
+      display: block;
+    }
+    &__container-navLink {
+      display: none;
+    }
+    &__container-logins {
+      display: none;
+    }
+    //   &_figure-logo {
+    //   //  margin-left: -83px;
+    // }
+  }
+
+  @media screen and (max-width: 375px) {
+    .layoutCompany {
+      &__container-navLinks {
+        display: block;
+      }
+      &__container-navLink {
+        display: none;
+      }
+      &__container-logins {
+        display: none;
+      }
+      &__figure-logo {
+        width: 150px;
+        height: auto;        display: flex;
+        justify-content: center;
+        margin-left: -60px;
+
+        img {
+          width: 85%;
+          height: 85%;
+        }
+      }
+      &__close-icon {
+        margin-top: 20px;
+      }
+    }
+  }
+}

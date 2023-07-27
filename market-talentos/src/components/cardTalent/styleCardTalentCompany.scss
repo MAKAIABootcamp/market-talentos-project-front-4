@@ -1,6 +1,6 @@
 @import "../../style/style.scss";
 
-.cardTalents {
+.cardCompany {
   margin-left: 60px;
   margin-top: 40px;
 
@@ -82,7 +82,14 @@
       align-items: center;
     }
   }
-
+  &__buttons-whatsapp{
+    width: 20px;
+    height: 20px;
+    img{
+      width: 100%;
+      height: 100%;
+    }
+  }
   &__container-levelEnglish {
     @include desk {
       display: flex;
@@ -93,19 +100,21 @@
   &__buttons-edit {
     @include desk {
       @include styleSquare(
-        $yellow,
-        $yellow,
+        $white,
+        $white,
         $wi75,
         $he25,
         $gray,
         $s12,
         $w400,
-        $skyBkue,
-        $skyBkue,
-        $gray
+        $white,
+        $white,
+        $white,
       );
     }
   }
+
+  
 
   &__line {
     @include desk {
@@ -368,24 +377,17 @@
   &__button-custom {
     @include desk {
       @include styleSquare(
-        $skyBkue,
-        $skyBkue,
+        $yellow,
+        $yellow,
         $wi125,
         $he20,
         $gray,
         $s12,
         $w300,
-        $yellow,
-        $yellow,
-        $white
+        $skyBkue,
+        $skyBkue,
+        $gray,
       );
     }
-  }
-}
-/* .........media query mobile.......... */
-
-@media screen and (max-width: 375px) {
-  .cardTalents {
-    margin-left: 57px;
   }
 }

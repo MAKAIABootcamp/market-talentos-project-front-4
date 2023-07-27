@@ -1,12 +1,13 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import LayoutAdminS from '../components/layout/LayoutAdminSimple';
 import Footer from '../components/footer/Footer'
 import "../style/styledHomeAdministrador.scss";
 import bannerAd from "../assets/bannerAd.png";
 import { useSelector } from 'react-redux';
 import { Card, CardHeader, CardBody, CardFooter, SimpleGrid, Heading, Button, Text } from '@chakra-ui/react'
-// import { Progress } from '@chakra-ui/react'
+import LayoutAdminS from '../components/layout/LayoutAdminSimple';
+import imgAdmin from '../assets/icon/WhatsApp Image 2023-07-27 at 12.37.23 AM.jpeg';
+// import { Progress } /from '@chakra-ui/react'
 
 
 
@@ -16,7 +17,7 @@ const HomeAdministrador = () => {
 
   const talentosEncontrados = useSelector((store) => store.userTalents);
   const { user } = useSelector((state) => state.user);
-  const findTalents = talentosEncontrados.userTalents.find(talento => talento.id === user.id);
+  // const findTalents = talentosEncontrados.userTalents.find(talento => talento.id === user.id);
   const userStore = useSelector((store) => store.user.user);
   const navigate = useNavigate();
 
@@ -43,9 +44,9 @@ const HomeAdministrador = () => {
           <div className='grid-left__admin'>
             <div>
               <figure className="cardTalents__card-figureAd">
-                <img src={userStore ? userStore.phothoURL : ""} alt="imgTalent" />
+                <img src={imgAdmin} alt="imgTalent" />
               </figure>
-              <span className="cardTalents__card-figureAd__span">Cleopatra Pérez</span>
+              <span className="cardTalents__card-figureAd__span">Ana Ramírez</span>
             </div>
             <div className='grid-left__admin__spanp'>
               <span className='grid-left__admin__span'>Administrador</span>

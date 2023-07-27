@@ -23,7 +23,7 @@ const TalentOfferJob = ({ id }) => {
   useEffect(() => {
     dispatch(listOfferJob());
    
-  }, [dispatch]);
+  }, [dispatch, talento]);
 
   useEffect(() => {
     async function fetchData() {
@@ -147,8 +147,7 @@ const TalentOfferJob = ({ id }) => {
                     
                     <button
                       className="talentOffer__button-otheroffert"
-                     
-                      // onClick={() => navigate('/talentDetails/'+talento.id)}
+                      // onClick={() => navigate(`/talentDetails/${talento.id}`)}
                       
                     >
                       Ir a Perfil
