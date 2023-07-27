@@ -47,6 +47,21 @@ export const completeTalentData = async (newTalent, type) => {
   }
 };
 
+export const editTalentData = async (editTalent, type) => {
+  try {
+    if (type === collections.talentos) {
+      const docuRef= doc(dataBase, type, editTalent.id)
+      await updateDoc(docuRef, editTalent);
+      
+    } else {
+      return {};
+    }
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+
 export const keepPersistentUserData = async (token) => {
   console.log("entré en Keep", token);
 

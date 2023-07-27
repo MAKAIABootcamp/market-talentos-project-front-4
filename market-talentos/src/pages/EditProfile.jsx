@@ -115,6 +115,7 @@ const EditProfile = () => {
 
   const formik = useFormik({
     initialValues: {
+      
       github: user?.github || "",
       linkedIn: user?.linkedIn || "",
       profile: user?.profile || "",

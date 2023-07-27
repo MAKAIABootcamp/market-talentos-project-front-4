@@ -93,9 +93,9 @@ const LoginTalent = () => {
     dispatch(getLoggedUser(data.email));
   };
 
-  const handleRegister = () => {
-    navigate('/formRegisTalent')
-  }
+  // const handleRegister = () => {
+  //   navigate('/formRegisTalent')
+  // }
 
   return (
     <>
@@ -189,7 +189,7 @@ const LoginTalent = () => {
                       id="btnRegister"
                       value="Register"
                       className="loginTalent__button-registerLink"
-                      onClick={() => handleRegister()}
+                      onClick={() => navigate('/formRegisTalent')}
                     >
                       Talento
                     </button>
@@ -198,7 +198,7 @@ const LoginTalent = () => {
                       id="btnRegister"
                       value="Register"
                       className="loginTalent__button-registerLink"
-                      onClick={() => navigate('/formRegisTalent')}
+                      onClick={() => navigate('/formRegisCustom')}
                     >
                       Empresa
                     </button>

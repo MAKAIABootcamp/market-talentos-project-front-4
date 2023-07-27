@@ -47,7 +47,16 @@ const userReducer = (state = initialState, action) => {
           },
         error: action.payload.error
       };
-
+      case userTypes.USER_EDITTALENTS:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          ...action.payload.otherData,
+          },
+        error: action.payload.error
+      };
+      
     case talentsTypes.SAVE_TALENT_ID:
       return {
         ...state,

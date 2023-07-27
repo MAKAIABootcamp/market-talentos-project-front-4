@@ -106,13 +106,13 @@ const LayoutHome = () => {
         {/* Mostrar el menú hamburguesa solo en pantallas pequeñas */}
 
         <IconButton 
-          edge="right"
+          edge="end"
           color="inherit"
           aria-label="menu"
           onClick={toggleMenu}
           className="LayoutHome__hamburger-icon" // Estilo para el ícono de hamburguesa
         >
-          {menuAbierto ? <MenuIcon onClick={toggleMenu} /> : <MenuIcon onClick={toggleMenu} />}
+          {menuAbierto ? <MenuIcon /> : <MenuIcon  />}
         </IconButton>
         </div>
       
