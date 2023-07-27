@@ -1,6 +1,7 @@
-import { collection, getDocs, doc, deleteDoc, updateDoc, addDoc} from "@firebase/firestore";
+import { collection, getDocs, doc, deleteDoc, updateDoc, addDoc, where, query} from "firebase/firestore";
 import { validateTalents } from "../types/validateTalents";
 import { dataBase } from "../../firebase/firebaseConfig";
+
 
 const collectionName = 'usuarios';
 
@@ -103,3 +104,63 @@ const actionAddTalentSync = (usuario) => {
     payload: usuario,
   };
 };
+
+// acciones de filtrado y busqueda en la colección de talentos
+
+export const actionFilterTalentAsync = (searchParam, searchValue) => {
+  return async (dispatch) => {
+    const talentCollection = collection(dataBase, collectionTalento);
+    const q = query(talentCollection, where(searchParam, "==", searchValue));
+    const wordSearch = [];
+    try {
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        wordSearch.push({
+          id: doc.id,
+          ...doc.data(),
+        });
+      });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dispatch(actionFilterTalentsSync(wordSearch));
+    }
+  };
+};
+
+const actionFilterTalentsSync = (wordSearch) => {
+  return {
+    type: validateTalents.FILTER_TALENTS,
+    payload: {
+      talents: wordSearch,
+    },
+  };
+};
+
+
+export const actionFilterAsync = (searchParam) => {
+  return async (dispatch) => {
+    const  talentCollection = collection(dataBase, collectionName);
+    const querySnapshot = await getDocs( talentCollection);
+    const talentosSearch = [];
+    try {
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        talentosSearch.push({
+          id: doc.id,
+          ...doc.data(),
+        });
+        //   console.log(doc.id, " => ", doc.data());
+      });
+  
+      const filterdTalentos = talentosSearch.filter((item) =>
+        item.name.toLowerCase().includes(searchParam.toLowerCase())
+      );
+      dispatch(actionFilterTalentsSync(filterdTalentos));
+    } catch (error) {
+      console.error(error);
+      dispatch(actionFilterTalentsSync([]));
+    }
+  };
+};
+
