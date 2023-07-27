@@ -39,9 +39,11 @@ Inicialización del proyecto:
 
 `npm start`
 
-# Sitio Web 📦
+# Documentación 📦
 
-Despliegue del Proyecto https://marketplace-talents.web.app/.
+* Descripción detallada del Proyecto: [Desing Thinking](https://docs.google.com/spreadsheets/d/1PFfNX9AJm0xqMqTH-c6fIpLoAhiO6BSR/edit?usp=sharing&ouid=106278937092452232701&rtpof=true&sd=true)
+* Prototipo: [Flujo de Programa ](https://drive.google.com/file/d/1G9ygEFUssqlvY0-abHYqOnzKIJM_tj-S/view?usp=sharing)
+* Despliegue del Proyecto: [URL Firebase](https://marketplace-talents.web.app/.)
 
 
 # Autores
