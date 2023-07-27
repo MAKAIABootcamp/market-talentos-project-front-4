@@ -16,18 +16,18 @@ import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
 import { actionDeleteTalentAsync, actionGetTalentAsync, actionEditTalentAsync, actionAddTalentAsync } from "../redux/actions/validateTalentActions";
 import Footer from "../components/footer/Footer";
 import LayoutAdmin from "../components/layout/LayoutAdmin";
-import { NavLink, useNavigate } from "react-router-dom";
-import LayoutAdminS from "../components/layout/LayoutAdminSimple";
+import { NavLink } from "react-router-dom";
+
 
 
 const AdminTalents = () => {
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  
 
   useEffect(() => {
     dispatch(actionGetTalentAsync())
-  }, []);
+  }, );
   const { talents } = useSelector((state) => state.validateReducer);
   console.log(talents);
 
@@ -48,17 +48,12 @@ const AdminTalents = () => {
   return (
     <>
       {/* -------------Header---------------------------- */}
-      {/* <LayoutAdmin /> */}
+   
       <LayoutAdmin/>
 
       {/* -------------Welcome Message---------------------------- */}
       <div className="infoAdminUp">
       <p className="message__pt" >Bienvenido Administrador</p>
-      {/* <button
-      className="message__bt"
-      onClick={() => navigate("/homeadmins")}>
-        Home
-      </button> */}
       </div>
       {/* ------------------------Main----------------------- */}
       <main className="main__container">
@@ -174,25 +169,10 @@ const AdminTalents = () => {
                   </TableContainer>
 
                 </div>
-
-
-
               </TabPanel>
-
-              {/* ------------------------Section Tabs Empresas----------------------- */}
-
-
-              {/* ------------------------Section Tabs Panels Intermediaciones----------------------- */}
-
-
             </TabPanels>
           </section>
         </Tabs>
-
-
-
-
-
       </main >
 
       <Footer />

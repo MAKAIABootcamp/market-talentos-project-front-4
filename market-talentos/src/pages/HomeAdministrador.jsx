@@ -6,11 +6,6 @@ import bannerAd from "../assets/bannerAd.png";
 import { useSelector } from 'react-redux';
 import { Card, CardHeader, CardBody, CardFooter, SimpleGrid, Heading, Button, Text } from '@chakra-ui/react'
 import LayoutAdminS from '../components/layout/LayoutAdminSimple';
-// import { Progress } from '@chakra-ui/react'
-
-
-
-
 
 const HomeAdministrador = () => {
 
@@ -19,6 +14,7 @@ const HomeAdministrador = () => {
   const findTalents = talentosEncontrados.userTalents.find(talento => talento.id === user.id);
   const userStore = useSelector((store) => store.user.user);
   const navigate = useNavigate();
+  console.log(findTalents);
 
 
   return (

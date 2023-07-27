@@ -1,38 +1,24 @@
 import React, { useEffect, useState } from "react";
 import "../style/styleDashboardHome.scss";
-import dev from "../assets/iconDev.png";
-import back from "../assets/arrowleft.png";
-import NavlinkAdminHome from "../components/navlinAdmin/NavLinkAdminHome";
 import { useDispatch, useSelector } from "react-redux";
-import FotoEmpresa from "../../src/assets/logo admin 2.jpeg";
-import LogoMakaia from "../../src/assets/Logo.png";
 import { DeleteIcon, TimeIcon, ExternalLinkIcon, CheckCircleIcon, ArrowRightIcon, EditIcon, StarIcon } from '@chakra-ui/icons';
-import Swal from "sweetalert2";
 import {
   Stat,
   StatLabel,
   StatNumber,
-  StatHelpText,
-  StatArrow,
   StatGroup,
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
-  TableCaption,
   TableContainer,
-  CircularProgressLabel,
-  CircularProgress,
 } from '@chakra-ui/react'
 
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
-import { actionDeleteTalentAsync, actionGetTalentAsync } from "../redux/actions/validateTalentActions";
-import LayoutTalents from "../components/layout/LayoutTalents";
+import { actionGetTalentAsync } from "../redux/actions/validateTalentActions";
 import Footer from "../components/footer/Footer";
-import { useNavigate } from "react-router-dom";
 import LayoutAdmin from "../components/layout/LayoutAdmin";
 import { listOfferJob } from '../redux/actions/offerJobActions';
 import { getApplicationsAsync } from "../redux/actions/applicationActions";
@@ -59,7 +45,7 @@ const DashboardHome = () => {
     dispatch(getApplicationsAsync());
     dispatch(getcompanyAsync());
 
-  }, []);
+  }, );
 
   useEffect(() => {
     const completedProfilesArray = talents.filter(item => item.completedProfile === true)
