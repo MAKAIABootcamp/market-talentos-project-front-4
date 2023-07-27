@@ -4,7 +4,7 @@
 
 La forma en que las empresas encuentran y gestiona oportunidades ha cambiado. Marketplace Talentos es un aplicativo web desarrollado de forma intuitiva y poderosa para facilitar la búsqueda y adición de talento al igual que las vacantes registradas por parte de las empresas de empleabilidad.
 
-# Ancances / Roles:
+# Roles:
 
 LAs funcionalidades de este aplicativo se desglosan de la siguiente manera:
 
