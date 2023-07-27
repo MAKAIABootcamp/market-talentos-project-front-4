@@ -61,9 +61,13 @@
     &__principal{
         // background-color: blue;
         display: flex;
-
+        @include mobile {
+          flex-direction: column; 
+          align-items: center;  
+        }
+        }
     }   
-    }
+    
 
     .grid-left__admin{
         // background-color: aqua;
@@ -81,6 +85,10 @@
             text-align: center; 
             border-radius: 15px;
             position: relative;
+
+            @include mobile {
+               
+              }
         }
 
         &__span{                            

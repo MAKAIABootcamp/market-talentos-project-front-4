@@ -3,11 +3,13 @@ import recruiterImage from "../assets/Business people writing agreement, shaking
 import "../style/styleOfferVacants.scss";
 import { useDispatch, useSelector } from 'react-redux';
 import { addOfferJob, searchOffer, updateOfferJob } from '../redux/actions/offerJobActions';
+import { useNavigate } from 'react-router-dom';
 
 const OffertVacants = () => {
 
    const offerJobSelected = useSelector((state) => state.offerJob);
    const dispatch = useDispatch();
+   const navigate = useNavigate();
 
    
    const [formData, setFormData] = useState({
@@ -62,11 +64,14 @@ const OffertVacants = () => {
          modalidad: '',
          description: '',
       });
+      navigate(`/jobOffers`); 
+
    };
 
    const handleEditSubmit = (e) => {
       e.preventDefault();
       dispatch(updateOfferJob(formData2, offerJobSelected.offerJob[0].id));
+      navigate(`/jobOffers`); 
    };
 
    return (

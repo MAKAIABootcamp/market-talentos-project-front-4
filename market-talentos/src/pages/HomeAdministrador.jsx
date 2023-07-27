@@ -73,7 +73,7 @@ const HomeAdministrador = () => {
                   <CardFooter>
                     <Button className='grid-rigth__admin__card1B'
                       onClick={() => navigate('/dash')}>
-                      Ver detalles</Button>
+                       detalles</Button>
                   </CardFooter>
                 </Card>
               </SimpleGrid>
