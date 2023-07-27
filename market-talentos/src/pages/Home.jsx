@@ -29,7 +29,7 @@ const Home = () => {
                
                 <div>
                   <label className="home__info-form3">
-                    <button>Search</button>
+                    <button type="submit">Search</button>
                   </label>
                 </div>
               </form>

@@ -147,7 +147,8 @@ const TalentOfferJob = ({ id }) => {
                     
                     <button
                       className="talentOffer__button-otheroffert"
-                      // onClick={() =>  navigate(`/talentDetails/${user.id}`)}
+                     
+                      // onClick={() => navigate('/talentDetails/'+talento.id)}
                       
                     >
                       Ir a Perfil

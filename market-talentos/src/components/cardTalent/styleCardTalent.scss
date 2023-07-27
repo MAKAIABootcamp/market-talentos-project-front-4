@@ -106,8 +106,6 @@
     }
   }
 
-  
-
   &__line {
     @include desk {
       width: 3px;
@@ -378,5 +376,12 @@
         $white
       );
     }
+  }
+}
+/* .........media query mobile.......... */
+
+@media screen and (max-width: 375px) {
+  .cardTalents {
+    margin-left: 57px;
   }
 }
