@@ -14,6 +14,7 @@ const firebaseConfig = {
   storageBucket: "market-place-talentos.appspot.com",
   messagingSenderId: "784638244005",
   appId: "1:784638244005:web:c576a336823c28e24a494c"
+  
 };
 
 // Initialize Firebase

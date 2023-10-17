@@ -17,16 +17,10 @@ import {
 } from '@chakra-ui/react'
 
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
-<<<<<<< HEAD
-import { actionGetTalentAsync } from "../redux/actions/validateTalentActions";
-import Footer from "../components/footer/Footer";
-import LayoutAdmin from "../components/layout/LayoutAdmin";
-=======
 import { actionDeleteTalentAsync, actionGetTalentAsync } from "../redux/actions/validateTalentActions";
 
 import Footer from "../components/footer/Footer";
 import { useNavigate } from "react-router-dom";
->>>>>>> 005c8c921e045e5db115a1a523d1c2c388fdf242
 import { listOfferJob } from '../redux/actions/offerJobActions';
 import { getApplicationsAsync } from "../redux/actions/applicationActions";
 import { getcompanyAsync } from "../redux/actions/companyActions";

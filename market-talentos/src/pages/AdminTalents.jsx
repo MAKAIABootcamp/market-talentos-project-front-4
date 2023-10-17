@@ -15,14 +15,8 @@ import {
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
 import { actionDeleteTalentAsync, actionGetTalentAsync, actionEditTalentAsync, actionAddTalentAsync } from "../redux/actions/validateTalentActions";
 import Footer from "../components/footer/Footer";
-<<<<<<< HEAD
-import LayoutAdmin from "../components/layout/LayoutAdmin";
-import { NavLink } from "react-router-dom";
-
-=======
 import { NavLink, useNavigate } from "react-router-dom";
 import LayoutAdminS from "../components/layout/LayoutAdminSimple";
->>>>>>> 005c8c921e045e5db115a1a523d1c2c388fdf242
 
 
 const AdminTalents = () => {
@@ -53,13 +47,8 @@ const AdminTalents = () => {
   return (
     <>
       {/* -------------Header---------------------------- */}
-<<<<<<< HEAD
-   
-      <LayoutAdmin/>
-=======
       {/* <LayoutAdmin /> */}
      <LayoutAdminS />
->>>>>>> 005c8c921e045e5db115a1a523d1c2c388fdf242
 
       {/* -------------Welcome Message---------------------------- */}
       <div className="infoAdminUp">
