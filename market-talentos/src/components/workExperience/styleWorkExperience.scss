@@ -12,6 +12,7 @@
         border: 1px solid $gray;
         padding: 30px;
         gap: 20px;
+        
                
       }
       &__container-workExperience{
@@ -19,6 +20,8 @@
         display: flex;
         gap: 20px;
         margin-bottom: 20px;
+        
+        
         
       }    
 
@@ -68,6 +71,10 @@
 
       &__funtions{
         @include text ($fontNunito, $w400, $s12, $gray);
+     
+        @include mobile{
+          width: 240px;
+        }
       }
    
 }

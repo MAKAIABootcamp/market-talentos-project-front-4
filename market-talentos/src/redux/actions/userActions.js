@@ -2,7 +2,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { firestore } from '../../firebase/firebaseConfig';
 import { setUserTalents } from '../reducers/userTalentReducer';
 import { userTypes } from "../types/talentsTypes";
-import { setIsLogged, setLoading } from "./appActions";
+import { setLoading } from "./appActions";
 
 const collectionTalents = collection(firestore, "talentos");
 const collectionUsers = collection(firestore, "usuarios");

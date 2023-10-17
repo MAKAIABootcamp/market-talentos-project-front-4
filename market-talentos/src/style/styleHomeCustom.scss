@@ -1,0 +1,87 @@
+@import "./style.scss";
+
+body {
+  background-color: $white;
+}
+
+.company__container {
+  padding-top: 50px;
+  display: flex;
+  gap: 100px;
+}
+.__container-cardCompany{
+  background-color: red;
+  margin-left: 30px;
+}
+.company__bitacora {
+  border: 2px solid $gray;
+  border-radius: 20px;
+  width: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.company__postulaciones {
+  border: 2px solid $gray;
+  border-radius: 20px;
+  width: 160px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.company__progreso {
+  border: 2px solid $gray;
+  border-radius: 20px;
+  width: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.company__search {
+  border: 2px solid $gray;
+  border-radius: 20px;
+  width: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.companny__dashboard {
+  display: flex;
+}
+.company__button {
+  display: flex;
+  gap: 20px;
+  padding-top: 40px;
+  button {
+    background-color: $yellow;
+    width: 120px;
+    padding: 4px;
+    border-radius: 5px;
+  }
+  
+}
+.talents__button-offert {
+  position: relative;
+  left: 250px;
+  button {
+    background-color: $yellow;
+    width: 240px;
+    height: 40px;
+    border-radius: 16px;
+  }
+}
+.company__talentsall {
+ 
+  width: 700px;
+  height: 800px;
+}
+.container2 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.company__progresocontainer {
+  display: flex;
+  gap: 20px;
+}

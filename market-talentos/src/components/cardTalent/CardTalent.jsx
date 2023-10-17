@@ -43,7 +43,7 @@ const CardTalent = ({id}) => {
             onClick={() => handleClick("editImgProfile", "")}
           >
             <figure className="cardTalents__card-figure">
-              <img src={talento.photoURL} alt="imgTalent" />
+              <img src={talento?.photoURL} alt="imgTalent" />
             </figure>
           </div>
           <div className="cardTalents__container-info">
@@ -59,36 +59,36 @@ const CardTalent = ({id}) => {
                             </figure> */}
               <div className="cardTalents__container-levelEnglish">
                 <span className="cardTalents__know">Ingles</span>
-                <span className="cardTalents__know">{talento.englishLevel}</span>
+                <span className="cardTalents__know">{talento?.englishLevel}</span>
               </div>
             </div>
             <div className="cardTalents__line"></div>
             <div className="cardTalents__container-infoPnal">
               <span className="cardTalents__name">
-                              <strong>{talento.firstName}</strong>
+                              <strong>{talento?.firstName}</strong>
               </span>
               <span className="cardTalents__lastName"> 
-                <strong>{talento.lastName}</strong>
+                <strong>{talento?.lastName}</strong>
               </span>
             <span className="cardTalents__know">
-              <strong>{talento.rol}</strong>
+              <strong>{talento?.rol}</strong>
               </span>
             </div>
           </div>
           <section className="cardTalents__seccion-info">
             <div className="cardTalents__container-links">
               <button className="cardTalents__button-link">
-                <NavLink to={talento.githup}>
+                <NavLink to={talento?.githup}>
                   <figure className="cardTalents__figure-icons-gitUp">
                     <img src={imgGitUp} alt="git" />
                   </figure>
                 </NavLink>
-                <NavLink to={talento.linkedIn}>
+                <NavLink to={talento?.linkedIn}>
                   <figure className="cardTalents__figure-icons-linkedin">
                     <img src={imgLinkedin} alt="link" />
                   </figure>
                 </NavLink>
-                <NavLink to={talento.video}>
+                <NavLink to={talento?.video}>
                   <figure className="cardTalents__figure-icons-video">
                     <img src={imgVideo} alt="vid" />
                   </figure>
@@ -102,14 +102,14 @@ const CardTalent = ({id}) => {
                     <img src={imgMail} alt="" />
                   </figure>
                   <span className="cardTalents__infoContact">
-                  {talento.email}
+                  {talento?.email}
                   </span>
                 </div>
                 <div className="cardTalents__container-mail">
                   <figure className="cardTalents__iconPhone">
                     <img src={imgPhone} alt="" />
                   </figure>
-                  <span className="cardTalents__infoContact">+57 {talento.phone}</span>
+                  <span className="cardTalents__infoContact">+57 {talento?.phone}</span>
                 </div>
               </div>
               <div className="cardTalents__container-programs">
@@ -121,13 +121,13 @@ const CardTalent = ({id}) => {
               </div>
               <div className="cardTalents__container-profile">
                 <h5 className="cardTalents__profile">
-                  {talento.profile}
+                  {talento?.profile}
                 </h5>
               </div>
             </div>
             <div className="cardTalents__container-EditProfile">
               <button 
-              onClick={() => navigate('/editProfile/'+talento.id)}
+              onClick={() => navigate('/editProfile/'+talento?.id)}
               className="cardTalents__button-EditProfile">
                 Editar Información
               </button>
@@ -135,15 +135,15 @@ const CardTalent = ({id}) => {
             <div className="cardTalents__container-custom">
               <button
                 className="cardTalents__button-custom"
-                onClick={() => handleClick("portfolio", "")}
+                onClick ={() =>navigate('/formstudies/'+talento?.id)}
               >
-                Demoday
+                Estudios
               </button>
               <button
                 className="cardTalents__button-custom"
-                onClick={() => handleClick("curriculum", "")}
+                
               >
-                Hoja de vida
+              Experiencia
               </button>
             </div>
           </section>

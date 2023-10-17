@@ -5,7 +5,7 @@ export const validateTalents = {
     ADD_TALENT : 'ADD_TALENT',
     EDIT_TALENTS: 'EDIT_TALENTS',
     DELETE_TALENTS : "DELETE_TALENTS",
-    
+    FILTER_TALENTS : "FILTER_TALENTS"
   }
 
   
